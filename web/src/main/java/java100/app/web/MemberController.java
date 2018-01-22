@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java100.app.domain.Member;
 import java100.app.service.MemberService;
 
+// 정소현
+
 @Controller
 @RequestMapping("/member")
 public class MemberController {
