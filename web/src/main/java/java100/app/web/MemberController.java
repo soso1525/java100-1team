@@ -83,6 +83,18 @@ public class MemberController {
         return "member/form";
         
     }
+    @RequestMapping("add")
+    public String add(Member member) throws Exception {
+        
+        memberService.add(member);
+        return "redirect:list";
+    }
+    
+    @RequestMapping("form")
+    public String form() throws Exception {
+        return "member/form";
+        
+    }
     
     @RequestMapping("update")
     public String update(Member member) throws Exception {
