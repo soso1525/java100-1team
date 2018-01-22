@@ -11,14 +11,15 @@ import java100.app.service.MemberService;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-    
+
     @Autowired MemberService memberService;
-    
+
     @RequestMapping("{no}")
     public String view(@PathVariable int no, Model model) throws Exception {
         model.addAttribute("member", memberService.get(no));
         return "member/view";
-        
+    }
+
         @RequestMapping("update")
         public String update(Member member) throws Exception {
 
@@ -27,7 +28,7 @@ public class MemberController {
         }
     }
 
-        
+
 
 
 
