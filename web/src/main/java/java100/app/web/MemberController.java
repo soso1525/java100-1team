@@ -91,7 +91,7 @@ public class MemberController {
         memberService.delete(no);
         return "redirect:list";
     }
-}
+} 
 
 
 
