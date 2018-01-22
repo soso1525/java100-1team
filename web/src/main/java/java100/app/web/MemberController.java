@@ -18,9 +18,18 @@ public class MemberController {
     public String view(@PathVariable int no, Model model) throws Exception {
         model.addAttribute("member", memberService.get(no));
         return "member/view";
+        
+        @RequestMapping("update")
+        public String update(Member member) throws Exception {
+
+            memberService.update(member);
+            return "redirect:list";
+        }
     }
-    
-}
+
+        
+
+
 
 
 
