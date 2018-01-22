@@ -15,7 +15,7 @@ import java100.app.service.MemberService;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-    
+    //
     @Autowired MemberService memberService;
     
     @RequestMapping("list")
