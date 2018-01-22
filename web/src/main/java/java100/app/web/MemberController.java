@@ -1,7 +1,10 @@
 package java100.app.web;
 
+<<<<<<< HEAD
 import java.util.HashMap;
 
+=======
+>>>>>>> branch 'master' of https://github.com/soso1525/java100-1team.git
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java100.app.domain.Member;
 import java100.app.service.MemberService;
 
+import java100.app.service.MemberService;
+
 @Controller
 @RequestMapping("/member")
 public class MemberController {
+<<<<<<< HEAD
     
     @Autowired MemberService memberService;
     
@@ -88,10 +94,32 @@ public class MemberController {
     @RequestMapping("delete")
     public String delete(int no) throws Exception {
 
-        memberService.delete(no);
+        memberService.delete(no);zXDasd
         return "redirect:list";
     }
 }
+=======
+
+    @Autowired MemberService memberService;
+
+    @RequestMapping("{no}")
+    public String view(@PathVariable int no, Model model) throws Exception {
+        model.addAttribute("member", memberService.get(no));
+        return "member/view";
+    }
+
+        @RequestMapping("update")
+        public String update(Member member) throws Exception {
+
+            memberService.update(member);
+            return "redirect:list";
+        }
+    }
+
+
+
+
+>>>>>>> branch 'master' of https://github.com/soso1525/java100-1team.git
 
 
 package java100.app.web;
