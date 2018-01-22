@@ -6,13 +6,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java100.app.domain.Member;
 import java100.app.service.MemberService;
 
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 
-    @Autowired MemberService memberService;
+    @Autowired
+    MemberService memberService;
 
     @RequestMapping("{no}")
     public String view(@PathVariable int no, Model model) throws Exception {
@@ -20,22 +22,10 @@ public class MemberController {
         return "member/view";
     }
 
-        @RequestMapping("update")
-        public String update(Member member) throws Exception {
+    @RequestMapping("update")
+    public String update(Member member) throws Exception {
 
-            memberService.update(member);
-            return "redirect:list";
-        }
+        memberService.update(member);
+        return "redirect:list";
     }
-
-
-
-
-
-
-
-
-
-
-
-
+}
