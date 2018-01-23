@@ -1,30 +1,24 @@
 package java100.app.web;
 
-<<<<<<< HEAD
 import java.util.HashMap;
 
-=======
->>>>>>> branch 'master' of https://github.com/soso1525/java100-1team.git
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-<<<<<<< HEAD
-=======
 import org.springframework.web.bind.annotation.PathVariable;
->>>>>>> branch 'master' of https://github.com/soso1525/java100-1team.git
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java100.app.service.MemberService;
-
+import java100.app.domain.Member;
 import java100.app.service.MemberService;
 
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-<<<<<<< HEAD
+    //
     @Autowired MemberService memberService;
-	@RequestMapping("list")
+    
+    @RequestMapping("list")
     public String list(
             @RequestParam(value="pn", defaultValue="1") int pageNo,
             @RequestParam(value="ps", defaultValue="5") int pageSize,
@@ -63,68 +57,38 @@ public class MemberController {
         model.addAttribute("list", memberService.list(pageNo, pageSize, options));
         return "member/list";
     }
-	
+    
+    @RequestMapping("{no}")
+    public String view(@PathVariable int no, Model model) throws Exception {
+        
+        model.addAttribute("member", memberService.get(no));
+        return "member/view";
+    }
+    
+    @RequestMapping("add")
+    public String add(Member member) throws Exception {
+        
+        memberService.add(member);
+        return "redirect:list";
+    }
+    
+    @RequestMapping("form")
+    public String form() throws Exception {
+        return "member/form";
+        
+    }
+    
+    @RequestMapping("update")
+    public String update(Member member) throws Exception {
+        
+        memberService.update(member);
+        return "redirect:list";
+    }
+
     @RequestMapping("delete")
     public String delete(int no) throws Exception {
 
         memberService.delete(no);
         return "redirect:list";
     }
-    
-    @RequestMapping("update")
-    public String update(Member member) throws Exception {
-
-        memberService.update(member);
-        return "redirect:list";
-    }
-    
-
-
-
-    @RequestMapping("{no}")
-    public String view(@PathVariable int no, Model model) throws Exception {
-        model.addAttribute("member", memberService.get(no));
-        return "member/view";
-    }
-
-        @RequestMapping("update")
-        public String update(Member member) throws Exception {
-
-            memberService.update(member);
-            return "redirect:list";
-        }
-    }
 }
-=======
-
-    @Autowired MemberService memberService;
-
-    @RequestMapping("{no}")
-    public String view(@PathVariable int no, Model model) throws Exception {
-        model.addAttribute("member", memberService.get(no));
-        return "member/view";
-    }
-
-        @RequestMapping("update")
-        public String update(Member member) throws Exception {
-
-            memberService.update(member);
-            return "redirect:list";
-        }
-    }
-
-
-
-
->>>>>>> branch 'master' of https://github.com/soso1525/java100-1team.git
-
-
-
-
-
-
-
-
-
-
-
