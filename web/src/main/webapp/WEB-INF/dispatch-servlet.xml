@@ -89,7 +89,6 @@
     </bean>
     
     <!-- 인터셉터를 등록한다. -->
-    <!-- 
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
@@ -97,7 +96,7 @@
             <bean class="java100.app.web.interceptor.AuthInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
-     -->
+   
     
     
     <!-- 트랜잭션 작업을 수행할 advice 객체 등록 
