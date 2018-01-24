@@ -4,6 +4,11 @@
     width: 1080px;
 }
 
+.container2 {
+    width: 500px;
+    margin: 0 auto;
+}
+
 
 footer {
     text-align: center;
@@ -16,9 +21,6 @@ footer {
 	margin: 3px 0px;
 }
 
-.searchbox {
-	float: right;
-}
 
 
 

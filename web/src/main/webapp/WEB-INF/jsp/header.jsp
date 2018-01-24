@@ -12,15 +12,15 @@
   <span class='navbar-toggler-icon'></span>
 </button>
 <div class='collapse navbar-collapse' id='navbarNav'>
-<ul class='navbar-nav mr-auto'>
+<ul style="margin-left: auto; margin-right: auto; padding-left:20px; padding-right: 20px" class='navbar-nav mr-auto'>
   <li class='nav-item'>
-    <a class='nav-link' href='../score/list'>job</a>
+    <a class='nav-link' href='../score/list'>JOB</a>
   </li>
   <li class='nav-item'>
-    <a class='nav-link' href='../member/list'>study</a>
+    <a class='nav-link' href='../member/list'>STUDY</a>
   </li>
   <li class='nav-item'>
-    <a class='nav-link' href='../board/list'>mypage</a>
+    <a class='nav-link' href='../board/list'>MYPAGE</a>
   </li>
 </ul>
 

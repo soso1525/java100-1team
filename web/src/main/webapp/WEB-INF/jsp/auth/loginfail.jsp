@@ -11,7 +11,7 @@
 <link rel='stylesheet' href='../../css/common.css'>
 </head>
 <body>
-<div class='container'>
+<div class='container2'>
 
 <jsp:include page="../header.jsp"/>
 
