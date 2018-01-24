@@ -6,8 +6,8 @@
 <html>
 <head>
 <title>회원관리</title>
-<link rel='stylesheet' href='../../node_modules/bootstrap/dist/css/bootstrap.min.css'>
-<link rel='stylesheet' href='../../css/common.css'>
+<link rel='stylesheet' href='../../../node_modules/bootstrap/dist/css/bootstrap.min.css'>
+<link rel='stylesheet' href='../../../css/common.css'>
 </head>
 <body>
 <div class='container'>

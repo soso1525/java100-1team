@@ -6,28 +6,21 @@
 
 <header>
 <nav class='navbar navbar-expand-lg navbar-light bg-light'>
-<a class='navbar-brand' href='../index.html'>
-  <img src='${contextPath}/images/bootstrap-solid.svg' width='30' height='30' class='d-inline-block align-top' alt=''>
-  비트캠프
-</a>
 
 <c:if test="${empty menuVisible or menuVisible == true}">
 <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
   <span class='navbar-toggler-icon'></span>
 </button>
 <div class='collapse navbar-collapse' id='navbarNav'>
-<ul class='navbar-nav mr-auto'>
+<ul style="margin-left: auto; margin-right: auto; padding-left:20px; padding-right: 20px" class='navbar-nav mr-auto'>
   <li class='nav-item'>
-    <a class='nav-link' href='../score/list'>성적</a>
+    <a class='nav-link' href='../score/list'>JOB</a>
   </li>
   <li class='nav-item'>
-    <a class='nav-link' href='../member/list'>회원</a>
+    <a class='nav-link' href='../member/list'>STUDY</a>
   </li>
   <li class='nav-item'>
-    <a class='nav-link' href='../board/list'>게시판</a>
-  </li>
-  <li class='nav-item'>
-    <a class='nav-link' href='../room/list'>강의실</a>
+    <a class='nav-link' href='../board/list'>MYPAGE</a>
   </li>
 </ul>
 
