@@ -3,7 +3,7 @@ package java100.app.service;
 import java.util.List;
 import java.util.Map;
 
-import java100.app.domain.CompernyMember;
+import java100.app.domain.CompanyMember;
 import java100.app.domain.IndividualMember;
 import java100.app.domain.Member;
 
@@ -22,7 +22,7 @@ public interface MemberService {
     Member get(String id, String password);
     int getTotalCount();
     int iAdd(Member member, IndividualMember iMember);
-    int cAdd(Member member, CompernyMember cMember);
+    int cAdd(Member member, CompanyMember cMember);
     int update(Member member);
     int delete(int no);
 }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java100.app.domain.CompernyMember;
+import java100.app.domain.CompanyMember;
 import java100.app.domain.Member;
 import java100.app.service.MemberService;
 
@@ -64,7 +64,7 @@ public class CompernyController {
     }
     
     @RequestMapping("cAdd")
-    public String cAdd(Member member, CompernyMember cMember) throws Exception {
+    public String cAdd(Member member, CompanyMember cMember) throws Exception {
         memberService.cAdd(member, cMember);
         return "redirect:../auth/login";
     }

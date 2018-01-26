@@ -7,7 +7,7 @@
      namespace의 값이 인터페이스 이름과 같아야 한다. -->
 <mapper namespace="java100.app.dao.CompernyMemberDao">
 
-   <insert id="insert" parameterType="compernyMember">
+   <insert id="insert" parameterType="companyMember">
         insert into g_corp(pno, cname, ckind, ctype, cbno)
         values(LAST_INSERT_ID(),#{name},#{kind},#{type},#{businessNo})
     </insert>

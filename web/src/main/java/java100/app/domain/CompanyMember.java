@@ -1,6 +1,6 @@
 package java100.app.domain;
 
-public class CompernyMember {
+public class CompanyMember {
     
     String name;
     String kind;
