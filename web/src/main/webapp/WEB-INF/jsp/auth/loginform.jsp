@@ -52,7 +52,7 @@
 	</div>
 </div> 
   <a href="../member/form">일반 회원가입</a>
-  <a href="../comperny/form">기업 회원가입</a>
+  <a href="../company/form">기업 회원가입</a>
 
 
 </form>

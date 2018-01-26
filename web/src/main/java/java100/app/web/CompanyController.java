@@ -12,8 +12,8 @@ import java100.app.domain.Member;
 import java100.app.service.MemberService;
 
 @Controller
-@RequestMapping("/comperny")
-public class CompernyController {
+@RequestMapping("/company")
+public class CompanyController {
     @Autowired MemberService memberService;
     
     @RequestMapping("list")
@@ -71,7 +71,7 @@ public class CompernyController {
     
     @RequestMapping("form")
     public String form() throws Exception {
-        return "comperny/form";
+        return "company/form";
         
     }
     
