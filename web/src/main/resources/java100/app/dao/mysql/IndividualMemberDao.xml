@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- DAO 객체를 자동으로 생성하려면,
+     namespace의 값이 인터페이스 이름과 같아야 한다. -->
+<mapper namespace="java100.app.dao.IndividualMemberDao">
+
+   <insert id="insert" parameterType="individualMember">
+        insert into g_iper(pno, iname, ibirth, itype)
+        values(LAST_INSERT_ID(),#{name},#{birth},#{type})
+    </insert>
+</mapper>
+
+
+
+
+
+
+
+
+

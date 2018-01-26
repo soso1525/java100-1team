@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>회원관리</title>
+<title>기업회원관리</title>
 <link rel='stylesheet' href='../../node_modules/bootstrap/dist/css/bootstrap.min.css'>
 <link rel='stylesheet' href='../../css/common.css'>
 </head>
@@ -14,9 +14,9 @@
 
 <jsp:include page="../header.jsp"/>
 
-<h1>회원 가입
+<h1>기업회원 가입
 </h1>
-<form action='iAdd' method='post'>
+<form action='cAdd' method='post'>
 <div class='form-group row'>
 <label for='name' class='col-sm-2 col-form-label'>아이디</label>
 <div class='col-sm-10'>
@@ -37,18 +37,36 @@
 </div>
 
 <div class='form-group row'>
-<label for='name' class='col-sm-2 col-form-label'>이름</label>
+<label for='name' class='col-sm-2 col-form-label'>기업명</label>
 <div class='col-sm-10'>
 <input class='form-control' id='name' type='text' name='name'>
 </div>
 </div>
 
 <div class='form-group row'>
-<label for='birth' class='col-sm-2 col-form-label'>생년월일</label>
+<label for='businessNo' class='col-sm-2 col-form-label'>사업자등록번호</label>
 <div class='col-sm-10'>
-<input class='form-control' id='birth' type='date' name='birth'>
+<input class='form-control' id='businessNo' type='text' name='businessNo'>
 </div>
 </div>
+
+
+<div class='form-group row'>
+<label for='kind' class='col-sm-2 col-form-label'>업종</label>
+<div class='col-sm-10'>
+<input class='form-control' id='kind' type='text' name='kind'>
+</div>
+</div>
+
+
+<div class='form-group row'>
+<label for='type' class='col-sm-2 col-form-label'>기업형태</label>
+<div class='col-sm-10'>
+<input class='form-control' id='type' type='text' name='type'>
+</div>
+</div>
+
+
 <div class='form-group row'>
 <label for='email' class='col-sm-2 col-form-label'>이메일</label>
 <div class='col-sm-10'>
@@ -70,12 +88,6 @@
 </div>
 </div>
 
-<div class='form-group row'>
-<label for='type' class='col-sm-2 col-form-label'>타입</label>
-<div class='col-sm-10'>
-<input class='form-control' id='type' type='text' name='type'>
-</div>
-</div>
 
 
 <div class='form-group row'>

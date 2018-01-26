@@ -91,8 +91,11 @@
     <!-- 인터셉터를 등록한다. -->
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <mvc:exclude-mapping path="/auth/**"/>
+        	<!-- 해당하는 path만 검사한다. -->
+            <mvc:mapping path="/person/**"/>
+            
+            <!-- 해당하는 path는 검사를 제외한다. -->
+            <!-- <mvc:exclude-mapping path="/auth/**"/> -->
             <bean class="java100.app.web.interceptor.AuthInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

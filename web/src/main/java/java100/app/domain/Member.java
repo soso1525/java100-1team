@@ -1,28 +1,42 @@
 package java100.app.domain;
 
-import java.sql.Date;
-
 public class Member {
     
     protected int no;
-    protected String name;
     protected String email;
     protected String password;
-    protected Date createdDate;
+    protected String id;
+    protected String tel;
+    protected String createdDate;
     
     public Member() {}
     
-    public Member(int no, String name, String email) {
+    public Member(int no, String email, String id) {
         this.no = no;
-        this.name = name;
         this.email = email;
+        this.id = id;
     }
+    
+    
 
-    @Override
-    public String toString() {
-        return "Member [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password + ", createdDate="
-                + createdDate + "]";
-    }
+
+    
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 
     public int getNo() {
         return no;
@@ -32,23 +46,15 @@ public class Member {
         this.no = no;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
-    }
+    public String getCreatedDate() {
+		return createdDate;
+	}
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
+	public void setCreatedDate(String createdDate) {
+		this.createdDate = createdDate;
+	}
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
+	public String getEmail() {
         return email;
     }
 

@@ -30,20 +30,19 @@ public class LoginController {
     
     @RequestMapping(value="login", method=RequestMethod.POST)
     public String login(
-            String email, 
+            String id, 
             String password,
             String saveEmail,
             HttpServletResponse response,
             Model model) {
         
-        Member member = memberService.get(email, password);
-        
+        Member member = memberService.get(id, password);
         if (saveEmail != null) {
-            Cookie cookie = new Cookie("email", email);
+            Cookie cookie = new Cookie("id", id);
             cookie.setMaxAge(60 * 60 * 24 * 30);
             response.addCookie(cookie);
         } else {
-            Cookie cookie = new Cookie("email", "");
+            Cookie cookie = new Cookie("id", "");
             cookie.setMaxAge(0);
             response.addCookie(cookie);
         }

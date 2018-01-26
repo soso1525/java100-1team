@@ -7,7 +7,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java100.app.dao.CompernyMemberDao;
+import java100.app.dao.IndividualMemberDao;
 import java100.app.dao.MemberDao;
+import java100.app.domain.CompernyMember;
+import java100.app.domain.IndividualMember;
 import java100.app.domain.Member;
 import java100.app.service.MemberService;
 
@@ -15,6 +19,8 @@ import java100.app.service.MemberService;
 public class MemberServiceImpl implements MemberService {
 
     @Autowired MemberDao memberDao;
+    @Autowired IndividualMemberDao iMemberDao;
+    @Autowired CompernyMemberDao cMemberDao;
     
     @Override
     public List<Member> list(int pageNo, int pageSize, Map<String, Object> options) {
@@ -36,13 +42,12 @@ public class MemberServiceImpl implements MemberService {
     }
     
     @Override
-    public Member get(String email, String password) {
+    public Member get(String id, String password) {
         
         HashMap<String,Object> params = new HashMap<>();
-        params.put("email", email);
+        params.put("id", id);
         params.put("password", password);
-        
-        return memberDao.findByEmailAndPassword(params);
+        return memberDao.findByIdAndPassword(params);
     }
     
     @Override
@@ -51,8 +56,13 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public int add(Member score) {
-        return memberDao.insert(score);
+    public int iAdd(Member member, IndividualMember iMember) {
+        return memberDao.insert(member) + iMemberDao.insert(iMember);
+    }
+    
+    @Override
+    public int cAdd(Member member, CompernyMember cMember) {
+        return memberDao.insert(member) + cMemberDao.insert(cMember);
     }
 
     @Override

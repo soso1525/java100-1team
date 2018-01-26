@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java100.app.domain.IndividualMember;
+import java100.app.domain.CompernyMember;
 import java100.app.domain.Member;
 import java100.app.service.MemberService;
 
 @Controller
-@RequestMapping("/member")
-public class MemberController {
+@RequestMapping("/comperny")
+public class CompernyController {
     @Autowired MemberService memberService;
     
     @RequestMapping("list")
@@ -63,15 +63,15 @@ public class MemberController {
         return "member/view";
     }
     
-    @RequestMapping("iAdd")
-    public String iAdd(Member member, IndividualMember iMember) throws Exception {
-        memberService.iAdd(member, iMember);
+    @RequestMapping("cAdd")
+    public String cAdd(Member member, CompernyMember cMember) throws Exception {
+        memberService.cAdd(member, cMember);
         return "redirect:../auth/login";
     }
     
     @RequestMapping("form")
     public String form() throws Exception {
-        return "member/form";
+        return "comperny/form";
         
     }
     

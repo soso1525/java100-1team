@@ -20,10 +20,10 @@
 <form action="login" method='post'>
 
 <div class='form-group row'>
-	<label for='email' class='col-sm-2 col-form-label'>ID</label>
+	<label for='id' class='col-sm-2 col-form-label'>ID</label>
 	<div class='col-sm-10'>
-	<input class='form-control' id='email' type='text' 
-	       name='email' value='${cookie.email.value}'>
+	<input class='form-control' id='id' type='text' 
+	       name='id' value='${cookie.id.value}'>
 	</div>
 </div>
 
@@ -51,7 +51,8 @@
 	  </div>
 	</div>
 </div> 
-  <a href="../member/form">회원가입</a>
+  <a href="../member/form">일반 회원가입</a>
+  <a href="../comperny/form">기업 회원가입</a>
 
 
 </form>

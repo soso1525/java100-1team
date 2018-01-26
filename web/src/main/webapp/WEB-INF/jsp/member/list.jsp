@@ -31,7 +31,7 @@
 				</h5>
 				<h6 class="card-subtitle mb-2 text-muted">삼성전자</h6>
 				<script>
-					var s_date = new Date(2018, 02, 19);
+					var s_date = new Date(2018, 02, 01);
 					var now = Date.now();
 					document.write('D-Day ', Math.floor((s_date - now)
 							/ (1000 * 60 * 60 * 24)), '일');
