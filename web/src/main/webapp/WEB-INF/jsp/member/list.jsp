@@ -27,7 +27,7 @@
 		<div class="card" style="width: 286px; height: 364px;">
 			<div class="card-body">
 				<h5 class="card-title">
-					<img src="../../../images/samsung.jpg" width=250px />
+					<img src="../../images/samsung.jpg" width=250px />
 				</h5>
 				<h6 class="card-subtitle mb-2 text-muted">삼성전자</h6>
 				<script>
@@ -45,7 +45,7 @@
 		<div class="card" style="width: 286px; height: 364px;">
 			<div class="card-body">
 				<h5 class="card-title">
-					<img src="../../../images/lg.jpg" width=250px />
+					<img src="../../images/lg.jpg" width=250px />
 				</h5>
 				<h6 class="card-subtitle mb-2 text-muted">LG전자</h6>
 				<script>
@@ -63,7 +63,7 @@
 		<div class="card" style="width: 286px; height: 364px;">
 			<div class="card-body">
 				<h5 class="card-title">
-					<img src="../../../images/samsung.jpg" width=250px />
+					<img src="../../images/samsung.jpg" width=250px />
 				</h5>
 				<h6 class="card-subtitle mb-2 text-muted">삼성전자</h6>
 				<p class="card-text">Some quick example text to build on the

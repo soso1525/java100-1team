@@ -8,6 +8,8 @@
 <title>기업회원관리</title>
 <link rel='stylesheet' href='../../node_modules/bootstrap/dist/css/bootstrap.min.css'>
 <link rel='stylesheet' href='../../css/common.css'>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <div class='container'>
@@ -50,6 +52,12 @@
 </div>
 </div>
 
+<div class='form-group row'>
+<label for='businessNo' class='col-sm-2 col-form-label'></label>
+<div class='col-sm-10'>
+<button class='form-control' id='btnCheckInfo' >조회하기</button>
+</div>
+</div>
 
 <div class='form-group row'>
 <label for='kind' class='col-sm-2 col-form-label'>업종</label>
@@ -92,11 +100,70 @@
 
 <div class='form-group row'>
 <div class='col-sm-10'>
-<button class='btn btn-primary btn-sm'>등록</button>
+<button class='btn btn-primary btn-sm' id="btn-enrol" style="display:none">등록</button>
 </div>
 </div>
 </form>
 
 </div>
+<div id="loading" style="display:none">로딩중....</div>
+<script type="text/javascript">
+var ctxpath = '${pageContext.request.contextPath}/app';
+$(document).ready ( function (){
+	
+	var compCheckBtn = $('#btnCheckInfo'); 
+	console.log ( compCheckBtn );
+	
+	compCheckBtn.on ('click', function(e){
+		e.preventDefault(); // 
+		$('#loading').show();
+		console.log('눌렸다!');
+		var compName = $('#name').val();
+		var compNum = $('#businessNo').val();
+		console.log ( compName, compNum);
+		var qs = { cname : compName, cnum : compNum };
+		
+		$.ajax ( {
+			type : 'GET',
+			url : ctxpath + '/company/check-comp-info',
+			data : qs,
+			success : function (response) {
+				$('#loading').hide();
+				console.log ( '[response]', response );
+				var result = JSON.parse ( response);
+				console.log ( '[response]', result );
+				if ( result.success ) {
+					$('#btn-enrol').show();
+				} else {
+					$('#btn-enrol').hide();
+				}
+			}
+		} );
+	});
+});
+/*
+var xhr = new XMLHttpRequest();
+
+// http://apis.data.go.kr/
+var url = 'http://apis.data.go.kr/B552015/NpsBplcInfoInqireService/getBassInfoSearch';
+
+var queryParams = '?' + encodeURIComponent('ServiceKey') + '='+'AMW5V6IKzRS6bslVChrsfXWson6%2FgDspQvrV9%2F5ZgGr97gzyr43o8FtxbNHArOiLznJqPKavjjSMNIVs0lzLYA%3D%3D';
+queryParams += '&' + encodeURIComponent('wkpl_nm') + '=' + encodeURIComponent('삼성전자'); 
+queryParams += '&' + encodeURIComponent('bzowr_rgst_no') + '=' + encodeURIComponent('124815');
+
+console.log ( url + queryParams);
+
+xhr.open('GET', url + queryParams);
+xhr.onreadystatechange = function (e) {
+    if (this.readyState == 4) {
+        console.log('Status: '+this.status+' Headers: '+JSON.stringify(this.getAllResponseHeaders())+' Body: '+this.responseText);
+    } else {
+    	console.log ( e );
+    }
+};
+
+xhr.send('');
+*/
+</script>
 </body>
 </html>

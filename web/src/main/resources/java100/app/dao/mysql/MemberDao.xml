@@ -7,6 +7,11 @@
      namespace의 값이 인터페이스 이름과 같아야 한다. -->
 <mapper namespace="java100.app.dao.MemberDao">
 
+	<!--
+	 member m = new member();
+	 m.setEmail ( rs.getString("pmail");
+	 m.setId ( rs.getString(" 
+	 -->
     <resultMap type="member" id="memberMap">
         <id column="pno" property="no"/>
         <!-- 컬럼 이름과 프로퍼티 이름이 같아서 생략! -->
@@ -14,7 +19,7 @@
         <result column="name" property="name"/>
         <result column="email" property="email"/>
         -->
-        <result column="pmail" property="email"/>
+        <result column="pmail" property="email"/> <!--  String emial = rs.getString("pmail"); -->
         <result column="pid" property="id"/>
         <result column="ptype" property="type"/>
         <result column="ppwd" property="password"/>

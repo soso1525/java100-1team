@@ -5,16 +5,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java100.app.domain.CompanyMember;
 import java100.app.domain.Member;
+import java100.app.service.CompanyService;
 import java100.app.service.MemberService;
 
 @Controller
 @RequestMapping("/company")
 public class CompanyController {
     @Autowired MemberService memberService;
+    
+    @Autowired CompanyService comService;
     
     @RequestMapping("list")
     public String list(
@@ -25,7 +30,7 @@ public class CompanyController {
             @RequestParam(value="al", required=false) String align,
             Model model) throws Exception {
         
-        // UI 제어와 관련된 코드는 이렇게 페이지 컨트롤러에 두어야 한다.
+        // UI �젣�뼱�� 愿��젴�맂 肄붾뱶�뒗 �씠�젃寃� �럹�씠吏� 而⑦듃濡ㅻ윭�뿉 �몢�뼱�빞 �븳�떎.
         //
 //        if (pageNo < 1) {
 //            pageNo = 1;
@@ -48,7 +53,7 @@ public class CompanyController {
 //            lastPageNo++;
 //        }
 //        
-//        // view 컴포넌트가 사용할 값을 Model에 담는다.
+//        // view 而댄룷�꼳�듃媛� �궗�슜�븷 媛믪쓣 Model�뿉 �떞�뒗�떎.
 //        model.addAttribute("pageNo", pageNo);
 //        model.addAttribute("lastPageNo", lastPageNo);
 //        
@@ -68,7 +73,7 @@ public class CompanyController {
         memberService.cAdd(member, cMember);
         return "redirect:../auth/login";
     }
-    
+    // /web/app   /company/form
     @RequestMapping("form")
     public String form() throws Exception {
         return "company/form";
@@ -87,5 +92,15 @@ public class CompanyController {
 
         memberService.delete(no);
         return "redirect:list";
+    }
+    
+    @RequestMapping(value="check-comp-info", method=RequestMethod.GET)
+    @ResponseBody
+    public String checkCompInfo (@RequestParam String cname, @RequestParam String cnum) throws Exception {
+    	
+    	System.out.println(cname + ": " + cnum);
+    	boolean exist = comService.isMatchCompanyInfo(cname, cnum);
+    	
+    	return "{\"success\": " + exist + "}";
     }
 }
