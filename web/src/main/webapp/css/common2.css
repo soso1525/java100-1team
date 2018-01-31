@@ -6,7 +6,7 @@
 
 .container2 {
     width: 500px;
-    margin: 0 auto;
+    margin: 50px;
 }
 
 .body {
@@ -18,14 +18,17 @@
 }
 
 .card {
+	border: 3px solid red;
     text-align: center;
     float: left;
     margin: 5px;
     position: relative;
-    left: 5%;
-    width: 300px;
-    height: 450px;
-    
+    left: 13%;
+    width: 250px;
+    height: 375px;
+    -webkit-transform: translate(50%,50%); 
+    -ms-transform: translate(50%,50%); 
+    transform: translate(50%,50%);
     
 }
 .card div {
@@ -179,10 +182,4 @@ footer {
 .no-placeholder .form-4 label {
     display: block;
 }
-
-
-
-
-
-
 

@@ -11,6 +11,12 @@ public class Member {
     
     public Member() {}
     
+    @Override
+    public String toString() {
+        return "Member [no=" + this.no + ", email=" + this.email + ", password=" + this.password + ", id=" + this.id
+                + ", tel=" + this.tel + ", createdDate=" + this.createdDate + "]";
+    }
+
     public Member(int no, String email, String id) {
         this.no = no;
         this.email = email;

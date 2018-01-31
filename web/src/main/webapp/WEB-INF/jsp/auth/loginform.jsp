@@ -9,48 +9,36 @@
 <title>로그인</title>
 <link rel='stylesheet' href='../../node_modules/bootstrap/dist/css/bootstrap.min.css'>
 <link rel='stylesheet' href='../../css/common.css'>
+<style type="text/css">
+body {
+background: url('../../images/login.png') no-repeat top;
+ 
+}
+</style>
 </head>
-<body>
-<div class='container2'>
+<div>
+<div class='container2' style="margin: auto; margin-top: 300px">
 
-<jsp:include page="../header.jsp"/>
-
-<h1>로그인</h1>
-
-<form action="login" method='post'>
-
-<div class='form-group row'>
-	<label for='id' class='col-sm-2 col-form-label'>ID</label>
-	<div class='col-sm-10'>
-	<input class='form-control' id='id' type='text' 
-	       name='id' value='${cookie.id.value}'>
-	</div>
-</div>
-
-<div class='form-group row'>
-	<label for='password' class='col-sm-2 col-form-label'>PW</label>
-	<div class='col-sm-10'>
-	<input class='form-control' id='password' type='password' name='password'>
-	<div class='form-group row'>
-    <div class='col-sm-10'>
-    <button class='btn btn-primary btn-sm'>로그인</button>
-    </div>
-</div>
-	</div>
-</div>
+<%-- <jsp:include page="../header.jsp"/> --%>
 
 
+<form class="form-4" action="login" method="post">
 
-<div class='form-group row'>
-	<div class="col-sm-2"></div>
-	<div class="col-sm-10">
-	  <div class="form-check">
-	    <input type="checkbox" class="form-check-input"
-	           id="saveid" name="saveid">
-	    <label class="form-check-label" for="saveid">아이디 저장</label>
-	  </div>
-	</div>
-</div> 
+<h1>Log In</h1>
+
+    <p>
+        <label for="login">Username or email</label>
+        <input type="text" name="id" id='id' placeholder="Username or email" value="${cookie.id.value}" required >
+    </p>
+    <p>
+        <label for="password">Password</label>
+        <input type="password" name='password' placeholder="Password" id="password" required> 
+    </p>
+
+    <p>
+        <input type="submit" name="submit" value="Continue">
+    </p>       
+
   <a href="../member/form">일반 회원가입</a>
   <a href="../company/form">기업 회원가입</a>
 
@@ -58,8 +46,9 @@
 </form>
 
 <jsp:include page="../footer.jsp"/>
-
 </div>
+</div>
+<body >
 
 <jsp:include page="../jslib.jsp"/>
 

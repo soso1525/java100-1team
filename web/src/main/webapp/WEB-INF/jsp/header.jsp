@@ -5,37 +5,53 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <header>
-<nav class='navbar navbar-expand-lg navbar-light bg-light'>
+<nav class='navbar navbar-expand-lg navbar-light bg-red'>
 
 <c:if test="${empty menuVisible or menuVisible == true}">
 <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
   <span class='navbar-toggler-icon'></span>
 </button>
 <div class='collapse navbar-collapse' id='navbarNav'>
-<ul style="margin-left: auto; margin-right: auto; padding-left:20px; padding-right: 20px" class='navbar-nav mr-auto'>
-  <li class='nav-item'>
-    <a class='nav-link' href='../score/list'>JOB</a>
+<ul class='navbar-nav mr-auto'>
+  <li class='nav-item' style="margin-left:0px; margin-top:0px; padding-right: 20px; font-size: 50px;">
+    <a class='nav-link' href='../member/list'>CATCH</a>
   </li>
-  <li class='nav-item'>
-    <a class='nav-link' href='../member/list'>STUDY</a>
+  <li class='nav-item' style="margin-left:353px; margin-top:85px;">
+    <a class='nav-brand' href='../score/list'>
+    <img src='${contextPath}/images/1_2.png' width='98' height='30' class='d-inline-block' alt=''>
+    </a>
   </li>
-  <li class='nav-item'>
-    <a class='nav-link' href='../person/list'>MYPAGE</a>
+  <li class='nav-item' style="margin-left:20px; margin-top:85px;">
+    <a class='nav-brand' href='../score/list'>
+    <img src='${contextPath}/images/1_3.png' width='98' height='30' class='d-inline-block' alt=''>
+    </a>
   </li>
-</ul>
-
-<c:choose>
+  <li class='nav-item' style="margin-left:20px; margin-top:85px;">
+    <a class='nav-brand' href='../score/list'>
+    <img src='${contextPath}/images/1_4.png' width='98' height='30' class='d-inline-block' alt=''>
+    </a>
+  </li>
+  <c:choose>
     <c:when test="${sessionScope.loginUser != null}">
-        ${sessionScope.loginUser.id}
-        <a href="${contextPath}/app/auth/logout" 
-           class='btn btn-light btn-sm'>로그아웃</a>
+        <%-- ${sessionScope.loginUser.id} --%>
+        <li class='nav-item' style="margin-left:20px; margin-top:85px;">
+    <a class='nav-brand' href='${contextPath}/app/auth/login'>
+    <img src='${contextPath}/images/1_5.png' width='98' height='30' class='d-inline-block' alt=''>
+    </a>
+  </li>
     </c:when>
 
     <c:otherwise>
-       <a href="${contextPath}/app/auth/login" 
-           class='btn btn-primary btn-sm'>로그인</a>
+       <li class='nav-item' style="margin-left:20px; margin-top:85px;">
+    <a class='nav-brand' href='${contextPath}/app/auth/login'>
+    <img src='${contextPath}/images/1_5.png' width='98' height='30' class='d-inline-block' alt=''>
+    </a>
+  </li>
     </c:otherwise>
 </c:choose>
+</ul>
+
+
 
 </div>
 </c:if>
@@ -43,8 +59,3 @@
 </nav>
 </header>
 
-
-
-
-
-    

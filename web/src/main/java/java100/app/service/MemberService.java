@@ -25,6 +25,7 @@ public interface MemberService {
     int cAdd(Member member, CompanyMember cMember);
     int update(Member member);
     int delete(int no);
+    public boolean isMatchMemberId (String id);
 }
 
 
