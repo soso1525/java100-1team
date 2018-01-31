@@ -96,6 +96,13 @@
         where pid=#{id} and ppwd=password(#{password})
     </select>
     
+    <select id="findById" 
+            resultMap="memberMap" parameterType="map">
+        <include refid="select1"/>
+        from g_per
+        where pid=#{id}
+    </select>
+    
     <select id="countAll" resultType="int">
         select count(*) from g_per
     </select>

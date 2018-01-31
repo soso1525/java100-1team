@@ -14,7 +14,7 @@
 <body>
 <div class='container'>
 
-<jsp:include page="../header.jsp"/>
+<%-- <jsp:include page="../header.jsp"/> --%>
 
 <h1>기업회원 가입
 </h1>
@@ -25,6 +25,14 @@
 <input class='form-control' id='id' type='text' name='id'>
 </div>
 </div>
+
+<div class='form-group row'>
+<label for='name' class='col-sm-2 col-form-label'></label>
+<div class='col-sm-10'>
+<button class='form-control' id='btnCheckId' >조회하기</button>
+</div>
+</div>
+
 <div class='form-group row'>
 <label for='password' class='col-sm-2 col-form-label'>비밀번호</label>
 <div class='col-sm-10'>
@@ -35,6 +43,14 @@
 <label for='repassword' class='col-sm-2 col-form-label'>비밀번호 재확인</label>
 <div class='col-sm-10'>
 <input class='form-control' id='repassword' type='password' name='repassword'>
+</div>
+</div>
+
+
+<div class='form-group row'>
+<label for='checkpassword' class='col-sm-2 col-form-label'></label>
+<div class='col-sm-10'>
+<input class='form-control' id='checkpassword' readonly type='text' name='checkpassword'>
 </div>
 </div>
 
@@ -110,7 +126,6 @@
 <script type="text/javascript">
 var ctxpath = '${pageContext.request.contextPath}/app';
 $(document).ready ( function (){
-	
 	var compCheckBtn = $('#btnCheckInfo'); 
 	console.log ( compCheckBtn );
 	
@@ -141,29 +156,57 @@ $(document).ready ( function (){
 		} );
 	});
 });
-/*
-var xhr = new XMLHttpRequest();
 
-// http://apis.data.go.kr/
-var url = 'http://apis.data.go.kr/B552015/NpsBplcInfoInqireService/getBassInfoSearch';
+$(document).ready ( function (){
+	
+	var compCheckBtn = $('#btnCheckId'); 
+	
+	compCheckBtn.on ('click', function(e){
+		e.preventDefault(); // 
+		$('#loading').show();
+		var memberId = $('#id').val();
+		var qs = { id : memberId };
+		
+		$.ajax ( {
+			type : 'GET',
+			url : ctxpath + '/member/check-memb-id',
+			data : qs,
+			success : function (response) {
+				$('#loading').hide();
+				console.log ( '[response]', response );
+				var result = JSON.parse ( response);
+				console.log ( '[response]', result );
+				if ( result.success ) {
+					$('#btn-enrol').show();
+				} else {
+					$('#btn-enrol').hide();
+				}
+			}
+		} );
+	});
+});
 
-var queryParams = '?' + encodeURIComponent('ServiceKey') + '='+'AMW5V6IKzRS6bslVChrsfXWson6%2FgDspQvrV9%2F5ZgGr97gzyr43o8FtxbNHArOiLznJqPKavjjSMNIVs0lzLYA%3D%3D';
-queryParams += '&' + encodeURIComponent('wkpl_nm') + '=' + encodeURIComponent('삼성전자'); 
-queryParams += '&' + encodeURIComponent('bzowr_rgst_no') + '=' + encodeURIComponent('124815');
 
-console.log ( url + queryParams);
 
-xhr.open('GET', url + queryParams);
-xhr.onreadystatechange = function (e) {
-    if (this.readyState == 4) {
-        console.log('Status: '+this.status+' Headers: '+JSON.stringify(this.getAllResponseHeaders())+' Body: '+this.responseText);
-    } else {
-    	console.log ( e );
-    }
-};
 
-xhr.send('');
-*/
+var password = document.querySelector('#password')
+var repassword = document.querySelector('#repassword')
+var checkpassword= document.querySelector('#checkpassword')
+password.addEventListener('keyup', function() {
+     if (password.value == repassword.value) {
+        checkpassword.value = "일치합니다."
+     } else {
+        checkpassword.value = "일치하지않습니다."
+     }
+});
+repassword.addEventListener('keyup', function() {
+     if (password.value == repassword.value) {
+        checkpassword.value = "일치합니다."
+     } else {
+        checkpassword.value = "일치하지않습니다."
+     }
+});
 </script>
+
 </body>
 </html>

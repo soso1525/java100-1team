@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- DAO 객체를 자동으로 생성하려면,
+     namespace의 값이 인터페이스 이름과 같아야 한다. -->
+<mapper namespace="java100.app.dao.NoticeDao">
+
+	<!--
+	 member m = new member();
+	 m.setEmail ( rs.getString("pmail");
+	 m.setId ( rs.getString(" 
+	 -->
+    <resultMap type="notice" id="noticeMap">
+        <id column="nno" property="no"/>
+        <result column="nimg" property="image"/>
+        <result column="nsdt" property="startDate"/>
+        <result column="nedt" property="endDate"/> <!--  String emial = rs.getString("pmail"); -->
+        <result column="ncnt" property="viewCount"/>
+        <result column="pno" property="type"/>
+        <association property="companyMember" column=""></association>
+    </resultMap>
+
+    <sql id="select1">
+        select 
+            pno,
+            pid,
+            pmail,
+            pregdt
+    </sql>
+
+    <select id="findAll" resultMap="memberMap" parameterType="map">
+        <include refid="select1"/>
+        from g_per   
+
+        <if test="words != null">
+	        <where>
+	            name in 
+	            <foreach collection="words" item="word" 
+	                     open="(" close=")" separator=",">
+	                #{word}
+	            </foreach>
+	            or email in 
+                <foreach collection="words" item="word" 
+                         open="(" close=")" separator=",">
+                    #{word}
+                </foreach>
+	        </where>
+        </if>
+          
+        order by 
+        <choose>
+            <when test="orderColumn == 'email' and align == 'asc'">
+                email asc
+            </when>
+            <when test="orderColumn == 'email' and align == 'desc'">
+                email desc
+            </when>
+            <when test="orderColumn == 'regdt' and align == 'asc'">
+                regdt asc
+            </when>
+            <when test="orderColumn == 'regdt' and align == 'desc'">
+                regdt desc
+            </when>
+            <when test="orderColumn == 'name' and align == 'desc'">
+                name desc
+            </when>
+            <otherwise>
+                name asc
+            </otherwise>
+        </choose>
+        
+        limit #{startIndex}, #{size}
+    </select>
+    
+    
+    <select id="countAll" resultType="int">
+        select count(*) from g_per
+    </select>
+</mapper>  
+
+
+
+
+
+
+
+
+

@@ -8,11 +8,12 @@
 <title>회원관리</title>
 <link rel='stylesheet' href='../../node_modules/bootstrap/dist/css/bootstrap.min.css'>
 <link rel='stylesheet' href='../../css/common.css'>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <div class='container'>
 
-<jsp:include page="../header.jsp"/>
+<%-- <jsp:include page="../header.jsp"/> --%>
 
 <h1>회원 가입
 </h1>
@@ -23,6 +24,14 @@
 <input class='form-control' id='id' type='text' name='id'>
 </div>
 </div>
+
+<div class='form-group row'>
+<label for='name' class='col-sm-2 col-form-label'></label>
+<div class='col-sm-10'>
+<button class='form-control' id='btnCheckId' >조회하기</button>
+</div>
+</div>
+
 <div class='form-group row'>
 <label for='password' class='col-sm-2 col-form-label'>비밀번호</label>
 <div class='col-sm-10'>
@@ -33,6 +42,13 @@
 <label for='repassword' class='col-sm-2 col-form-label'>비밀번호 재확인</label>
 <div class='col-sm-10'>
 <input class='form-control' id='repassword' type='password' name='repassword'>
+</div>
+</div>
+
+<div class='form-group row'>
+<label for='checkpassword' class='col-sm-2 col-form-label'></label>
+<div class='col-sm-10'>
+<input class='form-control' id='checkpassword' readonly type='text' name='checkpassword'>
 </div>
 </div>
 
@@ -87,13 +103,14 @@
 
 <div class='form-group row'>
 <div class='col-sm-10'>
-<button class='btn btn-primary btn-sm'>등록</button>
+<button class='btn btn-primary btn-sm' id="btn-enrol" style="display:none">등록</button>
 </div>
 </div>
 </form>
 
+
 </div>
-</body>
+
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script charset="UTF-8" type="text/javascript" src="http://t1.daumcdn.net/cssjs/postcode/1513129253770/171213.js"></script>
@@ -149,4 +166,59 @@
         }).open();
     }
 </script>
+<div id="loading" style="display:none">로딩중....</div>
+<script type="text/javascript">
+var ctxpath = '${pageContext.request.contextPath}/app';
+$(document).ready ( function (){
+	
+	var compCheckBtn = $('#btnCheckId'); 
+	
+	compCheckBtn.on ('click', function(e){
+		e.preventDefault(); // 
+		$('#loading').show();
+		var memberId = $('#id').val();
+		var qs = { id : memberId };
+		
+		$.ajax ( {
+			type : 'GET',
+			url : ctxpath + '/member/check-memb-id',
+			data : qs,
+			success : function (response) {
+				$('#loading').hide();
+				console.log ( '[response]', response );
+				var result = JSON.parse ( response);
+				console.log ( '[response]', result );
+				if ( result.success ) {
+					$('#btn-enrol').show();
+				} else {
+					$('#btn-enrol').hide();
+				}
+			}
+		} );
+	});
+});
+
+
+var password = document.querySelector('#password')
+var repassword = document.querySelector('#repassword')
+var checkpassword= document.querySelector('#checkpassword')
+password.addEventListener('keyup', function() {
+     if (password.value == repassword.value) {
+        checkpassword.value = "일치합니다."
+     } else {
+        checkpassword.value = "일치하지않습니다."
+     }
+});
+repassword.addEventListener('keyup', function() {
+     if (password.value == repassword.value) {
+        checkpassword.value = "일치합니다."
+     } else {
+        checkpassword.value = "일치하지않습니다."
+     }
+});
+
+
+
+</script>
+</body>
 </html>

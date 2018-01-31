@@ -74,5 +74,9 @@ public class MemberServiceImpl implements MemberService {
     public int delete(int no) {
         return memberDao.delete(no);
     }
+    
+    public boolean isMatchMemberId (String id) {
+    	return memberDao.findById(id) == null;
+    }
 
 }

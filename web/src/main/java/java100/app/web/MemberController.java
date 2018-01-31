@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java100.app.domain.IndividualMember;
 import java100.app.domain.Member;
@@ -87,5 +89,13 @@ public class MemberController {
 
         memberService.delete(no);
         return "redirect:list";
+    }
+    @RequestMapping(value="check-memb-id", method=RequestMethod.GET)
+    @ResponseBody
+    public String checkMembInfo (@RequestParam String id) throws Exception {
+    	
+    	boolean exist = memberService.isMatchMemberId(id);
+    	
+    	return "{\"success\": " + exist + "}";
     }
 }
