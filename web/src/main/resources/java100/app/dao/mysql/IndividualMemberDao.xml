@@ -8,7 +8,7 @@
 <mapper namespace="java100.app.dao.IndividualMemberDao">
 
    <insert id="insert" parameterType="individualMember">
-        insert into g_iper(pno, iname, ibirth, itype)
+        insert into g_iper(ino, iname, ibirth, itype)
         values(LAST_INSERT_ID(),#{name},#{birth},#{type})
     </insert>
 </mapper>

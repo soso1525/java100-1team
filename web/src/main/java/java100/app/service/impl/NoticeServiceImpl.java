@@ -21,15 +21,9 @@ public class NoticeServiceImpl implements NoticeService {
     @Autowired NoticeDao noticeDao;
     
     @Override
-    public List<Notice> list(int pageNo, int pageSize, Map<String, Object> options) {
+    public List<Notice> list() {
         
         HashMap<String,Object> params = new HashMap<>();
-        params.put("startIndex", (pageNo - 1) * pageSize);
-        params.put("size", pageSize);
-        
-        if (options != null) {
-            params.putAll(options);
-        }
         
         return noticeDao.findAll(params);
     }

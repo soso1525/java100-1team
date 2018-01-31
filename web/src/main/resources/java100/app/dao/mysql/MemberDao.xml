@@ -25,9 +25,7 @@
         <result column="ppwd" property="password"/>
         <result column="pregdt" property="createdDate"/>
         <result column="ptel" property="tel"/>
-        <result column="ppost" property="post"/>
-        <result column="paddr" property="address"/>
-        <result column="pdaddr" property="detailAddress"/>
+        <result column="pdaddr" property="address"/>
     </resultMap>
 
     <sql id="select1">
@@ -108,8 +106,8 @@
     </select>
     
     <insert id="insert" parameterType="member">
-        insert into g_per(pmail,pid,ppwd,pregdt,ptel)
-        values(#{email},#{id},password(#{password}),now(),#{tel})
+        insert into g_per(pmail,pid,ppwd,pregdt,ptel,pdaddr,ptype)
+        values(#{email},#{id},password(#{password}),now(),#{tel},#{address},#{type})
     </insert>
 	
 <!--     <update id="update" parameterType="member">

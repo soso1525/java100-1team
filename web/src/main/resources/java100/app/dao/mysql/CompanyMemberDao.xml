@@ -8,8 +8,8 @@
 <mapper namespace="java100.app.dao.CompanyMemberDao">
 
    <insert id="insert" parameterType="companyMember">
-        insert into g_corp(pno, cname, ckind, ctype, cbno)
-        values(LAST_INSERT_ID(),#{name},#{kind},#{type},#{businessNo})
+        insert into g_corp(cno, cname, ckind, ctype, cbno)
+        values(LAST_INSERT_ID(),#{name},#{kind},#{cType},#{businessNo})
     </insert>
 </mapper>
 

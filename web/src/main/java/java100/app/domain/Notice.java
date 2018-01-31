@@ -9,6 +9,7 @@ public class Notice {
     String endDate;
     int viewCount;
     
+    
 	public String getCompanyName() {
 		return companyName;
 	}

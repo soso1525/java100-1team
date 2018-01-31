@@ -8,6 +8,9 @@ public class Member {
     protected String id;
     protected String tel;
     protected String createdDate;
+    protected String address;
+    protected String type;
+    
     
     public Member() {}
     
@@ -24,9 +27,27 @@ public class Member {
     }
     
     
+    
+    
 
 
     
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public String getTel() {
 		return tel;
 	}

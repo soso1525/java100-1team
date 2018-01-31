@@ -5,9 +5,31 @@ public class CompanyMember {
 	Member member;
     String name;
     String kind;
-    String type;
+    String cType;
     String businessNo;
+    String logo;
+    int no;
     
+    
+    
+	public String getcType() {
+		return cType;
+	}
+	public void setcType(String cType) {
+		this.cType = cType;
+	}
+	public String getLogo() {
+		return logo;
+	}
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
 	public Member getMember() {
 		return member;
 	}
@@ -26,12 +48,7 @@ public class CompanyMember {
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
+
 	public String getBusinessNo() {
 		return businessNo;
 	}

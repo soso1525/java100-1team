@@ -23,16 +23,17 @@
 <table class='table table-hover'>
 <thead>
 <tr>
-<th>번호</th><th>이미지</th><th>기업이름</th><th>채용시작일</th><th>채용종료일</th><th>조회수</th>
+<th>번호</th><th>이미지</th><th>기업이름</th><th>기업로고</th><th>채용시작일</th><th>채용종료일</th><th>조회수</th>
 </tr>
 </thead>
 <tbody>
 
 <c:forEach items="${list}" var="notice">
         <tr>
-	        <td>${notice.no}</td>
-	        <td>${notice.img}</td>
+        	<td>${notice.no}</td>
+        	<td>${notice.image}</td>
 	        <td>${notice.companyMember.name}</td>
+	        <td>${notice.companyMember.logo}</td>
 	        <td>${notice.startDate}</td>
 	        <td>${notice.endDate}</td>
 	        <td>${notice.viewCount}</td>

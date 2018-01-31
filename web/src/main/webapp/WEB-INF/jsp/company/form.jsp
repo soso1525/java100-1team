@@ -86,9 +86,9 @@
 
 
 <div class='form-group row'>
-<label for='type' class='col-sm-2 col-form-label'>기업형태</label>
+<label for='cType' class='col-sm-2 col-form-label'>기업형태</label>
 <div class='col-sm-10'>
-<input class='form-control' id='type' type='text' name='type'>
+<input class='form-control' id='cType' type='text' name='cType'>
 </div>
 </div>
 
@@ -101,9 +101,9 @@
 </div>
 
 <div class='form-group row'>
-<label for='post' class='col-sm-2 col-form-label'>주소</label>
+<label for='address' class='col-sm-2 col-form-label'>주소</label>
 <div class='col-sm-10'>
-<input class='form-control' id='post' type='text' name='post'>
+<input class='form-control' id='address' type='text' name='address'>
 </div>
 </div>
 
@@ -111,6 +111,13 @@
 <label for='tel' class='col-sm-2 col-form-label'>전화번호</label>
 <div class='col-sm-10'>
 <input class='form-control' id='tel' type='text' name='tel'>
+</div>
+</div>
+
+<div class='form-group row'>
+<label for='type' class='col-sm-2 col-form-label'>타입</label>
+<div class='col-sm-10'>
+<input class='form-control' id='type' type='text' name='type'>
 </div>
 </div>
 

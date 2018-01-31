@@ -15,7 +15,7 @@ import java100.app.domain.Notice;
 // 가능한 업무 용어를 사용한다.
 //
 public interface NoticeService {
-    List<Notice> list(int pageNo, int pageSize, Map<String,Object> options);
+    List<Notice> list();
     int getTotalCount();
 }
 

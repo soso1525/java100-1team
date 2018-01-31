@@ -16,68 +16,29 @@
         <id column="nno" property="no"/>
         <result column="nimg" property="image"/>
         <result column="nsdt" property="startDate"/>
-        <result column="nedt" property="endDate"/> <!--  String emial = rs.getString("pmail"); -->
+        <result column="nedt" property="endDate"/>
         <result column="ncnt" property="viewCount"/>
-        <result column="pno" property="type"/>
-        <association property="companyMember" column=""></association>
+    
+    <association property="companyMember" javaType="companyMember" >
+    	<id column="cno" property="no"/>
+    	<result column="cname" property="name"/>
+    	<result column="clogo" property="logo"/>
+    </association>
+   
     </resultMap>
 
-    <sql id="select1">
-        select 
-            pno,
-            pid,
-            pmail,
-            pregdt
-    </sql>
-
-    <select id="findAll" resultMap="memberMap" parameterType="map">
-        <include refid="select1"/>
-        from g_per   
-
-        <if test="words != null">
-	        <where>
-	            name in 
-	            <foreach collection="words" item="word" 
-	                     open="(" close=")" separator=",">
-	                #{word}
-	            </foreach>
-	            or email in 
-                <foreach collection="words" item="word" 
-                         open="(" close=")" separator=",">
-                    #{word}
-                </foreach>
-	        </where>
-        </if>
-          
-        order by 
-        <choose>
-            <when test="orderColumn == 'email' and align == 'asc'">
-                email asc
-            </when>
-            <when test="orderColumn == 'email' and align == 'desc'">
-                email desc
-            </when>
-            <when test="orderColumn == 'regdt' and align == 'asc'">
-                regdt asc
-            </when>
-            <when test="orderColumn == 'regdt' and align == 'desc'">
-                regdt desc
-            </when>
-            <when test="orderColumn == 'name' and align == 'desc'">
-                name desc
-            </when>
-            <otherwise>
-                name asc
-            </otherwise>
-        </choose>
-        
-        limit #{startIndex}, #{size}
-    </select>
-    
-    
-    <select id="countAll" resultType="int">
-        select count(*) from g_per
-    </select>
+    <select id="findAll" resultMap="noticeMap" parameterType="map">
+		select
+			n.nno,
+			n.nimg,
+			n.nsdt,
+			n.nedt,
+			n.ncnt,
+			c.cname,
+			c.clogo
+		from g_noti n
+		left join g_corp c on n.cno=c.cno
+	</select>
 </mapper>  
 
 
