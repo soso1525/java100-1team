@@ -1,45 +1,45 @@
-package service;
-
-import static org.junit.Assert.*;
-
-import org.junit.Test;
-
-import java100.app.service.CompanyService;
-
-public class TestCompanyService {
-
-	@Test
-	public void test() {
-		
-		String compName = "»ï¼ºÀüÀÚ";
-		String compNum = "121231232131232";
-		
-		CompanyService cs = new CompanyService();
-		
-		boolean exists = cs.isMatchCompanyInfo(compName, compNum);
-		
-	}
-	
-	@Test
-	public void testParsingXML () {
-		String result = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><response><header><resultCode>00</resultCode><resultMsg>NORMAL SERVICE.</resultMsg></header><body><items><item><bzowrRgstNo>124815****</bzowrRgstNo><dataCrtYm>201606</dataCrtYm><ldongAddrMgplDgCd>28</ldongAddrMgplDgCd><ldongAddrMgplSgguCd>170</ldongAddrMgplSgguCd><ldongAddrMgplSgguEmdCd>102</ldongAddrMgplSgguEmdCd><seq>12474880</seq><wkplJnngStcd>1</wkplJnngStcd><wkplNm>»ï¼ºÀüÀÚ·ÎÁöÅØ(ÁÖ)-ÀÏ¿ë-¿ëÇöÇÐÀÍ3ÃÊ ½ÅÃà°ø»ç ³Ã³­¹æ±â ¼³Ä¡</wkplNm><wkplRoadNmDtlAddr>ÀÎÃµ±¤¿ª½Ã ³²±¸ ¿ëÁ¤°ø¿ø·Î</wkplRoadNmDtlAddr><wkplStylDvcd>1</wkplStylDvcd></item><item><bzowrRgstNo>124815****</bzowrRgstNo><dataCrtYm>201602</dataCrtYm><ldongAddrMgplDgCd>11</ldongAddrMgplDgCd><ldongAddrMgplSgguCd>650</ldongAddrMgplSgguCd><ldongAddrMgplSgguEmdCd>108</ldongAddrMgplSgguEmdCd><seq>5255505</seq><wkplJnngStcd>1</wkplJnngStcd><wkplNm>»ï¼ºÀüÀÚ·ÎÁöÅØ(ÁÖ)(ÀÏ¿ë)¼­¿ï°íµî¹ý¿ø ¾î¸°ÀÌÁý ¹× µ¶½ÅÀÚ¼÷¼Ò ÁõÃà</wkplNm><wkplRoadNmDtlAddr>¼­¿ïÆ¯º°½Ã ¼­ÃÊ±¸ ¼­ÃÊÁß¾Ó·Î</wkplRoadNmDtlAddr><wkplStylDvcd>1</wkplStylDvcd></item><item><bzowrRgstNo>124815****</bzowrRgstNo><dataCrtYm>201705</dataCrtYm><ldongAddrMgplDgCd>41</ldongAddrMgplDgCd><ldongAddrMgplSgguCd>117</ldongAddrMgplSgguCd><ldongAddrMgplSgguEmdCd>101</ldongAddrMgplSgguEmdCd><seq>32943515</seq><wkplJnngStcd>1</wkplJnngStcd><wkplNm>»ï¼ºÀüÀÚ·ÎÁöÅØÁÖ½ÄÈ¸»ç</wkplNm><wkplRoadNmDtlAddr>°æ±âµµ ¼ö¿ø½Ã ¿µÅë±¸ »ï¼º·Î</wkplRoadNmDtlAddr><wkplStylDvcd>1</wkplStylDvcd></item><item><bzowrRgstNo>124815****</bzowrRgstNo><dataCrtYm>201707</dataCrtYm><ldongAddrMgplDgCd>41</ldongAddrMgplDgCd><ldongAddrMgplSgguCd>117</ldongAddrMgplSgguCd><ldongAddrMgplSgguEmdCd>101</ldongAddrMgplSgguEmdCd><seq>36340588</seq><wkplJnngStcd>1</wkplJnngStcd><wkplNm>»ï¼ºÀüÀÚ·ÎÁöÅØÁÖ½ÄÈ¸»ç</wkplNm><wkplRoadNmDtlAddr>°æ±âµµ ¼ö¿ø½Ã ¿µÅë±¸ »ï¼º·Î</wkplRoadNmDtlAddr><wkplStylDvcd>1</wkplStylDvcd></item><item><bzowrRgstNo>124815****</bzowrRgstNo><dataCrtYm>201706</dataCrtYm><ldongAddrMgplDgCd>41</ldongAddrMgplDgCd><ldongAddrMgplSgguCd>117</ldongAddrMgplSgguCd><ldongAddrMgplSgguEmdCd>101</ldongAddrMgplSgguEmdCd><seq>34632546</seq><wkplJnngStcd>1</wkplJnngStcd><wkplNm>»ï¼ºÀüÀÚ·ÎÁöÅØÁÖ½ÄÈ¸»ç</wkplNm><wkplRoadNmDtlAddr>°æ±âµµ ¼ö¿ø½Ã ¿µÅë±¸ »ï¼º·Î</wkplRoadNmDtlAddr><wkplStylDvcd>1</wkplStylDvcd></item><item><bzowrRgstNo>124815****</bzowrRgstNo><dataCrtYm>201704</dataCrtYm><ldongAddrMgplDgCd>41</ldongAddrMgplDgCd><ldongAddrMgplSgguCd>117</ldongAddrMgplSgguCd><ldongAddrMgplSgguEmdCd>101</ldongAddrMgplSgguEmdCd><seq>31272170</seq><wkplJnngStcd>1</wkplJnngStcd><wkplNm>»ï¼ºÀüÀÚ·ÎÁöÅØÁÖ½ÄÈ¸»ç</wkplNm><wkplRoadNmDtlAddr>°æ±âµµ ¼ö¿ø½Ã ¿µÅë±¸ »ï¼º·Î</wkplRoadNmDtlAddr><wkplStylDvcd>1</wkplStylDvcd></item><item><bzowrRgstNo>124815****</bzowrRgstNo><dataCrtYm>201703</dataCrtYm><ldongAddrMgplDgCd>41</ldongAddrMgplDgCd><ldongAddrMgplSgguCd>117</ldongAddrMgplSgguCd><ldongAddrMgplSgguEmdCd>101</ldongAddrMgplSgguEmdCd><seq>29618604</seq><wkplJnngStcd>1</wkplJnngStcd><wkplNm>»ï¼ºÀüÀÚ·ÎÁöÅØÁÖ½ÄÈ¸»ç</wkplNm><wkplRoadNmDtlAddr>°æ±âµµ ¼ö¿ø½Ã ¿µÅë±¸ »ï¼º·Î</wkplRoadNmDtlAddr><wkplStylDvcd>1</wkplStylDvcd></item><item><bzowrRgstNo>124815****</bzowrRgstNo><dataCrtYm>201702</dataCrtYm><ldongAddrMgplDgCd>41</ldongAddrMgplDgCd><ldongAddrMgplSgguCd>117</ldongAddrMgplSgguCd><ldongAddrMgplSgguEmdCd>101</ldongAddrMgplSgguEmdCd><seq>27952475</seq><wkplJnngStcd>1</wkplJnngStcd><wkplNm>»ï¼ºÀüÀÚ·ÎÁöÅØÁÖ½ÄÈ¸»ç</wkplNm><wkplRoadNmDtlAddr>°æ±âµµ ¼ö¿ø½Ã ¿µÅë±¸ »ï¼º·Î</wkplRoadNmDtlAddr><wkplStylDvcd>1</wkplStylDvcd></item><item><bzowrRgstNo>124815****</bzowrRgstNo><dataCrtYm>201612</dataCrtYm><ldongAddrMgplDgCd>41</ldongAddrMgplDgCd><ldongAddrMgplSgguCd>117</ldongAddrMgplSgguCd><ldongAddrMgplSgguEmdCd>101</ldongAddrMgplSgguEmdCd><seq>24739710</seq><wkplJnngStcd>1</wkplJnngStcd><wkplNm>»ï¼ºÀüÀÚ·ÎÁöÅØÁÖ½ÄÈ¸»ç</wkplNm><wkplRoadNmDtlAddr>°æ±âµµ ¼ö¿ø½Ã ¿µÅë±¸ »ï¼º·Î</wkplRoadNmDtlAddr><wkplStylDvcd>1</wkplStylDvcd></item><item><bzowrRgstNo>124815****</bzowrRgstNo><dataCrtYm>201709</dataCrtYm><ldongAddrMgplDgCd>41</ldongAddrMgplDgCd><ldongAddrMgplSgguCd>117</ldongAddrMgplSgguCd><ldongAddrMgplSgguEmdCd>101</ldongAddrMgplSgguEmdCd><seq>39816067</seq><wkplJnngStcd>1</wkplJnngStcd><wkplNm>»ï¼ºÀüÀÚ·ÎÁöÅØÁÖ½ÄÈ¸»ç</wkplNm><wkplRoadNmDtlAddr>°æ±âµµ ¼ö¿ø½Ã ¿µÅë±¸ »ï¼º·Î</wkplRoadNmDtlAddr><wkplStylDvcd>1</wkplStylDvcd></item></items><numOfRows>10</numOfRows><pageNo>1</pageNo><totalCount>58</totalCount></body></response>";
-		// ..... <totalCount>xxxx</totalCount>"
-		//                   ^   ^ 
-		int p0 = result.indexOf("<totalCount>");
-		if ( p0 < 0 ) {
-			throw new RuntimeException("<totalCount> ¾ø´Ù!");
-		}
-		p0 += "<totalCount>".length();
-		
-		int p1 = result.indexOf("</totalCount>");
-		if ( p1 < 0 ) {
-			throw new RuntimeException("</totalCount> ¾ø´Ù!");
-		}
-		// p1 += "</totalCount>".length();
-		
-		String s = result.substring(p0, p1);
-		int cnt = Integer.parseInt(s);
-		assertEquals(58, cnt);
-	}
-
-}
+//package service;
+//
+//import static org.junit.Assert.*;
+//
+//import org.junit.Test;
+//
+//import java100.app.service.CompanyService;
+//
+//public class TestCompanyService {
+//
+//	@Test
+//	public void test() {
+//		
+//		String compName = "ï¿½ï¼ºï¿½ï¿½ï¿½ï¿½";
+//		String compNum = "121231232131232";
+//		
+//		CompanyService cs = new CompanyService();
+//		
+//		boolean exists = cs.isMatchCompanyInfo(compName, compNum);
+//		
+//	}
+//	
+//	@Test
+//	public void testParsingXML () {
+//		String result = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><response><header><resultCode>00</resultCode><resultMsg>NORMAL SERVICE.</resultMsg></header><body><items><item><bzowrRgstNo>124815****</bzowrRgstNo><dataCrtYm>201606</dataCrtYm><ldongAddrMgplDgCd>28</ldongAddrMgplDgCd><ldongAddrMgplSgguCd>170</ldongAddrMgplSgguCd><ldongAddrMgplSgguEmdCd>102</ldongAddrMgplSgguEmdCd><seq>12474880</seq><wkplJnngStcd>1</wkplJnngStcd><wkplNm>ï¿½ï¼ºï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½)-ï¿½Ï¿ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½3ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡</wkplNm><wkplRoadNmDtlAddr>ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</wkplRoadNmDtlAddr><wkplStylDvcd>1</wkplStylDvcd></item><item><bzowrRgstNo>124815****</bzowrRgstNo><dataCrtYm>201602</dataCrtYm><ldongAddrMgplDgCd>11</ldongAddrMgplDgCd><ldongAddrMgplSgguCd>650</ldongAddrMgplSgguCd><ldongAddrMgplSgguEmdCd>108</ldongAddrMgplSgguEmdCd><seq>5255505</seq><wkplJnngStcd>1</wkplJnngStcd><wkplNm>ï¿½ï¼ºï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½)(ï¿½Ï¿ï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½î¸°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</wkplNm><wkplRoadNmDtlAddr>ï¿½ï¿½ï¿½ï¿½Æ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ê±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß¾Ó·ï¿½</wkplRoadNmDtlAddr><wkplStylDvcd>1</wkplStylDvcd></item><item><bzowrRgstNo>124815****</bzowrRgstNo><dataCrtYm>201705</dataCrtYm><ldongAddrMgplDgCd>41</ldongAddrMgplDgCd><ldongAddrMgplSgguCd>117</ldongAddrMgplSgguCd><ldongAddrMgplSgguEmdCd>101</ldongAddrMgplSgguEmdCd><seq>32943515</seq><wkplJnngStcd>1</wkplJnngStcd><wkplNm>ï¿½ï¼ºï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½È¸ï¿½ï¿½</wkplNm><wkplRoadNmDtlAddr>ï¿½ï¿½âµµ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ë±¸ ï¿½ï¼ºï¿½ï¿½</wkplRoadNmDtlAddr><wkplStylDvcd>1</wkplStylDvcd></item><item><bzowrRgstNo>124815****</bzowrRgstNo><dataCrtYm>201707</dataCrtYm><ldongAddrMgplDgCd>41</ldongAddrMgplDgCd><ldongAddrMgplSgguCd>117</ldongAddrMgplSgguCd><ldongAddrMgplSgguEmdCd>101</ldongAddrMgplSgguEmdCd><seq>36340588</seq><wkplJnngStcd>1</wkplJnngStcd><wkplNm>ï¿½ï¼ºï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½È¸ï¿½ï¿½</wkplNm><wkplRoadNmDtlAddr>ï¿½ï¿½âµµ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ë±¸ ï¿½ï¼ºï¿½ï¿½</wkplRoadNmDtlAddr><wkplStylDvcd>1</wkplStylDvcd></item><item><bzowrRgstNo>124815****</bzowrRgstNo><dataCrtYm>201706</dataCrtYm><ldongAddrMgplDgCd>41</ldongAddrMgplDgCd><ldongAddrMgplSgguCd>117</ldongAddrMgplSgguCd><ldongAddrMgplSgguEmdCd>101</ldongAddrMgplSgguEmdCd><seq>34632546</seq><wkplJnngStcd>1</wkplJnngStcd><wkplNm>ï¿½ï¼ºï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½È¸ï¿½ï¿½</wkplNm><wkplRoadNmDtlAddr>ï¿½ï¿½âµµ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ë±¸ ï¿½ï¼ºï¿½ï¿½</wkplRoadNmDtlAddr><wkplStylDvcd>1</wkplStylDvcd></item><item><bzowrRgstNo>124815****</bzowrRgstNo><dataCrtYm>201704</dataCrtYm><ldongAddrMgplDgCd>41</ldongAddrMgplDgCd><ldongAddrMgplSgguCd>117</ldongAddrMgplSgguCd><ldongAddrMgplSgguEmdCd>101</ldongAddrMgplSgguEmdCd><seq>31272170</seq><wkplJnngStcd>1</wkplJnngStcd><wkplNm>ï¿½ï¼ºï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½È¸ï¿½ï¿½</wkplNm><wkplRoadNmDtlAddr>ï¿½ï¿½âµµ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ë±¸ ï¿½ï¼ºï¿½ï¿½</wkplRoadNmDtlAddr><wkplStylDvcd>1</wkplStylDvcd></item><item><bzowrRgstNo>124815****</bzowrRgstNo><dataCrtYm>201703</dataCrtYm><ldongAddrMgplDgCd>41</ldongAddrMgplDgCd><ldongAddrMgplSgguCd>117</ldongAddrMgplSgguCd><ldongAddrMgplSgguEmdCd>101</ldongAddrMgplSgguEmdCd><seq>29618604</seq><wkplJnngStcd>1</wkplJnngStcd><wkplNm>ï¿½ï¼ºï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½È¸ï¿½ï¿½</wkplNm><wkplRoadNmDtlAddr>ï¿½ï¿½âµµ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ë±¸ ï¿½ï¼ºï¿½ï¿½</wkplRoadNmDtlAddr><wkplStylDvcd>1</wkplStylDvcd></item><item><bzowrRgstNo>124815****</bzowrRgstNo><dataCrtYm>201702</dataCrtYm><ldongAddrMgplDgCd>41</ldongAddrMgplDgCd><ldongAddrMgplSgguCd>117</ldongAddrMgplSgguCd><ldongAddrMgplSgguEmdCd>101</ldongAddrMgplSgguEmdCd><seq>27952475</seq><wkplJnngStcd>1</wkplJnngStcd><wkplNm>ï¿½ï¼ºï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½È¸ï¿½ï¿½</wkplNm><wkplRoadNmDtlAddr>ï¿½ï¿½âµµ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ë±¸ ï¿½ï¼ºï¿½ï¿½</wkplRoadNmDtlAddr><wkplStylDvcd>1</wkplStylDvcd></item><item><bzowrRgstNo>124815****</bzowrRgstNo><dataCrtYm>201612</dataCrtYm><ldongAddrMgplDgCd>41</ldongAddrMgplDgCd><ldongAddrMgplSgguCd>117</ldongAddrMgplSgguCd><ldongAddrMgplSgguEmdCd>101</ldongAddrMgplSgguEmdCd><seq>24739710</seq><wkplJnngStcd>1</wkplJnngStcd><wkplNm>ï¿½ï¼ºï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½È¸ï¿½ï¿½</wkplNm><wkplRoadNmDtlAddr>ï¿½ï¿½âµµ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ë±¸ ï¿½ï¼ºï¿½ï¿½</wkplRoadNmDtlAddr><wkplStylDvcd>1</wkplStylDvcd></item><item><bzowrRgstNo>124815****</bzowrRgstNo><dataCrtYm>201709</dataCrtYm><ldongAddrMgplDgCd>41</ldongAddrMgplDgCd><ldongAddrMgplSgguCd>117</ldongAddrMgplSgguCd><ldongAddrMgplSgguEmdCd>101</ldongAddrMgplSgguEmdCd><seq>39816067</seq><wkplJnngStcd>1</wkplJnngStcd><wkplNm>ï¿½ï¼ºï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½È¸ï¿½ï¿½</wkplNm><wkplRoadNmDtlAddr>ï¿½ï¿½âµµ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ë±¸ ï¿½ï¼ºï¿½ï¿½</wkplRoadNmDtlAddr><wkplStylDvcd>1</wkplStylDvcd></item></items><numOfRows>10</numOfRows><pageNo>1</pageNo><totalCount>58</totalCount></body></response>";
+//		// ..... <totalCount>xxxx</totalCount>"
+//		//                   ^   ^ 
+//		int p0 = result.indexOf("<totalCount>");
+//		if ( p0 < 0 ) {
+////			throw new RuntimeException("<totalCount> ï¿½ï¿½ï¿½ï¿½!");
+//		}
+//		p0 += "<totalCount>".length();
+//		
+//		int p1 = result.indexOf("</totalCount>");
+//		if ( p1 < 0 ) {
+//			throw new RuntimeException("</totalCount> ï¿½ï¿½ï¿½ï¿½!");
+//		}
+//		// p1 += "</totalCount>".length();
+//		
+//		String s = result.substring(p0, p1);
+//		int cnt = Integer.parseInt(s);
+//		assertEquals(58, cnt);
+//	}
+//
+//}

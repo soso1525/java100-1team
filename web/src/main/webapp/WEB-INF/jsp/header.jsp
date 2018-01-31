@@ -12,11 +12,12 @@
   <span class='navbar-toggler-icon'></span>
 </button>
 <div class='collapse navbar-collapse' id='navbarNav'>
+
 <ul class='navbar-nav mr-auto'>
-  <li class='nav-item' style="margin-left:0px; margin-top:0px; padding-right: 322px; font-size: 50px;">
+  <li class='nav-item' style="margin-left:0px; margin-top:0px; padding-right: 20px; font-size: 50px;">
     <a class='nav-link' href='../member/list'>CATCH</a>
   </li>
-  <li class='nav-item' style="margin-left:0x; margin-top:85px;">
+  <li class='nav-item' style="margin-left:353px; margin-top:85px;">
     <a class='nav-brand' href='../score/list'>
     <img src='${contextPath}/images/1_2.png' width='98' height='30' class='d-inline-block' alt=''>
     </a>
@@ -58,4 +59,3 @@
 
 </nav>
 </header>
-

@@ -186,9 +186,6 @@ $(document).ready ( function (){
 	});
 });
 
-
-
-
 var password = document.querySelector('#password')
 var repassword = document.querySelector('#repassword')
 var checkpassword= document.querySelector('#checkpassword')
