@@ -83,6 +83,8 @@
 </div>
 
 
+
+
 <div class='form-group row'>
 <label for='type' class='col-sm-2 col-form-label'>기업형태</label>
 <div class='col-sm-10'>
