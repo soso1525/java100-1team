@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- DAO 객체를 자동으로 생성하려면,
+     namespace의 값이 인터페이스 이름과 같아야 한다. -->
+<mapper namespace="java100.app.dao.ResumeDao">
+
+	<!--
+	 member m = new member();
+	 m.setEmail ( rs.getString("pmail");
+	 m.setId ( rs.getString(" 
+	 -->
+    <resultMap type="resume" id="resumeMap">
+        <id column="rno" property="no"/>
+        <result column="redu" property="education"/>
+        <result column="rcar" property="career"/>
+        <result column="rkind" property="kind"/>
+        <result column="rimg" property="image"/>
+        <result column="rqua" property="qualification"/>
+        <result column="rlang" property="language"/>
+        <result column="rawrd" property="award"/>
+        <result column="rmaj" property="major"/>
+        <result column="rsch" property="schoolName"/>
+        <result column="rgpa" property="grades"/>
+		<result column="rcnt" property="viewCount"/>
+		<result column="ravi" property="avi"/>
+		<result column="rfile" property="file"/>
+		<result column="rnote" property="note"/>
+		<result column="rcheck" property="check"/>
+		<result column="ino" property="ino"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="resumeMap" parameterType="map">
+		select
+			r.rno,
+			r.redu,
+			r.rcar,
+			r.rkind,
+			r.rimg,
+			r.rqua,
+			r.rlang,
+			r.rawrd,
+			r.rmaj,
+			r.rsch,
+			r.rgpa,
+			r.rcnt,
+			r.ravi,
+			r.rfile,
+			r.rnote,
+			r.rcheck,
+			r.ino
+			from g_res r
+			left join g_iper i on r.ino = i.ino 
+	</select>
+</mapper>  
+
+
+
+
+
+
+
+
+
