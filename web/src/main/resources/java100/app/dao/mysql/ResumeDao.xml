@@ -31,9 +31,8 @@
 		<result column="rcheck" property="check"/>
 		<result column="ino" property="ino"/>
     </resultMap>
-
-    <select id="findAll" resultMap="resumeMap" parameterType="map">
-		select
+    <sql id="select1">
+    select
 			r.rno,
 			r.redu,
 			r.rcar,
@@ -51,9 +50,49 @@
 			r.rnote,
 			r.rcheck,
 			r.ino
+    </sql>
+
+    <select id="findAll" resultMap="resumeMap" parameterType="map">
+		<include refid="select1"/>
 			from g_res r
 			left join g_iper i on r.ino = i.ino 
 	</select>
+	
+	<insert id="insert" parameterType="resume">
+        insert into g_res(redu, rcar, rkind, rimg, rqua, rlang, rawrd, rmaj, rsch, rgpa, rcnt, ravi, rfile, rnote, rcheck, ino)
+        values(#{education},#{career},#{kind},#{image},#{qualification},#{language},#{award},#{major},#{schoolName},#{grades},#{viewCount},#{avi},#{file},#{note},#{check},#{member.no})
+    </insert>
+    
+    <select id="findByNo" resultMap="resumeMap" parameterType="int">
+        <include refid="select1"/>
+        from g_res r
+        where rno=#{value}
+    </select>
+    
+     <update id="update" parameterType="resume">
+        update g_res set 
+        redu=#{education},
+			rcar=#{career},
+			rkind=#{kind},
+			rimg=#{image},
+			rqua=#{qualification},
+			rlang=#{language},
+			rawrd=#{award},
+			rmaj=#{major},
+			rsch=#{schoolName},
+			rgpa=#{grades},
+			rcnt=#{viewCount},
+			ravi=#{avi},
+			rfile=#{file},
+			rnote=#{note},
+			rcheck=#{check}
+        where rno=#{no}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from g_res
+        where rno=#{value}
+    </delete>
 </mapper>  
 
 

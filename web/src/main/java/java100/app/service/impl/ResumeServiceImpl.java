@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java100.app.dao.ResumeDao;
+import java100.app.domain.IndividualMember;
+import java100.app.domain.Member;
 import java100.app.domain.Resume;
 import java100.app.service.ResumeService;
 
@@ -25,4 +27,25 @@ public class ResumeServiceImpl implements ResumeService {
     public int getTotalCount() {
         return resumeDao.countAll();
     }
+    
+    @Override
+    public int add(Resume resume) {
+        return resumeDao.insert(resume);
+    }
+
+    @Override
+    public Resume get(int no) {
+        return resumeDao.findByNo(no);
+    }
+
+	@Override
+	public int update(Resume resume) {
+		return resumeDao.update(resume);
+	}
+
+	@Override
+	public int delete(int no) {
+		return resumeDao.delete(no);
+	}
+    
 }

@@ -32,7 +32,7 @@
 
 <c:forEach items="${list}" var="resume">
         <tr>
-        	<td>${resume.no}</td>
+        	<td><a href='${resume.no}'>${resume.no}</a></td>
         	<td>${resume.education}</td>
 	        <td>${resume.career}</td>
 	        <td>${resume.kind}</td>

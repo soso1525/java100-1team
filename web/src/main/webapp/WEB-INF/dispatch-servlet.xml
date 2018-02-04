@@ -99,7 +99,6 @@
             <bean class="java100.app.web.interceptor.AuthInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
-   
     
     
     <!-- 트랜잭션 작업을 수행할 advice 객체 등록 
