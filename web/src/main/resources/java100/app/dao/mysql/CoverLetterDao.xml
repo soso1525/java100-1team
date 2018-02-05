@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- DAO 객체를 자동으로 생성하려면,
+     namespace의 값이 인터페이스 이름과 같아야 한다. -->
+<mapper namespace="java100.app.dao.CoverLetterDao">
+	<!-- 
+	(int ino, 
+	String icont, 
+	String isdt,
+	String iedt, String ischeck, String ipcheck, String ifile, Apply apply)
+	 -->
+	<resultMap type="CoverLetter" id="cvMap">
+        <id column="lno" property="lno"/>
+        <result column="lcont" property="lcont"/> <!--  String emial = rs.getString("pmail"); -->
+        <result column="lsdt" property="lsdt"/>
+        <result column="ledt" property="ledt"/>
+        <result column="lscheck" property="lscheck"/>
+        <result column="lpchek" property="lpcheck"/>
+        <result column="lfile" property="lfile"/>
+        <association property="ano" javaType="Apply">
+        	<result column="ano" property="ano"/>
+        	<result column="aname" property="aname"/>
+        	<result column="adt" property="adt"/>
+        	<result column="ino" property="ino"/>
+        </association>
+    </resultMap>
+    
+	<select id="findByWriter" parameterType="int" resultMap="cvMap">
+		select 
+			 a.aname,
+			 a.adt,
+			 l.lno,
+			 l.lcont,
+			 l.lsdt,
+			 l.ledt,
+			 l.lscheck,
+			 l.lpchek,
+			 l.lfile,
+			 a.ano
+		from g_app a
+		inner join g_let l on a.ano = l.ano
+		where ino = #{ino};
+	</select>
+	
+  <!--  <insert id="findByWriter" parameterType="integer">
+        insert into g_let(pno, cname, ckind, ctype, cbno)
+        values(LAST_INSERT_ID(),#{name},#{kind},#{type},#{businessNo})
+    </insert> -->
+</mapper>
+
+
+
+
+
+
+
+
+
