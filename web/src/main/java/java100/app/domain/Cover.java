@@ -10,6 +10,7 @@ public class Cover {
     String lpcheck;
     String lfile; 
     Apply ano;
+    Apply apply;
     Member member;
     
   
@@ -125,6 +126,18 @@ public class Cover {
     }
 
 
+
+    public Apply getApply() {
+        return this.apply;
+    }
+
+
+
+    public void setApply(Apply apply) {
+        this.apply = apply;
+    }
+
+    
 
     
     

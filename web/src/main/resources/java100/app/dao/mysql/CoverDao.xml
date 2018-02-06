@@ -55,10 +55,17 @@
     </select>
      -->
      
- <!--  <insert id="insert" parameterType="cover">
+ <insert id="insert" parameterType="cover">
          insert into g_app(lcont, lfile, ano)
-        values(#{lcont}, #{lfile}, #{ano})
-    </insert>  -->
+        values(#{lcont}, #{lfile}, #{apply.ano})
+ </insert>
+ 
+ <delete id="delete" parameterType="int">
+        delete from g_let
+        where lno=#{value}
+    </delete>  
+    
+    
 </mapper>
 
 
