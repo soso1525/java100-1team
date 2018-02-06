@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="java100.app.dao.MsgDao">
+    <resultMap type="msg" id="msgMap">
+        <id  column="mno" property="mno"/>
+        <result column="mcont" property="mcont"/>
+        <result column="mdt" property="mdt"/>
+        <result column="mcheck" property="mcheck"/>
+        <result column="msend" property="msend"/>
+        <result column="mrecv" property="mrecv"/>
+        <association property="writer" javaType="member">
+            <id     column="ino"       property="no"/>
+            <result column="sloc"     property="address"/>
+        </association>
+    </resultMap>
+ 
+    <select id="findAll" resultMap="msgMap" parameterType="map">
+        select mno, mcont, mdt, msend , mrecv, mcheck
+        from g_msg 
+        <if test="words != null">
+            <where>
+                <foreach collection="words" item="word">
+                    or title like '%${word}%'
+                </foreach>
+            </where>
+        </if>
+        
+        order by 
+        <choose>
+            <when test="orderColumn == 'sloc' and align == 'desc'">
+                mdt desc
+            </when>
+            <when test="orderColumn == 'sloc' and align == 'asc'">
+                mdt asc
+            </when>
+            <when test="orderColumn == 'sname' and align == 'desc'">
+                mcheck desc
+            </when>
+            <when test="orderColumn == 'sname' and align == 'asc'">
+                mcheck asc
+            </when>
+            <otherwise>
+                mno asc
+            </otherwise>
+        </choose>
+        
+        limit #{startIndex}, #{size}
+    </select>
+    <select id="countAll" resultType="int">
+        select count(*) from g_msg
+    </select>
+    <select id="findByNo" resultType="msg" parameterType="int">
+        select mno, mcont, mdt, msend , mrecv
+        from g_msg
+        where mno=#{value}
+    </select>
+   <insert id="insert" parameterType="msg"
+        useGeneratedKeys="true" keyColumn="no" keyProperty="no">
+        insert into g_msg(
+        mcont ,mdt, mcheck, msend, mrecv)
+        values(#{mcont},now(),#{mcheck},#{writer.no},#{mrecv})
+    </insert>
+    <!-- 
+    <update id="update" parameterType="msg">
+        update g_msg set 
+            sloc=#{sloc},
+             sname=#{sname},
+            sdesc=#{sdesc},
+            sint=#{sint},
+            sppl=#{sppl},
+            scorp=#{scorp},
+            simg=#{simg},
+            scheck=#{scheck}
+        where sno=#{sno}
+    </update>
+     -->
+
+    <delete id="delete" parameterType="int">
+        delete from g_msg
+        where mno=#{value}
+    </delete>
+</mapper>
+
+
+
+
+
+
+
+
+
