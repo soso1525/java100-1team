@@ -7,6 +7,7 @@ public class Apply {
     String adt;
     int ino;
     IndividualMember writer;
+    Member member;
     
 	public int getIno() {
 		return ino;
@@ -38,8 +39,12 @@ public class Apply {
 	public void setWriter(IndividualMember writer) {
 		this.writer = writer;
 	}
-    
-    
+    public Member getMember() {
+        return this.member;
+    }
+    public void setMember(Member member) {
+        this.member = member;
+    }
     
 }
 

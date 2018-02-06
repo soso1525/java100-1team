@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="java100.app.dao.ApplyDao">
+	
+    <resultMap type="apply" id="applyMap">
+        <id column="ano" property="ano"/>
+        <result column="aname" property="aname"/>
+        <result column="adt" property="adt"/>
+		<result column="ino" property="ino"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="applyMap">
+		select
+            ano,
+            aname,
+            adt,
+            ino
+			from g_app
+	</select>
+	
+	<insert id="insert" parameterType="resume">
+        insert into g_app(aname, adt, ino)
+        values(#{aname}, #{adt}, #{member.no})
+    </insert>
+    
+    
+<!--     <select id="findByNo" resultMap="applyMap" parameterType="int">
+        select
+            ano,
+            aname,
+            adt,
+            ino
+        from g_app 
+        where ino=#{no}
+    </select> 
+    
+ <update id="update" parameterType="apply">
+        update g_app set 
+			aname=#{aname},
+			adt=#{adt},
+        where ino=#{no}
+    </update> -->
+
+    <delete id="delete" parameterType="int">
+        delete from g_app
+        where ano=#{value}
+    </delete> 
+</mapper>  
+
+
+
+
+
+
+
+
+

@@ -5,16 +5,16 @@
 
 <!-- DAO 객체를 자동으로 생성하려면,
      namespace의 값이 인터페이스 이름과 같아야 한다. -->
-<mapper namespace="java100.app.dao.CoverLetterDao">
+<mapper namespace="java100.app.dao.CoverDao">
 	<!-- 
 	(int ino, 
 	String icont, 
 	String isdt,
 	String iedt, String ischeck, String ipcheck, String ifile, Apply apply)
 	 -->
-	<resultMap type="CoverLetter" id="cvMap">
+	<resultMap type="Cover" id="coverMap">
         <id column="lno" property="lno"/>
-        <result column="lcont" property="lcont"/> <!--  String emial = rs.getString("pmail"); -->
+        <result column="lcont" property="lcont"/> 
         <result column="lsdt" property="lsdt"/>
         <result column="ledt" property="ledt"/>
         <result column="lscheck" property="lscheck"/>
@@ -28,7 +28,7 @@
         </association>
     </resultMap>
     
-	<select id="findByWriter" parameterType="int" resultMap="cvMap">
+	<select id="findAll"  resultMap="coverMap" parameterType="int">
 		select 
 			 a.aname,
 			 a.adt,
@@ -42,13 +42,23 @@
 			 a.ano
 		from g_app a
 		inner join g_let l on a.ano = l.ano
-		where ino = #{ino};
+		
+
+	
+		
 	</select>
 	
-  <!--  <insert id="findByWriter" parameterType="integer">
-        insert into g_let(pno, cname, ckind, ctype, cbno)
-        values(LAST_INSERT_ID(),#{name},#{kind},#{type},#{businessNo})
-    </insert> -->
+  <!--   <select id="findByAppNo" resultType="cover" parameterType="int">
+        select ano
+        from g_app
+        where lno=#{value}
+    </select>
+     -->
+     
+ <!--  <insert id="insert" parameterType="cover">
+         insert into g_app(lcont, lfile, ano)
+        values(#{lcont}, #{lfile}, #{ano})
+    </insert>  -->
 </mapper>
 
 
