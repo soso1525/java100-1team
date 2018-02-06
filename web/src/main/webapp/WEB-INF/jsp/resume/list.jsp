@@ -14,11 +14,11 @@
 <body>
 <div class='container'>
 
-<jsp:include page="../header.jsp"/>
+<%-- <jsp:include page="../header.jsp"/> --%>
 
 <h1>이력서 목록</h1>
 
-<jsp:include page="../listToolbar.jsp"/>
+<%-- <jsp:include page="../listToolbar.jsp"/> --%>
 
 <table class='table table-hover'>
 <thead>
@@ -54,7 +54,7 @@
 
 </tbody>
 </table>
-
+<button type="button" class='btn btn-primary btn-sm' id="btn-add" onclick="location.href='form'">추가</button>
 <jsp:include page="../paging.jsp"/>
 
 <jsp:include page="../footer.jsp"/>
