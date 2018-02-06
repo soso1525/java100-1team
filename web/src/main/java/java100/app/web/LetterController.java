@@ -62,7 +62,7 @@ public class LetterController {
 //        model.addAttribute("pageNo", pageNo);
 //        model.addAttribute("lastPageNo", lastPageNo);
         
-        model.addAttribute("list", coverService.list());
+        model.addAttribute("list", coverService.list(1));
         return "letter/list";
     }
     

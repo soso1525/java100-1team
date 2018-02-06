@@ -17,14 +17,14 @@
 
 <h1>입사지원 상세 정보</h1>
 
-<c:if test="${not empty resume}">
+<c:if test="${not empty apply}">
 
-<form action='update' method='post'>
+<form action='letter/add' method='post'>
 <div class='form-group row'>
 <label for='no' class='col-sm-2 col-form-label'>입사지원번호</label>
 <div class='col-sm-10'>
 <input class='form-control' id='no' type='text'
- name='no' value='${apply.no}'>
+ name='no' value='${apply.ano}'>
 </div>
 </div>
 <div class='form-group row'>
@@ -40,15 +40,43 @@
 <input class='form-control' id='adt' type='Date' name='adt' value='${apply.adt}'>
 </div>
 </div>
+<table class='table table-hover'>
+<thead>
+<tr>
+<th>번호</th><th>내용</th><th>저장일시</th><th>마감일</th><th>제출여부</th>
+<th>합격여부</th><th>지원회사</th>
+</tr>
+</thead>
+<tbody>
+
+<c:forEach items="${list}" var="letter">
+      <tr>
+      	<td>${letter.lno}</td>
+      	<td>${letter.lcont }[F]</td>
+      	<td>${letter.lsdt}</td>
+      	<td>${letter.ledt}</td>
+      	<td>
+      		<c:if test="${cover.lscheck eq 'y' }">제출완료</c:if>
+      		<c:if test="${cover.lscheck eq 'n' }">미제출</c:if>
+      	</td>
+      	<td>${cover.lpcheck}</td>
+      	<%-- <td>${lts.lfile}</td> --%>
+      	<td>${cover.ano.aname}</td>
+      	<td><a href='delete?no=${cover.lno}'>삭제</a></td>
+      </tr>
+</c:forEach>
+
+</tbody>
+</table>
 <div class='form-group row'>
 <div class='col-sm-10'>
 <button class='btn btn-primary btn-sm' id="btn-enrol">변경</button>
-<a href='delete?no=${resume.no}' class='btn btn-primary btn-sm'>삭제</a>
+<a href='delete?no=${apply.ano}' class='btn btn-primary btn-sm'>삭제</a>
 </div>
 </div>
 </form>
 </c:if>
-<c:if test="${empty resume}">
+<c:if test="${empty apply}">
         <p>'${param.no}'번 회원 정보가 없습니다.</p>
 </c:if>
 

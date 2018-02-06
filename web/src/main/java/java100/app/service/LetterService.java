@@ -14,7 +14,7 @@ import java100.app.domain.Letter;
 // 가능한 업무 용어를 사용한다.
 //
 public interface LetterService {
-    List<Letter> list();
+    List<Letter> list(int no);
     int getTotalCount();
     int add(Letter cover);
     Letter get(int no);

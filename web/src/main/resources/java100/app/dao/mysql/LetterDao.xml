@@ -28,7 +28,7 @@
         </association>
     </resultMap>
     
-	<select id="findAll"  resultMap="letterMap" parameterType="int">
+	<select id="findAll"  resultMap="letterMap" parameterType="map">
 		select 
 			 a.aname,
 			 a.adt,
@@ -42,10 +42,6 @@
 			 a.ano
 		from g_app a
 		inner join g_let l on a.ano = l.ano
-		
-
-	
-		
 	</select>
 	
   <!--   <select id="findByAppNo" resultType="cover" parameterType="int">

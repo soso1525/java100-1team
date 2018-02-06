@@ -30,7 +30,7 @@
 
 <c:forEach items="${list}" var="apply">
         <tr>
-        	<td>${apply.ano}</td>
+        	<td><a href='${apply.ano}'>${apply.ano}</a></td>
         	<td>${apply.aname}</td>
 	        <td>${apply.adt}</td>
 	        <td><a href='delete?no=${apply.ano}'>삭제</a></td>

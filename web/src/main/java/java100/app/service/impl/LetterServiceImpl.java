@@ -13,38 +13,39 @@ import java100.app.service.LetterService;
 @Service
 public class LetterServiceImpl implements LetterService {
 
-    @Autowired LetterDao coverDao;
+    @Autowired LetterDao letterDao;
     
     @Override
-    public List<Letter> list() {
+    public List<Letter> list(int no) {
         HashMap<String,Object> params = new HashMap<>();
-        return coverDao.findAll(params);
+        params.put("no", no);
+        return letterDao.findAll(params);
     }
 
     @Override
     public int getTotalCount() {
-        return coverDao.countAll();
+        return letterDao.countAll();
     }
     
     @Override
     public int add(Letter cover) {
         
-        return coverDao.insert(cover);
+        return letterDao.insert(cover);
     }
 
     @Override
     public Letter get(int no) {
-        return coverDao.findByNo(no);
+        return letterDao.findByNo(no);
     }
 
 	@Override
 	public int update(Letter cover) {
-		return coverDao.update(cover);
+		return letterDao.update(cover);
 	}
 
 	@Override
 	public int delete(int no) {
-		return coverDao.delete(no);
+		return letterDao.delete(no);
 	}
 
     

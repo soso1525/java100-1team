@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import java100.app.domain.Apply;
 import java100.app.domain.Member;
 import java100.app.service.ApplyService;
+import java100.app.service.LetterService;
 
 @Controller
 @RequestMapping("/apply")
@@ -21,6 +22,7 @@ import java100.app.service.ApplyService;
 public class ApplyController {
 	@Autowired ServletContext servletContext;
     @Autowired ApplyService applyService;
+    @Autowired LetterService letterService;
     
     
     @RequestMapping("list")
@@ -80,6 +82,7 @@ public class ApplyController {
     public String view(@PathVariable int no, Model model) throws Exception {
         
         model.addAttribute("apply", applyService.get(no));
+        model.addAttribute("letter", letterService.list(no));
         return "apply/view";
     }
     

@@ -10,12 +10,5 @@ public interface MsgService {
     List<Msg> list(int pageNo, int pageSize, Map<String,Object> options);
     Msg get(int mno);
     int getTotalCount();
-//    int update(Msg msg);
     int delete(int mno);
-    
 }
-
-
-
-
-

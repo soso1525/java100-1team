@@ -22,29 +22,29 @@
 			from g_app
 	</select>
 	
-	<insert id="insert" parameterType="resume">
+	<insert id="insert" parameterType="apply">
         insert into g_app(aname, adt, ino)
         values(#{aname}, #{adt}, #{member.no})
     </insert>
     
     
-<!--     <select id="findByNo" resultMap="applyMap" parameterType="int">
+     <select id="findByNo" resultMap="applyMap" parameterType="int">
         select
             ano,
             aname,
             adt,
             ino
         from g_app 
-        where ino=#{no}
+        where ano=#{value}
     </select> 
     
- <update id="update" parameterType="apply">
+<!--  <update id="update" parameterType="apply">
         update g_app set 
 			aname=#{aname},
 			adt=#{adt},
         where ino=#{no}
-    </update> -->
-
+    </update>
+ -->
     <delete id="delete" parameterType="int">
         delete from g_app
         where ano=#{value}
