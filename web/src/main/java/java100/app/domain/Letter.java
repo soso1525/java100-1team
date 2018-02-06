@@ -1,6 +1,6 @@
 package java100.app.domain;
 
-public class Cover {
+public class Letter {
     
     int lno;
     String lcont;
@@ -10,12 +10,11 @@ public class Cover {
     String lpcheck;
     String lfile; 
     Apply ano;
-    Apply apply;
     Member member;
     
   
     
-    public Cover() {}
+    public Letter() {}
 
 
 
@@ -126,18 +125,6 @@ public class Cover {
     }
 
 
-
-    public Apply getApply() {
-        return this.apply;
-    }
-
-
-
-    public void setApply(Apply apply) {
-        this.apply = apply;
-    }
-
-    
 
     
     

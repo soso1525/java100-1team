@@ -16,19 +16,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-import java100.app.domain.Apply;
-import java100.app.domain.Cover;
+import java100.app.domain.Letter;
 import java100.app.domain.Member;
-import java100.app.service.ApplyService;
-import java100.app.service.CoverService;
+import java100.app.service.LetterService;
 
 @Controller
-@RequestMapping("/cover")
+@RequestMapping("/letter")
 @SessionAttributes("loginUser")
-public class CoverController {
+public class LetterController {
 	@Autowired ServletContext servletContext;
-    @Autowired CoverService coverService;
-    @Autowired ApplyService applyService;
+    @Autowired LetterService coverService;
     
     
     @RequestMapping("list")
@@ -66,18 +63,17 @@ public class CoverController {
 //        model.addAttribute("lastPageNo", lastPageNo);
         
         model.addAttribute("list", coverService.list());
-        return "cv/list";
+        return "letter/list";
     }
     
     @RequestMapping("form")
     public String form() throws Exception {
-        return "cv/form";
+        return "letter/form";
     }
     
     @RequestMapping(value="add", method=RequestMethod.POST)
     public String add(
-    		Cover cover,
-    		Apply apply,
+    		Letter cover,
     		MultipartFile file,
             @ModelAttribute(value="loginUser") Member loginUser) throws Exception {
         
@@ -87,7 +83,6 @@ public class CoverController {
         cover.setLfile(filename);
         
         
-        applyService.add(apply);
         cover.setMember(loginUser);
         coverService.add(cover);
         
@@ -98,11 +93,11 @@ public class CoverController {
     public String view(@PathVariable int no, Model model) throws Exception {
         
         model.addAttribute("cover", coverService.get(no));
-        return "cv/view";
+        return "letter/view";
     }
     
     @RequestMapping("update")
-    public String update(Cover cover) throws Exception {
+    public String update(Letter cover) throws Exception {
         
         coverService.update(cover);
         return "redirect:list";
@@ -118,7 +113,8 @@ public class CoverController {
     long prevMillis = 0;
     int count = 0;
     
-   
+    // 다른 클라이언트가 보낸 파일명과 중복되지 않도록 
+    // 서버에 파일을 저장할 때는 새 파일명을 만든다.
     synchronized private String getNewFilename(String filename) {
         long currMillis = System.currentTimeMillis();
         if (prevMillis != currMillis) {
