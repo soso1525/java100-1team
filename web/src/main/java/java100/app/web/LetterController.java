@@ -16,16 +16,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-import java100.app.domain.Cover;
+import java100.app.domain.Letter;
 import java100.app.domain.Member;
-import java100.app.service.CoverService;
+import java100.app.service.LetterService;
 
 @Controller
-@RequestMapping("/cover")
+@RequestMapping("/letter")
 @SessionAttributes("loginUser")
-public class CoverController {
+public class LetterController {
 	@Autowired ServletContext servletContext;
-    @Autowired CoverService coverService;
+    @Autowired LetterService coverService;
     
     
     @RequestMapping("list")
@@ -63,17 +63,17 @@ public class CoverController {
 //        model.addAttribute("lastPageNo", lastPageNo);
         
         model.addAttribute("list", coverService.list());
-        return "cv/list";
+        return "letter/list";
     }
     
     @RequestMapping("form")
     public String form() throws Exception {
-        return "cv/form";
+        return "letter/form";
     }
     
     @RequestMapping(value="add", method=RequestMethod.POST)
     public String add(
-    		Cover cover,
+    		Letter cover,
     		MultipartFile file,
             @ModelAttribute(value="loginUser") Member loginUser) throws Exception {
         
@@ -93,11 +93,11 @@ public class CoverController {
     public String view(@PathVariable int no, Model model) throws Exception {
         
         model.addAttribute("cover", coverService.get(no));
-        return "cv/view";
+        return "letter/view";
     }
     
     @RequestMapping("update")
-    public String update(Cover cover) throws Exception {
+    public String update(Letter cover) throws Exception {
         
         coverService.update(cover);
         return "redirect:list";

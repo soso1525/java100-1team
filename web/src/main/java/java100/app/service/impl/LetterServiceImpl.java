@@ -6,17 +6,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java100.app.dao.CoverDao;
-import java100.app.domain.Cover;
-import java100.app.service.CoverService;
+import java100.app.dao.LetterDao;
+import java100.app.domain.Letter;
+import java100.app.service.LetterService;
 
 @Service
-public class CoverServiceImpl implements CoverService {
+public class LetterServiceImpl implements LetterService {
 
-    @Autowired CoverDao coverDao;
+    @Autowired LetterDao coverDao;
     
     @Override
-    public List<Cover> list() {
+    public List<Letter> list() {
         HashMap<String,Object> params = new HashMap<>();
         return coverDao.findAll(params);
     }
@@ -27,18 +27,18 @@ public class CoverServiceImpl implements CoverService {
     }
     
     @Override
-    public int add(Cover cover) {
+    public int add(Letter cover) {
         
         return coverDao.insert(cover);
     }
 
     @Override
-    public Cover get(int no) {
+    public Letter get(int no) {
         return coverDao.findByNo(no);
     }
 
 	@Override
-	public int update(Cover cover) {
+	public int update(Letter cover) {
 		return coverDao.update(cover);
 	}
 

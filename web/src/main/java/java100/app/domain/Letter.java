@@ -1,6 +1,6 @@
 package java100.app.domain;
 
-public class Cover {
+public class Letter {
     
     int lno;
     String lcont;
@@ -14,7 +14,7 @@ public class Cover {
     
   
     
-    public Cover() {}
+    public Letter() {}
 
 
 
