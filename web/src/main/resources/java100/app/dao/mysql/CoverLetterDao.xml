@@ -42,7 +42,7 @@
 			 a.ano
 		from g_app a
 		inner join g_let l on a.ano = l.ano
-		where ino = #{ino};
+		where ino = #{ino}
 	</select>
 	
   <!--  <insert id="findByWriter" parameterType="integer">

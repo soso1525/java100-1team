@@ -28,6 +28,11 @@ public class FindServiceImpl implements FindService {
 	}
 	
 	@Override
+	public int addMember(Find find) {
+	    return findDao.insertMember(find);
+	}
+	
+	@Override
 	public int delete(int no) {
 		return findDao.delete(no);
 	}

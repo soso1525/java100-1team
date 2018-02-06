@@ -22,13 +22,6 @@ public class DataSource {
         }
         
         Class.forName(this.driverClassName);
-        // => com.mysql.jdbc.Driver �겢�옒�뒪瑜� 濡쒕뵫�븳�떎.
-        //    �떒 �븳 踰� 濡쒕뵫�맂 �겢�옒�뒪�뒗 �떎�떆 濡쒕뵫�븯吏� �븡�뒗�떎.
-        // => Driver �겢�옒�뒪 �궡遺��뿉 �꽑�뼵�맂 static {} 釉붾줉�쓣 �닔�뻾�븳�떎.
-        //    => Driver �씤�뒪�꽩�뒪瑜� �깮�꽦�븳�떎.
-        //    => DriverManager�뿉 洹� �씤�뒪�꽩�뒪瑜� �벑濡앺븳�떎.
-        
-        // �뾾�떎硫� �깉濡� 留뚮뱾�뼱 鍮뚮젮以��떎.
         return DriverManager.getConnection(
                 this.url, this.username, this.password);
     }

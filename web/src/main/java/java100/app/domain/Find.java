@@ -4,7 +4,15 @@ public class Find {
 	int no;
 	int ino;
 	String findKey;
+	Member member;
 	
+	
+	public Member getMember() {
+		return member;
+	}
+	public void setMember(Member member) {
+		this.member = member;
+	}
 	public int getNo() {
 		return no;
 	}

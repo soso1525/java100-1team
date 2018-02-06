@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>회원관리</title>
+<title>이력서</title>
 <link rel='stylesheet' href='../../node_modules/bootstrap/dist/css/bootstrap.min.css'>
 <link rel='stylesheet' href='../../css/common.css'>
 </head>
@@ -16,7 +16,7 @@
 
 <h1>이력서
 </h1>
-<form action='add' method='post'>
+<form action='add' method='post' enctype="multipart/form-data">
 <div class='form-group row'>
 <label for='education' class='col-sm-2 col-form-label'>학력</label>
 <div class='col-sm-10'>
@@ -38,7 +38,7 @@
 <div class='form-group row'>
 <label for='image' class='col-sm-2 col-form-label'>사진</label>
 <div class='col-sm-10'>
-<input class='form-control' id='image' type='text' name='image'>
+<input class='form-control' id='image' type='file' name='files'>
 </div>
 </div>
 <div class='form-group row'>
@@ -81,13 +81,13 @@
 <div class='form-group row'>
 <label for='avi' class='col-sm-2 col-form-label'>1분 동영상</label>
 <div class='col-sm-10'>
-<input class='form-control' id='avi' type='text' name='avi'>
+<input class='form-control' id='avi' type='file' name='files'>
 </div>
 </div>
 <div class='form-group row'>
 <label for='file' class='col-sm-2 col-form-label'>파일</label>
 <div class='col-sm-10'>
-<input class='form-control' id='file' type='text' name='file'>
+<input class='form-control' id='file' type='file' name='files'>
 </div>
 </div>
 

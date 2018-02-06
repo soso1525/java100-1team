@@ -16,6 +16,7 @@ import java100.app.domain.Find;
 public interface FindService {
     List<Find> list();
     int add(Find find);
+    int addMember(Find find);
     int delete(int no);
 }
 

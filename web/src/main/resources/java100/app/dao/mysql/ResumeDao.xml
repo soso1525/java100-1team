@@ -52,13 +52,14 @@
 			r.ino
     </sql>
 
-    <select id="findAll" resultMap="resumeMap" parameterType="map">
+    <select id="findAll" resultMap="resumeMap">
 		<include refid="select1"/>
 			from g_res r
 			left join g_iper i on r.ino = i.ino 
 	</select>
 	
-	<insert id="insert" parameterType="resume">
+	<insert id="insert" parameterType="resume"
+		useGeneratedKeys="true" keyColumn="no" keyProperty="no">
         insert into g_res(redu, rcar, rkind, rimg, rqua, rlang, rawrd, rmaj, rsch, rgpa, rcnt, ravi, rfile, rnote, rcheck, ino)
         values(#{education},#{career},#{kind},#{image},#{qualification},#{language},#{award},#{major},#{schoolName},#{grades},#{viewCount},#{avi},#{file},#{note},#{check},#{member.no})
     </insert>
@@ -69,7 +70,7 @@
         where rno=#{value}
     </select>
     
-     <update id="update" parameterType="resume">
+    <update id="update" parameterType="resume">
         update g_res set 
         redu=#{education},
 			rcar=#{career},

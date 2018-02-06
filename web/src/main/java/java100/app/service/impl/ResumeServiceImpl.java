@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java100.app.dao.ResumeDao;
-import java100.app.domain.IndividualMember;
-import java100.app.domain.Member;
 import java100.app.domain.Resume;
 import java100.app.service.ResumeService;
 

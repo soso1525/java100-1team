@@ -2,11 +2,11 @@ package java100.app.domain;
 
 public class Resume {
 	int no;
+	String image;
 	Member member;
 	String education;
 	int career;
 	String kind;
-	String image;
 	String qualification;
 	String language;
 	String award;
@@ -20,17 +20,32 @@ public class Resume {
 	String check;
 	int ino;
 	
-	public Member getMember() {
-		return member;
+	
+	
+	
+	public int getIno() {
+		return ino;
 	}
-	public void setMember(Member member) {
-		this.member = member;
+	public void setIno(int ino) {
+		this.ino = ino;
 	}
 	public int getNo() {
 		return no;
 	}
 	public void setNo(int no) {
 		this.no = no;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public Member getMember() {
+		return member;
+	}
+	public void setMember(Member member) {
+		this.member = member;
 	}
 	public String getEducation() {
 		return education;
@@ -49,12 +64,6 @@ public class Resume {
 	}
 	public void setKind(String kind) {
 		this.kind = kind;
-	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
 	}
 	public String getQualification() {
 		return qualification;
@@ -122,12 +131,8 @@ public class Resume {
 	public void setCheck(String check) {
 		this.check = check;
 	}
-	public int getIno() {
-		return ino;
-	}
-	public void setIno(int ino) {
-		this.ino = ino;
-	}
+	
+	
 	
 	
 }

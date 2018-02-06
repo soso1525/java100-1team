@@ -17,12 +17,6 @@
 <h1>검색어</h1>
 <form action='add' method='post'>
 <div class='form-group row'>
-<label for='ino' class='col-sm-2 col-form-label'>아이디</label>
-<div class='col-sm-10'>
-<input class='form-control' id='ino' type=text name='ino'>
-</div>
-</div>
-<div class='form-group row'>
 <label for='findKey' class='col-sm-2 col-form-label'>검색어</label>
 <div class='col-sm-10'>
 <input class='form-control' id='findKey' type='text' name='findKey'>

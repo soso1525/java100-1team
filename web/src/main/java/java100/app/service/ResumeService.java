@@ -14,9 +14,9 @@ import java100.app.domain.Resume;
 // 가능한 업무 용어를 사용한다.
 //
 public interface ResumeService {
+	int add(Resume resume);
     List<Resume> list();
     int getTotalCount();
-    int add(Resume resume);
     Resume get(int no);
     int update(Resume resume);
     int delete(int no);

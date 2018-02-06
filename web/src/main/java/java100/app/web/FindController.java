@@ -3,14 +3,18 @@ package java100.app.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java100.app.domain.Find;
+import java100.app.domain.Member;
 import java100.app.service.FindService;
 
 @Controller
 @RequestMapping("/find")
+@SessionAttributes("loginUser")
 public class FindController {
     @Autowired FindService findService;
     
@@ -58,14 +62,14 @@ public class FindController {
     }
     
     @RequestMapping("add")
-    public String add(
-    		Find find) throws Exception {
-        
-        findService.add(find);
-        
+    public String addMember(
+    		Find find,
+    		@ModelAttribute(value="loginUser") Member loginUser) throws Exception {
+//    		find.setMember(loginUser);
+    		findService.addMember(find);
         return "redirect:list";
     }
-    
+
     @RequestMapping("delete")
     public String delete(int no) throws Exception {
 

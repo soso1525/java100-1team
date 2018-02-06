@@ -27,8 +27,13 @@
 	</select>
 	
 	<insert id="insert" parameterType="find">
-        insert into g_find(ino, fkey)
-        values(#{ino}, #{findKey})
+        insert into g_find(fkey)
+        values(#{findKey})
+    </insert>
+    
+    <insert id="insertMember" parameterType="find">
+        insert into g_find(fkey)
+        values(#{findKey})
     </insert>
 
     <delete id="delete" parameterType="int">

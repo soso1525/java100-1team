@@ -13,25 +13,20 @@ public class Member {
     
     
     public Member() {}
-    
-    @Override
-    public String toString() {
-        return "Member [no=" + this.no + ", email=" + this.email + ", password=" + this.password + ", id=" + this.id
-                + ", tel=" + this.tel + ", createdDate=" + this.createdDate + "]";
-    }
 
     public Member(int no, String email, String id) {
         this.no = no;
         this.email = email;
         this.id = id;
     }
-    
-    
-    
-    
-
 
     
+	@Override
+	public String toString() {
+		return "Member [no=" + no + ", email=" + email + ", password=" + password + ", id=" + id + ", tel=" + tel
+				+ ", createdDate=" + createdDate + ", address=" + address + ", type=" + type + "]";
+	}
+
 	public String getType() {
 		return type;
 	}

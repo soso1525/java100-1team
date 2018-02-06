@@ -34,15 +34,8 @@ public class CoverLetterController {
     
     @RequestMapping("list")
     public String list(Model model, HttpSession session) throws Exception {
-        IndividualMember loginUser = (IndividualMember) session.getAttribute("loginUser");
-        
-        if ( loginUser == null) {
-        	// TODO 로그인 페이지로 리다이렉트 시킴 
-        	// return "redirect:/login";
-        }
         int writerSeq = 1;
         List<CoverLetter> letters = cvService.findByWriter(writerSeq);
-        System.out.println(letters);
         model.addAttribute("letters", letters);
         return "cv/letters";
     }

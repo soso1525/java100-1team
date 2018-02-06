@@ -1,5 +1,9 @@
 package java100.app.web;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import java100.app.domain.Member;
 import java100.app.domain.Resume;
@@ -67,10 +72,24 @@ public class ResumeController {
     
     @RequestMapping("add")
     public String add(
-    		Resume resume,
-            @ModelAttribute(value="loginUser") Member loginUser) throws Exception {
+            Resume resume,
+            MultipartFile[] files,
+            @ModelAttribute(value="loginUser") Member loginUser
+            ) throws Exception {
         
+        ArrayList<String> list = new ArrayList<>();
+        for (MultipartFile part : files) {
+        	if(part.isEmpty()) {
+        		list.add("");
+        	} else {
+        		list.add(this.addFile(part, resume.getNo()));
+        	}
+        }
+        resume.setImage(list.get(0));
+        resume.setAvi(list.get(1));
+        resume.setFile(list.get(2));
         resume.setMember(loginUser);
+        
         resumeService.add(resume);
         
         return "redirect:list";
@@ -95,5 +114,41 @@ public class ResumeController {
 
     	resumeService.delete(no);
         return "redirect:list";
+    }
+    
+    long prevMillis = 0;
+    int count = 0;
+    
+   synchronized private String getNewFilename(String filename) {
+        long currMillis = System.currentTimeMillis();
+        if (prevMillis != currMillis) {
+            count = 0;
+            prevMillis = currMillis;
+        }
+        
+        return  currMillis + "_" + count++ + extractFileExtName(filename); 
+    }
+    
+    private String extractFileExtName(String filename) {
+        int dotPosition = filename.lastIndexOf(".");
+        
+        if (dotPosition == -1)
+            return "";
+        
+        return filename.substring(dotPosition);
+    }
+    
+    private String writeUploadFile(MultipartFile part, String path) throws IOException {
+        
+        String filename = getNewFilename(part.getOriginalFilename());
+        part.transferTo(new File(path + "/" + filename));
+        return filename;
+    }
+    
+    private String addFile(MultipartFile part, int bookNo) throws IOException {
+    	String uploadDir = servletContext.getRealPath("/download");
+        
+        String filename = this.writeUploadFile(part, uploadDir);
+        return filename;
     }
 }
