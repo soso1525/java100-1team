@@ -25,7 +25,7 @@ import java100.app.service.LetterService;
 @SessionAttributes("loginUser")
 public class LetterController {
 	@Autowired ServletContext servletContext;
-    @Autowired LetterService coverService;
+    @Autowired LetterService letterService;
     
     
     @RequestMapping("list")
@@ -62,7 +62,7 @@ public class LetterController {
 //        model.addAttribute("pageNo", pageNo);
 //        model.addAttribute("lastPageNo", lastPageNo);
         
-        model.addAttribute("list", coverService.list(1));
+        model.addAttribute("list", letterService.list(1));
         return "letter/list";
     }
     
@@ -73,41 +73,39 @@ public class LetterController {
     
     @RequestMapping(value="add", method=RequestMethod.POST)
     public String add(
-    		Letter cover,
+    		Letter letter,
     		MultipartFile file,
             @ModelAttribute(value="loginUser") Member loginUser) throws Exception {
         
-       String uploadDir = servletContext.getRealPath("/download");
-        
+    	String uploadDir = servletContext.getRealPath("/download");
+        int ano = letter.getAno();
         String filename = writeUploadFile(file, uploadDir);
-        cover.setLfile(filename);
+        letter.setLfile(filename);
+        letter.setMember(loginUser);
+        letterService.add(letter);
         
-        
-        cover.setMember(loginUser);
-        coverService.add(cover);
-        
-        return "redirect:list";
+        return "redirect:../apply/" + ano;
     }
     
     @RequestMapping("{no}")
     public String view(@PathVariable int no, Model model) throws Exception {
         
-        model.addAttribute("cover", coverService.get(no));
+        model.addAttribute("letter", letterService.get(no));
         return "letter/view";
     }
     
     @RequestMapping("update")
-    public String update(Letter cover) throws Exception {
+    public String update(Letter letter) throws Exception {
         
-        coverService.update(cover);
+        letterService.update(letter);
         return "redirect:list";
     }
 
     @RequestMapping("delete")
     public String delete(int no) throws Exception {
 
-    	coverService.delete(no);
-        return "redirect:list";
+    	letterService.delete(no);
+        return "redirect:../apply/list";
     }
     
     long prevMillis = 0;

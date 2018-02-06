@@ -3,13 +3,14 @@ package java100.app.domain;
 public class Letter {
     
     int lno;
+    int ano;
     String lcont;
     String lsdt;
     String ledt;
     String lscheck;
     String lpcheck;
-    String lfile; 
-    Apply ano;
+    String lfile;
+    Apply apply;
     Member member;
     
   
@@ -17,8 +18,17 @@ public class Letter {
     public Letter() {}
 
 
+    public int getAno() {
+		return ano;
+	}
 
-    public int getLno() {
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
+
+
+
+	public int getLno() {
         return this.lno;
     }
 
@@ -102,19 +112,20 @@ public class Letter {
 
 
 
-    public Apply getAno() {
-        return this.ano;
-    }
+
+    public Apply getApply() {
+		return apply;
+	}
 
 
 
-    public void setAno(Apply ano) {
-        this.ano = ano;
-    }
+	public void setApply(Apply apply) {
+		this.apply = apply;
+	}
 
 
 
-    public Member getMember() {
+	public Member getMember() {
         return this.member;
     }
 

@@ -20,7 +20,7 @@
         <result column="lscheck" property="lscheck"/>
         <result column="lpchek" property="lpcheck"/>
         <result column="lfile" property="lfile"/>
-        <association property="ano" javaType="Apply">
+        <association property="apply" javaType="Apply">
         	<result column="ano" property="ano"/>
         	<result column="aname" property="aname"/>
         	<result column="adt" property="adt"/>
@@ -42,6 +42,7 @@
 			 a.ano
 		from g_app a
 		inner join g_let l on a.ano = l.ano
+		where a.ano = #{ano}
 	</select>
 	
   <!--   <select id="findByAppNo" resultType="cover" parameterType="int">
@@ -51,10 +52,15 @@
     </select>
      -->
      
- <!--  <insert id="insert" parameterType="cover">
-         insert into g_app(lcont, lfile, ano)
-        values(#{lcont}, #{lfile}, #{ano})
-    </insert>  -->
+	<insert id="insert" parameterType="letter">
+         insert into g_let(lcont, lsdt, ledt, ano)
+        values(#{lcont}, now(), now(), #{ano})
+    </insert>
+    
+    <delete id="delete" parameterType="int">
+        delete from g_let
+        where lno=#{value}
+    </delete>
 </mapper>
 
 

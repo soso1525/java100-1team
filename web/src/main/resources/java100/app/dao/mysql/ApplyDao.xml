@@ -27,8 +27,7 @@
         values(#{aname}, #{adt}, #{member.no})
     </insert>
     
-    
-     <select id="findByNo" resultMap="applyMap" parameterType="int">
+    <select id="findByNo" resultMap="applyMap" parameterType="int">
         select
             ano,
             aname,
@@ -36,7 +35,7 @@
             ino
         from g_app 
         where ano=#{value}
-    </select> 
+    </select>
     
 <!--  <update id="update" parameterType="apply">
         update g_app set 

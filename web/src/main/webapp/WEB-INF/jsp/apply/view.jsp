@@ -48,21 +48,20 @@
 </tr>
 </thead>
 <tbody>
-
-<c:forEach items="${list}" var="letter">
+<c:forEach items="${letter}" var='letter'>
       <tr>
       	<td>${letter.lno}</td>
-      	<td>${letter.lcont }[F]</td>
+      	<td>${letter.lcont}</td>
       	<td>${letter.lsdt}</td>
       	<td>${letter.ledt}</td>
       	<td>
-      		<c:if test="${cover.lscheck eq 'y' }">제출완료</c:if>
-      		<c:if test="${cover.lscheck eq 'n' }">미제출</c:if>
+      		<c:if test="${letter.lscheck eq 'y' }">제출완료</c:if>
+      		<c:if test="${letter.lscheck eq 'n' }">미제출</c:if>
       	</td>
       	<td>${cover.lpcheck}</td>
       	<%-- <td>${lts.lfile}</td> --%>
       	<td>${cover.ano.aname}</td>
-      	<td><a href='delete?no=${cover.lno}'>삭제</a></td>
+      	<td><a href='../letter/delete?no=${letter.lno}'>삭제</a></td>
       </tr>
 </c:forEach>
 
@@ -70,12 +69,15 @@
 </table>
 <div class='form-group row'>
 <div class='col-sm-10'>
+<a href='list' class='btn btn-primary btn-sm'>목록</a>
 <button class='btn btn-primary btn-sm' id="btn-enrol">변경</button>
+<a href='../letter/form?ano=${apply.ano}' class='btn btn-primary btn-sm'>추가</a>
 <a href='delete?no=${apply.ano}' class='btn btn-primary btn-sm'>삭제</a>
 </div>
 </div>
 </form>
 </c:if>
+
 <c:if test="${empty apply}">
         <p>'${param.no}'번 회원 정보가 없습니다.</p>
 </c:if>

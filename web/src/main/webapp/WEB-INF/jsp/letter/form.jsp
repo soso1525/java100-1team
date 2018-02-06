@@ -14,8 +14,8 @@
 <h1>자소서 지원하기</h1>
 
 <%-- <jsp:include page="../listToolbar.jsp"/> --%>
-<form class="form" action="apply" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="ccno" value="${ccnum}">
+<form class="form" action="add" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="ano" value="${param.ano}">
 	<textarea class="form-control" rows="20" name="lcont"></textarea>
 	<input type="file"  class="form-control" name="file">
 	<input type="submit"  class="form-control" value="지원하기">
