@@ -5,14 +5,14 @@
 
 <!-- DAO 객체를 자동으로 생성하려면,
      namespace의 값이 인터페이스 이름과 같아야 한다. -->
-<mapper namespace="java100.app.dao.CoverDao">
+<mapper namespace="java100.app.dao.LetterDao">
 	<!-- 
 	(int ino, 
 	String icont, 
 	String isdt,
 	String iedt, String ischeck, String ipcheck, String ifile, Apply apply)
 	 -->
-	<resultMap type="Cover" id="coverMap">
+	<resultMap type="letter" id="letterMap">
         <id column="lno" property="lno"/>
         <result column="lcont" property="lcont"/> 
         <result column="lsdt" property="lsdt"/>
@@ -28,7 +28,7 @@
         </association>
     </resultMap>
     
-	<select id="findAll"  resultMap="coverMap" parameterType="int">
+	<select id="findAll"  resultMap="letterMap" parameterType="int">
 		select 
 			 a.aname,
 			 a.adt,
