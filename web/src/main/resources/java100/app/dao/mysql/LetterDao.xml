@@ -51,6 +51,18 @@
         where lno=#{value}
     </select>
      -->
+    <select id="findByNo" resultMap="letterMap" parameterType="int">
+    	select 
+    		l.lno,
+			 l.lcont,
+			 l.lsdt,
+			 l.ledt,
+			 l.lscheck,
+			 l.lpchek,
+			 l.lfile
+        from g_let l
+        where l.lno=#{value}
+    </select>
      
 	<insert id="insert" parameterType="letter">
          insert into g_let(lcont, lsdt, ledt, ano)
@@ -61,6 +73,13 @@
         delete from g_let
         where lno=#{value}
     </delete>
+    
+    <update id="update" parameterType="letter">
+        update g_let set 
+        lcont=#{lcont},
+		lsdt=now()
+        where lno=#{lno}
+    </update>
 </mapper>
 
 

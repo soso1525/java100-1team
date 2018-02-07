@@ -98,7 +98,7 @@ public class LetterController {
     public String update(Letter letter) throws Exception {
         
         letterService.update(letter);
-        return "redirect:list";
+        return "redirect:../apply/list";
     }
 
     @RequestMapping("delete")
