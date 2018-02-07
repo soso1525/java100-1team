@@ -5,30 +5,20 @@ public class Resume {
 	String image;
 	Member member;
 	String education;
-	int career;
+	String career;
 	String kind;
 	String qualification;
 	String language;
 	String award;
 	String major;
 	String schoolName;
-	float grades;
-	int viewCount;
+	String grades;
+	String viewCount;
 	String avi;
 	String file;
 	String note;
 	String check;
 	int ino;
-	
-	
-	
-	
-	public int getIno() {
-		return ino;
-	}
-	public void setIno(int ino) {
-		this.ino = ino;
-	}
 	public int getNo() {
 		return no;
 	}
@@ -53,10 +43,10 @@ public class Resume {
 	public void setEducation(String education) {
 		this.education = education;
 	}
-	public int getCareer() {
+	public String getCareer() {
 		return career;
 	}
-	public void setCareer(int career) {
+	public void setCareer(String career) {
 		this.career = career;
 	}
 	public String getKind() {
@@ -95,16 +85,16 @@ public class Resume {
 	public void setSchoolName(String schoolName) {
 		this.schoolName = schoolName;
 	}
-	public float getGrades() {
+	public String getGrades() {
 		return grades;
 	}
-	public void setGrades(float grades) {
+	public void setGrades(String grades) {
 		this.grades = grades;
 	}
-	public int getViewCount() {
+	public String getViewCount() {
 		return viewCount;
 	}
-	public void setViewCount(int viewCount) {
+	public void setViewCount(String viewCount) {
 		this.viewCount = viewCount;
 	}
 	public String getAvi() {
@@ -131,7 +121,12 @@ public class Resume {
 	public void setCheck(String check) {
 		this.check = check;
 	}
-	
+	public int getIno() {
+		return ino;
+	}
+	public void setIno(int ino) {
+		this.ino = ino;
+	}
 	
 	
 	

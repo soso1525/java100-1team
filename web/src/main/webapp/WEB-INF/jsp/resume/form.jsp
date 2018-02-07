@@ -75,7 +75,7 @@
 <div class='form-group row'>
 <label for='grades' class='col-sm-2 col-form-label'>학점</label>
 <div class='col-sm-10'>
-<input class='form-control' id='grades' type='text' name='grades'>
+<input class='form-control' id='grades' type='number' name='grades'>
 </div>
 </div>
 <div class='form-group row'>
