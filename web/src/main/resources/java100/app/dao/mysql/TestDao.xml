@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="java100.app.dao.TestDao">
+
+	<resultMap type="test" id="testMap">
+		<id column="tno" property="no" />
+		<result column="ttype" property="type" />
+		<result column="tdt" property="date" />
+		<result column="ttime" property="time" />
+		<result column="tloc" property="location" />
+		<result column="tpre" property="prepare" />
+		<result column="tcheck" property="check" />
+		<association property="apply" javaType="Apply">
+			<result column="ano" property="ano" />
+			<result column="aname" property="aname" />
+			<result column="adt" property="adt" />
+			<result column="ino" property="ino" />
+		</association>
+	</resultMap>
+
+	<select id="findAll" resultMap="testMap" parameterType="map">
+		select
+		a.aname,
+		a.adt,
+		t.tno,
+		t.ttype,
+		t.tdt,
+		t.ttime,
+		t.tloc,
+		t.tpre,
+		t.tcheck,
+		a.ano
+		from g_app a
+		inner join g_test t on a.ano = t.ano
+		where a.ano =
+		#{ano}
+	</select>
+
+	<select id="findByNo" resultMap="testMap" parameterType="integer">
+		select
+		a.aname,
+		a.adt,
+		t.tno,
+		t.ttype,
+		t.tdt,
+		t.ttime,
+		t.tloc,
+		t.tpre,
+		t.tcheck,
+		a.ano
+		from g_app a
+		inner join g_test t on a.ano = t.ano
+		where a.ano =
+		#{ano}
+	</select>
+
+	<insert id="insert" parameterType="test">
+		insert into g_test(ttype, tdt,
+		ttime, tloc, tpre, tcheck, ano)
+		values(#{type}, #{date},
+		#{time},
+		#{location}, #{prepare}, 'n', #{ano})
+
+
+	</insert>
+
+	<update id="update" parameterType="test">
+		update g_test set
+		ttype=#{type},
+		tdt=#{date},
+		ttime=#{time},
+		tloc=#{location},
+		tpre=#{prepare},
+		tcheck=#{check},
+		ano=#{ano}
+		where tno=#{no}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from g_test
+		where
+		tno=#{value}
+	</delete>
+
+	<select id="countAll" resultType="int">
+		select count(*) from g_test
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
