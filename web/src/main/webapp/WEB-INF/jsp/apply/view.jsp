@@ -62,12 +62,43 @@
 
 </tbody>
 </table>
+
+<table class='table table-hover'>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>유형</th>
+				<th>날짜</th>
+				<th>시간</th>
+				<th>위치</th>
+				<th>준비물</th>
+				<th>합격여부</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			<c:forEach items="${test}" var="test">
+				<tr>
+					<td>${test.no}</td>
+					<td>${test.type}</td>
+					<td>${test.date}</td>
+					<td>${test.time}</td>
+					<td>${test.location}</td>
+					<td>${test.prepare}</td>
+					<td><c:if test="${cover.lscheck eq 'y' }">합격</c:if> 
+						<c:if test="${cover.lscheck eq 'n' }"> - </c:if></td>
+				</tr>
+			</c:forEach>
+
+		</tbody>
+	</table>
 <div class='form-group row'>
 <div class='col-sm-10'>
 <a href='list' class='btn btn-primary btn-sm'>목록</a>
 <button class='btn btn-primary btn-sm' id="btn-enrol">변경</button>
 <a href='../letter/form?ano=${apply.ano}' class='btn btn-primary btn-sm'>추가</a>
 <a href='delete?no=${apply.ano}' class='btn btn-primary btn-sm'>삭제</a>
+<a href='../test/form?ano=${apply.ano}' class='btn btn-primary btn-sm'>면접추가</a>
 </div>
 </div>
 </form>

@@ -19,11 +19,11 @@
         <result column="nedt" property="endDate"/>
         <result column="ncnt" property="viewCount"/>
     
-    <association property="companyMember" javaType="companyMember" >
-    	<id column="cno" property="no"/>
-    	<result column="cname" property="name"/>
-    	<result column="clogo" property="logo"/>
-    </association>
+	    <association property="companyMember" javaType="companyMember" >
+	    	<id column="cno" property="no"/>
+	    	<result column="cname" property="name"/>
+	    	<result column="clogo" property="logo"/>
+	    </association>
    
     </resultMap>
 
@@ -39,6 +39,46 @@
 		from g_noti n
 		left join g_corp c on n.cno=c.cno
 	</select>
+	
+	<select id="findByNo" resultMap="noticeMap" parameterType="int">
+        select
+			n.nno,
+			n.nimg,
+			n.nsdt,
+			n.nedt,
+			n.ncnt,
+			c.cname,
+			c.clogo
+		from g_noti n
+		left join g_corp c on n.cno=c.cno
+		where n.nno = #{no}
+    </select>
+	
+	<insert id="insert" parameterType="notice"
+		useGeneratedKeys="true" keyColumn="no" keyProperty="no">
+        insert into g_noti(nimg, nsdt, nedt, ncnt, cno)
+        values(#{image}, #{startDate}, #{endDate}, 0, #{writer.no})
+    </insert>
+    
+    <update id="updateViewCount" parameterType="int">
+        update g_noti set 
+            ncnt=ncnt + 1
+        where nno=#{value}
+    </update>
+    
+    <update id="update" parameterType="notice">
+    	update g_noti set
+    		nimg = #{image},
+    		nsdt = #{startDate},
+    		nedt = #{endDate}
+        where nno=#{no}
+    </update>
+    
+    <delete id="delete" parameterType="int">
+        delete from g_noti
+        where nno=#{value}
+    </delete>
+    
 </mapper>  
 
 

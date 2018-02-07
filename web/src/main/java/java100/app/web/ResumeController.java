@@ -82,7 +82,7 @@ public class ResumeController {
         	if(part.isEmpty()) {
         		list.add("");
         	} else {
-        		list.add(this.addFile(part, resume.getNo()));
+        		list.add(this.addFile(part));
         	}
         }
         resume.setImage(list.get(0));
@@ -144,7 +144,7 @@ public class ResumeController {
         return filename;
     }
     
-    private String addFile(MultipartFile part, int bookNo) throws IOException {
+    private String addFile(MultipartFile part) throws IOException {
     	String uploadDir = servletContext.getRealPath("/download");
         
         String filename = this.writeUploadFile(part, uploadDir);

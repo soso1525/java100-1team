@@ -2,7 +2,6 @@ package java100.app.domain;
 
 public class Notice {
 	CompanyMember companyMember;
-	String companyName;
     int no;
     String image;
     String startDate;
@@ -10,13 +9,7 @@ public class Notice {
     int viewCount;
     Member writer;
     
-    
-	public String getCompanyName() {
-		return companyName;
-	}
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
+
 	public CompanyMember getCompanyMember() {
 		return companyMember;
 	}

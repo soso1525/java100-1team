@@ -53,8 +53,7 @@
 		a.ano
 		from g_app a
 		inner join g_test t on a.ano = t.ano
-		where a.ano =
-		#{ano}
+		where a.ano = #{ano}
 	</select>
 
 	<insert id="insert" parameterType="test">
@@ -62,9 +61,7 @@
 		ttime, tloc, tpre, tcheck, ano)
 		values(#{type}, #{date},
 		#{time},
-		#{location}, #{prepare}, 'n', #{ano})
-
-
+		#{location}, #{prepare}, 0, #{ano})
 	</insert>
 
 	<update id="update" parameterType="test">

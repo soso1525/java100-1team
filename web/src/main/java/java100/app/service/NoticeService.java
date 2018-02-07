@@ -3,6 +3,7 @@ package java100.app.service;
 import java.util.List;
 
 import java100.app.domain.Notice;
+import java100.app.domain.Resume;
 
 // => "역할"을 강조할 때는 "객체(object)"라는 말보다는 
 //    "컴포넌트(component)"라는 말을 사용한다.
@@ -16,7 +17,6 @@ import java100.app.domain.Notice;
 public interface NoticeService {
     List<Notice> list();
     Notice get(int no);
-    int getTotalCount();
     int add(Notice notice);
     int update(Notice notice);
     int delete(int no);
