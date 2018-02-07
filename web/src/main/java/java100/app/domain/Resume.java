@@ -13,12 +13,20 @@ public class Resume {
 	String major;
 	String schoolName;
 	String grades;
-	String viewCount;
+	int viewCount;
 	String avi;
 	String file;
 	String note;
 	String check;
 	int ino;
+	
+	
+	public int getViewCount() {
+		return viewCount;
+	}
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
+	}
 	public int getNo() {
 		return no;
 	}
@@ -91,12 +99,7 @@ public class Resume {
 	public void setGrades(String grades) {
 		this.grades = grades;
 	}
-	public String getViewCount() {
-		return viewCount;
-	}
-	public void setViewCount(String viewCount) {
-		this.viewCount = viewCount;
-	}
+
 	public String getAvi() {
 		return avi;
 	}

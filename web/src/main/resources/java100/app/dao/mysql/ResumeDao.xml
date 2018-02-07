@@ -92,7 +92,7 @@
     <update id="updateViewCount" parameterType="int">
         update g_res set 
             rcnt=rcnt + 1
-        where rno=#{value}
+        where rno=1
     </update>
 
     <delete id="delete" parameterType="int">

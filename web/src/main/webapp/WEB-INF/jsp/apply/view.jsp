@@ -51,13 +51,8 @@
 <c:forEach items="${letter}" var='letter'>
       <tr>
       	<td><a href='../letter/${letter.lno}'>${letter.lno}</a></td>
-      	<td>${letter.lcont}</td>
       	<td>${letter.lsdt}</td>
       	<td>${letter.ledt}</td>
-      	<td>
-      		<c:if test="${letter.lscheck eq 'y' }">제출완료</c:if>
-      		<c:if test="${letter.lscheck eq 'n' }">미제출</c:if>
-      	</td>
       	<td>${letter.lpcheck}</td>
       	<td>${letter.lfile}</td>
       	<td>${letter.apply.aname}</td>

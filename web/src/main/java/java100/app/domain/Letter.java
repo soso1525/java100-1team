@@ -4,11 +4,10 @@ public class Letter {
     
     int lno;
     int ano;
-    String lcont;
     String lsdt;
     String ledt;
-    String lscheck;
-    String lpcheck;
+    int lscheck;
+    int lpcheck;
     String lfile;
     Apply apply;
     Member member;
@@ -40,16 +39,6 @@ public class Letter {
 
 
 
-    public String getLcont() {
-        return this.lcont;
-    }
-
-
-
-    public void setLcont(String lcont) {
-        this.lcont = lcont;
-    }
-
 
 
     public String getLsdt() {
@@ -76,31 +65,27 @@ public class Letter {
 
 
 
-    public String getLscheck() {
-        return this.lscheck;
-    }
+    public int getLscheck() {
+		return lscheck;
+	}
 
 
-
-    public void setLscheck(String lscheck) {
-        this.lscheck = lscheck;
-    }
-
+	public void setLscheck(int lscheck) {
+		this.lscheck = lscheck;
+	}
 
 
-    public String getLpcheck() {
-        return this.lpcheck;
-    }
+	public int getLpcheck() {
+		return lpcheck;
+	}
 
 
-
-    public void setLpcheck(String lpcheck) {
-        this.lpcheck = lpcheck;
-    }
-
+	public void setLpcheck(int lpcheck) {
+		this.lpcheck = lpcheck;
+	}
 
 
-    public String getLfile() {
+	public String getLfile() {
         return this.lfile;
     }
 

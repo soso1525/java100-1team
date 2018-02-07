@@ -14,11 +14,10 @@
 	 -->
 	<resultMap type="letter" id="letterMap">
         <id column="lno" property="lno"/>
-        <result column="lcont" property="lcont"/> 
         <result column="lsdt" property="lsdt"/>
         <result column="ledt" property="ledt"/>
         <result column="lscheck" property="lscheck"/>
-        <result column="lpchek" property="lpcheck"/>
+        <result column="lpcheck" property="lpcheck"/>
         <result column="lfile" property="lfile"/>
         <association property="apply" javaType="Apply">
         	<result column="ano" property="ano"/>
@@ -33,11 +32,10 @@
 			 a.aname,
 			 a.adt,
 			 l.lno,
-			 l.lcont,
 			 l.lsdt,
 			 l.ledt,
 			 l.lscheck,
-			 l.lpchek,
+			 l.lpcheck,
 			 l.lfile,
 			 a.ano
 		from g_app a
@@ -54,19 +52,18 @@
     <select id="findByNo" resultMap="letterMap" parameterType="int">
     	select 
     		l.lno,
-			 l.lcont,
 			 l.lsdt,
 			 l.ledt,
 			 l.lscheck,
-			 l.lpchek,
+			 l.lpcheck,
 			 l.lfile
         from g_let l
         where l.lno=#{value}
     </select>
      
 	<insert id="insert" parameterType="letter">
-         insert into g_let(lcont, lsdt, ledt, ano)
-        values(#{lcont}, now(), now(), #{ano})
+         insert into g_let(lsdt, ledt, lscheck, lpcheck, lfile, ano)
+        values(now(), now(), 0, 0,#{lfile}, #{ano})
     </insert>
     
     <delete id="delete" parameterType="int">
@@ -76,7 +73,6 @@
     
     <update id="update" parameterType="letter">
         update g_let set 
-        lcont=#{lcont},
 		lsdt=now()
         where lno=#{lno}
     </update>
