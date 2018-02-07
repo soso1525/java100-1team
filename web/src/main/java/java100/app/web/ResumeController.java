@@ -104,7 +104,6 @@ public class ResumeController {
     
     @RequestMapping("update")
     public String update(Resume resume) throws Exception {
-        
         resumeService.update(resume);
         return "redirect:list";
     }

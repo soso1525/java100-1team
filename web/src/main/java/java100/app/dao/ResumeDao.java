@@ -10,6 +10,7 @@ public interface ResumeDao {
 	 List<Resume> findAll(HashMap<String, Object> params); 
 	 int countAll();
 	 Resume findByNo(int no);
+	 int updateViewCount(int no);
 	 int update(Resume resume);
 	 int delete(int no);
 }

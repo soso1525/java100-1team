@@ -61,7 +61,7 @@
 	<insert id="insert" parameterType="resume"
 		useGeneratedKeys="true" keyColumn="no" keyProperty="no">
         insert into g_res(redu, rcar, rkind, rimg, rqua, rlang, raward, rmaj, rsch, rgpa, rcnt, ravi, rfile, rnote, rcheck, ino)
-        values(#{education},#{career},#{kind},#{image},#{qualification},#{language},#{award},#{major},#{schoolName},#{grades},#{viewCount},#{avi},#{file},#{note},#{check},#{member.no})
+        values(#{education},#{career},#{kind},#{image},#{qualification},#{language},#{award},#{major},#{schoolName},#{grades},0,#{avi},#{file},#{note},#{check},#{member.no})
     </insert>
     
     <select id="findByNo" resultMap="resumeMap" parameterType="int">
@@ -82,12 +82,17 @@
 			rmaj=#{major},
 			rsch=#{schoolName},
 			rgpa=#{grades},
-			rcnt=#{viewCount},
 			ravi=#{avi},
 			rfile=#{file},
 			rnote=#{note},
 			rcheck=#{check}
         where rno=#{no}
+    </update>
+    
+    <update id="updateViewCount" parameterType="int">
+        update g_res set 
+            rcnt=rcnt + 1
+        where rno=#{value}
     </update>
 
     <delete id="delete" parameterType="int">
