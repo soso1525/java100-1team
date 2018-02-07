@@ -1,7 +1,6 @@
 package java100.app.service;
 
 import java.util.List;
-import java.util.Map;
 
 import java100.app.domain.Notice;
 
@@ -16,7 +15,11 @@ import java100.app.domain.Notice;
 //
 public interface NoticeService {
     List<Notice> list();
+    Notice get(int no);
     int getTotalCount();
+    int add(Notice notice);
+    int update(Notice notice);
+    int delete(int no);
 }
 
 
