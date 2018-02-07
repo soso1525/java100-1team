@@ -20,7 +20,7 @@
         <result column="rimg" property="image"/>
         <result column="rqua" property="qualification"/>
         <result column="rlang" property="language"/>
-        <result column="rawrd" property="award"/>
+        <result column="raward" property="award"/>
         <result column="rmaj" property="major"/>
         <result column="rsch" property="schoolName"/>
         <result column="rgpa" property="grades"/>
@@ -40,7 +40,7 @@
 			r.rimg,
 			r.rqua,
 			r.rlang,
-			r.rawrd,
+			r.raward,
 			r.rmaj,
 			r.rsch,
 			r.rgpa,
@@ -60,7 +60,7 @@
 	
 	<insert id="insert" parameterType="resume"
 		useGeneratedKeys="true" keyColumn="no" keyProperty="no">
-        insert into g_res(redu, rcar, rkind, rimg, rqua, rlang, rawrd, rmaj, rsch, rgpa, rcnt, ravi, rfile, rnote, rcheck, ino)
+        insert into g_res(redu, rcar, rkind, rimg, rqua, rlang, raward, rmaj, rsch, rgpa, rcnt, ravi, rfile, rnote, rcheck, ino)
         values(#{education},#{career},#{kind},#{image},#{qualification},#{language},#{award},#{major},#{schoolName},#{grades},#{viewCount},#{avi},#{file},#{note},#{check},#{member.no})
     </insert>
     
@@ -78,7 +78,7 @@
 			rimg=#{image},
 			rqua=#{qualification},
 			rlang=#{language},
-			rawrd=#{award},
+			raward=#{award},
 			rmaj=#{major},
 			rsch=#{schoolName},
 			rgpa=#{grades},
