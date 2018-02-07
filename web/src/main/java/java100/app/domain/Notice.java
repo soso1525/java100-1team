@@ -8,6 +8,7 @@ public class Notice {
     String startDate;
     String endDate;
     int viewCount;
+    Member writer;
     
     
 	public String getCompanyName() {
@@ -52,6 +53,11 @@ public class Notice {
 	public void setViewCount(int viewCount) {
 		this.viewCount = viewCount;
 	}
-    
+    public Member getWriter() {
+        return writer;
+    }
+    public void setWriter(Member writer) {
+        this.writer = writer;
+    }
     
 }

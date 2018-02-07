@@ -3,17 +3,24 @@ package java100.app.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import java100.app.domain.Member;
+import java100.app.domain.Notice;
 import java100.app.service.CompanyService;
+import java100.app.service.MemberService;
 import java100.app.service.NoticeService;
 
 @Controller
 @RequestMapping("/notice")
+@SessionAttributes("loginUser")
 public class NoticeController {
     @Autowired NoticeService noticeService;
-    
+    @Autowired MemberService memberService;
     @Autowired CompanyService comService;
     
     @RequestMapping("list")
@@ -52,4 +59,46 @@ public class NoticeController {
         model.addAttribute("list", noticeService.list());
         return "notice/list";
     }
+    
+    @RequestMapping("{no}")
+    public String view(@PathVariable int no, Model model) throws Exception {
+        
+        model.addAttribute("notice", noticeService.get(no));
+        return "notice/view";
+    }
+    
+    @RequestMapping("form")
+    public String form() throws Exception {
+        return "notice/form";
+        
+    }
+    
+    @RequestMapping("add")
+    public String add(
+            Notice notice,
+            @ModelAttribute(value="loginUser") Member loginUser) throws Exception {
+        
+        notice.setWriter(loginUser);
+        
+        noticeService.add(notice);
+        
+        return "redirect:list";
+    }
+    
+    @RequestMapping("update")
+    public String update(
+            Notice notice) throws Exception {
+        
+        noticeService.update(notice);
+        
+        return "redirect:list";
+    }
+
+    @RequestMapping("delete")
+    public String delete(int no) throws Exception {
+
+        noticeService.delete(no);
+        return "redirect:list";
+    }
+    
 }
