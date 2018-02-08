@@ -33,12 +33,12 @@
 <input class='form-control' id='mcont' type='text' name='mcont'>
 </div>
 </div>
-<div class='form-group row'>
+<!-- <div class='form-group row'>
 <label for='mcheck' class='col-sm-2 col-form-label'>수신여부</label>
 <div class='col-sm-10'>
 <input class='form-control' id='mcheck' type='text' name='mcheck'>
 </div>
-</div>
+</div> -->
 
 
 <div class='form-group row'>

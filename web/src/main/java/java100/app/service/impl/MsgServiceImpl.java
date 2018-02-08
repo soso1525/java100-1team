@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java100.app.dao.MsgDao;
+import java100.app.domain.Member;
 import java100.app.domain.Msg;
 import java100.app.service.MsgService;
 
@@ -21,15 +22,31 @@ public class MsgServiceImpl implements MsgService {
     }
     
     @Override
-    public List<Msg> list(int pageNo, int pageSize,Map<String,Object> options){
+    public List<Msg> list(int pageNo, int pageSize,Map<String,Object> options,
+            Member loginUser){
         HashMap<String,Object> params = new HashMap<>();
         params.put("startIndex", (pageNo - 1) * pageSize);
         params.put("size", pageSize);
+        params.put("writer", loginUser);
         
         if (options != null) {
             params.putAll(options);
         }
         return msgDao.findAll(params);
+    }
+    
+    @Override
+    public List<Msg> list2(int pageNo, int pageSize,Map<String,Object> options,
+            Member loginUser){
+        HashMap<String,Object> params = new HashMap<>();
+        params.put("startIndex", (pageNo - 1) * pageSize);
+        params.put("size", pageSize);
+        params.put("writer", loginUser);
+        
+        if (options != null) {
+            params.putAll(options);
+        }
+        return msgDao.findAll2(params);
     }
     
     @Override
@@ -39,7 +56,9 @@ public class MsgServiceImpl implements MsgService {
     
     @Override
     public Msg get(int mno) {
-        return msgDao.findByNo(mno);
+        msgDao.updateViewCount(mno);
+        Msg msg = msgDao.findByNo(mno);
+        return msg;
     }
 
 

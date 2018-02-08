@@ -23,7 +23,8 @@ background-position: 50% 50%; */
 <body>
 
 	<div class='container'>
-
+<button type="button" class='btn btn-primary btn-sm' id="btn-apply" onclick="location.href='../apply/list'">apply</button>
+<button type="button" class='btn btn-primary btn-sm' id="btn-notice" onclick="location.href='../notice/list'">notice</button>
 		<jsp:include page="../header.jsp" />
 		<jsp:include page="../listToolbar.jsp" />
 
@@ -77,4 +78,5 @@ background-position: 50% 50%; */
 
 	</div>
 </body>
+
 </html>

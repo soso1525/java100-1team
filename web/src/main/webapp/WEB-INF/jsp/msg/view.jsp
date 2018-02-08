@@ -37,12 +37,12 @@
 <input class='form-control' readonly id='mcont' type='text' name='mcont' value="${msg.mrecv}">
 </div>
 </div>
-<div class='form-group row'>
+<%-- <div class='form-group row'>
 <label for='mcheck' class='col-sm-2 col-form-label'>수신여부</label>
 <div class='col-sm-10'>
-<input class='form-control' readonly id='mcheck' type='text' name='mcheck' value="${msg.mrecv}">
+<input class='form-control' readonly id='mcheck' type='number' value="${msg.mcheck}">
 </div>
-</div>
+</div> --%>
 
 <div class='form-group row'>
 <div class='col-sm-10'>
