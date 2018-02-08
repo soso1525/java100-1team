@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java100.app.domain.Letter;
 import java100.app.domain.Member;
 import java100.app.service.LetterService;
+import java100.app.service.QuestionService;
 
 @Controller
 @RequestMapping("/letter")
@@ -26,6 +27,7 @@ import java100.app.service.LetterService;
 public class LetterController {
 	@Autowired ServletContext servletContext;
     @Autowired LetterService letterService;
+    @Autowired QuestionService questionService;
     
     
     @RequestMapping("list")
@@ -91,6 +93,7 @@ public class LetterController {
     public String view(@PathVariable int no, Model model) throws Exception {
         
         model.addAttribute("letter", letterService.get(no));
+        model.addAttribute("question", questionService.list(no));
         return "letter/view";
     }
     

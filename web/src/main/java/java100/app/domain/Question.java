@@ -6,8 +6,23 @@ public class Question {
     String article;
     String context;
     Member member;
+    int lno;
+    int nno;
+    
 
-    public int getNo() {
+    public int getLno() {
+		return lno;
+	}
+	public void setLno(int lno) {
+		this.lno = lno;
+	}
+	public int getNno() {
+		return nno;
+	}
+	public void setNno(int nno) {
+		this.nno = nno;
+	}
+	public int getNo() {
         return this.no;
     }
     public void setNo(int no) {

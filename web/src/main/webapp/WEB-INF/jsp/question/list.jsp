@@ -30,7 +30,7 @@
 
 <c:forEach items="${list}" var="question">
             <tr>
-        	<td><a href='${question.no}'>${question.no}</a></td>
+        	<td><a href='../question/${question.no}'>${question.no}</a></td>
         	<td>${question.article}</td>
 	        <td>${question.context}</td>
 	        <td><a href='delete?no=${question.no}'>삭제</a></td>

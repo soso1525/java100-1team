@@ -16,8 +16,9 @@ public class QuestionServiceImpl implements QuestionService {
     @Autowired QuestionDao questionDao;
     
     @Override
-    public List<Question> list() {
+    public List<Question> list(int no) {
         HashMap<String,Object> params = new HashMap<>();
+        params.put("lno", no);
         return questionDao.findAll(params);
     }
 
