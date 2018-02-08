@@ -18,65 +18,71 @@ import java100.app.service.MemberService;
 @Service
 public class MemberServiceImpl implements MemberService {
 
-    @Autowired MemberDao memberDao;
-    @Autowired IndividualMemberDao iMemberDao;
-    @Autowired CompanyMemberDao cMemberDao;
-    
-    @Override
-    public List<Member> list(int pageNo, int pageSize, Map<String, Object> options) {
-        
-        HashMap<String,Object> params = new HashMap<>();
-        params.put("startIndex", (pageNo - 1) * pageSize);
-        params.put("size", pageSize);
-        
-        if (options != null) {
-            params.putAll(options);
-        }
-        
-        return memberDao.findAll(params);
-    }
+	@Autowired
+	MemberDao memberDao;
+	@Autowired
+	IndividualMemberDao iMemberDao;
+	@Autowired
+	CompanyMemberDao cMemberDao;
 
-    @Override
-    public Member get(int no) {
-        return memberDao.findByNo(no);
-    }
-    
-    @Override
-    public Member get(String id, String password) {
-        
-        HashMap<String,Object> params = new HashMap<>();
-        params.put("id", id);
-        params.put("password", password);
-        return memberDao.findByIdAndPassword(params);
-    }
-    
-    @Override
-    public int getTotalCount() {
-        return memberDao.countAll();
-    }
+	@Override
+	public List<Member> list(int pageNo, int pageSize, Map<String, Object> options) {
 
-    @Override
-    public int iAdd(Member member, IndividualMember iMember) {
-        return memberDao.insert(member) + iMemberDao.insert(iMember);
-    }
-    
-    @Override
-    public int cAdd(Member member, CompanyMember cMember) {
-        return memberDao.insert(member) + cMemberDao.insert(cMember);
-    }
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("startIndex", (pageNo - 1) * pageSize);
+		params.put("size", pageSize);
 
-    @Override
-    public int update(Member score) {
-        return memberDao.update(score);
-    }
+		if (options != null) {
+			params.putAll(options);
+		}
 
-    @Override
-    public int delete(int no) {
-        return memberDao.delete(no);
-    }
-    
-    public boolean isMatchMemberId (String id) {
-    	return memberDao.findById(id) == null;
-    }
+		return memberDao.findAll(params);
+	}
 
+	@Override
+	public Member get(int no) {
+		return memberDao.findByNo(no);
+	}
+
+	@Override
+	public Member get(String id, String password) {
+
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("id", id);
+		params.put("password", password);
+		return memberDao.findByIdAndPassword(params);
+	}
+
+	@Override
+	public int getTotalCount() {
+		return memberDao.countAll();
+	}
+
+	@Override
+	public int iAdd(Member member, IndividualMember iMember) {
+		return memberDao.insert(member) + iMemberDao.insert(iMember);
+	}
+
+	@Override
+	public int cAdd(Member member, CompanyMember cMember) {
+		return memberDao.insert(member) + cMemberDao.insert(cMember);
+	}
+
+	@Override
+	public int update(Member score) {
+		return memberDao.update(score);
+	}
+
+	@Override
+	public int delete(int no) {
+		return memberDao.delete(no);
+	}
+
+	public boolean isMatchMemberId(String id) {
+		return memberDao.findById(id) == null;
+	}
+
+	public boolean isMatchMemberEmail(String email) {
+		return memberDao.findByEmail(email) == null;
+	}
 }
