@@ -6,7 +6,8 @@
 
 <header>
 <nav class='navbar navbar-expand-lg navbar-light bg-red'>
-
+<button type="button" class='btn btn-primary btn-sm' id="btn-apply" onclick="location.href='../apply/list'">apply</button>
+<button type="button" class='btn btn-primary btn-sm' id="btn-notice" onclick="location.href='../notice/list'">notice</button>
 <c:if test="${empty menuVisible or menuVisible == true}">
 <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
   <span class='navbar-toggler-icon'></span>

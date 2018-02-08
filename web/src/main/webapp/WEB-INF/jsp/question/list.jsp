@@ -14,11 +14,11 @@
 <body>
 <div class='container'>
 
-<%-- <jsp:include page="../header.jsp"/> --%>
+<jsp:include page="../header.jsp"/>
 
 <h1>문항 목록</h1>
 
-<%-- <jsp:include page="../listToolbar.jsp"/> --%>
+<jsp:include page="../listToolbar.jsp"/>
 
 <table class='table table-hover'>
 <thead>

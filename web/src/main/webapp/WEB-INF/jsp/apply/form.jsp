@@ -12,7 +12,7 @@
 <body>
 <div class='container'>
 
-<%-- <jsp:include page="../header.jsp"/> --%>
+<jsp:include page="../header.jsp"/>
 
 <h1>이력서
 </h1>
