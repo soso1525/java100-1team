@@ -1,5 +1,7 @@
 package java100.app.domain;
 
+import java.util.Date;
+
 public class Apply {
     
     int ano;
@@ -9,6 +11,12 @@ public class Apply {
     IndividualMember writer;
     Member member;
     
+	public String getAdt() {
+		return adt;
+	}
+	public void setAdt(String adt) {
+		this.adt = adt;
+	}
 	public int getIno() {
 		return ino;
 	}
@@ -27,12 +35,7 @@ public class Apply {
 	public void setAname(String aname) {
 		this.aname = aname;
 	}
-	public String getAdt() {
-		return adt;
-	}
-	public void setAdt(String adt) {
-		this.adt = adt;
-	}
+	
 	public IndividualMember getWriter() {
 		return writer;
 	}

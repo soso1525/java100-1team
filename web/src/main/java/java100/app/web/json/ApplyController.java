@@ -81,7 +81,7 @@ public class ApplyController {
     public Object view(@PathVariable int no, Model model) throws Exception {
     	HashMap<String, Object> result = new HashMap<>();
     	
-        result.put("apply", applyService.get(no));
+        result.put("data", applyService.get(no));
         result.put("letter", letterService.list(no));
         result.put("test", testService.list(no));
         return result;
