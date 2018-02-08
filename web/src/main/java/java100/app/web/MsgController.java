@@ -37,7 +37,7 @@ public class MsgController {
         
         msgService.add(msg);
         
-        return "redirect:list";
+        return "redirect:receiveList";
     }
     
     @RequestMapping("form")
@@ -54,8 +54,8 @@ public class MsgController {
         return "{\"success\": " + exist + "}";
     }
     
-    @RequestMapping("list")
-    public String list(
+    @RequestMapping("receiveList")
+    public String receiveList (
             @RequestParam(value="pn", defaultValue="1") int pageNo,
             @RequestParam(value="ps", defaultValue="5") int pageSize,
             @RequestParam(value="words", required=false) String[] words,
@@ -85,11 +85,11 @@ public class MsgController {
         model.addAttribute("pageNo", pageNo);
         model.addAttribute("lastPageNo", lastPageNo);
         model.addAttribute("writer", loginUser);
-        model.addAttribute("list", msgService.list(pageNo, pageSize, options, loginUser));
-        return "msg/list";
+        model.addAttribute("list", msgService.receiveList(pageNo, pageSize, options, loginUser));
+        return "msg/receiveList";
     }
-    @RequestMapping("list2")
-    public String list2(
+    @RequestMapping("sendList")
+    public String sendList(
             @RequestParam(value="pn", defaultValue="1") int pageNo,
             @RequestParam(value="ps", defaultValue="5") int pageSize,
             @RequestParam(value="words", required=false) String[] words,
@@ -119,8 +119,8 @@ public class MsgController {
         model.addAttribute("pageNo", pageNo);
         model.addAttribute("lastPageNo", lastPageNo);
         model.addAttribute("writer", loginUser);
-        model.addAttribute("list", msgService.list2(pageNo, pageSize, options, loginUser));
-        return "msg/list";
+        model.addAttribute("list", msgService.sendList(pageNo, pageSize, options, loginUser));
+        return "msg/sendList";
     }
      
     @RequestMapping("{sno}")
@@ -140,7 +140,7 @@ public class MsgController {
     public String delete(int mno) throws Exception {
 
         msgService.delete(mno);
-        return "redirect:list";
+        return "redirect:receiveList";
     }
     
  

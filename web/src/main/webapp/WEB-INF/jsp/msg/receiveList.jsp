@@ -25,7 +25,7 @@ background-position: 50% 50%; */
 
 <jsp:include page="../header.jsp"/>
 
-<h1>쪽지 목록</h1>
+<h1>받은 쪽지 목록</h1>
 
 <%-- <jsp:include page="../listToolbar.jsp"/> --%>
 
@@ -50,16 +50,33 @@ background-position: 50% 50%; */
     </tr>
 </c:forEach>
 
+<a href="sendList">보낸쪽지함</a>
 </tbody>
 </table>
+<button type="button" class='btn btn-primary btn-sm' id="btn-add" onclick="location.href='form'">추가</button>
+<c:set var="prevPageDisabled" value="${(pageNo > 1) ? '':'disabled'}"/>
+<c:set var="prevPageTabIndex" value="${(pageNo > 1) ? 0 : -1}"/>
+<c:set var="nextPageDisabled" value="${(pageNo < lastPageNo) ? '':'disabled'}"/>
+<c:set var="nextPageTabIndex" value="${(pageNo < lastPageNo) ? 0 : -1}"/>
 
-<jsp:include page="../paging.jsp"/>
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    <li class="page-item ${prevPageDisabled}"><a class="page-link" 
+        href="receiveList?pn=${pageNo - 1}"
+        tabindex="${prevPageTabIndex}">이전</a></li>
+        
+    <li class="page-item"><a class="page-link" href="#">${pageNo}</a></li>
+    
+    <li class="page-item ${nextPageDisabled}"><a class="page-link" 
+        href="receiveList?pn=${pageNo + 1}"
+        tabindex="${nextPageTabIndex}">다음</a></li>
+  </ul>
+</nav>
 
 <jsp:include page="../footer.jsp"/>
 
 </div>
 
 <jsp:include page="../jslib.jsp"/>
-
 </body>
 </html>
