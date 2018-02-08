@@ -1,13 +1,13 @@
 <%@page import="java100.app.domain.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>catch</title>
 <link rel='stylesheet'
-    href='../../node_modules/bootstrap/dist/css/bootstrap.min.css'>
+	href='../../node_modules/bootstrap/dist/css/bootstrap.min.css'>
 <link rel='stylesheet' href='../../css/common.css'>
 <!-- <link rel='stylesheet' href='../../css/reset.css'> -->
 <style type="text/css">
@@ -45,7 +45,6 @@ background-position: 50% 50%; */
         <td>${msg.mrecv}</td>
         <td>${msg.mdt}</td>
         <td>${msg.mcont}</td>
-       <%--  <td>${msg.mcheck}</td> --%>
         <c:if test="${msg.mcheck!=0}"><td><a href='${msg.mno}'>읽은쪽지</a></td></c:if>
         <c:if test="${msg.mcheck==0}"><td><a href='${msg.mno}'>안읽은쪽지</a></td></c:if>
     </tr>
@@ -61,8 +60,6 @@ background-position: 50% 50%; */
 </div>
 
 <jsp:include page="../jslib.jsp"/>
-<script type="text/javascript">
-var a = msg.mcheck==0 ? "안읽은편지" : "읽은편지";
-</script>
+
 </body>
 </html>

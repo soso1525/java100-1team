@@ -17,9 +17,11 @@
         </association>
     </resultMap>
  
-    <select id="findAll" resultMap="msgMap" parameterType="map">
-        select mno, mcont, mdt, msend , mrecv, mcheck
-        from g_msg 
+    <select id="findAll2" resultMap="msgMap" parameterType="map">
+        select mno, mcont, mdt, msend, mrecv, mcheck
+        from g_msg
+        where mrecv=#{writer.no}
+
         <if test="words != null">
             <where>
                 <foreach collection="words" item="word">
@@ -49,6 +51,42 @@
         
         limit #{startIndex}, #{size}
     </select>
+    
+        <select id="findAll" resultMap="msgMap" parameterType="map">
+        select mno, mcont, mdt, msend, mrecv, mcheck
+        from g_msg
+        where msend=#{writer.no}
+
+        <if test="words != null">
+            <where>
+                <foreach collection="words" item="word">
+                    or title like '%${word}%'
+                </foreach>
+            </where>
+        </if>
+        
+        order by 
+        <choose>
+            <when test="orderColumn == 'sloc' and align == 'desc'">
+                mdt desc
+            </when>
+            <when test="orderColumn == 'sloc' and align == 'asc'">
+                mdt asc
+            </when>
+            <when test="orderColumn == 'sname' and align == 'desc'">
+                mcheck desc
+            </when>
+            <when test="orderColumn == 'sname' and align == 'asc'">
+                mcheck asc
+            </when>
+            <otherwise>
+                mno asc
+            </otherwise>
+        </choose>
+        
+        limit #{startIndex}, #{size}
+    </select>
+    
     <select id="countAll" resultType="int">
         select count(*) from g_msg
     </select>
@@ -61,7 +99,7 @@
         useGeneratedKeys="true" keyColumn="no" keyProperty="no">
         insert into g_msg(
         mcont ,mdt, mcheck, msend, mrecv)
-        values(#{mcont},now(),#{mcheck},#{writer.no},#{mrecv})
+        values(#{mcont},now(),0,#{writer.no},#{mrecv})
     </insert>
     <!-- 
     <update id="update" parameterType="msg">
@@ -82,6 +120,13 @@
         delete from g_msg
         where mno=#{value}
     </delete>
+    
+    <update id="updateViewCount" parameterType="int">
+        update g_msg set 
+            mcheck=mcheck + 1
+        where mno=#{value}
+    </update>
+    
 </mapper>
 
 
