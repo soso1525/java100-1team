@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>이력서관리</title>
+<title>문항관리</title>
 <link rel='stylesheet' href='../../node_modules/bootstrap/dist/css/bootstrap.min.css'>
 <link rel='stylesheet' href='../../css/common.css'>
 </head>
@@ -15,36 +15,41 @@
 
 <jsp:include page="../header.jsp"/>
 
-<h1>입사지원 상세 정보</h1>
+<h1>문항 상세 정보</h1>
 
-<c:if test="${not empty letter}">
+<c:if test="${not empty question}">
 
 <form action='update' method='post'>
 <div class='form-group row'>
-<label for='lsdt' class='col-sm-2 col-form-label'>최근저장일</label>
+<label for='no' class='col-sm-2 col-form-label'>번호</label>
 <div class='col-sm-10'>
-<input class='form-control' id='lsdt' type='Date' readonly name='lsdt' value='${letter.lsdt}'>
+<input class='form-control' readonly id='no' type='text'
+ name='no' value='${question.no}'>
 </div>
 </div>
 <div class='form-group row'>
-<label for='lfile' class='col-sm-2 col-form-label'>파일</label>
+<label for='article' class='col-sm-2 col-form-label'>문항</label>
 <div class='col-sm-10'>
-<input class='form-control' id='lfile' type='file' name='lfile' value='${letter.lsdt}'>
+<input class='form-control' id='education' type='text'
+ name='article' value='${question.article}'>
 </div>
 </div>
 <div class='form-group row'>
+<label for='context' class='col-sm-2 col-form-label'>내용</label>
 <div class='col-sm-10'>
-<a href='list' class='btn btn-primary btn-sm'>목록</a>
+<input class='form-control' id='context' type='text' name='context' value='${question.context}'>
+</div>
+</div>
+
+<div class='form-group row'>
+<div class='col-sm-10'>
 <button class='btn btn-primary btn-sm' id="btn-enrol">변경</button>
-<a href='delete?no=${letter.lno}' class='btn btn-primary btn-sm'>삭제</a>
+<a href='delete?no=${resume.no}' class='btn btn-primary btn-sm'>삭제</a>
 </div>
 </div>
 </form>
 </c:if>
 
-<c:if test="${empty letter}">
-        <p>'${param.no}'번 회원 정보가 없습니다.</p>
-</c:if>
 
 <jsp:include page="../footer.jsp"/>
 

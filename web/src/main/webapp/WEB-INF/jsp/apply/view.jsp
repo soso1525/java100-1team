@@ -43,8 +43,8 @@
 <table class='table table-hover'>
 <thead>
 <tr>
-<th>번호</th><th>내용</th><th>저장일시</th><th>마감일</th><th>제출여부</th>
-<th>합격여부</th><th>지원회사</th>
+<th>번호</th><th>저장일시</th><th>마감일</th><th>제출여부</th>
+<th>합격여부</th><th>지원회사</th><th>첨삭완료된파일</th>
 </tr>
 </thead>
 <tbody>
@@ -53,9 +53,16 @@
       	<td><a href='../letter/${letter.lno}'>${letter.lno}</a></td>
       	<td>${letter.lsdt}</td>
       	<td>${letter.ledt}</td>
-      	<td>${letter.lpcheck}</td>
-      	<td>${letter.lfile}</td>
+      	<td>
+            <c:if test="${letter.lscheck eq '1' }">제출완료</c:if>
+            <c:if test="${letter.lscheck eq '2' }">미제출</c:if>
+        </td>
+        <td>
+            <c:if test="${letter.lpcheck eq '1' }">제출완료</c:if>
+            <c:if test="${letter.lpcheck eq '2' }">미제출</c:if>
+        </td>
       	<td>${letter.apply.aname}</td>
+      	<td>${letter.lfile}</td>
       	<td><a href='../letter/delete?no=${letter.lno}'>삭제</a></td>
       </tr>
 </c:forEach>
