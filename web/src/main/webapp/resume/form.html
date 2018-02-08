@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이력서</title>
+<link rel='stylesheet' href='../../node_modules/bootstrap/dist/css/bootstrap.min.css'>
+<link rel='stylesheet' href='../../css/common.css'>
+</head>
+<body>
+<div class='container'>
+
+<h1>이력서</h1>
+<form id='form' method="post" enctype="multipart/form-data">
+<div class='form-group row my-view'>
+<label for='no' class='col-sm-2 col-form-label'>번호</label>
+<div class='col-sm-10'>
+<input class='form-control'  readonly id='no' type='text' name='no'>
+</div>
+</div>
+<div class='form-group row'>
+<label for='education' class='col-sm-2 col-form-label'>학력</label>
+<div class='col-sm-10'>
+<input class='form-control' id='education' type='text' name='education'>
+</div>
+</div>
+<div class='form-group row'>
+<label for='career' class='col-sm-2 col-form-label'>경력</label>
+<div class='col-sm-10'>
+<input class='form-control' id='career' type='number' name='career'>
+</div>
+</div>
+<div class='form-group row'>
+<label for='kind' class='col-sm-2 col-form-label'>직종</label>
+<div class='col-sm-10'>
+<input class='form-control' id='kind' type='text' name='kind'>
+</div>
+</div>
+<div class='form-group row'>
+<label for='image' class='col-sm-2 col-form-label'>사진</label>
+<div class='col-sm-10'>
+<input class='form-control' id='image' type='file' name='files'>
+</div>
+</div>
+<div class='form-group row'>
+<label for='qualification' class='col-sm-2 col-form-label'>자격증</label>
+<div class='col-sm-10'>
+<input class='form-control' id='qualification' type='text' name='qualification'>
+</div>
+</div>
+<div class='form-group row'>
+<label for='language' class='col-sm-2 col-form-label'>어학</label>
+<div class='col-sm-10'>
+<input class='form-control' id='language' type='text' name='language'>
+</div>
+</div>
+<div class='form-group row'>
+<label for='award' class='col-sm-2 col-form-label'>수상</label>
+<div class='col-sm-10'>
+<input class='form-control' id='award' type='text' name='award'>
+</div>
+</div>
+
+<div class='form-group row'>
+<label for='major' class='col-sm-2 col-form-label'>전공</label>
+<div class='col-sm-10'>
+<input class='form-control' id='major' type='text' name='major'>
+</div>
+</div>
+<div class='form-group row'>
+<label for='schoolName' class='col-sm-2 col-form-label'>학교명</label>
+<div class='col-sm-10'>
+<input class='form-control' id='schoolName' type='text' name='schoolName'>
+</div>
+</div>
+<div class='form-group row'>
+<label for='grades' class='col-sm-2 col-form-label'>학점</label>
+<div class='col-sm-10'>
+<input class='form-control' id='grades' type='number' name='grades'>
+</div>
+</div>
+<div class='form-group row'>
+<label for='avi' class='col-sm-2 col-form-label'>1분 동영상</label>
+<div class='col-sm-10'>
+<input class='form-control' id='avi' type='file' name='files'>
+</div>
+</div>
+<div class='form-group row'>
+<label for='file' class='col-sm-2 col-form-label'>파일</label>
+<div class='col-sm-10'>
+<input class='form-control' id='file' type='file' name='files'>
+</div>
+</div>
+
+<div class='form-group row'>
+<label for='note' class='col-sm-2 col-form-label'>할말</label>
+<div class='col-sm-10'>
+<input class='form-control' id='note' type='text' name='note'>
+</div>
+</div>
+
+<div class='form-group row'>
+<label for='check' class='col-sm-2 col-form-label'>공개여부</label>
+<div class='col-sm-10'>
+<input class='form-control' id='check' type='text' name='check'>
+</div>
+</div>
+
+<div class='form-group row'>
+<div class='col-sm-10'>
+<button id="addBtn" type="button" class='btn btn-primary btn-sm my-new'>추가</button>
+<button id="updateBtn" type="button" class='btn btn-primary btn-sm my-view'>변경</button>
+<button id="deleteBtn" type="button" class='btn btn-primary btn-sm my-view'>삭제</button>
+</div>
+</div>
+</form>
+</div>
+<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+
+<script type="text/javascript">
+var addBtn = $('#addBtn'),
+    updateBtn = $('#updateBtn'),
+    deleteBtn = $('#deleteBtn'),
+    noItem = $('#no'), 
+    educationItem = $('#education'), 
+    careerItem = $('#career'), 
+    kindItem = $('#kind'), 
+    qualificationItem = $('#qualification'), 
+    awardItem = $('#award'), 
+    majorItem = $('#major'), 
+    schoolNameItem = $('#schoolName'), 
+    gradesItem = $('#grades'),
+    viewCountItem = $('#viewCount'),
+    aviItem = $('#avi'),
+    fileItem = $('#file'),
+    imageItem = $('#image'), 
+    noteItem = $('#note'),
+    checkItem = $('#check'), 
+    languageItem = $('#language'), 
+    inoItem = $('#ino'); 
+
+var index = location.href.indexOf('?');
+if (index != -1) { // 기존 데이터를 조회할 경우,
+    var qs = location.href.substr(index + 1);
+    var arr = qs.split('=');
+    $('.my-new').css('display', 'none');
+    $(() => {
+        $.ajax('../json/resume/' + arr[1], {
+            dataType: 'json',
+            success: (result) => {
+                noItem.val(result.data.no);
+                educationItem.val(result.data.education);
+                careerItem.val(result.data.career);
+                languageItem.val(result.data.language);
+                kindItem.val(result.data.kind);
+                qualificationItem.val(result.data.qualification);
+                awardItem.val(result.data.award);
+                majorItem.val(result.data.major);
+                schoolNameItem.val(result.data.schoolName);
+                gradesItem.val(result.data.grades);
+                viewCountItem.val(result.data.viewCount);
+                aviItem.val(result.data.aviItem);
+                fileItem.val(result.data.file);
+                imageItem.val(result.data.image);
+                noteItem.val(result.data.note);
+                checkItem.val(result.data.check);
+                inoItem.val(result.data.ino);
+            },
+            error: () => {
+                window.alert('서버 실행 오류!');
+            }
+        });
+    });
+    
+} else { // 신규 데이터 입력일 경우,
+    $('.my-view').css('display', 'none');
+}
+
+
+addBtn.click(() => {
+    var formData = new FormData($('#form')[0]);
+    $.ajax('../json/resume/add', {
+        data: formData,
+        dataType: 'json',
+        method: 'POST',
+        processData : false,
+        contentType : false,
+        success: (result) => {
+            location.href = "list.html";
+        },
+        error: () => {
+            window.alert('서버 실행 오류!');
+        }
+    });
+});
+
+updateBtn.click(() => {
+    var formData = new FormData($('#form')[0]);
+    $.ajax('../json/resume/update', {
+        data: formData,
+        dataType: 'json',
+        method: 'POST',
+        processData : false,
+        contentType : false,
+        success: (result) => {
+            location.href = "list.html";
+        },
+        error: () => {
+            window.alert('서버 실행 오류!');
+        }
+    });
+});
+
+deleteBtn.click(() => {
+    $.ajax('../json/resume/delete', {
+        data: {
+            no: noItem.val()
+        },
+        dataType: 'json',
+        success: (result) => {
+            location.href = "list.html";
+        },
+        error: () => {
+            window.alert('서버 실행 오류!');
+        }
+    });
+});
+
+
+
+</script>
+
+</body>
+</html>
