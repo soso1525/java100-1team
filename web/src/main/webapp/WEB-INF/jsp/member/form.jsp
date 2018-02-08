@@ -142,23 +142,23 @@
 			<div class="form-row">
 				<label for="tel">휴대전화</label>
 				<div style="margin-left: 10px" class="col-md-6 mb-3 form-row">
-					<select class="col-md-2 mb-3 form-control is-valid">
+					<select class="col-md-2 mb-3 form-control">
 						<option>SKT</option>
 						<option>KT</option>
 						<option>LG U+</option>
 					</select> <input style="margin-left: 10px; margin-right: 10px" type="text"
-						class="col-md-6 mb-3 form-control is-valid" id="tel"
+						class="col-md-6 mb-3 form-control" id="tel"
 						placeholder="phone number" name="tel" required
 						pattern="(010)-\d{4}-\d{4}">
 					<button class="col-md-2 mb-3 btn btn-success">본인인증</button>
-					<div class="valid-feedback">010-1234-5678 형태로 입력해주세요</div>
+					<div style="font-size: 11px; color: red;">010-1234-5678 형태로 입력해주세요</div>
 				</div>
 			</div>
 
 			<div class="col-md-6 mb-3 form-row">
 				<label for="address">지역</label> <select
 					style="margin-left: 10px; margin-right: 5px"
-					class="col-md-5 mb-3 form-control is-valid" id="address"
+					class="col-md-5 mb-3 form-control" id="address"
 					name="address">
 					<option value="서울전체">서울전체</option>
 					<option value="강남구">강남구</option>
@@ -256,7 +256,7 @@
 						});
 			}
 
-			function checkEmail() {
+			function checkEmail() { 
 				var ctxpath = '${pageContext.request.contextPath}/app';
 				var userEmail = $('#email').val();
 				$
