@@ -54,7 +54,7 @@ background-position: 50% 50%; */
 
 </tbody>
 </table>
-
+<button type="button" class='btn btn-primary btn-sm' id="btn-add" onclick="location.href='form'">추가</button>
 <jsp:include page="../paging.jsp"/>
 
 <jsp:include page="../footer.jsp"/>

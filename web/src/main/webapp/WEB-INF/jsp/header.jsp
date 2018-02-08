@@ -17,13 +17,16 @@
   <li class='nav-item' style="margin-left:0px; margin-top:0px; padding-right: 20px; font-size: 50px;">
     <a class='nav-link' href='../member/list'>CATCH</a>
   </li>
+    <li class='nav-item' style="margin-left:0px; margin-top:0px; padding-right: 20px; font-size: 20px;">
+    <a class='nav-link' href='../msg/sendList'>쪽지함</a>
+  </li>
   <li class='nav-item' style="margin-left:353px; margin-top:85px;">
     <a class='nav-brand' href='../score/list'>
     <img src='${contextPath}/images/2_1.png' width='98' height='30' class='d-inline-block' alt=''>
     </a>
   </li>
   <li class='nav-item' style="margin-left:20px; margin-top:85px;">
-    <a class='nav-brand' href='../study/form'>
+    <a class='nav-brand' href='../study/list'>
     <img src='${contextPath}/images/2_2.png' width='98' height='30' class='d-inline-block' alt=''>
     </a>
   </li>
