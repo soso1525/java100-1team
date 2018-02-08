@@ -72,7 +72,7 @@
     
     <update id="update" parameterType="resume">
         update g_res set 
-            redu=#{education},
+        redu=#{education},
 			rcar=#{career},
 			rkind=#{kind},
 			rimg=#{image},

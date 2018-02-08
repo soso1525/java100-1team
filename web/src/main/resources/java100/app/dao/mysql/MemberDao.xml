@@ -3,126 +3,68 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- DAO 객체를 자동으로 생성하려면,
-     namespace의 값이 인터페이스 이름과 같아야 한다. -->
 <mapper namespace="java100.app.dao.MemberDao">
+	<resultMap type="member" id="memberMap">
+		<id column="pno" property="no" />
+		<result column="pmail" property="email" />
+		<result column="pid" property="id" />
+		<result column="ptype" property="type" />
+		<result column="ppwd" property="password" />
+		<result column="pregdt" property="createdDate" />
+		<result column="ptel" property="tel" />
+		<result column="pdaddr" property="address" />
+	</resultMap>
 
-	<!--
-	 member m = new member();
-	 m.setEmail ( rs.getString("pmail");
-	 m.setId ( rs.getString(" 
-	 -->
-    <resultMap type="member" id="memberMap">
-        <id column="pno" property="no"/>
-        <!-- 컬럼 이름과 프로퍼티 이름이 같아서 생략! -->
-        <!--  
-        <result column="name" property="name"/>
-        <result column="email" property="email"/>
-        -->
-        <result column="pmail" property="email"/> <!--  String emial = rs.getString("pmail"); -->
-        <result column="pid" property="id"/>
-        <result column="ptype" property="type"/>
-        <result column="ppwd" property="password"/>
-        <result column="pregdt" property="createdDate"/>
-        <result column="ptel" property="tel"/>
-        <result column="pdaddr" property="address"/>
-    </resultMap>
+	<sql id="select1">
+		select
+		pno,
+		pid,
+		pmail,
+		pregdt
+	</sql>
 
-    <sql id="select1">
-        select 
-            pno,
-            pid,
-            pmail,
-            pregdt
-    </sql>
+	<select id="findAll" resultMap="memberMap" parameterType="map">
+		<include refid="select1" />
+		from g_per
+		limit #{startIndex}, #{size} -->
+	</select>
 
-    <select id="findAll" resultMap="memberMap" parameterType="map">
-        <include refid="select1"/>
-        from g_per   
+	<select id="findByNo" resultMap="memberMap" parameterType="int">
+		<include refid="select1" />
+		from g_per
 
-        <!-- <if test="words != null">
-	        <where>
-	            name in 
-	            <foreach collection="words" item="word" 
-	                     open="(" close=")" separator=",">
-	                #{word}
-	            </foreach>
-	            or email in 
-                <foreach collection="words" item="word" 
-                         open="(" close=")" separator=",">
-                    #{word}
-                </foreach>
-	        </where>
-        </if>
-          
-        order by 
-        <choose>
-            <when test="orderColumn == 'email' and align == 'asc'">
-                email asc
-            </when>
-            <when test="orderColumn == 'email' and align == 'desc'">
-                email desc
-            </when>
-            <when test="orderColumn == 'regdt' and align == 'asc'">
-                regdt asc
-            </when>
-            <when test="orderColumn == 'regdt' and align == 'desc'">
-                regdt desc
-            </when>
-            <when test="orderColumn == 'name' and align == 'desc'">
-                name desc
-            </when>
-            <otherwise>
-                name asc
-            </otherwise>
-        </choose>
-        
-        limit #{startIndex}, #{size} -->
-    </select>
-    
-    <select id="findByNo" resultMap="memberMap" parameterType="int">
-        <include refid="select1"/>
-        from g_per
-        
-        where no=#{value}
-    </select>
-    
-    <select id="findByIdAndPassword" 
-            resultMap="memberMap" parameterType="map">
-        <include refid="select1"/>
-        from g_per
-        where pid=#{id} and ppwd=password(#{password})
-    </select>
-    
-    <select id="findById" 
-            resultMap="memberMap" parameterType="map">
-        <include refid="select1"/>
-        from g_per
-        where pid=#{id}
-    </select>
-    
-    <select id="countAll" resultType="int">
-        select count(*) from g_per
-    </select>
-    
-    <insert id="insert" parameterType="member">
-        insert into g_per(pmail,pid,ppwd,pregdt,ptel,pdaddr,ptype)
-        values(#{email},#{id},password(#{password}),now(),#{tel},#{address},#{type})
-    </insert>
-	
-<!--     <update id="update" parameterType="member">
-        update g_per set 
-            name=#{name},
-            email=#{email},
-            pwd=password(#{password})
-        where no=#{no}
-    </update>
- -->
-<!--     <delete id="delete" parameterType="int">
-        delete from g_per
-        where no=#{value}
-    </delete> -->
-    
+		where no=#{value}
+	</select>
+
+	<select id="findByIdAndPassword" resultMap="memberMap"
+		parameterType="map">
+		<include refid="select1" />
+		from g_per
+		where pid=#{id} and ppwd=password(#{password})
+	</select>
+
+	<select id="findById" resultMap="memberMap" parameterType="map">
+		<include refid="select1" />
+		from g_per
+		where pid=#{id}
+	</select>
+
+	<select id="findByEmail" resultMap="memberMap" parameterType="map">
+		<include refid="select1" />
+		from g_per
+		where pmail=#{email}
+	</select>
+
+	<select id="countAll" resultType="int">
+		select count(*) from g_per
+	</select>
+
+	<insert id="insert" parameterType="member">
+		insert into
+		g_per(pmail,pid,ppwd,pregdt,ptel,pdaddr,ptype)
+		values(#{email},#{id},password(#{password}),now(),#{tel},#{address},#{type})
+	</insert>
+
 </mapper>  
 
 

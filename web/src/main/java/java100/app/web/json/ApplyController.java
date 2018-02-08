@@ -1,14 +1,16 @@
-package java100.app.web;
+package java100.app.web.json;
+
+import java.util.HashMap;
 
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java100.app.domain.Apply;
@@ -17,7 +19,7 @@ import java100.app.service.ApplyService;
 import java100.app.service.LetterService;
 import java100.app.service.TestService;
 
-@Controller
+@RestController
 @RequestMapping("/apply")
 @SessionAttributes("loginUser")
 public class ApplyController {
@@ -28,7 +30,7 @@ public class ApplyController {
     
     
     @RequestMapping("list")
-    public String list(
+    public Object list(
             @RequestParam(value="pn", defaultValue="1") int pageNo,
             @RequestParam(value="ps", defaultValue="5") int pageSize,
             @RequestParam(value="words", required=false) String[] words,
@@ -59,46 +61,46 @@ public class ApplyController {
 //        
 //        model.addAttribute("pageNo", pageNo);
 //        model.addAttribute("lastPageNo", lastPageNo);
-     
-        model.addAttribute("apply", applyService.list());
-        return "apply/list";
+    	HashMap<String, Object> result = new HashMap<>();
+        result.put("apply", applyService.list());
+        return result;
     }
-    
-    @RequestMapping("form")
-    public String form() throws Exception {
-        return "apply/form";
-    }
-    
     @RequestMapping("add")
-    public String add(
+    public Object add(
     		Apply apply,
             @ModelAttribute(value="loginUser") Member loginUser) throws Exception {
+    	apply.setMember(loginUser);
+    	applyService.add(apply);
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("status", "success");
         
-        apply.setMember(loginUser);
-        applyService.add(apply);
-        
-        return "redirect:list";
+        return result;
     }
     
     @RequestMapping("{no}")
-    public String view(@PathVariable int no, Model model) throws Exception {
-        model.addAttribute("apply", applyService.get(no));
-        model.addAttribute("letter", letterService.list(no));
-        model.addAttribute("test", testService.list(no));
-        return "apply/view";
+    public Object view(@PathVariable int no, Model model) throws Exception {
+    	HashMap<String, Object> result = new HashMap<>();
+    	
+        result.put("apply", applyService.get(no));
+        result.put("letter", letterService.list(no));
+        result.put("test", testService.list(no));
+        return result;
     }
     
     @RequestMapping("update")
-    public String update(Apply apply) throws Exception {
-        
-        applyService.update(apply);
-        return "redirect:list";
+    public Object update(Apply apply) throws Exception {
+    	applyService.update(apply);
+    	HashMap<String, Object> result = new HashMap<>();
+    	result.put("status", "success");
+        return result;
     }
 
     @RequestMapping("delete")
-    public String delete(int no) throws Exception {
-
+    public Object delete(int no) throws Exception {
+    	
     	applyService.delete(no);
-        return "redirect:list";
+    	HashMap<String, Object> result = new HashMap<>();
+    	result.put("status", "success");
+        return result;
     }
 }
