@@ -20,7 +20,7 @@
     <select id="findAll2" resultMap="msgMap" parameterType="map">
         select mno, mcont, mdt, msend, mrecv, mcheck
         from g_msg
-        where mrecv=#{writer.no}
+        where msend=#{writer.no}
 
         <if test="words != null">
             <where>
@@ -55,7 +55,7 @@
         <select id="findAll" resultMap="msgMap" parameterType="map">
         select mno, mcont, mdt, msend, mrecv, mcheck
         from g_msg
-        where msend=#{writer.no}
+        where mrecv=#{writer.no}
 
         <if test="words != null">
             <where>

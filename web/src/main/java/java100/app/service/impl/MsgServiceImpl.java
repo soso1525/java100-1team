@@ -22,7 +22,7 @@ public class MsgServiceImpl implements MsgService {
     }
     
     @Override
-    public List<Msg> list(int pageNo, int pageSize,Map<String,Object> options,
+    public List<Msg> receiveList(int pageNo, int pageSize,Map<String,Object> options,
             Member loginUser){
         HashMap<String,Object> params = new HashMap<>();
         params.put("startIndex", (pageNo - 1) * pageSize);
@@ -36,7 +36,7 @@ public class MsgServiceImpl implements MsgService {
     }
     
     @Override
-    public List<Msg> list2(int pageNo, int pageSize,Map<String,Object> options,
+    public List<Msg> sendList(int pageNo, int pageSize,Map<String,Object> options,
             Member loginUser){
         HashMap<String,Object> params = new HashMap<>();
         params.put("startIndex", (pageNo - 1) * pageSize);
