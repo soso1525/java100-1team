@@ -10,6 +10,8 @@
         <id column="qno" property="no"/>
         <result column="qart" property="article"/>
         <result column="qcont" property="context"/>
+        <result column="lno" property="lno"/>
+        <result column="nno" property="nno"/>
     </resultMap>
 
     <select id="findAll" resultMap="questionMap">
@@ -18,11 +20,12 @@
             qart,
             qcont
 			from g_que
+			where lno = #{lno}
 	</select>
 	
     <insert id="insert" parameterType="question">
-        insert into g_que(qart, qcont)
-        values(#{article}, #{context})
+        insert into g_que(qart, qcont, lno)
+        values(#{article}, #{context}, #{lno})
     </insert>
     
    <select id="findByNo" resultMap="questionMap" parameterType="int">
@@ -34,7 +37,7 @@
         where qno=#{value}
     </select>
     
-   <update id="update" parameterType="resume">
+   <update id="update" parameterType="question">
         update g_que set 
 			qart=#{article},
 			qcont=#{context}

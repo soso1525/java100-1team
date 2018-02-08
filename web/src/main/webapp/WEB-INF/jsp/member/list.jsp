@@ -21,9 +21,7 @@ background-position: 50% 50%; */
 </style>
 </head>
 <body>
-
 	<div class='container'>
-
 		<jsp:include page="../header.jsp" />
 		<jsp:include page="../listToolbar.jsp" />
 
@@ -77,4 +75,5 @@ background-position: 50% 50%; */
 
 	</div>
 </body>
+
 </html>
