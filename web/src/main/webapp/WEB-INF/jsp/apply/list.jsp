@@ -28,7 +28,7 @@
 </thead>
 <tbody>
 
-<c:forEach items="${list}" var="apply">
+<c:forEach items="${apply}" var="apply">
         <tr>
         	<td><a href='${apply.ano}'>${apply.ano}</a></td>
         	<td>${apply.aname}</td>
