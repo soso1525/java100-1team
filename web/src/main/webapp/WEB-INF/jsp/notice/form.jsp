@@ -18,26 +18,13 @@
 
 <form action="add" method='post' enctype="multipart/form-data">
 
-<div class='form-group row'>
-<label for='companyName' class='col-sm-2 col-form-label'>기업명</label>
-<div class='col-sm-10'>
-<input class='form-control' id='companyName' type='text' name='companyName'>
-</div>
-</div>
 
 <div class='form-group row'>
 <label for='image' class='col-sm-2 col-form-label'>공고이미지</label>
 <div class='col-sm-10'>
-<input class='form-control' id='image' type='text' name='image'>
+<input class='form-control' id='image' type='file' name='file'>
 </div>
 </div>
-
-<!-- <div class='form-group row'>
-<label for='image' class='col-sm-2 col-form-label'>이미지파일</label>
-<div class='col-sm-10'>
-<input type="file" class="form-control-file" id="image" name="image">
-</div>
-</div> -->
 
 <div class='form-group row'>
 <label for='startDate' class='col-sm-2 col-form-label'>채용시작일</label>
@@ -52,6 +39,7 @@
 <input class='form-control' id='endDate' type='date' name='endDate'>
 </div>
 </div>
+
 
 <div class='form-group row'>
 <div class='col-sm-10'>

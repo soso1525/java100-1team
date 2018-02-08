@@ -30,7 +30,7 @@
 
 <c:forEach items="${list}" var="notice">
         <tr>
-        	<td>${notice.no}</td>
+        	<td><a href='${notice.no}'>${notice.no}</a></td>
         	<td>${notice.image}</td>
 	        <td>${notice.companyMember.name}</td>
 	        <td>${notice.companyMember.logo}</td>

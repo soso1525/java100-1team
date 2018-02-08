@@ -18,7 +18,7 @@
 <h1>채용정보</h1>
 
 <c:if test="${not empty notice}">
-        <form method='post' >
+       <form action='update' method='post' enctype="multipart/form-data">
         
         <div class='form-group row'>
         <label for='no' class='col-sm-2 col-form-label'>번호</label>
@@ -27,18 +27,19 @@
                 name='no' value='${notice.no}'>
         </div>
         </div>
+        
         <div class='form-group row'>
         <label for='companyName' class='col-sm-2 col-form-label'>기업명</label>
         <div class='col-sm-10'>
-        <input class='form-control' id='companyName' type='text' 
-                name='companyName' value='${notice.companyName}'>
+        <input class='form-control' id='companyName' type='text' readonly
+                name='companyName' value='${notice.companyMember.name}'>
         </div>
         </div>
+        
         <div class='form-group row'>
         <label for='image' class='col-sm-2 col-form-label'>공고이미지</label>
         <div class='col-sm-10'>
-        <textarea class='form-control' id='image' 
-                    name='image'>${notice.image}</textarea>
+        <input type='file' class='form-control' id='image' name='file'>
         </div>
         </div>
         <div class='form-group row'>
@@ -60,7 +61,7 @@
         <div class='form-group row'>
         <div class='col-sm-10'>
         <button class='btn btn-primary btn-sm'>변경</button>
-        <a href='delete?no=${board.no}' class='btn btn-primary btn-sm'>삭제</a>
+        <a href='delete?no=${notice.no}' class='btn btn-primary btn-sm'>삭제</a>
         </div>
         </div>
         </form>

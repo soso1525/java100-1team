@@ -33,7 +33,9 @@ public class ResumeServiceImpl implements ResumeService {
 
     @Override
     public Resume get(int no) {
-        return resumeDao.findByNo(no);
+    	resumeDao.updateViewCount(no);
+    	Resume resume = resumeDao.findByNo(no); 
+        return resume;
     }
 
 	@Override

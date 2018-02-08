@@ -22,11 +22,6 @@ public class TestController {
 	@Autowired ServletContext servletContext;
 	@Autowired TestService testService;
 
-	@RequestMapping("list")
-	public String list(Model model) throws Exception {
-		model.addAttribute("list", testService.findAll(1));
-		return "test/list";
-	}
 
 	@RequestMapping("form")
 	public String form() throws Exception {
@@ -41,7 +36,7 @@ public class TestController {
 		test.setMember(loginUser);
 		testService.insert(test);
 
-		return "redirect:list";
+		return "redirect:../apply/list";
 	}
 
 	@RequestMapping("{no}")

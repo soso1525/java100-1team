@@ -11,7 +11,6 @@ public class CompanyMember {
     int no;
     
     
-    
 	public String getcType() {
 		return cType;
 	}

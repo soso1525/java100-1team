@@ -2,13 +2,10 @@ package java100.app.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java100.app.dao.CompanyMemberDao;
-import java100.app.dao.MemberDao;
 import java100.app.dao.NoticeDao;
 import java100.app.domain.Notice;
 import java100.app.service.NoticeService;
@@ -16,8 +13,6 @@ import java100.app.service.NoticeService;
 @Service
 public class NoticeServiceImpl implements NoticeService {
 
-    @Autowired MemberDao memberDao;
-    @Autowired CompanyMemberDao cMemberDao;
     @Autowired NoticeDao noticeDao;
     
     @Override
@@ -27,10 +22,26 @@ public class NoticeServiceImpl implements NoticeService {
         
         return noticeDao.findAll(params);
     }
-    
-    @Override
-    public int getTotalCount() {
-        return memberDao.countAll();
-    }
+
+	@Override
+	public int add(Notice notice) {
+		return noticeDao.insert(notice);
+	}
+
+	@Override
+	public Notice get(int no) {
+		noticeDao.updateViewCount(no);
+		return noticeDao.findByNo(no);
+	}
+
+	@Override
+	public int update(Notice notice) {
+		return noticeDao.update(notice);
+	}
+
+	@Override
+	public int delete(int no) {
+		return noticeDao.delete(no);
+	}
 
 }

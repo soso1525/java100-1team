@@ -17,7 +17,7 @@ public class TestServiceImpl implements TestService {
 	TestDao testDao;
 
 	@Override
-	public List<Test> findAll(int no) {
+	public List<Test> list(int no) {
 		HashMap<String,Object> params = new HashMap<>();
         params.put("ano", no);
         return testDao.findAll(params);

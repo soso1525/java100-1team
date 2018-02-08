@@ -15,6 +15,7 @@ import java100.app.domain.Apply;
 import java100.app.domain.Member;
 import java100.app.service.ApplyService;
 import java100.app.service.LetterService;
+import java100.app.service.TestService;
 
 @Controller
 @RequestMapping("/apply")
@@ -23,6 +24,7 @@ public class ApplyController {
 	@Autowired ServletContext servletContext;
     @Autowired ApplyService applyService;
     @Autowired LetterService letterService;
+    @Autowired TestService testService;
     
     
     @RequestMapping("list")
@@ -80,9 +82,9 @@ public class ApplyController {
     
     @RequestMapping("{no}")
     public String view(@PathVariable int no, Model model) throws Exception {
-        
         model.addAttribute("apply", applyService.get(no));
         model.addAttribute("letter", letterService.list(no));
+        model.addAttribute("test", testService.list(no));
         return "apply/view";
     }
     

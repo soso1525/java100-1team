@@ -111,7 +111,7 @@
 	        <tx:method name="list*" read-only="true"/>
 	        
 	         
-	        <tx:method name="get*" read-only="true"/>
+	        <!-- <tx:method name="get*" read-only="true"/> -->
 	       
 	        
 	        <tx:method name="*"/>
