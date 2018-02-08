@@ -49,7 +49,7 @@ public class QuestionController {
     public String update(Question question) throws Exception {
         
         questionService.update(question);
-        return "redirect:list";
+        return "redirect:../apply/list";
     }
 
     @RequestMapping("delete")

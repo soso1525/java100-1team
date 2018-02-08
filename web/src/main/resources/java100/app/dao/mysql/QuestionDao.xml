@@ -44,7 +44,7 @@
         where qno=#{no}
     </update> 
  
-    <delete id="delete" parameterType="resume">
+    <delete id="delete" parameterType="int">
         delete from g_que
         where qno=#{value}
     </delete> 
