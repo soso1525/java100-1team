@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>catch</title>
+<link rel='stylesheet'
+	href='../node_modules/bootstrap/dist/css/bootstrap.min.css'>
+<link rel='stylesheet' href='../css/common.css'>
+<style type="text/css">
+body {
+	background: url('../images/back.png') no-repeat top;
+}
+</style>
+</head>
+<body>
+	<div class='container'>
+		<header>
+			<nav class='navbar navbar-expand-lg navbar-light bg-red'>
+				<button type="button" class='btn btn-primary btn-sm' id="btn-apply"
+					onclick="location.href='../apply/list'">apply</button>
+				<button type="button" class='btn btn-primary btn-sm' id="btn-notice"
+					onclick="location.href='../notice/list'">notice</button>
+				<button class='navbar-toggler' type='button' data-toggle='collapse'
+					data-target='#navbarNav' aria-controls='navbarNav'
+					aria-expanded='false' aria-label='Toggle navigation'>
+					<span class='navbar-toggler-icon'></span>
+				</button>
+				<div class='collapse navbar-collapse' id='navbarNav'>
+					<ul class='navbar-nav mr-auto'>
+						<li class='nav-item'
+							style="margin-left: 0px; margin-top: 0px; padding-right: 20px; font-size: 50px;">
+							<a class='nav-link' href='../member/list'>CATCH</a>
+						</li>
+						<li class='nav-item'
+							style="margin-left: 0px; margin-top: 0px; padding-right: 20px; font-size: 20px;">
+							<a class='nav-link' href='../msg/sendList'>쪽지함</a>
+						</li>
+						<li class='nav-item' style="margin-left: 353px; margin-top: 85px;">
+							<a class='nav-brand' href='../score/list'> <img
+								src='/images/2_1.png' width='98' height='30'
+								class='d-inline-block' alt=''>
+						</a>
+						</li>
+						<li class='nav-item' style="margin-left: 20px; margin-top: 85px;">
+							<a class='nav-brand' href='../study/list'> <img
+								src='/images/2_2.png' width='98' height='30'
+								class='d-inline-block' alt=''>
+						</a>
+						</li>
+						<li class='nav-item' style="margin-left: 20px; margin-top: 85px;">
+							<a class='nav-brand' href='../score/list'> <img
+								src='/images/2_3.png' width='98' height='30'
+								class='d-inline-block' alt=''>
+						</a>
+						</li>
+						<li class='nav-item' style="margin-left: 20px; margin-top: 85px;">
+							<a class='nav-brand' href='/app/auth/logout'> <img
+								src='/images/2_5.png' width='98' height='30'
+								class='d-inline-block' alt=''>
+						</a>
+						</li>
+					</ul>
+
+
+
+				</div>
+			</nav>
+		</header>
+
+		<nav class="navbar navbar-light justify-content-between">
+			<form style="margin-left: auto; margin-right: auto;"
+				class="form-inline" action="list">
+				<input name="words" class="form-control form-control-sm mr-sm-2"
+					type="search" placeholder="keyword" aria-label="Search"> <select
+					class="form-control form-control-sm mr-sm-2">
+					<option>서비스업</option>
+					<option>제조/화학</option>
+					<option>IT/웹/통신</option>
+					<option>은행/금융업</option>
+					<option>미디어/디자인</option>
+					<option>교육업</option>
+					<option>의료/제약/복지</option>
+					<option>판매/유통</option>
+					<option>건설업</option>
+					<option>기관/협회</option>
+				</select> <input name="words" class="form-control form-control-sm mr-sm-2"
+					type="search" placeholder="검색" aria-label="Search"> <input
+					name="ctype" class="form-control form-control-sm mr-sm-2"
+					type="checkbox">신입
+				<button style="margin-left: 10px"
+					class="btn btn-sm btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		</nav>
+
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">
+					<img src="../../images/samsung.jpg" />
+				</h5>
+				<h6 class="card-subtitle mb-2 text-muted">삼성전자</h6>
+				<script>
+					var s_date = new Date(2018, 02, 01);
+					var now = Date.now();
+					document.write('D-Day ', Math.floor((s_date - now)
+							/ (1000 * 60 * 60 * 24)), '일');
+				</script>
+				<p class="card-text">Some quick example text to build on the
+					card title and make up the bulk of the card's content.</p>
+				<a href="#" class="card-link">지원하기</a>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">
+					<img src="../../images/lg.jpg" />
+				</h5>
+				<h6 class="card-subtitle mb-2 text-muted">LG전자</h6>
+				<script>
+					var l_date = new Date(2018, 02, 21);
+					var now = Date.now();
+					document.write('D-Day ', Math.floor((l_date - now)
+							/ (1000 * 60 * 60 * 24)), '일');
+				</script>
+				<p class="card-text">Some quick example text to build on the
+					card title and make up the bulk of the card's content.</p>
+				<a href="#" class="card-link">지원하기</a>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">
+					<img src="../../images/samsung.jpg" />
+				</h5>
+				<h6 class="card-subtitle mb-2 text-muted">삼성전자</h6>
+				<p class="card-text">Some quick example text to build on the
+					card title and make up the bulk of the card's content.</p>
+				<a href="#" class="card-link">지원하기</a>
+			</div>
+		</div>
+
+	</div>
+</body>
+
+</html>
