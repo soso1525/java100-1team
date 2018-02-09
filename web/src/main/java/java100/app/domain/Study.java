@@ -10,7 +10,7 @@ public class Study {
     protected String sdesc;
     protected String sint;
     protected int sppl;
-    protected Date sregdt;
+    protected String sregdt;
     protected String scorp;
     protected String simg;
     protected String scheck;
@@ -67,11 +67,11 @@ public class Study {
         this.sppl = sppl;
     }
 
-    public Date getSregdt() {
+    public String getSregdt() {
         return sregdt;
     }
 
-    public void setSregdt(Date sregdt) {
+    public void setSregdt(String sregdt) {
         this.sregdt = sregdt;
     }
 

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>catch</title>
+<link rel='stylesheet' href='../node_modules/bootstrap/dist/css/bootstrap.min.css'>
+<link rel='stylesheet' href='../css/common.css'>
+</head>
+<body>
+<div class='container'>
+
+<header>
+<nav class='navbar navbar-expand-lg navbar-light bg-red'>
+<button type="button" class='btn btn-primary btn-sm' id="btn-apply" onclick="location.href='../apply/list'">apply</button>
+<button type="button" class='btn btn-primary btn-sm' id="btn-notice" onclick="location.href='../notice/list'">notice</button>
+<button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
+  <span class='navbar-toggler-icon'></span>
+</button>
+<div class='collapse navbar-collapse' id='navbarNav'>
+<ul class='navbar-nav mr-auto'>
+  <li class='nav-item' style="margin-left:0px; margin-top:0px; padding-right: 20px; font-size: 50px;">
+    <a class='nav-link' href='../member/list'>CATCH</a>
+  </li>
+    <li class='nav-item' style="margin-left:0px; margin-top:0px; padding-right: 20px; font-size: 20px;">
+    <a class='nav-link' href='../msg/sendList'>쪽지함</a>
+  </li>
+  <li class='nav-item' style="margin-left:353px; margin-top:85px;">
+    <a class='nav-brand' href='../score/list'>
+    <img src='/images/2_1.png' width='98' height='30' class='d-inline-block' alt=''>
+    </a>
+  </li>
+  <li class='nav-item' style="margin-left:20px; margin-top:85px;">
+    <a class='nav-brand' href='../study/list'>
+    <img src='/images/2_2.png' width='98' height='30' class='d-inline-block' alt=''>
+    </a>
+  </li>
+  <li class='nav-item' style="margin-left:20px; margin-top:85px;">
+    <a class='nav-brand' href='../score/list'>
+    <img src='/images/2_3.png' width='98' height='30' class='d-inline-block' alt=''>
+    </a>
+  </li>
+  <li class='nav-item' style="margin-left:20px; margin-top:85px;">
+    <a class='nav-brand' href='/app/auth/logout'>
+    <img src='/images/2_5.png' width='98' height='30' class='d-inline-block' alt=''>
+    </a>
+  </li>
+    </ul>
+
+</div>
+</nav>
+</header>
+
+<h1>스터디 목록</h1>
+
+<table id='list' class='table table-hover'>
+<thead>
+<tr>
+<th>번호</th><th>지역</th><th>이름</th><th>관심분야</th>
+<th>인원수</th><th>등록일</th><th>대상기업</th><th>모집상태</th><th>이미지</th>
+</tr>
+</thead>
+<tbody>
+
+
+</tbody>
+</table>
+<nav class="navbar navbar-light justify-content-between">
+    <a href='form.html' class='btn-primary btn-sm'>추가</a>
+</nav>
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+    <a id='prevBtn' class="page-link" tabindex="-1">이전</a></li>
+        
+    <li class="page-item">
+    <a id='currbtn' class="page-link" href="#">1</a></li>
+    
+    <li class="page-item disabled">
+    <a id='nextBtn' class="page-link" tabindex="-1">다음</a></li>
+  </ul>
+</nav>
+
+<footer></footer>
+</div>
+
+<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+<script type="text/javascript">
+var prevBtn = $('#prevBtn'),
+currBtn = $('#currBtn'),
+nextBtn = $('#nextBtn'),
+tbody = $('#list > tbody'),
+currPageNo = 1,
+member = null;
+/* $('header').load('../header.html', () => {
+    load(1);
+}); */
+
+/* $('footer').load('../footer.html'); */
+
+prevBtn.click(() => {
+    load(currPageNo - 1)
+});
+
+nextBtn.click(() => {
+    load(currPageNo + 1)
+});
+load();
+
+function load(pageNo, options) {
+    
+    if (options == undefined) options = {};
+    options.pn = pageNo;
+    
+    $.ajax('../json/study/list', {
+        data: options,
+        dataType: 'json',
+        success: (result) => {
+            
+            tbody.html("");
+            
+            for (var data of result.list) {
+                $('<tr>')
+                    .html(  
+                        "<td>" + data.sno + "</td>" + 
+                        "<td><a href='form.html?sno=" + data.sno + "'>" + data.sloc + "</a></td>" + 
+                        "<td>" + data.sname + "</td>" +
+                        "<td>" + data.sint + "</td>" +
+                        "<td>" + data.sppl + "</td>" +
+                        "<td>" + data.sregdt + "</td>" +
+                        "<td>" + data.scorp + "</td>" +
+                        "<td>" + data.scheck + "</td>" +
+                         /* "<td>" + data.simg + "</td>") */
+                        /*"<td><img src='../../download/" + file.filename + "' alt=" + file.filename + " width='50px' height='50px'></td>") */
+                         "<td><img src='../../download/" + data.simg + "' height" + "='50px'; width='50px';/></td>")
+                    .appendTo(tbody);
+            }
+            
+            currPageNo = result.pageNo;
+            currBtn.html(currPageNo);
+            
+            if (result.pageNo == 1) {
+                $(prevBtn.parent()).addClass("disabled");
+            } else {
+                $(prevBtn.parent()).removeClass("disabled");
+            }
+            
+            if (result.lastPageNo == result.pageNo) {
+                $(nextBtn.parent()).addClass("disabled");
+            } else {
+                $(nextBtn.parent()).removeClass("disabled");
+            }
+        },
+        error: () => {
+            window.alert('서버 실행 오류!');
+        }
+    });
+}
+
+</script>
+
+</body>
+</html>
