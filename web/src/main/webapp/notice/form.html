@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+<link rel='stylesheet' href='../../node_modules/bootstrap/dist/css/bootstrap.min.css'>
+<link rel='stylesheet' href='../../css/common.css'>
+</head>
+<body>
+<div class='container'>
+
+<header>
+<nav class='navbar navbar-expand-lg navbar-light bg-red'>
+<button type="button" class='btn btn-primary btn-sm' id="btn-apply" onclick="location.href='../apply/list'">apply</button>
+<button type="button" class='btn btn-primary btn-sm' id="btn-notice" onclick="location.href='../notice/list'">notice</button>
+<button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
+  <span class='navbar-toggler-icon'></span>
+</button>
+<div class='collapse navbar-collapse' id='navbarNav'>
+<ul class='navbar-nav mr-auto'>
+  <li class='nav-item' style="margin-left:0px; margin-top:0px; padding-right: 20px; font-size: 50px;">
+    <a class='nav-link' href='../member/list'>CATCH</a>
+  </li>
+    <li class='nav-item' style="margin-left:0px; margin-top:0px; padding-right: 20px; font-size: 20px;">
+    <a class='nav-link' href='../msg/sendList'>쪽지함</a>
+  </li>
+  <li class='nav-item' style="margin-left:353px; margin-top:85px;">
+    <a class='nav-brand' href='../score/list'>
+    <img src='/images/2_1.png' width='98' height='30' class='d-inline-block' alt=''>
+    </a>
+  </li>
+  <li class='nav-item' style="margin-left:20px; margin-top:85px;">
+    <a class='nav-brand' href='../study/list'>
+    <img src='/images/2_2.png' width='98' height='30' class='d-inline-block' alt=''>
+    </a>
+  </li>
+  <li class='nav-item' style="margin-left:20px; margin-top:85px;">
+    <a class='nav-brand' href='../score/list'>
+    <img src='/images/2_3.png' width='98' height='30' class='d-inline-block' alt=''>
+    </a>
+  </li>
+  <li class='nav-item' style="margin-left:20px; margin-top:85px;">
+    <a class='nav-brand' href='/app/auth/logout'>
+    <img src='/images/2_5.png' width='98' height='30' class='d-inline-block' alt=''>
+    </a>
+  </li>
+    </ul>
+
+
+
+</div>
+</nav>
+</header>
+
+<h1>채용공고</h1>
+<form id="form" method='post' enctype="multipart/form-data">
+<div id="nod">
+<div id="img">
+</div>
+</div>
+<div class='form-group row my-view'>
+<label for='no' class='col-sm-2 col-form-label'>번호</label>
+<div id=nodiv class='col-sm-10'>
+<!-- <input class='form-control' readonly id='no' type='number' 
+       name='no'> -->
+</div>
+</div>
+
+<div class='form-group row my-view'>
+<label for='name' class='col-sm-2 col-form-label'>기업</label>
+<div class='col-sm-10'>
+<input class='form-control' readonly id='name' type='text' 
+       name='name'> 
+</div>
+</div>
+
+
+<div class='form-group row'>
+<label for='image' class='col-sm-2 col-form-label'>공고이미지</label>
+<div class='col-sm-10'>
+<input class='form-control' id='image' type='file' name='file'>
+</div>
+</div>
+
+<div class='form-group row'>
+<label for='startDate' class='col-sm-2 col-form-label'>채용시작일</label>
+<div class='col-sm-10'>
+<input class='form-control' id='startDate' type='Date' name='startDate'>
+</div>
+</div>
+
+<div class='form-group row'>
+<label for='endDate' class='col-sm-2 col-form-label'>채용종료일</label>
+<div class='col-sm-10'>
+<input class='form-control' id='endDate' type='Date' name='endDate'>
+</div>
+</div>
+
+
+
+<div class='form-group row'>
+<div class='col-sm-10'>
+<button id="addBtn" type="button" class='btn btn-primary btn-sm my-new'>추가</button>
+<button id="updateBtn" type="button" class='btn btn-primary btn-sm my-view'>변경</button>
+<button id="deleteBtn" type="button" class='btn btn-primary btn-sm my-view'>삭제</button>
+</div>
+</div>
+</form>
+</div>
+<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+
+<script type="text/javascript">
+var addBtn = $('#addBtn'),
+    updateBtn = $('#updateBtn'),
+    deleteBtn = $('#deleteBtn'),
+    noItem = $('#no'), 
+    startDateItem = $('#startDate'), 
+    endDateItem = $('#endDate'),
+    imageItem = $('#image'),
+    nodivItem = $('#nodiv'),
+    nameItem = $('#name');
+    
+var index = location.href.indexOf('?');
+if (index != -1) { // 기존 데이터를 조회할 경우,
+    var qs = location.href.substr(index + 1);
+    var arr = qs.split('=');
+    $('.my-new').css('display', 'none');
+    $(() => {
+        $.ajax('../json/notice/' + arr[1], {
+            dataType: 'json',
+            success: (result) => {
+               noItem.val(result.data.no);
+               nodivItem.html("<input class='form-control' readonly id='no' " +
+                       "name='no' value='" + result.data.no + "'> "); 
+               
+                nameItem.val(result.data.companyMember.name);
+                startDateItem.val(result.data.startDate);
+                endDateItem.val(result.data.endDate);
+                imageItem.val(result.data.image);
+            },
+            error: () => {
+                window.alert('서버 실행 오류!');
+            }
+        });
+    });
+    
+} else { // 신규 데이터 입력일 경우,
+    $('.my-view').css('display', 'none');
+}
+addBtn.click(() => {
+    var formData = new FormData($('#form')[0]);
+    $.ajax('../json/notice/add', {
+        data: formData,
+        dataType: 'json',
+        method: 'POST',
+        processData : false,
+        contentType : false,
+        success: (result) => {
+            location.href = "list.html";
+        },
+        error: () => {
+            window.alert('서버 실행 오류!');
+        }
+    });
+});
+updateBtn.click(() => {
+    var formData = new FormData($('#form')[0]);
+    $.ajax('../json/notice/update', {
+        data: formData,
+        dataType: 'json',
+        method: 'POST',
+        processData : false,
+        contentType : false,
+        success: (result) => {
+            location.href = "list.html";
+        },
+        error: () => {
+            window.alert('서버 실행 오류!');
+        }
+    });
+});
+deleteBtn.click(() => {
+    $.ajax('../json/notice/delete', {
+        data: {
+        	no: $('#no').val()
+        },
+        dataType: 'json',
+        success: (result) => {
+            location.href = "list.html";
+        },
+        error: () => {
+            window.alert('서버 실행 오류!');
+        }
+    });
+});
+</script>
+
+</body>
+</html>
