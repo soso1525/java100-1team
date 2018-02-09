@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>catch</title>
+<link rel='stylesheet'
+	href='../node_modules/bootstrap/dist/css/bootstrap.min.css'>
+<link rel='stylesheet' href='../css/common.css'>
+</head>
+<body>
+<h1>자소서 지원하기</h1>
+
+<form class="form" method="post" enctype="multipart/form-data">
+	<input type="hidden" id="ano" name="ano">
+	<input type="file"  class="form-control" id="file" name="file">
+	<input type="button" id="addBtn"  class="form-control my-new" value="지원하기">
+</form>
+<script type="text/javascript">
+var addBtn = $('#addBtn'),
+	anoItem = $('#ano'),
+	fileItem = $('#file');
+	
+var index = location.href.indexOf('?');
+if (index != -1) {
+	var qs = location.href.substr(index + 1);
+	var arr = qs.split('=');
+	$('.my-new').css('display', 'none');
+	$(() => {
+		$.ajax('../json/letter/' + arr[1], {
+			dataType: 'json',
+			success: (result) => {
+				
+			},
+			error: () => {
+				window.alert('서버 실행 오류!');
+			}
+		});
+	});
+} else {
+	$('.my-view').css('display', 'none');
+	$(() => {
+		$.ajax()
+	}); 
+}
+	
+	
+	
+</script>
+
+</body>
+</html>
+

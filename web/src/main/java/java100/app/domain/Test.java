@@ -8,7 +8,7 @@ public class Test {
 	String time; // 시험 시간
 	String location;
 	String prepare; // 준비물
-	char check; // 합격여부
+	int check; // 합격여부
 	Apply apply;
 	Member member;
 
@@ -75,11 +75,11 @@ public class Test {
 		this.prepare = prepare;
 	}
 
-	public char getCheck() {
+	public int getCheck() {
 		return check;
 	}
 
-	public void setCheck(char check) {
+	public void setCheck(int check) {
 		this.check = check;
 	}
 

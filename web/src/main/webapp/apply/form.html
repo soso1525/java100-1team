@@ -79,8 +79,31 @@
 </div>
 </div>
 </form>
-
-
+<table id='letterList' class='table table-hover my-view'>
+<thead>
+<tr>
+<th>번호</th><th>저장일시</th><th>마감일</th><th>제출여부</th>
+<th>합격여부</th><th>지원회사</th><th>첨삭완료된파일</th>
+</tr>
+</thead>
+	<tbody></tbody>
+</table>
+<a href='../letter/form.html' class='btn btn-primary btn-sm'>추가</a>
+<table id='testList' class='table table-hover my-view'>
+	<thead>
+		<tr>
+			<th>번호</th>
+			<th>유형</th>
+			<th>날짜</th>
+			<th>시간</th>
+			<th>위치</th>
+			<th>준비물</th>
+			<th>합격여부</th>
+		</tr>
+	</thead>
+	<tbody></tbody>
+</table>
+<a href='../test/form.html' class='btn btn-primary btn-sm'>추가</a>
 </div>
 </body>
 <script src='../node_modules/jquery/dist/jquery.min.js'></script>
@@ -93,7 +116,9 @@ var addBtn = $('#addBtn'),
 	deleteBtn = $('#deleteBtn'),
 	anameItem = $('#aname'),
 	adtItem = $('#adt'),
-	anoItem = $('#ano')
+	anoItem = $('#ano'),
+	letterTbody = document.querySelector('#letterList > tbody'),
+	testTbody = document.querySelector('#testList > tbody')
 	;
 
 
@@ -109,6 +134,30 @@ if (index != -1) {
             	anoItem.val(result.data.ano);
                 anameItem.val(result.data.aname);
                 adtItem.val(result.data.adt);
+                for (var data of result.letter) {
+    				var tr = document.createElement('tr');
+    				tr.innerHTML = 
+    		      	"<td><a href='../letter/form.html?no=" + data.lno + "'>" + data.lno + "</a></td>" +
+    		      	"<td>" + data.lsdt + "</td>" +
+    		      	"<td>" + data.ledt + "</td>" +
+    		      	"<td>" + data.lscheck + "</td>" +
+    		        "<td>" + data.lpcheck + "</td>" +
+    		      	"<td>" + data.apply.aname + "</td>" +
+    		      	"<td>" + data.lfile + "</td>";
+    		        letterTbody.appendChild(tr);
+    			}
+                for (var data of result.test) {
+    				var tr = document.createElement('tr');
+    				tr.innerHTML = 
+    		      	"<td><a href='../test/form.html?no=" + data.no + "'>" + data.no + "</a></td>" +
+    		      	"<td>" + data.type + "</td>" +
+    		      	"<td>" + data.date + "</td>" +
+    		      	"<td>" + data.time + "</td>" +
+    		        "<td>" + data.location + "</td>" +
+    		      	"<td>" + data.prepare + "</td>" +
+    		      	"<td>" + data.check + "</td>";
+    		        testTbody.appendChild(tr);
+    			}
             },
             error: () => {
                 window.alert('서버 실행 오류!');

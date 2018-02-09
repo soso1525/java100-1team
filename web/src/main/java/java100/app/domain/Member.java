@@ -12,6 +12,7 @@ public class Member {
     protected String type;
     
     
+    
     public Member() {}
 
     public Member(int no, String email, String id) {
