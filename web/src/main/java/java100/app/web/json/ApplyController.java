@@ -96,9 +96,8 @@ public class ApplyController {
     }
 
     @RequestMapping("delete")
-    public Object delete(int no) throws Exception {
-    	
-    	applyService.delete(no);
+    public Object delete(int ano) throws Exception {
+    	applyService.delete(ano);
     	HashMap<String, Object> result = new HashMap<>();
     	result.put("status", "success");
         return result;
