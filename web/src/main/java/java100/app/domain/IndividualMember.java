@@ -1,20 +1,21 @@
 package java100.app.domain;
 
 public class IndividualMember {
-    
-    protected int no;
-    protected String name;
-    protected String birth;
-    protected String type;
-    
-    public IndividualMember() {}
 
-	public int getNo() {
-		return no;
+	protected int ino;
+	protected String name;
+	protected String birth;
+	protected String loginType;
+
+	public IndividualMember() {
 	}
 
-	public void setNo(int no) {
-		this.no = no;
+	public int getIno() {
+		return ino;
+	}
+
+	public void setIno(int ino) {
+		this.ino = ino;
 	}
 
 	public String getName() {
@@ -25,9 +26,6 @@ public class IndividualMember {
 		this.name = name;
 	}
 
-	
-
-
 	public String getBirth() {
 		return birth;
 	}
@@ -36,14 +34,11 @@ public class IndividualMember {
 		this.birth = birth;
 	}
 
-	public String getType() {
-		return type;
+	public String getLoginType() {
+		return loginType;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setLoginType(String loginType) {
+		this.loginType = loginType;
 	}
-    
-    
-    
 }

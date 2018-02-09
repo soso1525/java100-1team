@@ -30,34 +30,6 @@ public class CompanyController {
             @RequestParam(value="al", required=false) String align,
             Model model) throws Exception {
         
-        // UI �젣�뼱�� 愿��젴�맂 肄붾뱶�뒗 �씠�젃寃� �럹�씠吏� 而⑦듃濡ㅻ윭�뿉 �몢�뼱�빞 �븳�떎.
-        //
-//        if (pageNo < 1) {
-//            pageNo = 1;
-//        }
-//        
-//        if (pageSize < 5 || pageSize > 15) {
-//            pageSize = 5;
-//        }
-//        
-//        HashMap<String,Object> options = new HashMap<>();
-//        if (words != null && words[0].length() > 0) {
-//            options.put("words", words);
-//        }
-//        options.put("orderColumn", orderColumn);
-//        options.put("align", align);
-//        
-//        int totalCount = memberService.getTotalCount();
-//        int lastPageNo = totalCount / pageSize;
-//        if ((totalCount % pageSize) > 0) {
-//            lastPageNo++;
-//        }
-//        
-//        // view 而댄룷�꼳�듃媛� �궗�슜�븷 媛믪쓣 Model�뿉 �떞�뒗�떎.
-//        model.addAttribute("pageNo", pageNo);
-//        model.addAttribute("lastPageNo", lastPageNo);
-//        
-//        model.addAttribute("list", memberService.list(pageNo, pageSize, options));
         return "member/list";
     }
     
