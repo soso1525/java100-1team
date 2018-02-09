@@ -26,17 +26,8 @@ public class MemberServiceImpl implements MemberService {
 	CompanyMemberDao cMemberDao;
 
 	@Override
-	public List<Member> list(int pageNo, int pageSize, Map<String, Object> options) {
-
-		HashMap<String, Object> params = new HashMap<>();
-		params.put("startIndex", (pageNo - 1) * pageSize);
-		params.put("size", pageSize);
-
-		if (options != null) {
-			params.putAll(options);
-		}
-
-		return memberDao.findAll(params);
+	public List<Member> list() {
+		return memberDao.findAll();
 	}
 
 	@Override

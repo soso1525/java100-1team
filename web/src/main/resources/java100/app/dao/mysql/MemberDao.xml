@@ -18,21 +18,22 @@
 	<sql id="select1">
 		select
 		pno,
-		pid,
 		pmail,
-		pregdt
+		pid,
+		ptype,
+		DATE_FORMAT(pregdt,"%Y-%c-%e"),
+		ptel,
+		pdaddr
 	</sql>
 
-	<select id="findAll" resultMap="memberMap" parameterType="map">
+	<select id="findAll" resultMap="memberMap">
 		<include refid="select1" />
 		from g_per
-		limit #{startIndex}, #{size} -->
 	</select>
 
 	<select id="findByNo" resultMap="memberMap" parameterType="int">
 		<include refid="select1" />
 		from g_per
-
 		where no=#{value}
 	</select>
 
@@ -66,12 +67,4 @@
 	</insert>
 
 </mapper>  
-
-
-
-
-
-
-
-
 

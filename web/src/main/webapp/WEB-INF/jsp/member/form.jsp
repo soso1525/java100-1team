@@ -151,15 +151,15 @@
 						placeholder="phone number" name="tel" required
 						pattern="(010)-\d{4}-\d{4}">
 					<button class="col-md-2 mb-3 btn btn-success">본인인증</button>
-					<div style="font-size: 11px; color: red;">010-1234-5678 형태로 입력해주세요</div>
+					<div style="font-size: 11px; color: red;">010-1234-5678 형태로
+						입력해주세요</div>
 				</div>
 			</div>
 
-			<div class="col-md-6 mb-3 form-row">
+			<div class="form-row">
 				<label for="address">지역</label> <select
 					style="margin-left: 10px; margin-right: 5px"
-					class="col-md-5 mb-3 form-control" id="address"
-					name="address">
+					class="col-md-5 mb-3 form-control" id="address" name="address">
 					<option value="서울전체">서울전체</option>
 					<option value="강남구">강남구</option>
 					<option value="강동구">강동구</option>
@@ -203,137 +203,136 @@
 
 			<input type="hidden" name="type" value="1">
 		</form>
+	</div>
+	<script type="text/javascript">
+		var passID = true, passPwd = true, passEmail = true;
 
-		<script type="text/javascript">
-			$('#submitBtn').click(
-					function() {
-						var f = document.frm;
-						f.birth.value = f.year.value + '-' + f.month.value
-								+ '-' + f.day.value;
-						f.submit();
-					})
+		$('#submitBtn').click(
+				function() {
+					var f = document.frm;
+					f.birth.value = f.year.value + '-' + f.month.value + '-'
+							+ f.day.value;
+					f.submit();
+				})
 
-			function checkID() {
-				var ctxpath = '${pageContext.request.contextPath}/app';
-				var userID = $('#id').val();
-				$
-						.ajax({
-							type : 'GET',
-							url : ctxpath + '/member/check-memb-id',
-							data : {
-								id : userID
-							},
-							success : function(data) {
-								var result = JSON.parse(data);
-								if (result.success) {
-									console.log("success");
-									$('#submitBtn').prop("disabled", false);
-									$('#id').removeClass("form-control");
-									$('#id').removeClass(
-											"form-control is-invalid");
-									$('#id').addClass("form-control is-valid");
-									$('#validID').removeClass("valid-feedback");
-									$('#validID').removeClass(
-											"invalid-feedback");
-									$('#validID').addClass("valid-feedback");
-									document.querySelector('#validID').innerHTML = "사용 가능한 ID입니다";
-								} else {
-									console.log("fail");
-									$('#submitBtn').prop("disabled", true);
-									$('#id').removeClass("form-control");
-									$('#id').removeClass(
-											"form-control is-valid");
-									$('#id')
-											.addClass("form-control is-invalid");
-									$('#validID').removeClass(
-											"invalid-feedback");
-									$('#validID').removeClass("valid-feedback");
-									$('#validID').addClass("invalid-feedback");
-									document.querySelector('#validID').innerHTML = "사용 불가능한 ID입니다. 다른 ID를 입력해주세요";
-									$('#submitBtn').prop("disabled", true);
-								}
-							}
-						});
-			}
-
-			function checkEmail() { 
-				var ctxpath = '${pageContext.request.contextPath}/app';
-				var userEmail = $('#email').val();
-				$
-						.ajax({
-							type : 'GET',
-							url : ctxpath + '/member/check-memb-email',
-							data : {
-								email : userEmail
-							},
-							success : function(data) {
-								var result = JSON.parse(data);
-								if (result.success) {
-									console.log("success");
-									$('#submitBtn').prop("disabled", false);
-									$('#email').removeClass("form-control");
-									$('#email').removeClass(
-											"form-control is-invalid");
-									$('#email').addClass(
-											"form-control is-valid");
-									$('#validEmail').removeClass(
-											"valid-feedback");
-									$('#validEmail').removeClass(
-											"invalid-feedback");
-									$('#validEmail').addClass("valid-feedback");
-									document.querySelector('#validID').innerHTML = "사용 가능한 Email입니다";
-								} else {
-									console.log("fail");
-									$('#submitBtn').prop("disabled", true);
-									$('#email').removeClass("form-control");
-									$('#email').removeClass(
-											"form-control is-valid");
-									$('#email').addClass(
-											"form-control is-invalid");
-									$('#validEmail').removeClass(
-											"invalid-feedback");
-									$('#validEmail').removeClass(
-											"valid-feedback");
-									$('#validEmail').addClass(
-											"invalid-feedback");
-									document.querySelector('#validEmail').innerHTML = "이미 사용중인 Email입니다. 다른 Email을 입력해주세요";
-									$('#submitBtn').prop("disabled", true);
-								}
-							}
-						});
-			}
-
-			function checkPwd() {
-				var password = document.querySelector('#password')
-				var repassword = document.querySelector('#repassword')
-				var checkpassword = document.querySelector('#validPWD')
-				repassword.addEventListener('keyup',
-						function() {
-							if (password.value == repassword.value) {
-								$('#repassword').removeClass("form-control");
-								$('#repassword').removeClass(
-										"form-control is-invalid");
-								$('#repassword').addClass(
-										"form-control is-valid");
-								$('#validPWD').removeClass("valid-feedback");
-								$('#validPWD').removeClass("invalid-feedback");
-								$('#validPWD').addClass("valid-feedback");
-								checkpassword.innerHTML = "비밀번호가 일치합니다";
-								$('#submitBtn').prop("disabled", false);
+		function checkID() {
+			var ctxpath = '${pageContext.request.contextPath}/app';
+			var userID = $('#id').val();
+			$
+					.ajax({
+						type : 'GET',
+						url : ctxpath + '/member/check-memb-id',
+						data : {
+							id : userID
+						},
+						success : function(data) {
+							var result = JSON.parse(data);
+							if (result.success) {
+								console.log("success");
+								passID = true;
+								$('#id').removeClass("form-control");
+								$('#id').removeClass("form-control is-invalid");
+								$('#id').addClass("form-control is-valid");
+								$('#validID').removeClass("valid-feedback");
+								$('#validID').removeClass("invalid-feedback");
+								$('#validID').addClass("valid-feedback");
+								document.querySelector('#validID').innerHTML = "사용 가능한 ID입니다";
+								checkPass();
 							} else {
-								$('#repassword').removeClass("form-control");
-								$('#repassword').removeClass(
-										"form-control is-valid");
-								$('#repassword').addClass(
-										"form-control is-invalid");
-								$('#validPWD').removeClass("valid-feedback");
-								$('#validPWD').removeClass("invalid-feedback");
-								$('#validPWD').addClass("invalid-feedback");
-								checkpassword.innerHTML = "비밀번호가 일치하지않습니다";
-								$('#submitBtn').prop("disabled", true);
+								console.log("fail");
+								passID = false;
+								$('#id').removeClass("form-control");
+								$('#id').removeClass("form-control is-valid");
+								$('#id').addClass("form-control is-invalid");
+								$('#validID').removeClass("invalid-feedback");
+								$('#validID').removeClass("valid-feedback");
+								$('#validID').addClass("invalid-feedback");
+								document.querySelector('#validID').innerHTML = "사용 불가능한 ID입니다. 다른 ID를 입력해주세요";
+								checkPass();
 							}
-						});
+						}
+					});
+		}
+
+		function checkEmail() {
+			var ctxpath = '${pageContext.request.contextPath}/app';
+			var userEmail = $('#email').val();
+			$
+					.ajax({
+						type : 'GET',
+						url : ctxpath + '/member/check-memb-email',
+						data : {
+							email : userEmail
+						},
+						success : function(data) {
+							var result = JSON.parse(data);
+							if (result.success) {
+								console.log("success");
+								passEmail = true;
+								$('#email').removeClass("form-control");
+								$('#email').removeClass(
+										"form-control is-invalid");
+								$('#email').addClass("form-control is-valid");
+								$('#validEmail').removeClass("valid-feedback");
+								$('#validEmail')
+										.removeClass("invalid-feedback");
+								$('#validEmail').addClass("valid-feedback");
+								document.querySelector('#validID').innerHTML = "사용 가능한 Email입니다";
+								checkPass();
+							} else {
+								console.log("fail");
+								passEmail = false;
+								$('#email').removeClass("form-control");
+								$('#email')
+										.removeClass("form-control is-valid");
+								$('#email').addClass("form-control is-invalid");
+								$('#validEmail')
+										.removeClass("invalid-feedback");
+								$('#validEmail').removeClass("valid-feedback");
+								$('#validEmail').addClass("invalid-feedback");
+								document.querySelector('#validEmail').innerHTML = "이미 사용중인 Email입니다. 다른 Email을 입력해주세요";
+								checkPass();
+							}
+						}
+					});
+		}
+
+		function checkPwd() {
+			var password = document.querySelector('#password')
+			var repassword = document.querySelector('#repassword')
+			var checkpassword = document.querySelector('#validPWD')
+			repassword.addEventListener('keyup', function() {
+				if (password.value == repassword.value) {
+					passPwd = true;
+					$('#repassword').removeClass("form-control");
+					$('#repassword').removeClass("form-control is-invalid");
+					$('#repassword').addClass("form-control is-valid");
+					$('#validPWD').removeClass("valid-feedback");
+					$('#validPWD').removeClass("invalid-feedback");
+					$('#validPWD').addClass("valid-feedback");
+					checkpassword.innerHTML = "비밀번호가 일치합니다";
+					checkPass();
+				} else {
+					passPwd = false;
+					$('#repassword').removeClass("form-control");
+					$('#repassword').removeClass("form-control is-valid");
+					$('#repassword').addClass("form-control is-invalid");
+					$('#validPWD').removeClass("valid-feedback");
+					$('#validPWD').removeClass("invalid-feedback");
+					$('#validPWD').addClass("invalid-feedback");
+					checkpassword.innerHTML = "비밀번호가 일치하지않습니다";
+					checkPass();
+				}
+			});
+		}
+
+		function checkPass() {
+			if (passID && passEmail && passPwd) {
+				$('#submitBtn').prop("disabled", false);
+			} else {
+				$('#submitBtn').prop("disabled", true);
 			}
-		</script>
+		}
+	</script>
 </body>
 </html>
