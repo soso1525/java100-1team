@@ -1,14 +1,14 @@
 package java100.app.service;
 
 import java.util.List;
-import java.util.Map;
 
 import java100.app.domain.CompanyMember;
 import java100.app.domain.IndividualMember;
 import java100.app.domain.Member;
 
 public interface MemberService {
-	List<Member> list(int pageNo, int pageSize, Map<String, Object> options);
+	List<Member> list();
+
 	Member get(int no);
 	Member get(String id, String password);
 	int getTotalCount();
