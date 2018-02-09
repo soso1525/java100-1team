@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CATCH : 로그인</title>
+<link rel='stylesheet' href='../node_modules/bootstrap/dist/css/bootstrap.min.css'>
+<link rel='stylesheet' href='../css/common.css'>
+<style type="text/css">
+body {
+	background: url('../images/login.png') no-repeat top;
+}
+</style>
+</head>
+<div>
+	<div class='container2' style="margin: auto; margin-top: 300px">
+
+		<form class="form-4" action="login" method="post">
+
+			<h1>Log In</h1>
+
+			<p>
+				<label for="login">Username or email</label> <input type="text"
+					name="id" id='id' placeholder="Username or email" value="" required>
+			</p>
+			<p>
+				<label for="password">Password</label> <input type="password"
+					name='password' placeholder="Password" id="password" required>
+			</p>
+
+			<p>
+				<input type="submit" name="submit" value="Continue">
+			</p>
+
+			<a href="../member/form.html">일반 회원가입</a> <a href="../company/form.html">기업
+				회원가입</a>
+		</form>
+	</div>
+</div>
+<body>
+	<script src='/node_modules/jquery/dist/jquery.slim.min.js'></script>
+	<script src='/node_modules/popper.js/dist/umd/popper.min.js'></script>
+	<script src='/node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+</body>
+</html>
