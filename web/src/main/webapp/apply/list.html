@@ -57,8 +57,6 @@
 <tbody>
 </tbody>
 </table>
-<button type="button" class='btn btn-primary btn-sm' id="btn-add" onclick="location.href='form'">추가</button>
-
 </div>
 
 <script src='../node_modules/jquery/dist/jquery.min.js'></script>
@@ -75,7 +73,7 @@ function load() {
 			for (var data of result.apply) {
 				var tr = document.createElement('tr');
 				tr.innerHTML = 
-		        	"<td><a href='" + data.ano + "'>" + data.ano + "</a></td>" +
+		        	"<td><a href='form.html?no=" + data.ano + "'>" + data.ano + "</a></td>" +
 		        	"<td>" + data.aname + "</td>" +
 			        "<td>" + data.adt + "</td>";
 		        tbody.appendChild(tr);

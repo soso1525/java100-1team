@@ -90,7 +90,6 @@ public class ApplyController {
     
     @RequestMapping("update")
     public String update(Apply apply) throws Exception {
-        
         applyService.update(apply);
         return "redirect:list";
     }

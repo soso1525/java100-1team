@@ -37,13 +37,13 @@
         where ano=#{value}
     </select>
     
-<!--  <update id="update" parameterType="apply">
+ <update id="update" parameterType="apply">
         update g_app set 
 			aname=#{aname},
-			adt=#{adt},
-        where ino=#{no}
+			adt=#{adt}
+        where ano=#{ano}
     </update>
- -->
+
     <delete id="delete" parameterType="int">
         delete from g_app
         where ano=#{value}
