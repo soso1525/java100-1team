@@ -134,9 +134,9 @@ var addBtn = $('#addBtn'),
     noteItem = $('#note'),
     checkItem = $('#check'), 
     languageItem = $('#language'), 
-    nodiv = $('#nod')
+    nodiv = $('#nod'),
     inoItem = $('#ino'); 
-
+    
 var index = location.href.indexOf('?');
 if (index != -1) { // 기존 데이터를 조회할 경우,
     var qs = location.href.substr(index + 1);
@@ -173,8 +173,6 @@ if (index != -1) { // 기존 데이터를 조회할 경우,
 } else { // 신규 데이터 입력일 경우,
     $('.my-view').css('display', 'none');
 }
-
-
 addBtn.click(() => {
     var formData = new FormData($('#form')[0]);
     $.ajax('../json/resume/add', {
@@ -191,7 +189,6 @@ addBtn.click(() => {
         }
     });
 });
-
 updateBtn.click(() => {
     var formData = new FormData($('#form')[0]);
     $.ajax('../json/resume/update', {
@@ -208,15 +205,13 @@ updateBtn.click(() => {
         }
     });
 });
-
 deleteBtn.click(() => {
-    var formData = new FormData($('#form')[0]);
+	noItem = $('#no');
     $.ajax('../json/resume/delete', {
-        data: formData,
+        data: {
+        	no: noItem.val()
+        },
         dataType: 'json',
-        method: 'POST',
-        processData : false,
-        contentType : false,
         success: (result) => {
             location.href = "list.html";
         },
@@ -225,9 +220,6 @@ deleteBtn.click(() => {
         }
     });
 });
-
-
-
 </script>
 
 </body>
