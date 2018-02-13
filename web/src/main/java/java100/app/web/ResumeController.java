@@ -90,8 +90,6 @@ public class ResumeController {
         resume.setFile(list.get(2));
         resume.setMember(loginUser);
         
-        
-        
         resumeService.add(resume);
         
         return "redirect:list";

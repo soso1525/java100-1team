@@ -34,7 +34,7 @@
 		</nav>
 
 		<h1 style="margin-top:30px; margin-bottom:30px">이력서 목록</h1>
-		<table id='list'  class='table table-hover'>
+		<table id='list' class='table table-hover'>
 			<thead>
 				<tr>
 					<th>번호</th>
@@ -110,23 +110,6 @@ function load() {
             tbody.html(""); 
             
             for (var data of result.list) {
-                
-                var file;
-                if(data.file =="") {
-                    file ="N";
-                } else {
-                    file ="Y";
-                }
-                 
-                
-               
-                 var avi;
-                if(data.avi == "") {
-                    avi = "N"; 
-                } else {
-                    avi = "Y";
-                } 
-             
                 $('<tr>')
                     .html(  
                         "<td><a href='form.html?no=" + data.no + "'>" + data.no + "</a></td>" + 
@@ -141,8 +124,8 @@ function load() {
                         "<td>" + data.schoolName + "</td>" +
                         "<td>" + data.grades + "</td>" +
                         "<td>" + data.viewCount + "</td>" +
-                        "<td>"+ avi + "</td>" +
-                        "<td>" + file + "</td>"+
+                        "<td><img src='../../download/" + data.avi + "' height" + "='50px'/></td>"+
+                        "<td><img src='../../download/" + data.file + "' height" + "='50px'/></td>"+
                         "<td>" + data.note + "</td>" +
                         "<td>" + data.check + "</td>"+
                         "<td>" + data.ino+ "</td>")
@@ -169,7 +152,8 @@ function load() {
             window.alert('서버 실행 오류!');
         }
     });
+     
 }
- 
+
 </script>
 </html>

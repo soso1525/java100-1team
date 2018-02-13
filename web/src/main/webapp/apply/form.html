@@ -50,7 +50,7 @@
 			<div class='form-group row'>
 				<label for='career' class='col-sm-2 col-form-label'>신청일</label>
 				<div class='col-sm-10'>
-					<input class='form-control' id='adt' type='date' name='adt'>
+					<input class='form-control' readonly id='adt' type='date' name='adt'>
 				</div>
 			</div>
 			<div class='form-group row'>
@@ -78,7 +78,8 @@
 			</thead>
 			<tbody></tbody>
 		</table>
-		<a href='../letter/form.html' class='btn btn-primary btn-sm'>추가</a>
+		<button id="letterBtn" type="button"
+						class='btn btn-primary btn-sm my-view'>추가</button>
 		<table id='testList' class='table table-hover my-view'>
 			<thead>
 				<tr>
@@ -93,7 +94,8 @@
 			</thead>
 			<tbody></tbody>
 		</table>
-		<a href='../test/form.html' class='btn btn-primary btn-sm'>추가</a>
+		<button id="testBtn" type="button"
+						class='btn btn-primary btn-sm my-view'>추가</button>
 	</div>
 </body>
 <script src='../node_modules/jquery/dist/jquery.min.js'></script>
@@ -108,15 +110,17 @@ var addBtn = $('#addBtn'),
 	adtItem = $('#adt'),
 	anoItem = $('#ano'),
 	letterTbody = document.querySelector('#letterList > tbody'),
-	testTbody = document.querySelector('#testList > tbody')
+	testTbody = document.querySelector('#testList > tbody'),
+	letterBtn = $('#letterBtn'),
+	testBtn = $('#testBtn')
 	;
 
 
 
 var index = location.href.indexOf('?');
+var qs = location.href.substr(index + 1);
+var arr = qs.split('=');
 if (index != -1) {
-	var qs = location.href.substr(index + 1);
-	var arr = qs.split('=');
 	$('.my-new').css('display','none');
 	$(() => {
         $.ajax('../json/apply/' + arr[1], {
@@ -128,7 +132,7 @@ if (index != -1) {
                 for (var data of result.letter) {
     				var tr = document.createElement('tr');
     				tr.innerHTML = 
-    		      	"<td><a href='../letter/form.html?no=" + data.lno + "'>" + data.lno + "</a></td>" +
+    		      	"<td><a href='../letter/view.html?no=" + data.lno + "'>" + data.lno + "</a></td>" +
     		      	"<td>" + data.lsdt + "</td>" +
     		      	"<td>" + data.ledt + "</td>" +
     		      	"<td>" + data.lscheck + "</td>" +
@@ -137,16 +141,32 @@ if (index != -1) {
     		      	"<td>" + data.lfile + "</td>";
     		        letterTbody.appendChild(tr);
     			}
+                
                 for (var data of result.test) {
+                	var typeName;
+                	if (data.type == 0) {
+                		typeName = "인적성";
+                	} else {
+                		typeName = "면접";
+                	}
+                	
+                	var checkName;
+                	if (data.check == 0) {
+                		checkName = "불합격";
+                	} else if (data.check == 1) {
+                		checkName = "합격";
+                	} else {
+                		checkName = "대기";
+                	}
     				var tr = document.createElement('tr');
     				tr.innerHTML = 
     		      	"<td><a href='../test/form.html?no=" + data.no + "'>" + data.no + "</a></td>" +
-    		      	"<td>" + data.type + "</td>" +
+    		      	"<td>" + typeName + "</td>" +
     		      	"<td>" + data.date + "</td>" +
     		      	"<td>" + data.time + "</td>" +
     		        "<td>" + data.location + "</td>" +
     		      	"<td>" + data.prepare + "</td>" +
-    		      	"<td>" + data.check + "</td>";
+    		      	"<td>" + checkName + "</td>";
     		        testTbody.appendChild(tr);
     			}
             },
@@ -160,31 +180,23 @@ if (index != -1) {
     $('.my-view').css('display', 'none');
 }
 
-var parameters = {
-	"ano":anoItem.val()
-}
-
 addBtn.click(() => {
     $.ajax('../json/apply/add', {
         data: {
-        	JSON.stringify(parameters)
             aname: anameItem.val(),
             adt: adtItem.val()
         },
         dataType: 'json',
         method: 'POST',
         success: (result) => {
-        	
             location.href = "list.html";
         },
         error: () => {
             window.alert('서버 실행 오류!');
         }
-    }).done((data) => {
-    	var rawJsonData = JSON.parse(data);
-    	console.log(rawJsonData);
     });
 });
+
 
 updateBtn.click(() => {
     $.ajax('../json/apply/update', {
@@ -219,19 +231,30 @@ deleteBtn.click(() => {
     });
 });
 
+letterBtn.click(() => {
+    $.ajax({
+        method: 'POST',
+        success: (result) => {
+            location.href = "../letter/form.html?ano="+arr[1];
+        },
+        error: () => {
+            window.alert('서버 실행 오류!');
+        }
+    });
+});
 
 
-
-
-
-
-
-
-
-
-
-
-
+testBtn.click(() => {
+    $.ajax({
+        method: 'POST',
+        success: (result) => {
+            location.href = "../test/form.html?ano="+arr[1];
+        },
+        error: () => {
+            window.alert('서버 실행 오류!');
+        }
+    });
+});
 </script>
 
 </html>

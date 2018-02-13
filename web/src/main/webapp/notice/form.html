@@ -32,11 +32,6 @@
 		</nav>
 
 		<h1 style="margin-top: 30px; margin-bottom: 30px">채용공고</h1>
-		
-		<div class='form-group row'>
-            <label for='photo' class='col-sm-2 col-form-label'></label>
-            <div class='col-sm-10' id='image'></div>
-        </div>
 		<form id="form" method='post' enctype="multipart/form-data">
 			<div id="nod">
 				<div id="img"></div>
@@ -98,9 +93,7 @@
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
 
-<script type="text/javascript">
-
-
+	<script type="text/javascript">
 var addBtn = $('#addBtn'),
     updateBtn = $('#updateBtn'),
     deleteBtn = $('#deleteBtn'),
@@ -109,7 +102,6 @@ var addBtn = $('#addBtn'),
     endDateItem = $('#endDate'),
     imageItem = $('#image'),
     nodivItem = $('#nodiv'),
-    simgs = $('#image'),
     nameItem = $('#name');
     
 var index = location.href.indexOf('?');
@@ -122,7 +114,6 @@ if (index != -1) { // 기존 데이터를 조회할 경우,
             dataType: 'json',
             success: (result) => {
                noItem.val(result.data.no);
-               simgs.html("<img src='../../download/" + result.data.image + "' height='300px'/>");
                nodivItem.html("<input class='form-control' readonly id='no' " +
                        "name='no' value='" + result.data.no + "'> "); 
                

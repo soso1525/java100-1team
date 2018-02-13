@@ -32,7 +32,8 @@
         select
             qno,
             qart,
-            qcont
+            qcont,
+            lno
         from g_que 
         where qno=#{value}
     </select>

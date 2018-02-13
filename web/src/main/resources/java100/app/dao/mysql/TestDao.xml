@@ -35,8 +35,7 @@
 		a.ano
 		from g_app a
 		inner join g_test t on a.ano = t.ano
-		where a.ano =
-		#{ano}
+		where a.ano = #{ano}
 	</select>
 
 	<select id="findByNo" resultMap="testMap" parameterType="integer">
@@ -53,7 +52,7 @@
 		a.ano
 		from g_app a
 		inner join g_test t on a.ano = t.ano
-		where a.ano = #{ano}
+		where t.tno = #{value}
 	</select>
 
 	<insert id="insert" parameterType="test">

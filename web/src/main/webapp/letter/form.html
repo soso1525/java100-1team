@@ -32,41 +32,41 @@
 	</nav>
 
 	<h1 style="margin-top: 30px; margin-bottom: 30px">자소서 지원하기</h1>
-	<form class="form" method="post" enctype="multipart/form-data">
+	<form class="form" id="form" method="post" enctype="multipart/form-data">
 		<input type="hidden" id="ano" name="ano"> <input type="file"
 			class="form-control" id="file" name="file"> <input
-			type="button" id="addBtn" class="form-control my-new" value="지원하기">
+			type="button" id="addBtn" class="form-control" value="지원하기">
 	</form>
-
-	<script type="text/javascript">
+	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+<script type="text/javascript">
 var addBtn = $('#addBtn'),
 	anoItem = $('#ano'),
 	fileItem = $('#file');
-	
+
 var index = location.href.indexOf('?');
-if (index != -1) {
-	var qs = location.href.substr(index + 1);
-	var arr = qs.split('=');
-	$('.my-new').css('display', 'none');
-	$(() => {
-		$.ajax('../json/letter/' + arr[1], {
-			dataType: 'json',
-			success: (result) => {
-				
-			},
-			error: () => {
-				window.alert('서버 실행 오류!');
-			}
-		});
-	});
-} else {
-	$('.my-view').css('display', 'none');
-	$(() => {
-		$.ajax()
-	}); 
-}
-	
-	
+var qs = location.href.substr(index + 1);
+var arr = qs.split('=');
+anoItem.val(arr[1]);
+
+
+addBtn.click(() => {
+	var formData = new FormData($('#form')[0]);
+    $.ajax('../json/letter/add', {
+        data: formData,
+        dataType: 'json',
+        method: 'POST',
+        processData : false,
+        contentType : false,
+        success: (result) => {
+            location.href = "../apply/form.html?no=" + arr[1];
+        },
+        error: () => {
+            window.alert('서버 실행 오류!');
+        }
+    });
+});
 	
 </script>
 

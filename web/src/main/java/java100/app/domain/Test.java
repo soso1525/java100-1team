@@ -12,12 +12,6 @@ public class Test {
 	Apply apply;
 	Member member;
 
-	@Override
-	public String toString() {
-		return "Test [no=" + no + ", ano=" + ano + ", type=" + type + ", date=" + date + ", time=" + time
-				+ ", location=" + location + ", prepare=" + prepare + ", check=" + check + ", apply=" + apply
-				+ ", member=" + member + "]";
-	}
 
 	public int getNo() {
 		return no;
