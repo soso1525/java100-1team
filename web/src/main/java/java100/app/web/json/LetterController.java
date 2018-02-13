@@ -52,7 +52,7 @@ public class LetterController {
     }
     
     @RequestMapping("{no}")
-    public Object view(@PathVariable int no, Model model) throws Exception {
+    public Object view(@PathVariable int no) throws Exception {
     	HashMap<String, Object> result = new HashMap<>();
         result.put("letter", letterService.get(no));
         result.put("question", questionService.list(no));

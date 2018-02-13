@@ -4,107 +4,99 @@
 <head>
 <meta charset="UTF-8">
 <title>입사지원관리</title>
-<link rel='stylesheet' href='../../node_modules/bootstrap/dist/css/bootstrap.min.css'>
+<link rel='stylesheet'
+	href='../../node_modules/bootstrap/dist/css/bootstrap.min.css'>
 <link rel='stylesheet' href='../../css/common.css'>
 </head>
 <body>
-<div class='container'>
+	<div class='container'>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="../member/list.html">CATCH</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNav" aria-controls="navbarNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item active"><a class="nav-link" href="#">Job</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="../study/list.html">Study</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="../apply/list.html">Apply</a></li>
+					<li class="nav-item"><a class="nav-link" href="../notice/list.html">Notice</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Message</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="../app/auth/login">Login</a></li>
+				</ul>
+			</div>
+		</nav>
 
-<header>
-<nav class='navbar navbar-expand-lg navbar-light bg-red'>
-<button type="button" class='btn btn-primary btn-sm' id="btn-apply" onclick="location.href='../apply/list'">apply</button>
-<button type="button" class='btn btn-primary btn-sm' id="btn-notice" onclick="location.href='../notice/list'">notice</button>
-<button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
-  <span class='navbar-toggler-icon'></span>
-</button>
-<div class='collapse navbar-collapse' id='navbarNav'>
-<ul class='navbar-nav mr-auto'>
-  <li class='nav-item' style="margin-left:0px; margin-top:0px; padding-right: 20px; font-size: 50px;">
-    <a class='nav-link' href='../member/list'>CATCH</a>
-  </li>
-  <li class='nav-item' style="margin-left:353px; margin-top:85px;">
-    <a class='nav-brand' href='../score/list'>
-    <img src='/images/2_1.png' width='98' height='30' class='d-inline-block' alt=''>
-    </a>
-  </li>
-  <li class='nav-item' style="margin-left:20px; margin-top:85px;">
-    <a class='nav-brand' href='../study/form'>
-    <img src='/images/2_2.png' width='98' height='30' class='d-inline-block' alt=''>
-    </a>
-  </li>
-  <li class='nav-item' style="margin-left:20px; margin-top:85px;">
-    <a class='nav-brand' href='../score/list'>
-    <img src='/images/2_3.png' width='98' height='30' class='d-inline-block' alt=''>
-    </a>
-  </li>
-  <li class='nav-item' style="margin-left:20px; margin-top:85px;">
-    <a class='nav-brand' href='/app/auth/logout'>
-    <img src='/images/2_5.png' width='98' height='30' class='d-inline-block' alt=''>
-    </a>
-  </li>
-    </ul>
-
-
-
-</div>
-</nav>
-</header>
-
-<h1>기업 추가</h1>
-<form>
-<div class='form-group row my-view'>
-<label for='no' class='col-sm-2 col-form-label'>번호</label>
-<div class='col-sm-10'>
-<input class='form-control' readonly id='ano' type='number' 
-       name='ano'> 
-</div>
-</div>
-<div class='form-group row'>
-<label for='education' class='col-sm-2 col-form-label'>기업명</label>
-<div class='col-sm-10'>
-<input class='form-control' id='aname' type='text' name='aname'>
-</div>
-</div>
-<div class='form-group row'>
-<label for='career' class='col-sm-2 col-form-label'>신청일</label>
-<div class='col-sm-10'>
-<input class='form-control' id='adt' type='date' name='adt'>
-</div>
-</div>
-<div class='form-group row'>
-<div class='col-sm-10'>
-<button id="addBtn" type="button" class='btn btn-primary btn-sm my-new'>추가</button>
-<button id="updateBtn" type="button" class='btn btn-primary btn-sm my-view'>변경</button>
-<button id="deleteBtn" type="button" class='btn btn-primary btn-sm my-view'>삭제</button>
-</div>
-</div>
-</form>
-<table id='letterList' class='table table-hover my-view'>
-<thead>
-<tr>
-<th>번호</th><th>저장일시</th><th>마감일</th><th>제출여부</th>
-<th>합격여부</th><th>지원회사</th><th>첨삭완료된파일</th>
-</tr>
-</thead>
-	<tbody></tbody>
-</table>
-<a href='../letter/form.html' class='btn btn-primary btn-sm'>추가</a>
-<table id='testList' class='table table-hover my-view'>
-	<thead>
-		<tr>
-			<th>번호</th>
-			<th>유형</th>
-			<th>날짜</th>
-			<th>시간</th>
-			<th>위치</th>
-			<th>준비물</th>
-			<th>합격여부</th>
-		</tr>
-	</thead>
-	<tbody></tbody>
-</table>
-<a href='../test/form.html' class='btn btn-primary btn-sm'>추가</a>
-</div>
+		<h1 style="margin-top: 30px; margin-bottom: 30px">기업 추가</h1>
+		<form>
+			<div class='form-group row my-view'>
+				<label for='no' class='col-sm-2 col-form-label'>번호</label>
+				<div class='col-sm-10'>
+					<input class='form-control' readonly id='ano' type='number'
+						name='ano'>
+				</div>
+			</div>
+			<div class='form-group row'>
+				<label for='education' class='col-sm-2 col-form-label'>기업명</label>
+				<div class='col-sm-10'>
+					<input class='form-control' id='aname' type='text' name='aname'>
+				</div>
+			</div>
+			<div class='form-group row'>
+				<label for='career' class='col-sm-2 col-form-label'>신청일</label>
+				<div class='col-sm-10'>
+					<input class='form-control' readonly id='adt' type='date' name='adt'>
+				</div>
+			</div>
+			<div class='form-group row'>
+				<div class='col-sm-10'>
+					<button id="addBtn" type="button"
+						class='btn btn-primary btn-sm my-new'>추가</button>
+					<button id="updateBtn" type="button"
+						class='btn btn-primary btn-sm my-view'>변경</button>
+					<button id="deleteBtn" type="button"
+						class='btn btn-primary btn-sm my-view'>삭제</button>
+				</div>
+			</div>
+		</form>
+		<table id='letterList' class='table table-hover my-view'>
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>저장일시</th>
+					<th>마감일</th>
+					<th>제출여부</th>
+					<th>합격여부</th>
+					<th>지원회사</th>
+					<th>첨삭완료된파일</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		<button id="letterBtn" type="button"
+						class='btn btn-primary btn-sm my-view'>추가</button>
+		<table id='testList' class='table table-hover my-view'>
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>유형</th>
+					<th>날짜</th>
+					<th>시간</th>
+					<th>위치</th>
+					<th>준비물</th>
+					<th>합격여부</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		<button id="testBtn" type="button"
+						class='btn btn-primary btn-sm my-view'>추가</button>
+	</div>
 </body>
 <script src='../node_modules/jquery/dist/jquery.min.js'></script>
 <script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
@@ -118,15 +110,17 @@ var addBtn = $('#addBtn'),
 	adtItem = $('#adt'),
 	anoItem = $('#ano'),
 	letterTbody = document.querySelector('#letterList > tbody'),
-	testTbody = document.querySelector('#testList > tbody')
+	testTbody = document.querySelector('#testList > tbody'),
+	letterBtn = $('#letterBtn'),
+	testBtn = $('#testBtn')
 	;
 
 
 
 var index = location.href.indexOf('?');
+var qs = location.href.substr(index + 1);
+var arr = qs.split('=');
 if (index != -1) {
-	var qs = location.href.substr(index + 1);
-	var arr = qs.split('=');
 	$('.my-new').css('display','none');
 	$(() => {
         $.ajax('../json/apply/' + arr[1], {
@@ -138,7 +132,7 @@ if (index != -1) {
                 for (var data of result.letter) {
     				var tr = document.createElement('tr');
     				tr.innerHTML = 
-    		      	"<td><a href='../letter/form.html?no=" + data.lno + "'>" + data.lno + "</a></td>" +
+    		      	"<td><a href='../letter/view.html?no=" + data.lno + "'>" + data.lno + "</a></td>" +
     		      	"<td>" + data.lsdt + "</td>" +
     		      	"<td>" + data.ledt + "</td>" +
     		      	"<td>" + data.lscheck + "</td>" +
@@ -147,16 +141,32 @@ if (index != -1) {
     		      	"<td>" + data.lfile + "</td>";
     		        letterTbody.appendChild(tr);
     			}
+                
                 for (var data of result.test) {
+                	var typeName;
+                	if (data.type == 0) {
+                		typeName = "인적성";
+                	} else {
+                		typeName = "면접";
+                	}
+                	
+                	var checkName;
+                	if (data.check == 0) {
+                		checkName = "불합격";
+                	} else if (data.check == 1) {
+                		checkName = "합격";
+                	} else {
+                		checkName = "대기";
+                	}
     				var tr = document.createElement('tr');
     				tr.innerHTML = 
     		      	"<td><a href='../test/form.html?no=" + data.no + "'>" + data.no + "</a></td>" +
-    		      	"<td>" + data.type + "</td>" +
+    		      	"<td>" + typeName + "</td>" +
     		      	"<td>" + data.date + "</td>" +
     		      	"<td>" + data.time + "</td>" +
     		        "<td>" + data.location + "</td>" +
     		      	"<td>" + data.prepare + "</td>" +
-    		      	"<td>" + data.check + "</td>";
+    		      	"<td>" + checkName + "</td>";
     		        testTbody.appendChild(tr);
     			}
             },
@@ -170,31 +180,23 @@ if (index != -1) {
     $('.my-view').css('display', 'none');
 }
 
-var parameters = {
-	"ano":anoItem.val()
-}
-
 addBtn.click(() => {
     $.ajax('../json/apply/add', {
         data: {
-        	JSON.stringify(parameters)
             aname: anameItem.val(),
             adt: adtItem.val()
         },
         dataType: 'json',
         method: 'POST',
         success: (result) => {
-        	
             location.href = "list.html";
         },
         error: () => {
             window.alert('서버 실행 오류!');
         }
-    }).done((data) => {
-    	var rawJsonData = JSON.parse(data);
-    	console.log(rawJsonData);
     });
 });
+
 
 updateBtn.click(() => {
     $.ajax('../json/apply/update', {
@@ -229,6 +231,30 @@ deleteBtn.click(() => {
     });
 });
 
+letterBtn.click(() => {
+    $.ajax({
+        method: 'POST',
+        success: (result) => {
+            location.href = "../letter/form.html?ano="+arr[1];
+        },
+        error: () => {
+            window.alert('서버 실행 오류!');
+        }
+    });
+});
+
+
+testBtn.click(() => {
+    $.ajax({
+        method: 'POST',
+        success: (result) => {
+            location.href = "../test/form.html?ano="+arr[1];
+        },
+        error: () => {
+            window.alert('서버 실행 오류!');
+        }
+    });
+});
 </script>
 
 </html>

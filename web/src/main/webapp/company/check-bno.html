@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script type="text/javascript">
+		
+		var ctxpath = '/app';
+		$(document).ready(function() {
+			var compCheckBtn = $('#btnCheckInfo');
+			console.log(compCheckBtn);
+			compCheckBtn.on('click', function(e) {
+				e.preventDefault(); // 
+				$('#loading').show();
+				console.log('눌렸다!');
+				var compName = $('#name').val();
+				var compNum = $('#businessNo').val();
+				console.log(compName, compNum);
+				var qs = {
+					cname : compName,
+					cnum : compNum
+				};
+				$.ajax({
+					type : 'GET',
+					url : ctxpath + '/company/check-comp-info',
+					data : qs,
+					success : function(response) {
+						$('#loading').hide();
+						var result = JSON.parse(response);
+						if (result.success) {
+							$('#btn-enrol').show();
+						} else {
+							$('#btn-enrol').hide();
+						}
+					}
+				});
+			});
+		});
+	</script>
+</body>
+</html>

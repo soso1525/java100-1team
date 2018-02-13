@@ -8,6 +8,7 @@ public class Msg {
     protected String mcont;
     protected Date mdt;
     protected String mcheck;
+    protected int msend;
     protected int mrecv;
     protected Member writer;
     
@@ -35,7 +36,12 @@ public class Msg {
     public void setMcheck(String mcheck) {
         this.mcheck = mcheck;
     }
-    
+    public int getMsend() {
+        return msend;
+    }
+    public void setMsend(int msend) {
+        this.msend = msend;
+    }
     public int getMrecv() {
         return mrecv;
     }
