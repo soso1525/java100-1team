@@ -34,26 +34,26 @@
 		</nav>
 
 		<h1 style="margin-top:30px; margin-bottom:30px">이력서 목록</h1>
-		<table id='list' class='table table-hover'>
+		<table id='list'  class='table table-hover'>
 			<thead>
 				<tr>
-					<th>번호</th>
-					<th>학력</th>
-					<th>경력</th>
+					<!-- <th>번호</th> -->
+					<!-- <th>학력</th> -->
+					<!-- <th>경력</th> -->
 					<th>직무</th>
 					<th>사진</th>
-					<th>자격증</th>
+					<!-- <th>자격증</th>
 					<th>어학</th>
 					<th>수상</th>
 					<th>전공</th>
 					<th>학교명</th>
 					<th>학점</th>
-					<th>조회수</th>
+					<th>조회수</th> -->
 					<th>동영상</th>
 					<th>이력서파일</th>
-					<th>할말</th>
+					<!-- <th>할말</th>
 					<th>공개여부</th>
-					<th>회원번호</th>
+					<th>회원번호</th> -->
 				</tr>
 			</thead>
 			<tbody>
@@ -110,25 +110,42 @@ function load() {
             tbody.html(""); 
             
             for (var data of result.list) {
+                
+                var file;
+                if(data.file =="") {
+                    file ="N";
+                } else {
+                    file ="Y";
+                }
+                 
+                
+               
+                 var avi;
+                if(data.avi == "") {
+                    avi = "N"; 
+                } else {
+                    avi = "Y";
+                } 
+             
                 $('<tr>')
                     .html(  
-                        "<td><a href='form.html?no=" + data.no + "'>" + data.no + "</a></td>" + 
+                      /*   "<td><a href='form.html?no=" + data.no + "'>" + data.no + "</a></td>" + 
                         "<td>" + data.education + "</td>" +
-                        "<td>" + data.career + "</td>" +
+                        "<td>" + data.career + "</td>" + */
                         "<td>" + data.kind + "</td>" +
                         "<td><img src='../../download/" + data.image + "' height" + "='50px'/></td>"+
-                        "<td>" + data.qualification + "</td>" +
+                       /*  "<td>" + data.qualification + "</td>" +
                         "<td>" + data.language + "</td>" +
                         "<td>" + data.award + "</td>" +
                         "<td>" + data.major + "</td>" +
                         "<td>" + data.schoolName + "</td>" +
                         "<td>" + data.grades + "</td>" +
-                        "<td>" + data.viewCount + "</td>" +
-                        "<td><img src='../../download/" + data.avi + "' height" + "='50px'/></td>"+
-                        "<td><img src='../../download/" + data.file + "' height" + "='50px'/></td>"+
-                        "<td>" + data.note + "</td>" +
+                        "<td>" + data.viewCount + "</td>" + */
+                        "<td>"+ avi + "</td>" +
+                        "<td>" + file + "</td>")
+                       /*  "<td>" + data.note + "</td>" +
                         "<td>" + data.check + "</td>"+
-                        "<td>" + data.ino+ "</td>")
+                        "<td>" + data.ino+ "</td>") */
                         
                     .appendTo(tbody);
             }
@@ -152,8 +169,7 @@ function load() {
             window.alert('서버 실행 오류!');
         }
     });
-     
 }
-
+ 
 </script>
 </html>
