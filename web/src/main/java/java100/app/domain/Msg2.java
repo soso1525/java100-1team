@@ -1,14 +1,13 @@
 package java100.app.domain;
 
-import java.sql.Date;
-
-public class Msg {
+public class Msg2 {
     
     protected int mno;
     protected String mcont;
-    protected Date mdt;
+    protected String mdt;
     protected String mcheck;
     protected int mrecv;
+    protected int msend;
     protected Member writer;
     
     public int getMno() {
@@ -23,10 +22,10 @@ public class Msg {
     public void setMcont(String mcont) {
         this.mcont = mcont;
     }
-    public Date getMdt() {
+    public String getMdt() {
         return mdt;
     }
-    public void setMdt(Date mdt) {
+    public void setMdt(String mdt) {
         this.mdt = mdt;
     }
     public String getMcheck() {
@@ -36,6 +35,12 @@ public class Msg {
         this.mcheck = mcheck;
     }
     
+    public int getMsend() {
+        return msend;
+    }
+    public void setMsend(int msend) {
+        this.msend = msend;
+    }
     public int getMrecv() {
         return mrecv;
     }

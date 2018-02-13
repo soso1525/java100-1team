@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="java100.app.dao.Msg2Dao">
+    <resultMap type="msg2" id="msg2Map">
+        <id  column="mno" property="mno"/>
+        <result column="mcont" property="mcont"/>
+        <result column="mdt" property="mdt"/>
+        <result column="mcheck" property="mcheck"/>
+        <result column="mrecv" property="mrecv"/>
+        <result column="msend" property="msend"/>
+        <association property="writer" javaType="member">
+            <id     column="pno"       property="no"/>
+            <id     column="pid"       property="id"/>
+        </association>
+    </resultMap>
+ 
+    <select id="findAll2" resultMap="msg2Map" parameterType="map">
+        select mno, mcont, mdt, msend, mrecv, mcheck
+        from g_msg
+        where msend=#{writer.no}
+
+        <if test="words != null">
+            <where>
+                <foreach collection="words" item="word">
+                    or title like '%${word}%'
+                </foreach>
+            </where>
+        </if>
+        
+        order by 
+        <choose>
+            <when test="orderColumn == 'sloc' and align == 'desc'">
+                mdt desc
+            </when>
+            <when test="orderColumn == 'sloc' and align == 'asc'">
+                mdt asc
+            </when>
+            <when test="orderColumn == 'sname' and align == 'desc'">
+                mcheck desc
+            </when>
+            <when test="orderColumn == 'sname' and align == 'asc'">
+                mcheck asc
+            </when>
+            <otherwise>
+                mno asc
+            </otherwise>
+        </choose>
+        
+        limit #{startIndex}, #{size}
+    </select>
+    
+        <select id="findAll" resultMap="msg2Map" parameterType="map">
+        select mno, mcont, mdt, msend, mrecv, mcheck
+        from g_msg
+        where mrecv=#{writer.no}
+
+        <if test="words != null">
+            <where>
+                <foreach collection="words" item="word">
+                    or title like '%${word}%'
+                </foreach>
+            </where>
+        </if>
+        
+        order by 
+        <choose>
+            <when test="orderColumn == 'sloc' and align == 'desc'">
+                mdt desc
+            </when>
+            <when test="orderColumn == 'sloc' and align == 'asc'">
+                mdt asc
+            </when>
+            <when test="orderColumn == 'sname' and align == 'desc'">
+                mcheck desc
+            </when>
+            <when test="orderColumn == 'sname' and align == 'asc'">
+                mcheck asc
+            </when>
+            <otherwise>
+                mno asc
+            </otherwise>
+        </choose>
+        
+        limit #{startIndex}, #{size}
+    </select>
+    
+    <select id="countAll" resultType="int">
+        select count(*) from g_msg
+    </select>
+    <select id="findByNo" resultType="msg2" parameterType="int">
+        select mno, mcont, mdt, msend , mrecv
+        from g_msg
+        where mno=#{value}
+    </select>
+   <insert id="insert" parameterType="msg2"
+        useGeneratedKeys="true" keyColumn="no" keyProperty="no">
+        insert into g_msg(
+        mcont ,mdt, mcheck, msend, mrecv)
+        values(#{mcont}, now(), 0, #{writer.no}, #{mrecv})
+    </insert>
+    <!-- 
+    <update id="update" parameterType="msg">
+        update g_msg set 
+            sloc=#{sloc},
+             sname=#{sname},
+            sdesc=#{sdesc},
+            sint=#{sint},
+            sppl=#{sppl},
+            scorp=#{scorp},
+            simg=#{simg},
+            scheck=#{scheck}
+        where sno=#{sno}
+    </update>
+     -->
+
+    <delete id="delete" parameterType="int">
+        delete from g_msg
+        where mno=#{value}
+    </delete>
+    
+    <update id="updateViewCount" parameterType="int">
+        update g_msg set 
+            mcheck=mcheck + 1
+        where mno=#{value}
+    </update>
+    
+</mapper>
+
+
+
+
+
+
+
+
+
