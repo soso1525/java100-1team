@@ -65,6 +65,7 @@ public class ApplyController {
         result.put("apply", applyService.list());
         return result;
     }
+    
     @RequestMapping("add")
     public Object add(
     		Apply apply,
