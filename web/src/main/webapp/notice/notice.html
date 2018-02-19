@@ -37,8 +37,8 @@
     <![endif]-->
 </head>
 <body>
+
 <section id="portfolio" class="portfolio section-space-padding">
-        <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="section-title">
@@ -46,7 +46,7 @@
                           <div class="divider dark">
 						   <i class="icon-picture"></i>
 						   </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                        <p>최신 채용 공고를 한번에 볼 수 있는...</p>
                     </div>
                 </div>
             </div>
@@ -54,76 +54,88 @@
               <div class="col-md-2">
                 <ul class="portfolio">
                     <li class="filter" data-filter="all">all</li>
-                    <li class="filter" data-filter=".apps">apps</li>
-                    <li class="filter" data-filter=".mockups">mockups</li>
-                    <li class="filter" data-filter=".wordpress">wordpress</li>
+                    <li class="filter" data-filter=".apps">Hot</li>
+                    <li class="filter" data-filter=".mockups">Like it!</li>
+                    <li class="filter" data-filter=".wordpress">up-to-date</li>
                 </ul>
               </div>
-            <div class="col-md-10">
-                <div class="portfolio-inner margin-top-30">
-                    <div class="col-md-4 col-sm-6 col-xs-12 mix apps">
-                        <div class="item">
-                            <a href="../images/portfolio/1.jpg" class="portfolio-popup" title="Project Title">
-                                <img src="../images/portfolio/1.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4 col-sm-6 col-xs-12 mix mockups">
-                        <div class="item">
-                            <a href="../images/portfolio/2.jpg" class="portfolio-popup" title="Project Title">
-                                <img src="../images/portfolio/2.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4 col-sm-6 col-xs-12 mix apps">
-                        <div class="item">
-                            <a href="../images/portfolio/3.jpg" class="portfolio-popup" title="Project Title">
-                                <img src="../images/portfolio/3.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4 col-sm-6 col-xs-12 mix mockups wordpress">
-                        <div class="item">
-                            <a href="../images/portfolio/4.jpg" class="portfolio-popup" title="Project Title">
-                                <img src="../images/portfolio/4.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4 col-sm-6 col-xs-12 mix wordpress apps">
-                        <div class="item">
-                            <a href="../images/portfolio/5.jpg" class="portfolio-popup" title="Project Title">
-                                <img src="../images/portfolio/5.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4 col-sm-6 col-xs-12 mix apps mockups wordpress" title="Project Title">
-                        <div class="item">
-                            <a href="../images/portfolio/6.jpg" class="portfolio-popup">
-                                <img src="../images/portfolio/6.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
+              
+   <div class="col-md-10">
+                <div id='list2' class="portfolio-inner margin-top-30">
+        </div> 
         </div>
        </div>
-        
-        <div class="text-center margin-top-50">
-          <a class="button button-style button-style-dark button-style-color-2 smoth-scroll" href="#contact">Hire Me!</a>
-          </div>
-     
     </section>
+
+ <script id="notice" type="text/x-handlebars-template">
+{{#each list}}
+ 
+                    <div class="col-md-4 col-sm-6 col-xs-12 mix all" >
+                    <div class="item">
+                    <a href="form.html?no={{no}}" class="portfolio-popup" title="Notice Title" >
+                    <figure class="snip1384">
+                    <img src="../../download/{{image}}" alt="">
+                    <figcaption>
+                    <h3>{{companyMember.name}}</h3>
+                    <p>{{startDate}} ~ {{endDate}} </p><i class="ion-ios-arrow-right"></i>
+                    </figcaption>
+                        
+                    </figure>
+                    </div>
+                    </div>
+                           
+{{/each}}
+
+</script>
+<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+    
+    
+    
+    
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/plugin.js"></script>
     
     <script type="text/javascript" src="../js/scripts.js"></script>
     <script type="text/javascript">
+    
+    var noItem = $('#no'), 
+    startDateItem = $('#startDate'), 
+    endDateItem = $('#endDate'),
+    imageItem = $('#image'),
+    nodivItem = $('#nodiv'),
+    nameItem = $('#name'),
+    noticeSrc = $('#notice').html(),
+    noticeEngine = Handlebars.compile(noticeSrc);
+   
+    load()
+    
+    var index = location.href.indexOf('?');
+    if (index != -1) { // 기존 데이터를 조회할 경우,
+        var qs = location.href.substr(index + 1);
+        var arr = qs.split('=');
+        $('.my-new').css('display', 'none');
+        $(() => {
+            $.ajax('../json/notice/' + arr[1], {
+                dataType: 'json',
+                success: (result) => {
+                    console.log()
+                   noItem.val(result.data.no);
+                   nodivItem.html("<input class='form-control' readonly id='no' " +
+                           "name='no' value='" + result.data.no + "'> "); 
+                   
+                    nameItem.val(result.data.companyMember.name);
+                    startDateItem.val(result.data.startDate);
+                    endDateItem.val(result.data.endDate);
+                    imageItem.val(result.data.image);
+                },
+                error: () => {
+                    window.alert('서버 실행 오류!');
+                }
+            });
+        });
+    }
+    
+    
     function load() {
         
     	   /*  if (options == undefined) options = {};
@@ -132,21 +144,7 @@
     	    $.ajax('../json/notice/list', {
     	        dataType: 'json',
     	        success: (result) => {
-    	            
-    	            tbody.html(""); 
-    	            
-    	            for (var data of result.list) {
-    	                $('<tr>')
-    	                    .html(  
-    	                        "<td><a href='form.html?no=" + data.no + "'>" + data.no + "</a></td>" + 
-    	                        "<td><img src='../../download/" + data.image + "' height" + "='50px'/></td>"+
-    	                        "<td>" + data.companyMember.name + "</td>" +
-    	                        "<td>" + data.companyMember.logo + "</td>" +
-    	                        "<td>" + data.startDate + "</td>" +
-    	                        "<td>" + data.endDate + "</td>" +
-    	                        "<td>" + data.viewCount + "</td>" )
-    	                    .appendTo(tbody);
-    	            }
+    	            $('#list2').html(noticeEngine(result)); 
     	            
     	         /*    currPageNo = result.pageNo;
     	            currBtn.html(currPageNo);

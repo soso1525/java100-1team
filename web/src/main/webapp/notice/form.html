@@ -52,7 +52,10 @@
 				</div>
 			</div>
 
-
+               
+            <div align="center" id='image'></div>
+            <br>
+            
 			<div class='form-group row'>
 				<label for='image' class='col-sm-2 col-form-label'>공고이미지</label>
 				<div class='col-sm-10'>
@@ -102,6 +105,7 @@ var addBtn = $('#addBtn'),
     endDateItem = $('#endDate'),
     imageItem = $('#image'),
     nodivItem = $('#nodiv'),
+    simgs = $('#image'),
     nameItem = $('#name');
     
 var index = location.href.indexOf('?');
@@ -116,7 +120,7 @@ if (index != -1) { // 기존 데이터를 조회할 경우,
                noItem.val(result.data.no);
                nodivItem.html("<input class='form-control' readonly id='no' " +
                        "name='no' value='" + result.data.no + "'> "); 
-               
+                simgs.html("<img src='../../download/" + result.data.image + "' height='300px'/>");
                 nameItem.val(result.data.companyMember.name);
                 startDateItem.val(result.data.startDate);
                 endDateItem.val(result.data.endDate);
