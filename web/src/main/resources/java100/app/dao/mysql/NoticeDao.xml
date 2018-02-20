@@ -38,6 +38,24 @@
 			c.clogo
 		from g_noti n
 		left join g_corp c on n.cno=c.cno
+		
+		<if test="words != null">
+       <where>
+           <foreach collection="words" item="word">
+               or n.ncnt like '${word}%'
+           </foreach>
+       </where>
+       </if>
+       order by
+       <choose>
+           <when test="orderColumn == 'n.ncnt' and align == 'asc'">
+               n.ncnt asc
+           </when>
+           <otherwise>
+               n.ncnt desc
+           </otherwise>
+       </choose>
+		
 	</select>
 	
 	<select id="findByNo" resultMap="noticeMap" parameterType="int">
@@ -64,6 +82,7 @@
         update g_noti set 
             ncnt=ncnt + 1
         where nno=#{value}
+        
     </update>
     
     <update id="update" parameterType="notice">

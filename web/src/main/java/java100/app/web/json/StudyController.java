@@ -33,7 +33,7 @@ public class StudyController {
     @RequestMapping("list")
     public Object list(
             @RequestParam(value="pn", defaultValue="1") int pageNo,
-            @RequestParam(value="ps", defaultValue="5") int pageSize,
+            @RequestParam(value="ps", defaultValue="8") int pageSize,
             @RequestParam(value="words", required=false) String[] words,
             @RequestParam(value="oc", required=false) String orderColumn,
             @RequestParam(value="al", required=false) String align) throws Exception {
@@ -41,8 +41,8 @@ public class StudyController {
             pageNo = 1;
         }
         
-        if (pageSize < 5 || pageSize > 15) {
-            pageSize = 5;
+        if (pageSize < 8 || pageSize > 15) {
+            pageSize = 8;
         }
         HashMap<String,Object> options = new HashMap<>();
         

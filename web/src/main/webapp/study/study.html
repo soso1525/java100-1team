@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="description" content="150 words">
+    <meta name="author" content="uipasta">
+    <meta name="url" content="http://www.yourdomainname.com">
+    <meta name="copyright" content="company name">
+    <meta name="robots" content="index,follow">
+    
+    
+    <link rel="shortcut icon" href="../images/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="../images/favicon/apple-touch-icon.png">
+    
+    <link rel="stylesheet" type="text/css" href="../css/plugin.css">
+    
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="../stylesheet" href="css/font-awesome.min.css">
+    <link href="../css/animate.min.css" rel="stylesheet"> 
+    <link href="../css/animate.css" rel="stylesheet" />
+    <link href="../css/prettyPhoto.css" rel="stylesheet"> 
+    <link href="../css/style1.css" rel="stylesheet">
+</head>
+<body>
+<section id="portfolio" class="portfolio section-space-padding">
+        <div class="container">
+            <div class="center">
+                <div class="col-md-6 col-md-offset-3">
+                    <h2>Study Group</h2>
+                    <hr>                    
+                    <p class="lead">Study Group with same direction</p>
+                </div>
+            </div>
+        </div>
+      
+      
+      
+      
+        
+<div class="container">
+<div class="col-lg-12">
+<ul class="portfolio-filter text-center">
+                    <li><a class="btn btn-default active" href="#" data-filter="*">관심기업</a></li>
+                    <li><a class="btn btn-default" href="#" data-filter=".bootstrap">관심분야</a></li>
+                    <li><a class="btn btn-default" href="#" data-filter=".html">모집상태</a></li>
+                    <li><a class="btn btn-default" href="#" data-filter=".wordpress">지역</a></li>
+                </ul>
+
+     
+ <div  class="row">
+ <div id='list' class="portfolio-items">
+</div>
+</div>
+</div>
+</div>        
+        
+       
+         
+                
+                
+                
+                              
+</section>
+
+
+        <div class="map">
+            <iframe src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Kuningan,+Jakarta+Capital+Region,+Indonesia&amp;aq=3&amp;oq=kuningan+&amp;sll=37.0625,-95.677068&amp;sspn=37.410045,86.572266&amp;ie=UTF8&amp;hq=&amp;hnear=Kuningan&amp;t=m&amp;z=14&amp;ll=-6.238824,106.830177&amp;output=embed">
+            </iframe>
+        </div>
+
+<footer id="footer" class="midnight-blue">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="text-center">
+                        <a href="#home" class="scrollup"><i class="fa fa-angle-up fa-3x"></i></a>
+                    </div>
+                    <a target="_blank" href="http://localhost:9999/app/member/list">CATCH</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    
+<script id="study" type="text/x-handlebars-template">
+{{#each list}}
+ <div class="portfolio-item apps col-xs-12 col-sm-4 col-md-3">
+ <div class="recent-work-wrap">
+ <img src="../../download/{{simg}}" alt="">
+ <div class="overlay">
+ <div class="recent-work-inner">
+ <p>지역: {{sloc}}</p>
+ <p>관심분야: {{sint}}</p>
+ <p>인원수 : {{sppl}}</p>
+ <p>관심기업: {{scorp}}</p>
+ <a class="preview" href="form.html?sno={{sno}}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+</div>
+</div>
+</div>
+</div>
+
+
+
+{{/each}}
+</script>   
+    
+    <script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+    <script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.prettyPhoto.js"></script>
+    <script src="../js/jquery.isotope.min.js"></script> 
+    <script src="../js/wow.min.js"></script>
+    <script src="../js/jquery.easing.min.js"></script> 
+    <script src="../js/main.js"></script>
+    
+    
+    
+    
+<script type="text/javascript">
+var studySrc = $('#study').html(),
+studyEngine = Handlebars.compile(studySrc);
+member = null;
+/* $('header').load('../header.html', () => {
+    load(1);
+}); */
+
+/* $('footer').load('../footer.html'); */
+
+
+load();
+
+function load(pageNo, options) {
+    
+    if (options == undefined) options = {};
+    options.pn = pageNo;
+    
+    $.ajax('../json/study/list', {
+        data: options,
+        dataType: 'json',
+        success: (result) => {
+            $('#list').html(studyEngine(result));
+            
+        },
+        error: () => {
+            window.alert('서버 실행 오류!');
+        }
+    });
+}
+
+</script>
+
+</body>
+</html>    
+
