@@ -1,101 +1,73 @@
+<div class="modal-header">
+	<h5 style="margin-top: 30px; margin-bottom: 30px">기업 추가</h5>
+</div>
+<div class="modal-body">
+	<form>
+		<div class='form-group row my-view'>
+			<label for='no' class='col-sm-2 col-form-label'>번호</label>
+			<div class='col-sm-10'>
+				<input class='form-control' readonly id='ano' type='number'
+					name='ano'>
+			</div>
+		</div>
+		<div class='form-group row'>
+			<label for='education' class='col-sm-2 col-form-label'>기업명</label>
+			<div class='col-sm-10'>
+				<input class='form-control' id='aname' type='text' name='aname'>
+			</div>
+		</div>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>입사지원관리</title>
-<link rel='stylesheet'
-	href='../../node_modules/bootstrap/dist/css/bootstrap.min.css'>
-<link rel='stylesheet' href='../../css/common.css'>
-</head>
-<body>
-	<div class='container'>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="../member/list.html">CATCH</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarNav" aria-controls="navbarNav"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item active"><a class="nav-link" href="#">Job</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../study/list.html">Study</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../apply/list.html">Apply</a></li>
-					<li class="nav-item"><a class="nav-link" href="../notice/list.html">Notice</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Message</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../app/auth/login">Login</a></li>
-				</ul>
+		<div class='form-group row'>
+			<div class='col-sm-10'>
+				<button id="addBtn" type="button"
+					class='btn btn-primary btn-sm my-new'>추가</button>
+				<button id="updateBtn" type="button"
+					class='btn btn-primary btn-sm my-view'>변경</button>
+				<button id="deleteBtn" type="button"
+					class='btn btn-primary btn-sm my-view'>삭제</button>
 			</div>
-		</nav>
+		</div>
+	</form>
 
-		<h1 style="margin-top: 30px; margin-bottom: 30px">기업 추가</h1>
-		<form>
-			<div class='form-group row my-view'>
-				<label for='no' class='col-sm-2 col-form-label'>번호</label>
-				<div class='col-sm-10'>
-					<input class='form-control' readonly id='ano' type='number'
-						name='ano'>
-				</div>
-			</div>
-			<div class='form-group row'>
-				<label for='education' class='col-sm-2 col-form-label'>기업명</label>
-				<div class='col-sm-10'>
-					<input class='form-control' id='aname' type='text' name='aname'>
-				</div>
-			</div>
+	<table id='letterList' class='table table-hover my-view'>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>저장일시</th>
+				<th>마감일</th>
+				<th>제출여부</th>
+				<th>합격여부</th>
+				<th>지원회사</th>
+				<th>첨삭완료된파일</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+	<button id="letterBtn" type="button"
+		class='btn btn-primary btn-sm my-view'>추가</button>
+	<table id='testList' class='table table-hover my-view'>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>유형</th>
+				<th>날짜</th>
+				<th>시간</th>
+				<th>위치</th>
+				<th>준비물</th>
+				<th>합격여부</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+	<button id="testBtn" type="button"
+		class='btn btn-primary btn-sm my-view'>추가</button>
+</div>
 
-			<div class='form-group row'>
-				<div class='col-sm-10'>
-					<button id="addBtn" type="button"
-						class='btn btn-primary btn-sm my-new'>추가</button>
-					<button id="updateBtn" type="button"
-						class='btn btn-primary btn-sm my-view'>변경</button>
-					<button id="deleteBtn" type="button"
-						class='btn btn-primary btn-sm my-view'>삭제</button>
-				</div>
-			</div>
-		</form>
-		<table id='letterList' class='table table-hover my-view'>
-			<thead>
-				<tr>
-					<th>번호</th>
-					<th>저장일시</th>
-					<th>마감일</th>
-					<th>제출여부</th>
-					<th>합격여부</th>
-					<th>지원회사</th>
-					<th>첨삭완료된파일</th>
-				</tr>
-			</thead>
-			<tbody></tbody>
-		</table>
-		<button id="letterBtn" type="button"
-						class='btn btn-primary btn-sm my-view'>추가</button>
-		<table id='testList' class='table table-hover my-view'>
-			<thead>
-				<tr>
-					<th>번호</th>
-					<th>유형</th>
-					<th>날짜</th>
-					<th>시간</th>
-					<th>위치</th>
-					<th>준비물</th>
-					<th>합격여부</th>
-				</tr>
-			</thead>
-			<tbody></tbody>
-		</table>
-		<button id="testBtn" type="button"
-						class='btn btn-primary btn-sm my-view'>추가</button>
-	</div>
-</body>
-<script src='../node_modules/jquery/dist/jquery.min.js'></script>
-<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
-<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	<button type="button" class="btn btn-primary">Save changes</button>
+</div>
+
 <script type="text/javascript">
 
 var addBtn = $('#addBtn'),
@@ -110,14 +82,10 @@ var addBtn = $('#addBtn'),
 	;
 
 
-
-var index = location.href.indexOf('?');
-var qs = location.href.substr(index + 1);
-var arr = qs.split('=');
 if (index != -1) {
 	$('.my-new').css('display','none');
 	$(() => {
-        $.ajax('../json/apply/' + arr[1], {
+        $.ajax('../json/apply/' + index, {
             dataType: 'json',
             success: (result) => {
             	anoItem.val(result.data.ano);
@@ -226,7 +194,7 @@ letterBtn.click(() => {
     $.ajax({
         method: 'POST',
         success: (result) => {
-            location.href = "../letter/form.html?ano="+arr[1];
+            location.href = "../letter/form.html?ano=" + index;
         },
         error: () => {
             window.alert('서버 실행 오류!');
@@ -239,7 +207,7 @@ testBtn.click(() => {
     $.ajax({
         method: 'POST',
         success: (result) => {
-            location.href = "../test/form.html?ano="+arr[1];
+            location.href = "../test/form.html?ano=" + index;
         }, 
         error: () => {
             window.alert('서버 실행 오류!');

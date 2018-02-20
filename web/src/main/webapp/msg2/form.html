@@ -213,7 +213,8 @@ var addBtn = $('#addBtn'),
 	                    mcontItem.val(result.data.mcont);
 	                },
             error: () => {
-                window.alert('서버 실행 오류!');
+                /* window.alert('서버 실행 오류!'); */
+            	location.href = "sendList.html";
             }
         });
     });
@@ -252,7 +253,7 @@ deleteBtn.click(() => {
             location.href = "receiveList.html";
         },
         error: () => {
-            window.alert('서버 실행 오류!!!');
+            /* window.alert('서버 실행 오류!!!'); */
             location.href="sendList.html";
         }
     });

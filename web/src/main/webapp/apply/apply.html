@@ -16,7 +16,6 @@
     <meta name="robots" content="index,follow">
     
     <title>WebRes - Personal Resume Template</title>
-    
     <!-- Favicon -->
     <link rel="shortcut icon" href="../images/favicon/favicon.ico">
     <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="../images/favicon/apple-touch-icon.png">
@@ -49,7 +48,18 @@
                     </div>
                 </div>
             </div>
-            
+            <!-- Button trigger modal -->
+<!-- 	            <a data-toggle="modal" href="form.html" data-target="#modal-testNew" role="button" data-backdrop="static">
+				 <span class="btn btn-xs btn-success">테스트 등록</span>
+				</a> -->
+				
+				<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="테스트정보 등록" aria-describedby="테스트 모달">
+				    <div class="modal-dialog" style="width:1200px;height:700px">
+				        <div class="modal-content"></div>
+				    </div>
+				</div>
+
+			<!--  -->
             <div class="row">
 	            <div class="col-md-12">
 	                <ul class="portfolio">
@@ -60,22 +70,24 @@
 	                </ul>
 	            </div>
 	            <div class="portfolio-inner margin-top-30" id ='list'>
-	            
 	            </div>
-					
-					
-					
             </div>
         </div>
     </section>
 
-
+<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/plugin.js"></script>
-
 <script type="text/javascript" src="../js/scripts.js"></script>
 
 <script type="text/javascript">
+
+var index = -1;
+
+// modal창이 띄워졌을때 실행하는 이벤트
+$('#modal-testNew').on('shown.bs.modal', (event) => {	
+});
+
 $(() => {
 	$.ajax('../json/apply/list', {
 		dataType: 'json',
@@ -89,13 +101,15 @@ $(() => {
 					div = div + " letter";
 				} 
 				div = $(div + "'></div>");
+				index = data.ano;
 				div.html(
-						/* onclick=\"location.href='http://localhost:9999/apply/form.html?no=" + data.ano + "'\" */
-					"<div id='popup' class='services-detail main_pop' style='cursor:pointer'>" +
-						"<i class='icon-screen-smartphone color-1'></i>" +
-						"<h5>" + data.aname + "</h5>" +
-						"<hr>" +
-					"</div>");
+					"<a data-toggle='modal' href='form.html' data-target='#modal-testNew' role='button' data-backdrop='static'>" +
+						"<div class='services-detail' style='cursor:pointer'>" +
+							"<i class='icon-screen-smartphone color-1'></i>" +
+							"<h5>" + data.aname + "</h5>" +
+							"<hr>" +
+						"</div>" +
+					"</a>");
 				$('#list').append(div);
 			}
 		},
