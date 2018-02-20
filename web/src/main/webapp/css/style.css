@@ -1,4 +1,4 @@
-icon-smart/*
+/*
    
     Template Name : WebRes - Personal Resume Template
     Author : UiPasta Team
@@ -718,7 +718,7 @@ tr > td:nth-child(2) {
 }
 
 ul.portfolio {
-    padding: 5px 10px;
+    padding: 10px 10px;
     list-style: none;
     margin-top: 30px;
     margin-left: 8px;
@@ -774,7 +774,7 @@ ul.portfolio li.active {
 
 .portfolio .item a:before{
   color: #ffffff;
-  /* content: "\f00e"; */
+  content: "\f00e";
   font-family: "FontAwesome";
   text-align: center;
   color: #ffffff;
@@ -973,6 +973,8 @@ ul.portfolio li.active {
     text-align: center;
     margin: 0 auto;
     margin-bottom: 30px;
+    margin-right: 30px;
+    margin-reft: 30px;
 }
 
 .services-section .services-detail:hover {
@@ -1822,6 +1824,7 @@ ul.portfolio li.active {
 .uipasta-credit a:hover {
 	color: #f7639a;
 }
+<<<<<<< HEAD
 
 
 /* Fade In/Out InSung */
@@ -1938,3 +1941,5 @@ figure.snip1384.hover i {
   opacity: 1;
 }
 
+=======
+>>>>>>> branch 'master' of https://github.com/soso1525/java100-1team.git

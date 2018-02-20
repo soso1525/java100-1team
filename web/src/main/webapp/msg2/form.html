@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>스터디관리</title>
+<link rel='stylesheet' href='../node_modules/bootstrap/dist/css/bootstrap.min.css'>
+<link rel='stylesheet' href='../css/common.css'>
+<link rel="shortcut icon" href="../images/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="../images/favicon/apple-touch-icon.png">
+    
+    <!-- All CSS Plugins -->
+    <link rel="stylesheet" type="text/css" href="../css/plugin.css">
+    
+    <!-- Main CSS Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    
+    <!-- Google Web Fonts  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
+
+</head>
+<body>
+<div class='container'>
+
+<header>
+<nav class='navbar navbar-expand-lg navbar-light bg-red'>
+<button type="button" class='btn btn-primary btn-sm' id="btn-apply" onclick="location.href='../apply/list'">apply</button>
+<button type="button" class='btn btn-primary btn-sm' id="btn-notice" onclick="location.href='../notice/list'">notice</button>
+<button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
+  <span class='navbar-toggler-icon'></span>
+</button>
+<div class='collapse navbar-collapse' id='navbarNav'>
+<ul class='navbar-nav mr-auto'>
+  <li class='nav-item' style="margin-left:0px; margin-top:0px; padding-right: 20px; font-size: 50px;">
+    <a class='nav-link' href='../member/list'>CATCH</a>
+  </li>
+    <li class='nav-item' style="margin-left:0px; margin-top:0px; padding-right: 20px; font-size: 20px;">
+    <a class='nav-link' href='../msg2/sendList.html'>쪽지함</a>
+  </li>
+  <li class='nav-item' style="margin-left:353px; margin-top:85px;">
+    <a class='nav-brand' href='../score/list'>
+    <img src='/images/2_1.png' width='98' height='30' class='d-inline-block' alt=''>
+    </a>
+  </li>
+  <li class='nav-item' style="margin-left:20px; margin-top:85px;">
+    <a class='nav-brand' href='../study/list'>
+    <img src='/images/2_2.png' width='98' height='30' class='d-inline-block' alt=''>
+    </a>
+  </li>
+  <li class='nav-item' style="margin-left:20px; margin-top:85px;">
+    <a class='nav-brand' href='../score/list'>
+    <img src='/images/2_3.png' width='98' height='30' class='d-inline-block' alt=''>
+    </a>
+  </li>
+  <li class='nav-item' style="margin-left:20px; margin-top:85px;">
+    <a class='nav-brand' href='/app/auth/logout'>
+    <img src='/images/2_5.png' width='98' height='30' class='d-inline-block' alt=''>
+    </a>
+  </li>
+    </ul>
+
+
+
+</div>
+</nav>
+</header>
+
+<form method='get'>
+<div id='nod'>
+</div>
+
+<!-- <div class='form-group row my-view'>
+<label for='mno' class='col-sm-2 col-form-label'>번호</label>
+<div class='col-sm-10'>
+<input class='form-control' readonly id='mno' type='number' name='mno'>
+</div>
+</div>
+<div class='form-group row my-view'>
+<label for='msend' class='col-sm-2 col-form-label'>보낸이</label>
+<div class='col-sm-10'>
+<input class='form-control' readonly id='msend' type='number' name='msend'>
+</div>
+</div>
+<div class='form-group row'>
+<label for='mrecv' class='col-sm-2 col-form-label'>받는이</label>
+<div class='col-sm-10'>
+<input class='form-control' id='mrecv' type='number' name='mrecv'>
+</div>
+</div>
+<div class='form-group row my-view'>
+<label for='mdt' class='col-sm-2 col-form-label'>보낸날짜</label>
+<div class='col-sm-10'>
+<input class='form-control' readonly id='mdt' type='Date' name='mdt'>
+</div>
+</div> 
+<div class='form-group row'>
+<label for='mcont' class='col-sm-2 col-form-label'>내용</label>
+<div class='col-sm-10'>
+<input class='form-control' id='mcont' type='text' name='mcont'>
+</div>
+</div> -->
+
+<section id="contact" class="section-space-padding">
+       <div class="container">
+          <div class="row">
+                <div class="col-sm-12">
+                    <div class="section-title">
+                        <h2>Contact Me.</h2>
+                          <div class="divider dark">
+                           <i class="icon-envelope-open"></i>
+                         </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                    </div>
+                </div>
+            </div>
+            
+         
+         <div class="margin-top-30 margin-bottom-50">
+           <div class="row">
+           
+             <div class="col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8">   
+                 
+               <div class="row">
+                  <form class="contact-us pattern-bg">
+                    
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <input type="hidden" id="mno" class="form-control my-view" placeholder="number">
+                         </div>
+                        </div>
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <input type="text" id="msend" class="form-control my-view" placeholder="Your Name">
+                         </div>
+                        </div>
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <input type="text" id="mrecv" class="form-control" placeholder="Your Name">
+                         </div>
+                        </div>
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <input type="text" id="mdt" class="form-control my-view" placeholder="Your Name">
+                         </div>
+                        </div>
+                       <div class="col-sm-12">
+                        <div class="textarea-message form-group">
+                          <textarea id="mcont" class="textarea-message form-control" placeholder="Your Message" rows="5"></textarea>
+                          </div>
+                         </div>
+                   
+                    <div class="text-center" style="width: 1000px;">      
+                       <button id="addBtn" type="submit" class="button button-style button-style-dark button-style-color-2 my-new">Submit</button>
+                    </div>
+                    
+                    <div class="text-center" style="width: 1000px;">      
+                       <button id="deleteBtn" type="submit" class="button button-style button-style-dark button-style-color-2 my-view">Delete</button>
+                    </div>
+                       
+                  </form>
+                   
+                </div>
+              </div>
+            </div>
+           
+        
+        </div>
+       </div>
+     </section>
+
+<!-- <div class='form-group row'>
+<div class='col-sm-10'>
+<button id="addBtn" type="button" class='btn btn-primary btn-sm my-new'>추가</button>
+<button id="deleteBtn" type="button" class='btn btn-primary btn-sm my-view'>삭제</button>
+</div>
+</div> -->
+</form>
+</div>
+
+<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/plugin.js"></script>
+    <!-- Main Javascript File  -->
+<script src="../js/scripts.js"></script>
+
+<script type="text/javascript">
+
+var addBtn = $('#addBtn'),
+	deleteBtn = $('#deleteBtn'),
+	msendItem = $('#msend'),
+	mnoItem = $('#mno'),
+	mrecvItem = $('#mrecv'),
+	pidItem = $('#pid'),
+	mdtItem = $('#mdt'),
+	mcontItem = $('#mcont'),
+	nodiv = $('#nod')
+	;
+
+ 	    var index = location.href.indexOf('?');
+	    if (index != -1) { // 기존 데이터를 조회할 경우,
+	        var qs = location.href.substr(index + 1);
+	        var arr = qs.split('=');
+	        $('.my-new').css('display', 'none');
+	        $(() => {
+	            $.ajax('../json/msg2/' + arr[1], {
+	                dataType: 'json',
+	                success: (result) => {
+	                    mnoItem.val(result.data.mno);
+	                    msendItem.val(result.data.pid1);
+	                    mrecvItem.val(result.data.pid2);
+	                    mdtItem.val(result.data.mdt);
+	                    mcontItem.val(result.data.mcont);
+	                },
+            error: () => {
+                /* window.alert('서버 실행 오류!'); */
+            	location.href = "sendList.html";
+            }
+        });
+    });
+    
+} else { // 신규 데이터 입력일 경우,
+    $('.my-view').css('display', 'none');
+}
+	    
+addBtn.click(() => {
+    $.ajax('../json/msg2/add', {
+        data: {
+            mrecv: mrecvItem.val(),
+            mcont: mcontItem.val()
+        },
+        dataType: 'json',
+        method: 'POST',
+        success: (result) => {
+        	
+            location.href = "sendList.html";
+        },
+        error: () => {
+            /* window.alert('서버 실행 오류!!'); */
+            location.href = "sendList.html";
+        }
+    });
+});
+
+
+deleteBtn.click(() => {
+    $.ajax('../json/msg2/delete', {
+        data: {
+            mno: mnoItem.val()
+        },
+        dataType: 'json',
+        success: (result) => {
+            location.href = "receiveList.html";
+        },
+        error: () => {
+            /* window.alert('서버 실행 오류!!!'); */
+            location.href="sendList.html";
+        }
+    });
+});
+
+</script>
+</body>
+</html>
