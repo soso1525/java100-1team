@@ -53,8 +53,8 @@
             <div class="row">
 	            <div class="col-md-12">
 	                <ul class="portfolio">
-	                    <li class="filter" data-filter="all">all</li>
 	                    <li class="filter" data-filter=".favorite">좋아요</li>
+	                    <li class="filter" data-filter="all">지원중</li>
 	                    <li class="filter" data-filter=".letter">자소서</li>
 	                    <li class="filter" data-filter=".test">인적성/면접</li>
 	                </ul>
@@ -90,7 +90,8 @@ $(() => {
 				} 
 				div = $(div + "'></div>");
 				div.html(
-					"<div class='services-detail' style='cursor:pointer' onclick=\"location.href='http://localhost:9999/apply/form.html?no=" + data.ano + "'\">" +
+						/* onclick=\"location.href='http://localhost:9999/apply/form.html?no=" + data.ano + "'\" */
+					"<div id='popup' class='services-detail main_pop' style='cursor:pointer'>" +
 						"<i class='icon-screen-smartphone color-1'></i>" +
 						"<h5>" + data.aname + "</h5>" +
 						"<hr>" +
