@@ -52,7 +52,7 @@
 </nav>
 </header>
 
-<h1>보낸 쪽지 목록</h1>
+<h1>받은 쪽지 목록</h1>
 
 <table id='list' class='table table-hover'>
 <thead>
@@ -133,8 +133,8 @@ function load(pageNo, options) {
                 $('<tr>')
                     .html(  
                         "<td><a href='form.html?mno=" + data.mno + "'>" + data.mno + "</a></td>" +
-                        "<td>" + data.msend + "</td>" +
-                        "<td>" + data.mrecv + "</td>" +
+                        "<td>" + data.pid1 + "</td>" +
+                        "<td>" + data.pid2 + "</td>" +
                         "<td>" + data.mdt + "</td>" +
                         "<td>" + data.mcont + "</td>" +
                         "<td>" + mcheck1 + "</td>")

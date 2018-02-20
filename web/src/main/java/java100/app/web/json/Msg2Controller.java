@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -26,14 +27,22 @@ public class Msg2Controller {
     @Autowired MemberService memberService;
     @Autowired ServletContext servletContext;
     
+    @RequestMapping(value = "check-memb-id", method = RequestMethod.GET)
+    @ResponseBody
+    public String checkMembId(@RequestParam String id) throws Exception {
+        boolean exist = memberService.isMatchMemberId(id);
+        return "{\"success\": " + exist + "}";
+    }
+    
     @RequestMapping(value="add", method=RequestMethod.POST)
     public Object add(Msg2 msg2,
-           @ModelAttribute(value="loginUser") Member loginUser) throws Exception {
-        
-        msg2.setWriter(loginUser);
-        
-        msg2Service.add(msg2);
-        
+           @ModelAttribute(value="loginUser") Member loginUser,
+           @RequestParam String mrecv
+           ) throws Exception {
+        msg2.setWriter(loginUser); // 보내는 사람 정
+        msg2.setPid2(mrecv); // 받는사람 id
+
+        int resultAdd = msg2Service.msgAdd(msg2); // Msg insert
         HashMap<String, Object> result = new HashMap<>();
         result.put("status", "success");
         
@@ -45,14 +54,6 @@ public class Msg2Controller {
 //        return "msg2/form";
 //    }
     
-//    @RequestMapping(value="check-memb-id", method=RequestMethod.GET)
-//    @ResponseBody
-//    public String checkMembInfo (@RequestParam String id) throws Exception {
-//        
-//        boolean exist = memberService.isMatchMemberId(id);
-//        
-//        return "{\"success\": " + exist + "}";
-//    }
     
     @RequestMapping("receiveList")
     public Object receiveList (

@@ -7,14 +7,18 @@ import java100.app.domain.Msg2;
 
 public interface Msg2Dao {
 
-    int insert(Msg2 msg2);
+    
     List<Msg2> findAll(Map<String,Object> params);
     List<Msg2> findAll2(Map<String,Object> params);
     int updateViewCount(int mno);
     Msg2 findByNo(int mno);
+//    Msg2 memberByNoAndId(int mrecv);
     int countAll();
 //    int update(Msg msg);
     int delete(int mno);
+    
+    int insert(Map<String,Object> params);    // Msg insert
+    int chaneId(String pid2); // id를 받아 no로 변환 
 }
 
 

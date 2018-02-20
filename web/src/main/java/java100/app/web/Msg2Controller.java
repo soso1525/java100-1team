@@ -32,10 +32,9 @@ public class Msg2Controller {
     public String add(Msg2 msg2,
            @ModelAttribute(value="loginUser") Member loginUser) throws Exception {
         
-        
         msg2.setWriter(loginUser);
         
-        msg2Service.add(msg2);
+        //msg2Service.add(msg2);
         
         return "redirect:receiveList";
     }
