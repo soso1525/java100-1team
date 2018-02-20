@@ -2,6 +2,7 @@ package java100.app.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.ServletContext;
 
@@ -47,12 +48,12 @@ public class NoticeController {
 //            pageSize = 5;
 //        }
 //        
-//        HashMap<String,Object> options = new HashMap<>();
-//        if (words != null && words[0].length() > 0) {
-//            options.put("words", words);
-//        }
-//        options.put("orderColumn", orderColumn);
-//        options.put("align", align);
+            HashMap<String,Object> options = new HashMap<>();
+            if (words != null && words[0].length() > 0) {
+            options.put("words", words);
+        }
+           options.put("orderColumn", orderColumn);
+           options.put("align", align);
 //        
 //        int totalCount = memberService.getTotalCount();
 //        int lastPageNo = totalCount / pageSize;
@@ -66,6 +67,7 @@ public class NoticeController {
         model.addAttribute("list", noticeService.list());
         return "notice/list";
     }
+    
     
     @RequestMapping("form")
     public String form() throws Exception {

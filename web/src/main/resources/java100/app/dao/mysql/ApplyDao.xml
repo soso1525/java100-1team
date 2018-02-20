@@ -11,20 +11,43 @@
         <result column="aname" property="aname"/>
         <result column="adt" property="adt"/>
 		<result column="ino" property="ino"/>
+		<association property="test" javaType="test">
+			<id column="tno" property="no"/>
+			<result column="ttype" property="type"/>
+			<result column="tdt" property="date"/>
+			<result column="ttime" property="time"/>
+			<result column="tloc" property="location"/>
+			<result column="tpre" property="prepare"/>
+			<result column="tcheck" property="check"/>
+			<result column="ano" property="ano"/>
+		</association>
+		<association property="letter" javaType="letter">
+			<id column="lno" property="lno"/>
+			<result column="lsdt" property="lsdt"/>
+			<result column="ledt" property="ledt"/>
+			<result column="lscheck" property="lscheck"/>
+			<result column="lpcheck" property="lpcheck"/>
+			<result column="lfile" property="lfile"/>
+			<result column="ano" property="ano"/>
+		</association>
     </resultMap>
 
     <select id="findAll" resultMap="applyMap">
 		select
-            ano,
-            aname,
-            adt,
-            ino
-			from g_app
+            a.ano,
+            a.aname,
+            a.adt,
+            a.ino,
+            t.tno,
+            l.lno
+			from g_app a
+			left join g_test t on t.ano = a.ano
+			left join g_let l on l.ano = a.ano
 	</select>
 	
 	<insert id="insert" parameterType="apply">
         insert into g_app(aname, adt, ino)
-        values(#{aname}, #{adt}, #{member.no})
+        values(#{aname}, now(), #{member.no})
     </insert>
     
     <select id="findByNo" resultMap="applyMap" parameterType="int">

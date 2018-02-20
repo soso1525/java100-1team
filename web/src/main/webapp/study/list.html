@@ -70,16 +70,37 @@
 
 		<footer></footer>
 	</div>
-
+	
+<script id="study" type="text/x-handlebars-template">
+{{#each list}}
+<tr>
+              <td>{{sno}}</td>
+              <td><a href='form.html?sno={{sno}}'>{{sloc}}</a></td> 
+              <td>{{sname}}</td>
+              <td>{{sint}}</td>
+              <td>{{sppl}}</td>
+              <td>{{sregdt}}</td>
+              <td>{{scorp}}</td>
+              <td>{{scheck}}</td>
+              <td><img src='../../download/{{simg}}' height='50px'; width='50px';/></td>    
+</tr>
+<tr>
+{{/each}}
+</script>	
+	
+<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
 	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
 	<script type="text/javascript">
+	
 var prevBtn = $('#prevBtn'),
 currBtn = $('#currBtn'),
 nextBtn = $('#nextBtn'),
 tbody = $('#list > tbody'),
 currPageNo = 1,
+studySrc = $('#study').html(),
+studyEngine = Handlebars.compile(studySrc);
 member = null;
 /* $('header').load('../header.html', () => {
     load(1);
@@ -105,25 +126,9 @@ function load(pageNo, options) {
         data: options,
         dataType: 'json',
         success: (result) => {
-            
-            tbody.html("");
-            
-            for (var data of result.list) {
-                $('<tr>')
-                    .html(  
-                        "<td>" + data.sno + "</td>" + 
-                        "<td><a href='form.html?sno=" + data.sno + "'>" + data.sloc + "</a></td>" + 
-                        "<td>" + data.sname + "</td>" +
-                        "<td>" + data.sint + "</td>" +
-                        "<td>" + data.sppl + "</td>" +
-                        "<td>" + data.sregdt + "</td>" +
-                        "<td>" + data.scorp + "</td>" +
-                        "<td>" + data.scheck + "</td>" +
-                         /* "<td>" + data.simg + "</td>") */
-                        /*"<td><img src='../../download/" + file.filename + "' alt=" + file.filename + " width='50px' height='50px'></td>") */
-                         "<td><img src='../../download/" + data.simg + "' height" + "='50px'; width='50px';/></td>")
-                    .appendTo(tbody);
-            }
+            tbody.html(studyEngine(result));
+               
+                
             
             currPageNo = result.pageNo;
             currBtn.html(currPageNo);

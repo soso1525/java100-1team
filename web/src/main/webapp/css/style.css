@@ -1,4 +1,4 @@
-/*
+icon-smart/*
    
     Template Name : WebRes - Personal Resume Template
     Author : UiPasta Team
@@ -718,7 +718,7 @@ tr > td:nth-child(2) {
 }
 
 ul.portfolio {
-    padding: 30px 10px;
+    padding: 5px 10px;
     list-style: none;
     margin-top: 30px;
     margin-left: 8px;
@@ -968,8 +968,8 @@ ul.portfolio li.active {
     box-shadow: 0px 1px 2px 0px rgba(90, 91, 95, 0.15);
     transition: all 0.3s ease-in-out;
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 150px;
+    height: 150px;
     text-align: center;
     margin: 0 auto;
     margin-bottom: 30px;
@@ -983,7 +983,7 @@ ul.portfolio li.active {
 
 .services-section .services-detail i {
    font-size: 42px;
-   margin-top: 88px;
+   margin-top: 44px;
    display: inline-block;
    vertical-align: middle;
 }
@@ -1823,6 +1823,7 @@ ul.portfolio li.active {
 	color: #f7639a;
 }
 
+
 /* Fade In/Out InSung */
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,700);
 @import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
@@ -1936,3 +1937,4 @@ figure.snip1384.hover i {
   transform: translate(0px, 0px);
   opacity: 1;
 }
+
