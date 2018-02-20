@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>catch</title>
+<link rel="shortcut icon" href="images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="144x144" type="image/x-icon"
+	href="../images/favicon/apple-touch-icon.png">
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
+</head>
+<body>
+	<div class='container'>
+		<header></header>
+		<h1 style="margin-top: 30px; margin-bottom: 30px">회원 목록</h1>
+
+		<table id="list" class='table table-hover'>
+			<thead>
+				<tr>
+					<th>No</th>
+					<th>ID</th>
+					<th>Email</th>
+					<th>Type</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div>
+
+	<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+	<script src='../js/login.js'></script>
+	<script id="template1" type="text/x-handlebars-template">
+{{#each memberList}}
+<tr>
+  <td>{{no}}</td>
+  <td><a href="{{#viewpage type}}{{/viewpage}}.html?no={{no}}">{{id}}</a></td>
+  <td>{{email}}</td>
+  <td>{{#typeCheck type}}{{/typeCheck}}</td>
+</tr>
+{{/each}}
+</script>
+
+	<script type="text/javascript">
+	$('header').load("../header.html");
+	var tbody = $('#list > tbody'),
+    template1Src = $('#template1').html(),
+    template1Engine = Handlebars.compile(template1Src);
+	
+	$.ajax('../json/member/list', {
+	    dataType: 'json',
+	    success: (result) => {
+	        tbody.html(template1Engine(result));
+	    },
+	    error: () => {
+	        window.alert('서버 실행 오류!');
+	    }
+	});
+
+	Handlebars.registerHelper('typeCheck', function(type) {
+	  if(type == 1) {
+	    return '개인';
+	  }
+	  return '기업';
+	});
+	
+	Handlebars.registerHelper('viewpage', function(type) {
+		  if(type == 1) {
+			 return 'i-view';
+		  }
+		  return 'c-view';
+		});
+	</script>
+
+
+</body>
+</html>

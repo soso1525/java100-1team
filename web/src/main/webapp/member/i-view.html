@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원관리</title>
+<link rel="shortcut icon" href="images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="../images/favicon/apple-touch-icon.png">
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="/main.html">CATCH</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item active"><a class="nav-link" href="#">Job</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="../study/list.html">Study</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="../apply/list.html">Apply</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="../notice/list.html">Notice</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Message</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="../auth/login.html">Login</a></li>
+			</ul>
+
+			<span id="username"></span>
+			<button id="logoutBtn" type="button" class='btn btn-light btn-sm'>로그아웃</button>
+		</div>
+	</nav>
+	<div class="container">
+		<h1 style="margin-top: 30px; margin-bottom: 30px">개인회원 상세 정보</h1>
+
+		<form method='post' id="form">
+			<div class="form-row">
+				<div class="col-md-6 mb-3">
+					<label for="id">ID</label> <input type="text" class="form-control"
+						id="id">
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-6 mb-3">
+					<label for="name">Name</label> <input type="text"
+						class="form-control" id="name">
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-6 mb-3">
+					<label for="email">Email</label> <input type="text"
+						class="form-control" id="email">
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-6 mb-3">
+					<label for="phone">Phone</label> <input type="text"
+						class="form-control" id="phone">
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-6 mb-3">
+					<label for="birth">Birthday</label> <input type="text"
+						class="form-control" id="birth">
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-6 mb-3">
+					<label for="location">Location</label> <input type="text"
+						class="form-control" id="location">
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-6 mb-3">
+					<label for="regDate">Register Date</label> <input type="text"
+						class="form-control" id="regDate">
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-6 mb-3">
+					<label for="type">Member Type</label> <input type="text"
+						class="form-control" id="type" value="Individual">
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+
+	<script type="text/javascript">
+	var index = location.href.indexOf('?');
+	if (index != -1) { 
+	    var qs = location.href.substr(index + 1);
+	    var arr = qs.split('=');
+	    $(() => {
+	        $.ajax('../json/member/' + arr[1], {
+	            dataType: 'json',
+	            success: (result) => {
+	            	$('#id').val(result.member.id);
+	            	document.getElementById("id").readOnly = true;
+	            	$('#name').val(result.imember.name);
+	            	document.getElementById("name").readOnly = true;
+	            	$('#email').val(result.member.email);
+	            	document.getElementById("email").readOnly = true;
+	            	$('#phone').val(result.member.tel);
+	            	document.getElementById("phone").readOnly = true;
+	            	$('#birth').val(innerHTML = result.imember.birth);
+	            	document.getElementById("birth").readOnly = true;
+	            	$('#location').val(result.member.address);
+	            	document.getElementById("location").readOnly = true;
+	            	$('#regDate').val(result.member.createdDate);
+	            	document.getElementById("regDate").readOnly = true;
+	            	document.getElementById("type").readOnly = true;
+	            },
+	            error: () => {
+	                window.alert('서버 실행 오류!');
+	            }
+	        });
+	    });
+	    
+	} 
+	</script>
+</body>
+</html>
