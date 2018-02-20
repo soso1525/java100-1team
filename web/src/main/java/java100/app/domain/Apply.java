@@ -8,7 +8,22 @@ public class Apply {
     int ino;
     IndividualMember writer;
     Member member;
+    Test test;
+    Letter letter;
     
+    
+	public Test getTest() {
+		return test;
+	}
+	public void setTest(Test test) {
+		this.test = test;
+	}
+	public Letter getLetter() {
+		return letter;
+	}
+	public void setLetter(Letter letter) {
+		this.letter = letter;
+	}
 	public int getIno() {
 		return ino;
 	}
