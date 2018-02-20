@@ -45,7 +45,7 @@
 					<th>삭제</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id='tbody'>
 			</tbody>
 		</table>
 	</div>
@@ -54,7 +54,7 @@
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
 	<script type="text/javascript">
-var tbody = document.querySelector('#list > tbody');
+var tbody = document.querySelector('#tbody');
 load();
 
 function load() {
