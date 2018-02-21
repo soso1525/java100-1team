@@ -195,10 +195,3 @@
             });
 
    })(jQuery);
-
-/* 인성 */
-$(".hover").mouseleave(
-function () {
-  $(this).removeClass("hover");
-}
-);

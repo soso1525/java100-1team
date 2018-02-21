@@ -28,7 +28,7 @@
 			</div>
 		</div>
 	</form>
-
+	
 	<table id='letterList' class='table table-hover my-view'>
 		<thead>
 			<tr>
@@ -67,153 +67,154 @@
 	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 	<button type="button" class="btn btn-primary">Save changes</button>
 </div>
-
 <script type="text/javascript">
-
 var addBtn = $('#addBtn'),
 	updateBtn = $('#updateBtn'),
 	deleteBtn = $('#deleteBtn'),
-	anameItem = $('#aname'),
-	anoItem = $('#ano'),
-	letterTbody = document.querySelector('#letterList > tbody'),
-	testTbody = document.querySelector('#testList > tbody'),
 	letterBtn = $('#letterBtn'),
-	testBtn = $('#testBtn')
-	;
+	testBtn = $('#testBtn'),
+	anameItem = $('#aname'),
+	anoItem = $('#ano'), 
+	letterTbody = document.querySelector('#letterList > tbody'),
+	testTbody = document.querySelector('#testList > tbody');
+	
+function view(value) {
+	index = value;
+	if (index != -1) {
+		$('.my-new').css('display','none');
+		$(() => {
+		    $.ajax('../json/apply/' + index, {
+		        dataType: 'json',
+		        success: (result) => {
+		        	anoItem.val(result.data.ano);
+		            anameItem.val(result.data.aname);
+		            letterTbody.innerHTML = "";
+		            for (var data of result.letter) {
+						var tr = document.createElement('tr');
+						tr.innerHTML = 
+				      	"<td><a href='../letter/view.html?no=" + data.lno + "'>" + data.lno + "</a></td>" +
+				      	"<td>" + data.lsdt + "</td>" +
+				      	"<td>" + data.ledt + "</td>" +
+				      	"<td>" + data.lscheck + "</td>" +
+				        "<td>" + data.lpcheck + "</td>" +
+				      	"<td>" + data.apply.aname + "</td>" +
+				      	"<td>" + data.lfile + "</td>";
+				        letterTbody.appendChild(tr);
+					}
+		            testTbody.innerHTML = "";
+		            for (var data of result.test) {
+		            	var typeName;
+		            	if (data.type == 0) {
+		            		typeName = "인적성";
+		            	} else {
+		            		typeName = "면접";
+		            	}
+		            	
+		            	var checkName;
+		            	if (data.check == 0) {
+		            		checkName = "불합격";
+		            	} else if (data.check == 1) {
+		            		checkName = "합격";
+		            	} else {
+		            		checkName = "대기";
+		            	}
+						var tr = document.createElement('tr');
+						tr.innerHTML = 
+				      	"<td><a href='../test/form.html?no=" + data.no + "'>" + data.no + "</a></td>" +
+				      	"<td>" + typeName + "</td>" +
+				      	"<td>" + data.date + "</td>" +
+				      	"<td>" + data.time + "</td>" +
+				        "<td>" + data.location + "</td>" +
+				      	"<td>" + data.prepare + "</td>" +
+				      	"<td>" + checkName + "</td>";
+				        testTbody.appendChild(tr);
+					}
+		        },
+		        error: () => {
+		            window.alert('서버 실행 오류!');
+		        }
+		    });
+		});
+
+		} else { // 신규 데이터 입력일 경우,
+		$('.my-view').css('display', 'none');
+		}
+
+		addBtn.click(() => {
+		$.ajax('../json/apply/add', {
+		    data: {
+		        aname: anameItem.val()
+		    },
+		    dataType: 'json',
+		    method: 'POST',
+		    success: (result) => {
+		        location.href = "list.html";
+		    },
+		    error: () => {
+		        window.alert('서버 실행 오류!');
+		    }
+		});
+		});
 
 
-if (index != -1) {
-	$('.my-new').css('display','none');
-	$(() => {
-        $.ajax('../json/apply/' + index, {
-            dataType: 'json',
-            success: (result) => {
-            	anoItem.val(result.data.ano);
-                anameItem.val(result.data.aname);
-                for (var data of result.letter) {
-    				var tr = document.createElement('tr');
-    				tr.innerHTML = 
-    		      	"<td><a href='../letter/view.html?no=" + data.lno + "'>" + data.lno + "</a></td>" +
-    		      	"<td>" + data.lsdt + "</td>" +
-    		      	"<td>" + data.ledt + "</td>" +
-    		      	"<td>" + data.lscheck + "</td>" +
-    		        "<td>" + data.lpcheck + "</td>" +
-    		      	"<td>" + data.apply.aname + "</td>" +
-    		      	"<td>" + data.lfile + "</td>";
-    		        letterTbody.appendChild(tr);
-    			}
-                
-                for (var data of result.test) {
-                	var typeName;
-                	if (data.type == 0) {
-                		typeName = "인적성";
-                	} else {
-                		typeName = "면접";
-                	}
-                	
-                	var checkName;
-                	if (data.check == 0) {
-                		checkName = "불합격";
-                	} else if (data.check == 1) {
-                		checkName = "합격";
-                	} else {
-                		checkName = "대기";
-                	}
-    				var tr = document.createElement('tr');
-    				tr.innerHTML = 
-    		      	"<td><a href='../test/form.html?no=" + data.no + "'>" + data.no + "</a></td>" +
-    		      	"<td>" + typeName + "</td>" +
-    		      	"<td>" + data.date + "</td>" +
-    		      	"<td>" + data.time + "</td>" +
-    		        "<td>" + data.location + "</td>" +
-    		      	"<td>" + data.prepare + "</td>" +
-    		      	"<td>" + checkName + "</td>";
-    		        testTbody.appendChild(tr);
-    			}
-            },
-            error: () => {
-                window.alert('서버 실행 오류!');
-            }
-        });
-    });
-    
-} else { // 신규 데이터 입력일 경우,
-    $('.my-view').css('display', 'none');
+		updateBtn.click(() => {
+		$.ajax('../json/apply/update', {
+		    data: {
+		        ano: anoItem.val(),
+		        aname: anameItem.val()
+		    },
+		    dataType: 'json',
+		    method: 'POST',
+		    success: (result) => {
+		        location.href = "list.html";
+		    },
+		    error: () => {
+		        window.alert('서버 실행 오류!');
+		    }
+		});
+		});
+
+		deleteBtn.click(() => {
+		$.ajax('../json/apply/delete', {
+		    data: {
+		        ano: anoItem.val()
+		    },
+		    dataType: 'json',
+		    success: (result) => {
+		        location.href = "list.html";
+		    },
+		    error: () => {
+		        window.alert('서버 실행 오류!');
+		    }
+		});
+		});
+
+		letterBtn.click(() => {
+		$.ajax({
+		    method: 'POST',
+		    success: (result) => {
+		        location.href = "../letter/form.html?ano=" + index;
+		    },
+		    error: () => {
+		        window.alert('서버 실행 오류!');
+		    }
+		});
+		});
+
+
+		testBtn.click(() => {
+		$.ajax({
+		    method: 'POST',
+		    success: (result) => {
+		        location.href = "../test/form.html?ano=" + index;
+		    }, 
+		    error: () => {
+		        window.alert('서버 실행 오류!');
+		    }
+		});
+		});
+	
 }
-
-addBtn.click(() => {
-    $.ajax('../json/apply/add', {
-        data: {
-            aname: anameItem.val()
-        },
-        dataType: 'json',
-        method: 'POST',
-        success: (result) => {
-            location.href = "list.html";
-        },
-        error: () => {
-            window.alert('서버 실행 오류!');
-        }
-    });
-});
-
-
-updateBtn.click(() => {
-    $.ajax('../json/apply/update', {
-        data: {
-            ano: anoItem.val(),
-            aname: anameItem.val()
-        },
-        dataType: 'json',
-        method: 'POST',
-        success: (result) => {
-            location.href = "list.html";
-        },
-        error: () => {
-            window.alert('서버 실행 오류!');
-        }
-    });
-});
-
-deleteBtn.click(() => {
-    $.ajax('../json/apply/delete', {
-        data: {
-            ano: anoItem.val()
-        },
-        dataType: 'json',
-        success: (result) => {
-            location.href = "list.html";
-        },
-        error: () => {
-            window.alert('서버 실행 오류!');
-        }
-    });
-});
-
-letterBtn.click(() => {
-    $.ajax({
-        method: 'POST',
-        success: (result) => {
-            location.href = "../letter/form.html?ano=" + index;
-        },
-        error: () => {
-            window.alert('서버 실행 오류!');
-        }
-    });
-});
-
-
-testBtn.click(() => {
-    $.ajax({
-        method: 'POST',
-        success: (result) => {
-            location.href = "../test/form.html?ano=" + index;
-        }, 
-        error: () => {
-            window.alert('서버 실행 오류!');
-        }
-    });
-});
 </script>
 
 </html>

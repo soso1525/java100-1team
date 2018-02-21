@@ -83,12 +83,16 @@
 <script type="text/javascript" src="../js/scripts.js"></script>
 
 <script type="text/javascript">
-$('header').load('../header.html');
+//$('header').load('../header.html');
 var index = -1;
 
 // modal창이 띄워졌을때 실행하는 이벤트
-$('#modal-testNew').on('shown.bs.modal', (event) => {	
+$('#modal-testNew').on('shown.bs.modal', (event) => {
 });
+
+// modal창이 꺼졌을떄 실행하는 이벤트
+$('#modal-testNew').on('hidden.bs.modal', () => {
+})
 
 $(() => {
 	$.ajax('../json/apply/list', {
@@ -105,7 +109,8 @@ $(() => {
 				div = $(div + "'></div>");
 				index = data.ano;
 				div.html(
-					"<a data-toggle='modal' href='form.html' data-target='#modal-testNew' role='button' data-backdrop='static'>" +
+						//  data-id='" + data.ano + "'
+					"<a data-toggle='modal' href='form.html' onclick=\"view('" + data.ano + "')\" data-target='#modal-testNew' role='button' data-backdrop='static'>" +
 						"<div class='services-detail' style='cursor:pointer'>" +
 							"<i class='icon-screen-smartphone color-1'></i>" +
 							"<h5>" + data.aname + "</h5>" +
@@ -120,6 +125,8 @@ $(() => {
 		}
 	});
 });
+
+
 
 
 </script>
