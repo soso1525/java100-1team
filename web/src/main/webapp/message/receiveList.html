@@ -1,72 +1,138 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>catch</title>
-<meta charset="UTF-8" />
-<link rel='stylesheet'
-	href='../node_modules/bootstrap/dist/css/bootstrap.min.css'>
-<link rel='stylesheet' href='../css/common.css'>
+<link rel='stylesheet' href='../../css/common.css'>
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
-<div class='container'>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="../member/list.html">CATCH</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarNav" aria-controls="navbarNav"
-			aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link" href="#">Job</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="../study/list.html">Study</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="../apply/list.html">Apply</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="../notice/list.html">Notice</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Message</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="../app/auth/login">Login</a></li>
-			</ul>
-		</div>
-	</nav>
+<body>
+	<div class='container'>
 
-	<h1 style="margin-top:30px; margin-bottom:30px">받은 쪽지 목록</h1>
+		<header></header>
+		<table id='list' class='table table-hover'>
+			<thead>
+				<section class="section-space-padding">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="section-title">
+									<h2>My Experience.</h2>
+									<div class="divider dark">
+										<i class="icon-graduation"></i>
+									</div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+								</div>
+							</div>
+						</div>
+						<nav class="navbar navbar-light justify-content-between">
+							<a href="sendList.html">보낸쪽지함</a> <a href='form.html'
+								class='btn-primary btn-sm'>추가</a>
+						</nav>
+						<div class="row">
+							<div id='list2' class="portfolio-inner margin-top-30"></div>
+							<nav aria-label="Page navigation"
+								style="text-align: center; width: 3000px;">
+								<ul class="pagination justify-content-center">
+									<li class="page-item disabled"><a id='prevBtn'
+										class="page-link" tabindex="-1">이전</a></li>
 
-	<table class='table table-hover'>
-		<thead>
-			<tr>
-				<th>번호</th>
-				<th>보낸이</th>
-				<th>받는이</th>
-				<th>발신날짜</th>
-				<th>내용</th>
-				<th>수신여부</th>
-			</tr>
-		</thead>
-		<tbody>
+									<li class="page-item"><a id='currbtn' class="page-link"
+										href="#">1</a></li>
 
-			<a href="sendList">보낸쪽지함</a>
-		</tbody>
-	</table>
-	<button type="button" class='btn btn-primary btn-sm' id="btn-add"
-		onclick="location.href='form'">추가</button>
-	<nav aria-label="Page navigation">
-		<ul class="pagination justify-content-center">
-			<li class="page-item disabled"><a class="page-link"
-				href="receiveList?pn=0" tabindex="-1">이전</a></li>
+									<li class="page-item disabled"><a id='nextBtn'
+										class="page-link" tabindex="-1">다음</a></li>
+								</ul>
+							</nav>
 
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
+						</div>
+					</div>
+				</section>
 
-			<li class="page-item disabled"><a class="page-link"
-				href="receiveList?pn=2" tabindex="-1">다음</a></li>
-		</ul>
-	</nav>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+	<script id="template1" type="text/x-handlebars-template">
+{{#each list}}
+            <div class="col-md-6 col-sm-6">
+                <div class="experience">
+                <div class="experience-item">
+                    <div class="experience-circle">
+                       <i class="icon-graduation"></i> 
+                       <p>{{mdt}}</p>
+                    </div>
+                    <div class="experience-content experience-color-blue">
+                        <h4>From. {{pid1}}</h4>
+                        <h4>To.   {{pid2}}</h4>
+                        <p>{{mcont}}</p>
+                        <a href="form.html?mno={{mno}}">College Name here</a>
+                    </div>
+                 </div>
+            </div>
+           </div>
+{{/each}}
+</script>
+	<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/plugin.js"></script>
+	<script type="text/javascript" src="../js/scripts.js"></script>
+	<script type="text/javascript">
+	$('header').load("../header.html");
+var prevBtn = $('#prevBtn'),
+currBtn = $('#currBtn'),
+nextBtn = $('#nextBtn'),
+tbody = $('#list > tbody'),
+currPageNo = 1,
+member = null,
+template1Src = $('#template1').html(),
+template1Engine = Handlebars.compile(template1Src);
 
-</div>
+prevBtn.click(() => {
+    load(currPageNo - 1)
+});
 
-<script src='/node_modules/jquery/dist/jquery.slim.min.js'></script>
-<script src='/node_modules/popper.js/dist/umd/popper.min.js'></script>
-<script src='/node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+nextBtn.click(() => {
+    load(currPageNo + 1)
+});
+
+load();
+
+function load(pageNo, options) {
+    if (options == undefined) options = {};
+    options.pn = pageNo;
+    $.ajax('../json/msg2/receiveList', {
+        /* data: options, */
+        dataType: 'json',
+        success: (result) => {
+                $('#list2').html(template1Engine(result));
+            
+            currPageNo = result.pageNo;
+            currBtn.html(currPageNo);
+            
+            if (result.pageNo == 1) {
+                $(prevBtn.parent()).addClass("disabled");
+            } else {
+                $(prevBtn.parent()).removeClass("disabled");
+            }
+            
+            if (result.lastPageNo == result.pageNo) {
+                $(nextBtn.parent()).addClass("disabled");
+            } else {
+                $(nextBtn.parent()).removeClass("disabled");
+            }
+        },
+        error: () => {
+            alert('서버 실행 오류!');
+        }
+    });
+}
+
+
+</script>
+
+
 </body>
 </html>

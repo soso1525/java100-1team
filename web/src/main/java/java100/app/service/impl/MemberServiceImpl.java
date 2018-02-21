@@ -21,9 +21,9 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDao memberDao;
 	@Autowired
-	IndividualMemberDao iMemberDao;
+	IndividualMemberDao imemberDao;
 	@Autowired
-	CompanyMemberDao cMemberDao;
+	CompanyMemberDao cmemberDao;
 
 	@Override
 	public List<Member> list() {
@@ -50,23 +50,28 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int iAdd(Member member, IndividualMember iMember) {
-		return memberDao.insert(member) + iMemberDao.insert(iMember);
+	public int iAdd(Member member, IndividualMember imember) {
+		return memberDao.insert(member) + imemberDao.insert(imember);
 	}
 
 	@Override
-	public int cAdd(Member member, CompanyMember cMember) {
-		return memberDao.insert(member) + cMemberDao.insert(cMember);
-	}
-
-	@Override
-	public int update(Member score) {
-		return memberDao.update(score);
+	public int cAdd(Member member, CompanyMember cmember) {
+		return memberDao.insert(member) + cmemberDao.insert(cmember);
 	}
 
 	@Override
 	public int delete(int no) {
 		return memberDao.delete(no);
+	}
+
+	@Override
+	public int deleteImember(int no) {
+		return memberDao.delete(no) + imemberDao.delete(no);
+	}
+
+	@Override
+	public int deleteCmember(int no) {
+		return memberDao.delete(no) + cmemberDao.delete(no);
 	}
 
 	public boolean isMatchMemberId(String id) {
@@ -76,4 +81,20 @@ public class MemberServiceImpl implements MemberService {
 	public boolean isMatchMemberEmail(String email) {
 		return memberDao.findByEmail(email) == null;
 	}
+
+	@Override
+	public int updateImember(Member member, IndividualMember imember) {
+		return memberDao.update(member) + imemberDao.update(imember);
+	}
+
+	@Override
+	public int updateCmember(Member member, CompanyMember cmember) {
+		return memberDao.update(member) + cmemberDao.update(cmember);
+	}
+
+	@Override
+	public int update(Member member) {
+		return memberDao.update(member);
+	}
+
 }

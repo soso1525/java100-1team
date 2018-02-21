@@ -1,73 +1,131 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>catch</title>
-<meta charset="UTF-8" />
-<link rel='stylesheet'
-	href='../node_modules/bootstrap/dist/css/bootstrap.min.css'>
 <link rel='stylesheet' href='../css/common.css'>
+<link rel="shortcut icon" href="../images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="144x144" type="image/x-icon"
+	href="../images/favicon/apple-touch-icon.png">
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
 </head>
-<div class='container'>
+<body>
+	<div class='container'>
 
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="../member/list.html">CATCH</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarNav" aria-controls="navbarNav"
-			aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link" href="#">Job</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="../study/list.html">Study</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="../apply/list.html">Apply</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="../notice/list.html">Notice</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Message</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="../app/auth/login">Login</a></li>
+		<header></header>
+		<h1 style="margin-top: 100px">보낸 쪽지 목록</h1>
+
+		<table id='list' class='table table-hover'>
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>보낸이</th>
+					<th>받는이</th>
+					<th>발신날짜</th>
+					<th>내용</th>
+					<th>수신여부</th>
+				</tr>
+			</thead>
+			<tbody>
+				<a href="receiveList.html">받은쪽지함</a>
+			</tbody>
+		</table>
+		<nav class="navbar navbar-light justify-content-between">
+			<a href='form.html' class='btn-primary btn-sm'>추가</a>
+		</nav>
+		<nav aria-label="Page navigation">
+			<ul class="pagination justify-content-center">
+				<li class="page-item disabled"><a id='prevBtn'
+					class="page-link" tabindex="-1">이전</a></li>
+
+				<li class="page-item"><a id='currbtn' class="page-link"
+					href="#">1</a></li>
+
+				<li class="page-item disabled"><a id='nextBtn'
+					class="page-link" tabindex="-1">다음</a></li>
 			</ul>
-		</div>
-	</nav>
+		</nav>
 
-	<h1 style="margin-top:30px; margin-bottom:30px">보낸 쪽지 목록</h1>
+	</div>
 
-	<table class='table table-hover'>
-		<thead>
-			<tr>
-				<th>번호</th>
-				<th>보낸이</th>
-				<th>받는이</th>
-				<th>발신날짜</th>
-				<th>내용</th>
-				<th>수신여부</th>
-			</tr>
-		</thead>
-		<tbody>
+	<script src='/node_modules/jquery/dist/jquery.min.js'></script>
+	<script src='/node_modules/popper.js/dist/umd/popper.min.js'></script>
+	<script src='/node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+	<script type="text/javascript">
+	$('header').load("../header.html");
+var prevBtn = $('#prevBtn'),
+currBtn = $('#currBtn'),
+nextBtn = $('#nextBtn'),
+tbody = $('#list > tbody'),
+currPageNo = 1,
+member = null;
 
-			<a href="receiveList">받은쪽지함</a>
-		</tbody>
-	</table>
-	<button type="button" class='btn btn-primary btn-sm' id="btn-add"
-		onclick="location.href='form'">추가</button>
-	<nav aria-label="Page navigation">
-		<ul class="pagination justify-content-center">
-			<li class="page-item disabled"><a class="page-link"
-				href="sendList?pn=0" tabindex="-1">이전</a></li>
+prevBtn.click(() => {
+    load(currPageNo - 1)
+});
 
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
+nextBtn.click(() => {
+    load(currPageNo + 1)
+});
 
-			<li class="page-item disabled"><a class="page-link"
-				href="sendList?pn=2" tabindex="-1">다음</a></li>
-		</ul>
-	</nav>
+load();
 
-</div>
+function load(pageNo, options) {
+    if (options == undefined) options = {};
+    options.pn = pageNo;
+	$.ajax('../json/msg2/sendList', {
+	    data: options,
+		dataType: 'json',
+		success: (result) => {
+tbody.html("");
+            
+            for (var data of result.list) {
+                var mcheck1;
+                if (data.mcheck!=0) {
+                    mcheck1="읽은편지";
+                } else {
+                    mcheck1="안읽은편지";
+                }
+                $('<tr>')
+                    .html(  
+                        "<td><a href='form.html?mno=" + data.mno + "'>" + data.mno + "</a></td>" +
+                        "<td>" + data.pid1 + "</td>" +
+                        "<td>" + data.pid2 + "</td>" +
+                        "<td>" + data.mdt + "</td>" +
+                        "<td>" + data.mcont + "</td>" +
+                        "<td>" + mcheck1 + "</td>")
+                       
+                        
+                    .appendTo(tbody);
+            }
+            
+            currPageNo = result.pageNo;
+            currBtn.html(currPageNo);
+            
+            if (result.pageNo == 1) {
+                $(prevBtn.parent()).addClass("disabled");
+            } else {
+                $(prevBtn.parent()).removeClass("disabled");
+            }
+            
+            if (result.lastPageNo == result.pageNo) {
+                $(nextBtn.parent()).addClass("disabled");
+            } else {
+                $(nextBtn.parent()).removeClass("disabled");
+            }
+        },
+		error: () => {
+			alert('서버 실행 오류!');
+		}
+	});
+}
 
-<script src='/node_modules/jquery/dist/jquery.slim.min.js'></script>
-<script src='/node_modules/popper.js/dist/umd/popper.min.js'></script>
-<script src='/node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+
+</script>
+
+
 </body>
 </html>

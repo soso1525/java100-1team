@@ -4,40 +4,18 @@
 <head>
 <meta charset="UTF-8">
 <title>이력서목록</title>
-<link rel='stylesheet'
-	href='../node_modules/bootstrap/dist/css/bootstrap.min.css'>
 <link rel='stylesheet' href='../css/common.css'>
+<link rel='stylesheet' href='../css/plugin.css'>
+<link rel='stylesheet' href='../css/style.css'>
 </head>
 <body>
 	<div class='container'>
-
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="../member/list.html">CATCH</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarNav" aria-controls="navbarNav"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item active"><a class="nav-link" href="#">Job</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../study/list.html">Study</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../apply/list.html">Apply</a></li>
-					<li class="nav-item"><a class="nav-link" href="../notice/list.html">Notice</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Message</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../app/auth/login">Login</a></li>
-				</ul>
-			</div>
-		</nav>
-
-		<h1 style="margin-top:30px; margin-bottom:30px">이력서 목록</h1>
-		<table id='list'  class='table table-hover'>
+		<header></header>
+		<h1 style="margin-top: 100px; margin-bottom: 30px">이력서 목록</h1>
+		<table id='list' class='table table-hover'>
 			<thead>
 				<tr>
-					<th>번호</th> 
+					<th>번호</th>
 					<!-- <th>학력</th> -->
 					<!-- <th>경력</th> -->
 					<th>직무</th>
@@ -79,29 +57,14 @@
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
 </body>
 <script type="text/javascript">
-
-  var /* prevBtn = $('#prevBtn'),
-    currBtn = $('#currBtn'),
-    nextBtn = $('#nextBtn'),
-     */
+	$('header').load("../header.html");
+  var
     tbody = $('#list > tbody')
-   /*  currPageNo = 1; */
 
 load();
-
-/* prevBtn.click(() => {
-    load(currPageNo - 1)
-});
-
-nextBtn.click(() => {
-    load(currPageNo + 1)
-});
- */
-
+  
 function load() {
     
-   /*  if (options == undefined) options = {};
-     options.pn = pageNo; */
     
     $.ajax('../json/resume/list', {
         dataType: 'json',
