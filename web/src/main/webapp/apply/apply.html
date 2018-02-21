@@ -2,7 +2,6 @@
 <html lang="en">
 
   <head>
-    
     <!-- Meta Tag -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,7 +82,7 @@
 <script type="text/javascript" src="../js/scripts.js"></script>
 
 <script type="text/javascript">
-//$('header').load('../header.html');
+$('header').load('../header.html');
 var index = -1;
 
 // modal창이 띄워졌을때 실행하는 이벤트
@@ -93,12 +92,17 @@ $('#modal-testNew').on('shown.bs.modal', (event) => {
 // modal창이 꺼졌을떄 실행하는 이벤트
 $('#modal-testNew').on('hidden.bs.modal', () => {
 })
-
 $(() => {
 	$.ajax('../json/apply/list', {
 		dataType: 'json',
 		success: (result) => {
+			
+			console.log("ajax실행");
 			for (var data of result.apply) {
+				/* $('#modal-testNew').on('shown.bs.modal', (event) => {
+					view(data.ano);
+				}); */
+				
 				var div = "<div class='col-md-2 col-sm-3 mix";
 				if (data.test.no != 0) {
 					div = div + " test";
