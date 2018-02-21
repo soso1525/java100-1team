@@ -50,10 +50,6 @@
                 </div>
             </div>
             <!-- Button trigger modal -->
-<!-- 	            <a data-toggle="modal" href="form.html" data-target="#modal-testNew" role="button" data-backdrop="static">
-				 <span class="btn btn-xs btn-success">테스트 등록</span>
-				</a> -->
-				
 				<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="테스트정보 등록" aria-describedby="테스트 모달">
 				    <div class="modal-dialog" style="width:1200px;height:700px">
 				        <div class="modal-content"></div>
@@ -85,13 +81,18 @@
 $('header').load('../header.html');
 var index = -1;
 
-// modal창이 띄워졌을때 실행하는 이벤트
-$('#modal-testNew').on('shown.bs.modal', (event) => {
-});
 
 // modal창이 꺼졌을떄 실행하는 이벤트
 $('#modal-testNew').on('hidden.bs.modal', () => {
 })
+
+
+function show(value) {
+	// modal창이 띄워졌을때 실행하는 이벤트
+	$('#modal-testNew').on('shown.bs.modal', (event) => {
+		view(value);
+	});
+}
 $(() => {
 	$.ajax('../json/apply/list', {
 		dataType: 'json',
@@ -99,22 +100,18 @@ $(() => {
 			
 			console.log("ajax실행");
 			for (var data of result.apply) {
-				/* $('#modal-testNew').on('shown.bs.modal', (event) => {
-					view(data.ano);
-				}); */
 				
 				var div = "<div class='col-md-2 col-sm-3 mix";
 				if (data.test.no != 0) {
 					div = div + " test";
-				} 
+				}
 				if (data.letter.lno != 0) {
 					div = div + " letter";
 				} 
-				div = $(div + "'></div>");
+				div = $(div + "'></div>");	
 				index = data.ano;
 				div.html(
-						//  data-id='" + data.ano + "'
-					"<a data-toggle='modal' href='form.html' onclick=\"view('" + data.ano + "')\" data-target='#modal-testNew' role='button' data-backdrop='static'>" +
+					"<a onclick=\"show('" + data.ano + "')\" href='form.html' data-target='#modal-testNew'  data-toggle='modal' role='button' data-backdrop='static'>" +
 						"<div class='services-detail' style='cursor:pointer'>" +
 							"<i class='icon-screen-smartphone color-1'></i>" +
 							"<h5>" + data.aname + "</h5>" +
@@ -129,7 +126,6 @@ $(() => {
 		}
 	});
 });
-
 
 
 

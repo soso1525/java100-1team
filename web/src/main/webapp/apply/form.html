@@ -28,7 +28,7 @@
 			</div>
 		</div>
 	</form>
-	
+
 	<table id='letterList' class='table table-hover my-view'>
 		<thead>
 			<tr>
@@ -135,12 +135,11 @@ function view(value) {
 		        }
 		    });
 		});
-
-		} else { // 신규 데이터 입력일 경우,
+	} else { // 신규 데이터 입력일 경우,
 		$('.my-view').css('display', 'none');
-		}
+	}
 
-		addBtn.click(() => {
+	addBtn.click(() => {
 		$.ajax('../json/apply/add', {
 		    data: {
 		        aname: anameItem.val()
@@ -154,10 +153,10 @@ function view(value) {
 		        window.alert('서버 실행 오류!');
 		    }
 		});
-		});
+	});
 
 
-		updateBtn.click(() => {
+	updateBtn.click(() => {
 		$.ajax('../json/apply/update', {
 		    data: {
 		        ano: anoItem.val(),
@@ -172,9 +171,9 @@ function view(value) {
 		        window.alert('서버 실행 오류!');
 		    }
 		});
-		});
+	});
 
-		deleteBtn.click(() => {
+	deleteBtn.click(() => {
 		$.ajax('../json/apply/delete', {
 		    data: {
 		        ano: anoItem.val()
@@ -187,9 +186,9 @@ function view(value) {
 		        window.alert('서버 실행 오류!');
 		    }
 		});
-		});
+	});
 
-		letterBtn.click(() => {
+	letterBtn.click(() => {
 		$.ajax({
 		    method: 'POST',
 		    success: (result) => {
@@ -199,10 +198,10 @@ function view(value) {
 		        window.alert('서버 실행 오류!');
 		    }
 		});
-		});
+	});
 
 
-		testBtn.click(() => {
+	testBtn.click(() => {
 		$.ajax({
 		    method: 'POST',
 		    success: (result) => {
@@ -212,7 +211,7 @@ function view(value) {
 		        window.alert('서버 실행 오류!');
 		    }
 		});
-		});
+	});
 	
 }
 </script>
