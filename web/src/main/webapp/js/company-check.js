@@ -32,7 +32,7 @@
 		        dataType: 'json',
 		        method: 'POST',
 		        success: (result) => {
-		            location.href = "/main.html";	
+		            location.href = "../auth/login.html";	
 		        },
 		        error: () => {
 		            window.alert('서버 실행 오류!');
