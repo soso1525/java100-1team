@@ -66,8 +66,7 @@
 	                    <li class="filter" data-filter=".test">인적성/면접</li>
 	                </ul>
 	            </div>
-	            <div class="portfolio-inner margin-top-30" id ='list'>
-	            </div>
+	            <div class="portfolio-inner margin-top-30" id ='list'></div>
             </div>
         </div>
     </section>
@@ -97,19 +96,18 @@ $(() => {
 	$.ajax('../json/apply/list', {
 		dataType: 'json',
 		success: (result) => {
-			
-			console.log("ajax실행");
 			for (var data of result.apply) {
 				
 				var div = "<div class='col-md-2 col-sm-3 mix";
 				if (data.test.no != 0) {
 					div = div + " test";
 				}
+				
 				if (data.letter.lno != 0) {
 					div = div + " letter";
-				} 
+				}
+				
 				div = $(div + "'></div>");	
-				index = data.ano;
 				div.html(
 					"<a onclick=\"show('" + data.ano + "')\" href='form.html' data-target='#modal-testNew'  data-toggle='modal' role='button' data-backdrop='static'>" +
 						"<div class='services-detail' style='cursor:pointer'>" +

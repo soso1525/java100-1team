@@ -1,18 +1,15 @@
 <div class="modal-header">
-	<h5 style="margin-top: 30px; margin-bottom: 30px">기업 추가</h5>
 </div>
 <div class="modal-body">
 	<form>
 		<div class='form-group row my-view'>
-			<label for='no' class='col-sm-2 col-form-label'>번호</label>
 			<div class='col-sm-10'>
-				<input class='form-control' readonly id='ano' type='number'
-					name='ano'>
+				<input class='form-control' id='ano' type='hidden'name='ano'>
 			</div>
 		</div>
-		<div class='form-group row'>
-			<label for='education' class='col-sm-2 col-form-label'>기업명</label>
-			<div class='col-sm-10'>
+		<div class='title form-group row'>
+			<label for='education' class='col-sm-10 col-form-label modal-title'>기업명</label>
+			<div class='col-sm-5'>
 				<input class='form-control' id='aname' type='text' name='aname'>
 			</div>
 		</div>
@@ -29,26 +26,21 @@
 		</div>
 	</form>
 
-	<table id='letterList' class='table table-hover my-view'>
-		<thead>
-			<tr>
-				<th>번호</th>
-				<th>저장일시</th>
-				<th>마감일</th>
-				<th>제출여부</th>
-				<th>합격여부</th>
-				<th>지원회사</th>
-				<th>첨삭완료된파일</th>
-			</tr>
-		</thead>
-		<tbody></tbody>
-	</table>
+	<div class="row">
+        <div class="col-md-12">
+			<ul class="portfolio">
+                <li class="filter" data-filter="all">자소서</li>
+            </ul>
+        </div>
+    	<div class="portfolio-inner margin-top-30" id ="letterList"></div>
+    </div>
+    
+    
 	<button id="letterBtn" type="button"
 		class='btn btn-primary btn-sm my-view'>추가</button>
 	<table id='testList' class='table table-hover my-view'>
 		<thead>
 			<tr>
-				<th>번호</th>
 				<th>유형</th>
 				<th>날짜</th>
 				<th>시간</th>
@@ -74,8 +66,8 @@ var addBtn = $('#addBtn'),
 	letterBtn = $('#letterBtn'),
 	testBtn = $('#testBtn'),
 	anameItem = $('#aname'),
+	letterListItem = $('#letterList'),
 	anoItem = $('#ano'), 
-	letterTbody = document.querySelector('#letterList > tbody'),
 	testTbody = document.querySelector('#testList > tbody');
 	
 function view(value) {
@@ -88,18 +80,15 @@ function view(value) {
 		        success: (result) => {
 		        	anoItem.val(result.data.ano);
 		            anameItem.val(result.data.aname);
-		            letterTbody.innerHTML = "";
+		            letterListItem.html("");
 		            for (var data of result.letter) {
-						var tr = document.createElement('tr');
-						tr.innerHTML = 
-				      	"<td><a href='../letter/view.html?no=" + data.lno + "'>" + data.lno + "</a></td>" +
-				      	"<td>" + data.lsdt + "</td>" +
-				      	"<td>" + data.ledt + "</td>" +
-				      	"<td>" + data.lscheck + "</td>" +
-				        "<td>" + data.lpcheck + "</td>" +
-				      	"<td>" + data.apply.aname + "</td>" +
-				      	"<td>" + data.lfile + "</td>";
-				        letterTbody.appendChild(tr);
+						var div = $("<div class='col-md-2 col-sm-3 letter'></div>");
+						div.html(
+							"<div class='services-detail'>" +
+								"<i class='icon-notebook color-7'></i>" +
+								"<h5>" + data.lno + "</h5>" +
+							"</div>");
+				        letterListItem.append(div);
 					}
 		            testTbody.innerHTML = "";
 		            for (var data of result.test) {
@@ -108,7 +97,7 @@ function view(value) {
 		            		typeName = "인적성";
 		            	} else {
 		            		typeName = "면접";
-		            	}
+		            	} 
 		            	
 		            	var checkName;
 		            	if (data.check == 0) {
@@ -120,7 +109,7 @@ function view(value) {
 		            	}
 						var tr = document.createElement('tr');
 						tr.innerHTML = 
-				      	"<td><a href='../test/form.html?no=" + data.no + "'>" + data.no + "</a></td>" +
+				      	//"<td><a href='../test/form.html?no=" + data.no + "'>" + data.no + "</a></td>" +
 				      	"<td>" + typeName + "</td>" +
 				      	"<td>" + data.date + "</td>" +
 				      	"<td>" + data.time + "</td>" +

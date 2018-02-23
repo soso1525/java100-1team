@@ -8,72 +8,98 @@
 <link rel="stylesheet" type="text/css" href="../css/plugin.css">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
-<style>
-	.lilab {
-		margin-bottom: 30px;	
-	}
-</style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/main.html">CATCH</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarNav" aria-controls="navbarNav"
-			aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link" href="#">Job</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="../study/list.html">Study</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="../apply/list.html">Apply</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="../notice/list.html">Notice</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Message</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="../auth/login.html">Login</a></li>
-			</ul>
-
-			<span id="username"></span>
-			<button id="logoutBtn" type="button" class='btn btn-light btn-sm'>로그아웃</button>
-		</div>
-	</nav>
 	<div class="container">
 		<h1 style="margin-top: 30px; margin-bottom: 30px">기업회원 상세 정보</h1>
 
-		<ul class="list-group">
-			<label class="lilab">아이디
-				<li class="list-group-item">Cras justo odio</li>
-			</label>
+		<form id="form" method='post' enctype="multipart/form-data">
+			
+			<div class="form-row">
+				<div class="col-md-6 mb-3">
+					<label for="cname">Name</label> <input type="text"
+						class="form-control" id="cName" name="cName">
+				</div>
+			</div>
+			<div class="col-md-6 mb-3">
+				<input type="hidden" class="form-control" id="cno" name="cno">
+			</div>
 
-			<label class="lilab">이름
-				<li class="list-group-item">Cras justo odio</li>
-			</label>
+			<div class="form-row">
+				<div class="col-md-6 mb-3">
+					<label for="ckind">kind</label> <input type="text"
+						class="form-control" id="cKind" name="cKind">
+				</div>
+			</div>
 
-			<label class="lilab">이메일
-				<li class="list-group-item">Cras justo odio</li>
-			</label>
+			<div class="form-row">
+				<div class="col-md-6 mb-3">
+					<label for="cType">Phone</label> <input type="text"
+						class="form-control" id="cType" name="cType">
+				</div>
+			</div>
 
-			<label class="lilab">휴대폰
-				<li class="list-group-item">Cras justo odio</li>
-			</label>
+			<div class="form-row">
+				<div class="col-md-6 mb-3">
+					<label for="businessNo">businessNo</label> <input type="text"
+						class="form-control" id="businessNo" name="businessNo">
+				</div>
+			</div>
 
-			<label class="lilab">생년월일
-				<li class="list-group-item">Cras justo odio</li>
-			</label>
-
-			<label class="lilab">회원유형
-				<li class="list-group-item">개인</li>
-			</label>
-		</ul>
+			<div class="form-row">
+				<div class="col-md-6 mb-3">
+					<label for="logo">logo</label> <input type="file"
+						class="form-control" id="logo" name="file">
+				</div>
+			</div>
+			<div class='col-sm-10'>
+				<button id="updateBtn" type="button"
+					class='btn btn-primary btn-sm my-new'>변경</button>
+			</div>
+		</form>
 	</div>
 
 	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
-
-	<
+	<script type="text/javascript">
+	var updateBtn = $('#updateBtn');
+	var index = location.href.indexOf('?');
+	if (index != -1) { 
+	    var qs = location.href.substr(index + 1);
+	    var arr = qs.split('=');
+	    $(() => {
+	        $.ajax('../json/company/' + arr[1], {
+	            dataType: 'json',
+	            success: (result) => {
+	            	$('#cno').val(result.cmember.cno);
+	            	$('#cName').val(result.cmember.cName);
+	            	$('#cKind').val(result.cmember.cKind);
+	            	$('#cType').val(result.cmember.cType);
+	            	$('#businessNo').val(result.cmember.businessNo);
+	            },
+	            error: () => {
+	                window.alert('서버 실행 오류!');
+	            }
+	        });
+	    });
+	}
+	updateBtn.click(() => {
+		var formData = new FormData($('#form')[0]);
+	    $.ajax('../json/company/update', {
+	        data: formData,
+	        dataType: 'json',
+	        method: 'POST',
+	        processData : false,
+	        contentType : false,
+	        success: (result) => {
+	            location.href = "list.html";
+	        },
+	        error: () => {
+	            window.alert('서버 실행 오류!');
+	        }
+		});
+	});
+	</script>
 </body>
 </html>

@@ -60,7 +60,6 @@ public class ApplyController {
 //        model.addAttribute("pageNo", pageNo);
 //        model.addAttribute("lastPageNo", lastPageNo);
      
-        model.addAttribute("apply", applyService.list());
         return "apply/list";
     }
     

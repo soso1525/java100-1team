@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java100.app.dao.ApplyDao;
 import java100.app.domain.Apply;
+import java100.app.domain.Member;
 import java100.app.service.ApplyService;
 
 @Service
@@ -16,8 +17,9 @@ public class ApplyServiceImpl implements ApplyService {
     @Autowired ApplyDao applyDao;
     
     @Override
-    public List<Apply> list() {
+    public List<Apply> list(Member loginUser) {
         HashMap<String,Object> params = new HashMap<>();
+        params.put("writer", loginUser);
         return applyDao.findAll(params);
     }
 

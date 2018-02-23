@@ -36,7 +36,8 @@ public class ApplyController {
             @RequestParam(value="words", required=false) String[] words,
             @RequestParam(value="oc", required=false) String orderColumn,
             @RequestParam(value="al", required=false) String align,
-            Model model) throws Exception {
+            Model model,
+            @ModelAttribute(value="loginUser") Member loginUser) throws Exception {
         
 //        if (pageNo < 1) {
 //            pageNo = 1;
@@ -62,7 +63,7 @@ public class ApplyController {
 //        model.addAttribute("pageNo", pageNo);
 //        model.addAttribute("lastPageNo", lastPageNo);
     	HashMap<String, Object> result = new HashMap<>();
-        result.put("apply", applyService.list());
+        result.put("apply", applyService.list(loginUser));
         return result;
     }
     

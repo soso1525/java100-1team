@@ -34,7 +34,7 @@
 	<select id="findByNo" resultMap="memberMap" parameterType="int">
 		<include refid="select1" />
 		from g_per
-		where no=#{value}
+		where pno=#{value}
 	</select>
 
 	<select id="findByIdAndPassword" resultMap="memberMap"

@@ -3,67 +3,55 @@ package java100.app.domain;
 public class CompanyMember {
 
 	Member member;
-	String name;
-	String kind;
+	String cName;
+	String cKind;
 	String cType;
 	String businessNo;
 	String logo;
-	int no;
-
-	public String getcType() {
-		return cType;
-	}
-
-	public void setcType(String cType) {
-		this.cType = cType;
-	}
-
-	public String getLogo() {
-		return logo;
-	}
-
-	public void setLogo(String logo) {
-		this.logo = logo;
-	}
-
-	public int getNo() {
-		return no;
-	}
-
-	public void setNo(int no) {
-		this.no = no;
-	}
-
+	int cno;
+	
+	
 	public Member getMember() {
 		return member;
 	}
-
 	public void setMember(Member member) {
 		this.member = member;
 	}
-
-	public String getName() {
-		return name;
+	public String getcName() {
+		return cName;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setcName(String cName) {
+		this.cName = cName;
 	}
-
-	public String getKind() {
-		return kind;
+	public String getcKind() {
+		return cKind;
 	}
-
-	public void setKind(String kind) {
-		this.kind = kind;
+	public void setcKind(String cKind) {
+		this.cKind = cKind;
 	}
-
+	public String getcType() {
+		return cType;
+	}
+	public void setcType(String cType) {
+		this.cType = cType;
+	}
 	public String getBusinessNo() {
 		return businessNo;
 	}
-
 	public void setBusinessNo(String businessNo) {
 		this.businessNo = businessNo;
 	}
-
+	public String getLogo() {
+		return logo;
+	}
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+	public int getCno() {
+		return cno;
+	}
+	public void setCno(int cno) {
+		this.cno = cno;
+	}
+	
 }
