@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CATCH : 한화S&C 자소서</title>
+<link rel='stylesheet'
+	href='../node_modules/bootstrap/dist/css/bootstrap.min.css'>
+<link rel='stylesheet' href='../css/common.css'>
+</head>
+<body>
+	<div class='container'>
+		<h1 style="margin-top: 100px; margin-bottom: 30px">한화 S&C ICT 서비스 개발/운영</h1>
+		<form class="form" id="form" method="post"
+			enctype="multipart/form-data">
+			<input type="hidden" id="ano" name="ano">
+			<div class='form-group row'>
+				<label class='col-sm-2 col-form-label' for="question">자기소개서
+					이름</label> <input id='question' class='col-sm 8 form-control' type='text'
+					placeholder='파일이름 또는 지원회사'>
+			</div>
+
+			<div id='questionBox'></div>
+
+			<div style='visibility: hidden' class="form-group row question">
+				<label id='qlabel' class='col-sm-2 col-form-label' for="question">자소서
+					문항 </label>
+				<div class='col-sm-10'>
+					<div class='row'>
+						<input style="margin: 0 0 5px 0" class='form-control'
+							placeholder='질문을 입력하세요' id='charcnt' type='text'>
+					</div>
+					<div class='row'>
+						<textarea class="form-control" id="question"
+							placeholder='질문에 대한 내용을 입력하세요' rows="3"></textarea>
+					</div>
+					<div class='row'>
+						<button style="margin: 5px 5px 5px 0" id='correct' type="button"
+							class='btn btn-primary btn-sm'>맞춤법검사</button>
+						<button style="margin: 5px 5px 5px 0" id='rmvBtn' type="button"
+							class='btn btn-primary btn-sm'>삭제</button>
+					</div>
+				</div>
+			</div>
+
+			<div style="margin-bottom: 50px" class='form-group row'>
+				<label class='col-sm-2 col-form-label' for="file">자기소개서 파일</label>
+				<div class='col-sm-10 row'>
+					<div class="col-sm-6 custom-file">
+						<input type="file" class="custom-file-input" id="customFile">
+						<label class="custom-file-label" for="customFile">Choose
+							file</label>
+					</div>
+				</div>
+			</div>
+
+			<div class='form-group row'>
+				<div class='col-sm-12'>
+					<button id="qaddBtn" type="button" class='btn btn-primary btn'>자소서
+						문항 추가</button>
+					<span style="float: right" id="btnGroup">
+						<button id="addBtn" type="button" class='btn btn-primary btn'>저장</button>
+						<button id="updateBtn" type="button" class='btn btn-primary btn'>변경</button>
+						<button id="deleteBtn" type="button" class='btn btn-primary btn'>삭제</button>
+					</span>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+	<script src='../js/letter-form.js'></script>
+</body>
+</html>
+
