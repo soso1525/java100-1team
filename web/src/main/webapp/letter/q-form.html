@@ -2,61 +2,116 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>CATCH : 한화S&C 자소서</title>
+<title>CATCH : 한화 S&C 자소서</title>
 <link rel='stylesheet'
 	href='../node_modules/bootstrap/dist/css/bootstrap.min.css'>
 <link rel='stylesheet' href='../css/common.css'>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<style>
+#fileForm {
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+	margin-right: 10px;
+}
+</style>
 </head>
 <body>
 	<div class='container'>
-		<h1 style="margin-top: 100px; margin-bottom: 30px">한화 S&C ICT 서비스 개발/운영</h1>
+		<h1 style="margin-top: 100px; margin-bottom: 80px">한화 S&C ICT 서비스
+			개발/운영</h1>
+		<hr>
 		<form class="form" id="form" method="post"
 			enctype="multipart/form-data">
-			<input type="hidden" id="ano" name="ano">
-			<div class='form-group row'>
-				<label class='col-sm-2 col-form-label' for="question">자기소개서
-					이름</label> <input id='question' class='col-sm 8 form-control' type='text'
-					placeholder='파일이름 또는 지원회사'>
-			</div>
-
-			<div id='questionBox'></div>
-
-			<div style='visibility: hidden' class="form-group row question">
-				<label id='qlabel' class='col-sm-2 col-form-label' for="question">자소서
-					문항 </label>
-				<div class='col-sm-10'>
-					<div class='row'>
-						<input style="margin: 0 0 5px 0" class='form-control'
-							placeholder='질문을 입력하세요' id='charcnt' type='text'>
-					</div>
-					<div class='row'>
-						<textarea class="form-control" id="question"
-							placeholder='질문에 대한 내용을 입력하세요' rows="3"></textarea>
-					</div>
-					<div class='row'>
-						<button style="margin: 5px 5px 5px 0" id='correct' type="button"
-							class='btn btn-primary btn-sm'>맞춤법검사</button>
-						<button style="margin: 5px 5px 5px 0" id='rmvBtn' type="button"
-							class='btn btn-primary btn-sm'>삭제</button>
-					</div>
+			<div style='margin-bottom: 20px' class='question'>
+				<div class="form-group row">
+					<label id='qlabel' class='col-sm-2 col-form-label' for="question">자소서
+						문항1 </label>
+					<div style='border: 0px' class='col-sm-8 form-control'>한화 그룹의
+						핵심가치 중 한가지를 선택하여 스스로 정의를 내리고, 본인이 해당 핵심가치를 보유한 인재임을 구체적인 사례와 경험을
+						들어 말씀해주십시오. [700자]</div>
 				</div>
+				<div class='row'>
+					<label style='text-align: center' id='charcnt'
+						class='col-sm-2 col-form-label' for="question">글자수 </label>
+					<textarea class="col-sm-8 form-control" id="letter1"
+						placeholder='질문에 대한 내용을 입력하세요' rows="7"></textarea>
+				</div>
+				<hr>
 			</div>
 
-			<div style="margin-bottom: 50px" class='form-group row'>
-				<label class='col-sm-2 col-form-label' for="file">자기소개서 파일</label>
-				<div class='col-sm-10 row'>
-					<div class="col-sm-6 custom-file">
-						<input type="file" class="custom-file-input" id="customFile">
-						<label class="custom-file-label" for="customFile">Choose
-							file</label>
-					</div>
+			<div style='margin-bottom: 20px' class='question'>
+				<div class="form-group row">
+					<label id='qlabel' class='col-sm-2 col-form-label' for="question">자소서
+						문항2 </label>
+					<div style='border: 0px' class='col-sm-8 form-control'>협업을 통해
+						좋은 성과를 달성했던 사례와, 실패했던 사례를 한가지씩 말씀해주십시오. 각 경험에서 가장 어려웠던 점과 이를 통해 얻은
+						것을 함께 기술해주십시오. [900자]</div>
+				</div>
+				<div class='row'>
+					<div class='col-sm-2'></div>
+					<textarea class="col-sm-8 form-control" id="question"
+						placeholder='질문에 대한 내용을 입력하세요' rows="7"></textarea>
+				</div>
+
+				<hr>
+			</div>
+
+			<div style='margin-bottom: 20px' class='question'>
+				<div class="form-group row">
+					<label id='qlabel' class='col-sm-2 col-form-label' for="question">자소서
+						문항3 </label>
+					<div style='border: 0px' class='col-sm-8 form-control'>지원하신
+						직무와 관련하여 갖추고 있는 본인만의 경쟁력을 구체적인 사례와 경험을 들어 말씀해주십시오. [700자]</div>
+				</div>
+				<div class='row'>
+					<div class='col-sm-2'></div>
+					<textarea class="col-sm-8 form-control" id="question"
+						placeholder='질문에 대한 내용을 입력하세요' rows="7"></textarea>
+				</div>
+
+				<hr>
+			</div>
+
+			<div style='margin-bottom: 20px' class='question'>
+				<div class="form-group row">
+					<label id='qlabel' class='col-sm-2 col-form-label' for="question">자소서
+						문항4 </label>
+					<div style='border: 0px' class='col-sm-8 form-control'>한화S&C는
+						"SMART&CREATIVE"라는 비전슬로건을 갖고 있습니다. 현재 IT업계에서 "SMART&CREATIVE"가 왜
+						필요한지 정의하고, 지원한 직무와 관련하여 본인이 "SMART&CREATIVE" 한 인재라는 것을 증명할 수 있는
+						구체적인 사례와 경험을 말씀해주십시오. [700자]</div>
+				</div>
+				<div class='row'>
+					<div class='col-sm-2'></div>
+					<textarea class="col-sm-8 form-control" id="question"
+						placeholder='질문에 대한 내용을 입력하세요' rows="7"></textarea>
+				</div>
+
+				<hr>
+			</div>
+
+			<div style='margin-top: 30px; margin-bottom: 100px'
+				class="form-group row question">
+				<label id='qlabel' class='col-sm-2 col-form-label' for="question">
+					자기소개서 파일 </label>
+				<div class="col-sm-6 custom-file">
+					<input type="file" class="custom-file-input" id="customFile">
+					<label class="custom-file-label" for="customFile">Choose
+						file</label>
 				</div>
 			</div>
 
 			<div class='form-group row'>
 				<div class='col-sm-12'>
-					<button id="qaddBtn" type="button" class='btn btn-primary btn'>자소서
-						문항 추가</button>
+					<button id="correctBtn" type="button" class='btn btn-primary btn'>맞춤법
+						검사</button>
 					<span style="float: right" id="btnGroup">
 						<button id="addBtn" type="button" class='btn btn-primary btn'>저장</button>
 						<button id="updateBtn" type="button" class='btn btn-primary btn'>변경</button>
@@ -68,9 +123,35 @@
 	</div>
 
 	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
-	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script> 	
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
-	<script src='../js/letter-form.js'></script>
+	<script type="text/javascript">
+	var flag = true;
+	$(function() {
+	      $('#letter1').keyup(function (e){
+	    	  console.log('eeee');
+	          var content = $(this).val();
+	          //$(this).height(((content.split('\n').length + 1) * 1.5) + 'em');
+	          if(content.length >= 700 && flag == true) {
+	        	  swal("warning", "글자수가 초과되었습니다!", "warning");
+	        	  $('#charcnt').css('color', 'red');
+	        	  flag = false;
+	          } 
+	          
+	          if(content.length < 700) {
+	        	  flag = true;
+	        	  $('#charcnt').css('color', 'black');
+	          }
+	          $('#charcnt').html(content.length + '/700');
+	      });
+	      $('#letter').keyup();
+	});
+	
+
+	$('#correctBtn').click(() => {
+		window.open('http://speller.cs.pusan.ac.kr/PnuWebSpeller/', '맞춤법 검사기', 'width=851px, height=701px');
+	});
+	</script>
 </body>
 </html>
 
