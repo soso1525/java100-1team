@@ -8,6 +8,7 @@ public interface QuestionService {
     List<Question> list(int no);
     int getTotalCount();
     int add(Question question);
+    int companyAdd(Question question);
     Question get(int no);
     int update(Question apply);
     int delete(int no);

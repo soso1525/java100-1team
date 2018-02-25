@@ -31,6 +31,15 @@ public class QuestionServiceImpl implements QuestionService {
     public int add(Question question) {
         return questionDao.insert(question);
     }
+    
+    @Override
+    public int companyAdd(Question question) {
+    	for (String article : question.getArticles()) {
+    		question.setArticle(article);
+    		questionDao.companyInsert(question);
+    	}
+        return 0;
+    }
 
     @Override
     public Question get(int no) {

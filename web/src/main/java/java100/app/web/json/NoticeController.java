@@ -17,9 +17,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java100.app.domain.Member;
 import java100.app.domain.Notice;
+import java100.app.domain.Question;
 import java100.app.service.CompanyService;
 import java100.app.service.MemberService;
 import java100.app.service.NoticeService;
+import java100.app.service.QuestionService;
 
 @RestController
 @RequestMapping("/notice")
@@ -29,6 +31,7 @@ public class NoticeController {
     @Autowired ServletContext servletContext;
     @Autowired MemberService memberService;
     @Autowired CompanyService comService;
+    @Autowired QuestionService questionService;
     
     @RequestMapping("list")
     public Object list(
@@ -88,12 +91,14 @@ public class NoticeController {
     @RequestMapping("add")
     public Object add(
             Notice notice,
+            Question question,
             MultipartFile file,
             @ModelAttribute(value="loginUser") Member loginUser) throws Exception {
-        
     	notice.setImage(addFile(file));
         notice.setWriter(loginUser);
         noticeService.add(notice);
+        question.setNno(notice.getNo());
+        questionService.companyAdd(question);
         
         HashMap<String,Object> result = new HashMap<>();
         

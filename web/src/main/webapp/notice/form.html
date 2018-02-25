@@ -77,8 +77,17 @@
 					<input class='form-control' id='endDate' type='Date' name='endDate'>
 				</div>
 			</div>
-
-
+			
+			<div class='form-group row'>
+				<label for='question' class='col-sm-2 col-form-label'>자소서 문항등록(최대 5개)</label>
+				<div class='col-sm-10'>
+						<button id="questionAdd" type="button" class='btn btn-primary btn-sm'>추가</button>
+						<button id="questionDelete" type="button" class='btn btn-primary btn-sm'>삭제</button>
+				</div>
+			</div>
+			
+			<div id='questionForm'>
+			</div>
 
 			<div class='form-group row'>
 				<div class='col-sm-10'>
@@ -106,6 +115,8 @@ var addBtn = $('#addBtn'),
     imageItem = $('#image'),
     nodivItem = $('#nodiv'),
     simgs = $('#image'),
+    questionAddItem = $('#questionAdd'),
+    questionDeleteItem = $('#questionDelete'),
     nameItem = $('#name');
     
 var index = location.href.indexOf('?');
@@ -135,6 +146,28 @@ if (index != -1) { // 기존 데이터를 조회할 경우,
 } else { // 신규 데이터 입력일 경우,
     $('.my-view').css('display', 'none');
 }
+var cnt = 1;
+questionAddItem.click(() => {
+	if (cnt < 6) {
+		var div = $("<div class='form-group row'></div>");
+		div.html("<label for='startDate' class='col-sm-2 col-form-label'>문항" + cnt + "</label>" +
+		"<div class='col-sm-10'>" +
+			"<input class='form-control' type='text' name='articles'>" +
+		"</div>");
+		$('#questionForm').append(div);
+		cnt++;
+	}
+});
+
+questionDeleteItem.click(() => {
+	if (cnt > 0) {
+		$('#questionForm > div:last-child').remove();
+		cnt--;
+	}
+});
+
+
+
 addBtn.click(() => {
     var formData = new FormData($('#form')[0]);
     $.ajax('../json/notice/add', {
@@ -149,7 +182,7 @@ addBtn.click(() => {
         error: () => {
             window.alert('서버 실행 오류!');
         }
-    });aaa
+    });
 });
 updateBtn.click(() => {
     var formData = new FormData($('#form')[0]);
