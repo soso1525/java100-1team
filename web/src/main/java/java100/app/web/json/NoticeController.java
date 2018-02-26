@@ -39,51 +39,60 @@ public class NoticeController {
             @RequestParam(value="pn", defaultValue="1") int pageNo,
             @RequestParam(value="ps", defaultValue="5") int pageSize,
             @RequestParam(value="words", required=false) String[] words,
+            @RequestParam(value="cKind", required=false) String cKind,
+            @RequestParam(value="address", required=false) String address,
             @RequestParam(value="oc", required=false) String orderColumn,
             @RequestParam(value="al", required=false) String align
             ) throws Exception {
         
-//        if (pageNo < 1) {
-//            pageNo = 1;
-//        }
-//        
-//        if (pageSize < 5 || pageSize > 15) {
-//            pageSize = 5;
-//        }
-//        
-//        HashMap<String,Object> options = new HashMap<>();
-//        if (words != null && words[0].length() > 0) {
-//            options.put("words", words);
-//        }
-//        options.put("orderColumn", orderColumn);
-//        options.put("align", align);
-//        
-//        int totalCount = memberService.getTotalCount();
-//        int lastPageNo = totalCount / pageSize;
-//        if ((totalCount % pageSize) > 0) {
-//            lastPageNo++;
-//        }
-//        
-//        model.addAttribute("pageNo", pageNo);
-//        model.addAttribute("lastPageNo", lastPageNo);
+        if (pageNo < 1) {
+            pageNo = 1;
+        }
+        
+        if (pageSize < 5 || pageSize > 15) {
+            pageSize = 5;
+        }
+        
+        HashMap<String,Object> options = new HashMap<>();
+        if (words != null && words[0].length() > 0) {
+            options.put("words", words);
+            if (cKind.equals("전체")) {
+            	options.put("cKind", null);
+            } else {
+            	options.put("cKind", cKind);
+            }
+            
+            if (address.equals("전체")) {
+            	options.put("address", null);
+            } else {
+            	options.put("address", address);
+            }
+        }
+        options.put("orderColumn", orderColumn);
+        options.put("align", align);
+        int totalCount = noticeService.getTotalCount();
+        int lastPageNo = totalCount / pageSize;
+        if ((totalCount % pageSize) > 0) {
+            lastPageNo++;
+        }
         HashMap<String,Object> result = new HashMap<>();
-        result.put("list", noticeService.list(orderColumn));
+        
+        result.put("pageNo", pageNo);
+        result.put("lastPageNo", lastPageNo);
+        result.put("list", noticeService.list(pageNo, pageSize, options));
+        
         return result;
     }
     
     @RequestMapping("form")
     public String form() throws Exception {
         return "notice/form";
-        
     }
     
     @RequestMapping("{no}")
     public Object view(@PathVariable int no) throws Exception {
-       
         HashMap<String, Object> result = new HashMap<>();
-        
         result.put("data", noticeService.get(no));
-        
         return result;
     }
     
@@ -96,11 +105,11 @@ public class NoticeController {
     	notice.setImage(addFile(file));
         notice.setWriter(loginUser);
         noticeService.add(notice);
-        question.setNno(notice.getNo());
-        questionService.companyAdd(question);
-        
+        if (question.getArticles() != null) {
+        	question.setNno(notice.getNo());
+        	questionService.companyAdd(question);
+        }
         HashMap<String,Object> result = new HashMap<>();
-        
         result.put("status", "success");
         
         return result;
@@ -138,7 +147,6 @@ public class NoticeController {
             count = 0;
             prevMillis = currMillis;
         }
-        
         return  currMillis + "_" + count++ + extractFileExtName(filename); 
     }
     

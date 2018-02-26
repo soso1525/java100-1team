@@ -24,6 +24,11 @@
 	    	<result column="cname" property="cName"/>
 	    	<result column="clogo" property="logo"/>
 	    </association>
+	    <association property="writer" javaType="member">
+	    	<id column="pno" property="no"/>
+	    	<result column="pdaddr" property="address"/>
+	    </association>
+   
    
     </resultMap>
 
@@ -35,30 +40,44 @@
 			n.nedt,
 			n.ncnt,
 			c.cname,
-			c.clogo
+			c.ckind,
+			c.clogo,
+			p.pdaddr
 		from g_noti n
 		left join g_corp c on n.cno=c.cno
-		
+		left join g_per p on p.pno=c.cno
 		<if test="words != null">
-       <where>
-           <foreach collection="words" item="word">
-               or n.ncnt like '${word}%'
-           </foreach>
-       </where>
-       </if>
-       order by
-       <choose>
-           <when test="orderColumn == 'viewcount'">
-               n.ncnt desc
-           </when>
-           <when test="orderColumn == 'startdate'">
-               n.nsdt asc
-           </when>
-           <otherwise>
-               n.ncnt desc
-           </otherwise>
-       </choose>
-		
+	        <where>
+	            <foreach collection="words" item="word">
+	               and c.cname like '${word}%'
+	            </foreach>
+	            <if test="cKind != null">
+	               and c.ckind like #{cKind}
+                </if> 
+                <if test="address != null">
+	               and p.pdaddr like #{address}
+                </if> 
+	        </where>
+        </if>
+        order by 
+        <choose>
+            <when test="orderColumn == 'nedt' and align == 'desc'">
+                n.nedt desc
+            </when>
+            <when test="orderColumn == 'nedt' and align == 'asc'">
+                n.nedt asc
+            </when>
+            <when test="orderColumn == 'viewcount'">
+                n.ncnt desc
+            </when>
+            <when test="orderColumn == 'startdate'">
+                n.nsdt asc
+            </when>
+            <otherwise>
+                n.nedt asc
+            </otherwise>
+        </choose>
+		limit #{startIndex}, #{size}
 	</select>
 	
 	<select id="findByNo" resultMap="noticeMap" parameterType="int">
@@ -74,7 +93,11 @@
 		left join g_corp c on n.cno=c.cno
 		where n.nno = #{no}
     </select>
-	
+    
+	<select id="countAll" resultType="int">
+        select count(*) from g_noti
+    </select>
+    
 	<insert id="insert" parameterType="notice"
 		useGeneratedKeys="true" keyColumn="nno" keyProperty="no">
         insert into g_noti(nimg, nsdt, nedt, ncnt, cno)

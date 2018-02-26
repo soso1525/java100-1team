@@ -1,5 +1,7 @@
 package java100.app.domain;
 
+import java.util.Arrays;
+
 public class Question {
 
     int no;
@@ -11,6 +13,11 @@ public class Question {
     int nno;
   
 
+	@Override
+	public String toString() {
+		return "Question [no=" + no + ", article=" + article + ", articles=" + Arrays.toString(articles) + ", context="
+				+ context + ", member=" + member + ", lno=" + lno + ", nno=" + nno + "]";
+	}
 
 	public String[] getArticles() {
 		return articles;
