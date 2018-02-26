@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>기업목록</title>
+</head>
+<body>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="../notice/notice.html">목록으로</a></li>
+				</ul>
+			</div>
+			
+			
+		<div align="center" id='image'></div>
+        <br>
+</body>
+<script type="text/javascript">
+
+ var imageItem = $('#image'),
+  simgs = $('#image');
+  
+ function show(value) {
+     $('#modal-testNew').on('shown.bs.modal', (event) => {
+         view(value);
+     });
+ }
+ 
+ function view(value) {
+     console.log(실행)
+     index = value;
+     if (index != -1) {
+         $('.my-new').css('display','none');
+         $(() => {
+             $.ajax('../json/notice/' + index, {
+                 dataType: 'json',
+                 success: (result) => {
+                 imageItem.html("<img src='../../download/" + result.data.image + "' height='300px'/>");
+                 imageItem.val(result.data.image);
+             },
+             error: () => {
+                 window.alert('서버 실행 오류!');
+             }
+         });
+     });
+     
+ } else { // 신규 데이터 입력일 경우,
+     $('.my-view').css('display', 'none');
+ } 
+
+ 
+ 
+/* function load() {
+    console.log(실행)
+    if (options == undefined) options = {};
+     options.pn = pageNo; */
+    
+    $.ajax('../json/notice/list', {
+        dataType: 'json',
+        success: (result) => {
+            imageItem.html("<img src='../../download/" + result.data.image + "' height='300px'/>");
+            imageItem.val(result.data.image); */
+            
+            
+           /*  currPageNo = result.pageNo;
+            currBtn.html(currPageNo);
+            
+            if (result.pageNo == 1) {
+                $(prevBtn.parent()).addClass("disabled");
+            } else {
+                $(prevBtn.parent()).removeClass("disabled");
+            }
+            
+            if (result.lastPageNo == result.pageNo) {
+                $(nextBtn.parent()).addClass("disabled");
+            } else {
+                $(nextBtn.parent()).removeClass("disabled");
+            } */
+            },
+       error: () => {
+            window.alert('서버 실행 오류!');
+        } 
+    }); 
+     
+} 
+
+</script>
+</html>

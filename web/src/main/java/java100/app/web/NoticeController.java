@@ -50,8 +50,8 @@ public class NoticeController {
 //        
             HashMap<String,Object> options = new HashMap<>();
             if (words != null && words[0].length() > 0) {
-            options.put("words", words);
-        }
+            	options.put("words", words);
+            }
            options.put("orderColumn", orderColumn);
            options.put("align", align);
 //        
@@ -64,7 +64,7 @@ public class NoticeController {
 //        model.addAttribute("pageNo", pageNo);
 //        model.addAttribute("lastPageNo", lastPageNo);
         
-        model.addAttribute("list", noticeService.list());
+        model.addAttribute("list", noticeService.list("viewcount"));
         return "notice/list";
     }
     

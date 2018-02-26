@@ -2,111 +2,134 @@
 <html lang="en">
 
 <head>
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
-    <meta name="description" content="150 words">
-    <meta name="author" content="uipasta">
-    <meta name="url" content="http://www.yourdomainname.com">
-    <meta name="copyright" content="company name">
-    <meta name="robots" content="index,follow">
-    
-    <link rel="shortcut icon" href="../images/favicon/favicon.ico">
-    <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="../images/favicon/apple-touch-icon.png">
-    
-    <link rel="stylesheet" type="text/css" href="../css/plugin.css">
-    
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
-    
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" type="text/css" href="https://tympanus.net/Development/HoverEffectIdeas/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
+<link rel="stylesheet" type="text/css" href="../css/notice.css">
 <body>
-<header>
-</header>
-<section id="portfolio" class="portfolio section-space-padding">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="section-title">
-                        <h2>채용 공고</h2>
-                          <div class="divider dark">
-						   <i class="icon-picture"></i>
-						   </div>
-                        <p>최신 채용 공고를 한번에 볼 수 있는...</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-              <div class="col-md-2">
-                <ul class="portfolio">
-                    <li class="filter" data-filter="all">all</li>
-                    <li class="filter" data-filter=".apps">Hot</li>
-                    <li class="filter" data-filter=".mockups">Best</li>
-                    <li class="filter" data-filter=".wordpress">up-to-date</li>
-                </ul>
-              </div>
-              
-   <div class="col-md-10">
-   <div id='list' class="portfolio-inner margin-top-30">
-   </div> 
-   </div>
-   </div>
-   
-</section>
+	<section id="portfolio" class="portfolio section-space-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="section-title">
+						<h2>채용 공고</h2>
+						<div class="divider dark">
+							<i class="icon-picture"></i>
+						</div>
+						<p>최신 채용 공고를 한번에 볼 수 있는...</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<ul class="portfolio">
+						<li class="filter" data-filter=".apps" data-order="viewcount">Hot</li>
+						<li class="filter" data-filter=".mockups" data-order="later">Best</li>
+						<li class="filter" data-filter=".wordpress" data-order="startdate">New</li>
+					</ul> 
+				</div>
+				<div class="col-xs-12">
+					<div id='list' class="portfolio-inner margin-top-30">
+						<div id="hot" class="mix apps" ></div>
+						<div id="best" class="mix mockups" ></div>
+						<div id="new" class="mix wordpress" ></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog"
+	     aria-labelledby="테스트정보 등록" aria-describedby="테스트 모달">
+	    <div class="modal-dialog" style="width: 1200px; height: 700px">
+	    <div class="modal-content"><div id="img-area"></div></div>
+		</div>
+		</div>
+
+
+	</section>
 
 
 
- <script id="notice" type="text/x-handlebars-template">
+	<script id="notice" type="text/x-handlebars-template">
 {{#each list}}
- 
-                    <div class="col-md-4 col-sm-6 col-xs-12 mix apps" >
-                    <div class="item">
-                    <a href="form.html?no={{no}}" class="portfolio-popup" title="Notice Title" >
-                    <figure class="snip1384">
-                    <img src="../../download/{{image}}" alt="">
-                    <figcaption>
-                    <h3>{{companyMember.name}}</h3>
-                    <p>날짜:{{startDate}} ~ {{endDate}} </p><i class="ion-ios-arrow-right"></i>
-                    <p>조회수:{{viewCount}}</p><i class="ion-ios-arrow-right"></i>
-                    </figcaption>
-                    </figure>
-                    </div>
-                    </div>
-                           
+<div class="col-md-4 col-sm-6 col-xs-12" >
+    <class="portfolio-popup">
+    <div class="grid">
+    <figure class="effect-apollo">
+    <img src="../../download/{{image}}" alt=""/>
+    <figcaption>
+    <h2>{{companyMember.name}} <span></span></h2>
+    <p>{{startDate}} ~ <br>{{endDate}}</p>
+    <a data-toggle='modal' href='view.html' onclick="show('{{no}}')" data-target='#modal-testNew' role='button' data-backdrop='static'>
+    <div class='services-detail' style='cursor:pointer'> 
+    <i class='icon-screen-smartphone color-1'></i>
+    <h5></h5>
+    <hr>
+    </div>
+    </a>
+    </figcaption>           
+    </figure>
+    </div>
+    </div>
+    </div>
+</div>
 {{/each}}
 </script>
 
+	<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/plugin.js"></script>
+	<script type="text/javascript" src="../js/scripts.js"></script>
 
-
-<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-<script type="text/javascript" src="../js/plugin.js"></script>
-<script type="text/javascript" src="../js/scripts.js"></script>
-<script type="text/javascript">
-$('header').load('../header.html');
-    var noItem = $('#no'), 
-    startDateItem = $('#startDate'), 
-    endDateItem = $('#endDate'),
-    imageItem = $('#image'),
-    nodivItem = $('#nodiv'),
-    nameItem = $('#name'),
+	<script type="text/javascript">
+	
+    var index = -1;
+    
+    $('#modal-testNew').on('hidden.bs.modal', () => {
+    })
+    
     noticeSrc = $('#notice').html(),
     noticeEngine = Handlebars.compile(noticeSrc);
-   
-    load()
+    // load('viewcount', 'wordpress');
     
+      
     
-    function load() {
+    function view( v ) {
+    	console.log ('yes ', v);
+	    $.ajax ( {
+	    	url : '/json/notice/' + v,
+	    	dataType: 'json',
+	    	success ( res ) {
+	    		console.log ( res );
+	    		var img = '../../download/' + res.data.image;
+	    		$('#image').html('<img src={} style="height:500px"/>'.replace('{}', img));
+	    		
+	    	}
+	    })
+    }
+    function show(value) {
+        $('#modal-testNew').on('shown.bs.modal', (event) => {
+            view(value);
+        });
+    }
+
+    
+    function load(orderType, panelId) {
         
     	   /*  if (options == undefined) options = {};
     	     options.pn = pageNo; */
     	    
     	    $.ajax('../json/notice/list', {
     	        dataType: 'json',
+    	        data : {oc : orderType},
     	        success: (result) => {
-    	            $('#list').html(noticeEngine(result)); 
+    	        	var html = noticeEngine(result);
+    	            $('#list ' + panelId ).html(html); // '#list #new' 
     	            
     	         /*    currPageNo = result.pageNo;
     	            currBtn.html(currPageNo);
@@ -128,6 +151,28 @@ $('header').load('../header.html');
     	        }
     	    });
     	}
+    
+/*     var index = location.href.indexOf('?');
+    if (index != -1) { // 기존 데이터를 조회할 경우,
+        var qs = location.href.substr(index + 1);
+        var arr = qs.split('=');
+        $('.my-new').css('display', 'none');
+        $(() => {
+            $.ajax('../json/notice/' + arr[1], {
+                dataType: 'json',
+                success: (result) => {
+                    tbody.html(noticeEngine(result)); 
+                },
+                error: () => {
+                    window.alert('서버 실행 오류!');
+                }
+            });
+        });  */
+        $('.filter').on('click', function(e){ 
+        	var ot = $(e.target).data('order');
+        	var panel = $(e.target).data('filter');
+        	load ( ot, panel );
+        });
     </script>
 
 </body>
