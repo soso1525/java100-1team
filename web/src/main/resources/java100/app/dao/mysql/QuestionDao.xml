@@ -28,6 +28,11 @@
         values(#{article}, #{context}, #{lno})
     </insert>
     
+    <insert id="companyInsert" parameterType="question">
+        insert into g_que(qart, nno)
+        values(#{article}, #{nno})
+    </insert>
+    
    <select id="findByNo" resultMap="questionMap" parameterType="int">
         select
             qno,

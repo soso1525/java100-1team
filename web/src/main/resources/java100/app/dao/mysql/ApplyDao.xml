@@ -32,7 +32,7 @@
 		</association>
     </resultMap>
 
-    <select id="findAll" resultMap="applyMap">
+    <select id="findAll" resultMap="applyMap" parameterType="map">
 		select
             a.ano,
             a.aname,
@@ -43,6 +43,7 @@
 			from g_app a
 			left join g_test t on t.ano = a.ano
 			left join g_let l on l.ano = a.ano
+			where a.ino = #{writer.no}
 	</select>
 	
 	<insert id="insert" parameterType="apply">

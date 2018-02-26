@@ -10,5 +10,4 @@ public interface CompanyMemberDao {
 	int insert(CompanyMember cmember);
 	int update(CompanyMember cmember);
 	int delete(int no);
-	
 }

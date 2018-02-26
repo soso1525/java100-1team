@@ -76,7 +76,7 @@
     </select>
 	
 	<insert id="insert" parameterType="notice"
-		useGeneratedKeys="true" keyColumn="no" keyProperty="no">
+		useGeneratedKeys="true" keyColumn="nno" keyProperty="no">
         insert into g_noti(nimg, nsdt, nedt, ncnt, cno)
         values(#{image}, #{startDate}, #{endDate}, 0, #{writer.no})
     </insert>

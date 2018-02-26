@@ -2,7 +2,6 @@
 <html lang="en">
 
   <head>
-    
     <!-- Meta Tag -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,10 +50,6 @@
                 </div>
             </div>
             <!-- Button trigger modal -->
-<!-- 	            <a data-toggle="modal" href="form.html" data-target="#modal-testNew" role="button" data-backdrop="static">
-				 <span class="btn btn-xs btn-success">테스트 등록</span>
-				</a> -->
-				
 				<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="테스트정보 등록" aria-describedby="테스트 모달">
 				    <div class="modal-dialog" style="width:1200px;height:700px">
 				        <div class="modal-content"></div>
@@ -71,8 +66,7 @@
 	                    <li class="filter" data-filter=".test">인적성/면접</li>
 	                </ul>
 	            </div>
-	            <div class="portfolio-inner margin-top-30" id ='list'>
-	            </div>
+	            <div class="portfolio-inner margin-top-30" id ='list'></div>
             </div>
         </div>
     </section>
@@ -83,34 +77,39 @@
 <script type="text/javascript" src="../js/scripts.js"></script>
 
 <script type="text/javascript">
-//$('header').load('../header.html');
+$('header').load('../header.html');
 var index = -1;
 
-// modal창이 띄워졌을때 실행하는 이벤트
-$('#modal-testNew').on('shown.bs.modal', (event) => {
-});
 
 // modal창이 꺼졌을떄 실행하는 이벤트
 $('#modal-testNew').on('hidden.bs.modal', () => {
 })
 
+
+function show(value) {
+	// modal창이 띄워졌을때 실행하는 이벤트
+	$('#modal-testNew').on('shown.bs.modal', (event) => {
+		view(value);
+	});
+}
 $(() => {
 	$.ajax('../json/apply/list', {
 		dataType: 'json',
 		success: (result) => {
 			for (var data of result.apply) {
+				
 				var div = "<div class='col-md-2 col-sm-3 mix";
 				if (data.test.no != 0) {
 					div = div + " test";
-				} 
+				}
+				
 				if (data.letter.lno != 0) {
 					div = div + " letter";
-				} 
-				div = $(div + "'></div>");
-				index = data.ano;
+				}
+				
+				div = $(div + "'></div>");	
 				div.html(
-						//  data-id='" + data.ano + "'
-					"<a data-toggle='modal' href='form.html' onclick=\"view('" + data.ano + "')\" data-target='#modal-testNew' role='button' data-backdrop='static'>" +
+					"<a onclick=\"show('" + data.ano + "')\" href='form.html' data-target='#modal-testNew'  data-toggle='modal' role='button' data-backdrop='static'>" +
 						"<div class='services-detail' style='cursor:pointer'>" +
 							"<i class='icon-screen-smartphone color-1'></i>" +
 							"<h5>" + data.aname + "</h5>" +
@@ -125,9 +124,6 @@ $(() => {
 		}
 	});
 });
-
-
-
 
 </script>
    

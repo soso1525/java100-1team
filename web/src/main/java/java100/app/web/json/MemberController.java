@@ -32,11 +32,13 @@ public class MemberController {
 	}
 
 	@RequestMapping("{no}")
-	public String view(@PathVariable int no, Model model) throws Exception {
-
-		model.addAttribute("member", memberService.get(no));
-		return "member/view";
+	public Object iView(@PathVariable int no) throws Exception {
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("data", memberService.get(no));
+		return result;
 	}
+	
+
 
 	@RequestMapping("iAdd")
 	public Object iAdd(Member member, IndividualMember iMember) throws Exception {

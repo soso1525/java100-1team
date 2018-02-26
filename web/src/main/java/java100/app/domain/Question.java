@@ -4,13 +4,29 @@ public class Question {
 
     int no;
     String article;
+    String[] articles;
     String context;
     Member member;
     int lno;
     int nno;
-    
+  
 
-    public int getLno() {
+
+	public String[] getArticles() {
+		return articles;
+	}
+
+	public void setArticles(String[] articles) {
+		this.articles = articles;
+	}
+
+	public String getArticle() {
+		return article;
+	}
+	public void setArticle(String article) {
+		this.article = article;
+	}
+	public int getLno() {
 		return lno;
 	}
 	public void setLno(int lno) {
@@ -28,12 +44,7 @@ public class Question {
     public void setNo(int no) {
         this.no = no;
     }
-    public String getArticle() {
-        return this.article;
-    }
-    public void setArticle(String article) {
-        this.article = article;
-    }
+
     public String getContext() {
         return this.context;
     }
@@ -48,6 +59,7 @@ public class Question {
     }
 
 }
+
 
 
 

@@ -6,11 +6,39 @@
 <!-- DAO 객체를 자동으로 생성하려면,
      namespace의 값이 인터페이스 이름과 같아야 한다. -->
 <mapper namespace="java100.app.dao.CompanyMemberDao">
-
-   <insert id="insert" parameterType="companyMember">
+	<resultMap type="companyMember" id="cmemberMap">
+		<id column="cno" property="cno" />
+		<result column="cname" property="cName" />
+		<result column="ckind" property="cKind" />
+		<result column="ctype" property="cType" />
+		<result column="cbno" property="businessNo" />
+		<result column="clogo" property="logo" />
+	</resultMap>
+	
+	<select id="findByNo" resultMap="cmemberMap" parameterType="int">
+		select
+			cno,
+			cname,
+			clogo,
+			ckind,
+			ctype,
+			cbno
+		from g_corp
+		where cno = #{value}
+	</select>
+    <insert id="insert" parameterType="companyMember">
         insert into g_corp(cno, cname, ckind, ctype, cbno)
-        values(LAST_INSERT_ID(),#{name},#{kind},#{cType},#{businessNo})
+        values(LAST_INSERT_ID(),#{cName},#{cKind},#{cType},#{businessNo})
     </insert>
+    <update id="update" parameterType="companyMember">
+    	update g_corp set
+    		cname = #{cName},
+    		clogo = #{logo},
+    		ckind = #{cKind},
+    		ctype = #{cType},
+    		cbno = #{businessNo}
+        where cno=#{cno}
+    </update>
 </mapper>
 
 
