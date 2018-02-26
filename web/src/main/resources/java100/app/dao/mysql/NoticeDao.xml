@@ -20,8 +20,8 @@
         <result column="ncnt" property="viewCount"/>
     
 	    <association property="companyMember" javaType="companyMember" >
-	    	<id column="cno" property="no"/>
-	    	<result column="cname" property="name"/>
+	    	<id column="cno" property="cno"/>
+	    	<result column="cname" property="cName"/>
 	    	<result column="clogo" property="logo"/>
 	    </association>
    
