@@ -5,17 +5,17 @@ import java.util.List;
 import java100.app.domain.Notice;
 import java100.app.domain.Resume;
 
-// => "역할"을 강조할 때는 "객체(object)"라는 말보다는 
-//    "컴포넌트(component)"라는 말을 사용한다.
-// => "객체"는 말 그대로 한 개의 클래스를 가리키는 것이라면,
-//    "컴포넌트"는 그 역할을 수행하는 여러 객체의 묶음을 총칭한다.
+// => "�뿭�븷"�쓣 媛뺤“�븷 �븣�뒗 "媛앹껜(object)"�씪�뒗 留먮낫�떎�뒗 
+//    "而댄룷�꼳�듃(component)"�씪�뒗 留먯쓣 �궗�슜�븳�떎.
+// => "媛앹껜"�뒗 留� 洹몃�濡� �븳 媛쒖쓽 �겢�옒�뒪瑜� 媛�由ы궎�뒗 寃껋씠�씪硫�,
+//    "而댄룷�꼳�듃"�뒗 洹� �뿭�븷�쓣 �닔�뻾�븯�뒗 �뿬�윭 媛앹껜�쓽 臾띠쓬�쓣 珥앹묶�븳�떎.
 //
-// Service 컴포넌트(인터페이스, 구현체)는 "업무 로직"과 "트랜잭션 처리"를  
-// 담당하기 때문에 인터페이스에 선언하는 메서드 이름도 
-// 가능한 업무 용어를 사용한다.
+// Service 而댄룷�꼳�듃(�씤�꽣�럹�씠�뒪, 援ы쁽泥�)�뒗 "�뾽臾� 濡쒖쭅"怨� "�듃�옖�옲�뀡 泥섎━"瑜�  
+// �떞�떦�븯湲� �븣臾몄뿉 �씤�꽣�럹�씠�뒪�뿉 �꽑�뼵�븯�뒗 硫붿꽌�뱶 �씠由꾨룄 
+// 媛��뒫�븳 �뾽臾� �슜�뼱瑜� �궗�슜�븳�떎.
 //
 public interface NoticeService {
-    List<Notice> list();
+    List<Notice> list(String orderBy);
     Notice get(int no);
     int add(Notice notice);
     int update(Notice notice);

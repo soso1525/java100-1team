@@ -20,6 +20,7 @@ import java100.app.domain.Notice;
 import java100.app.service.CompanyService;
 import java100.app.service.MemberService;
 import java100.app.service.NoticeService;
+import net.coobird.thumbnailator.Thumbnails;
 
 @RestController
 @RequestMapping("/notice")
@@ -62,10 +63,8 @@ public class NoticeController {
 //        
 //        model.addAttribute("pageNo", pageNo);
 //        model.addAttribute("lastPageNo", lastPageNo);
-        
         HashMap<String,Object> result = new HashMap<>();
-        
-        result.put("list", noticeService.list());
+        result.put("list", noticeService.list(orderColumn));
         return result;
     }
     
@@ -156,10 +155,25 @@ public class NoticeController {
     
     private String addFile(MultipartFile part) throws IOException {
     	String uploadDir = servletContext.getRealPath("/download");
+        String realPath = new File(uploadDir).getAbsolutePath();
+        int size = 500;
+        String filename = this.writeUploadFile(part, uploadDir); // 1519461025277_500x500_0.png
+        // File thumnail = new File(realPath, thumnailPath(filename, size + "x" + size));
         
-        String filename = this.writeUploadFile(part, uploadDir);
+        
+        Thumbnails.of( new File(realPath, filename) )
+                  .size(size, size)
+                  .outputQuality(1.0)
+			      .outputFormat(filename.substring(filename.lastIndexOf('.') + 1 ))
+			      .toFile(new File(realPath, filename));
         return filename;
     }
+
+	private String thumnailPath(String filename, String size) {
+		//1519461025277_0.png
+		String [] names = filename.split("_"); 
+		return names[0] + "_" + size + "_" + names[1];  
+	}
 
     
 }

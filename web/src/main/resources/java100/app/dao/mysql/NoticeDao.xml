@@ -48,8 +48,11 @@
        </if>
        order by
        <choose>
-           <when test="orderColumn == 'n.ncnt' and align == 'asc'">
-               n.ncnt asc
+           <when test="orderColumn == 'viewcount'">
+               n.ncnt desc
+           </when>
+           <when test="orderColumn == 'startdate'">
+               n.nsdt asc
            </when>
            <otherwise>
                n.ncnt desc

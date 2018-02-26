@@ -16,10 +16,13 @@ public class NoticeServiceImpl implements NoticeService {
     @Autowired NoticeDao noticeDao;
     
     @Override
-    public List<Notice> list() {
+    public List<Notice> list(String orderBy) {
         
         HashMap<String,Object> params = new HashMap<>();
-        
+        if ( orderBy != null ) {
+        	params.put("orderColumn", orderBy);
+        	params.put("align", "asc");        	
+        }
         return noticeDao.findAll(params);
     }
 
