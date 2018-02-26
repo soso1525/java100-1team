@@ -162,16 +162,15 @@ public class NoticeController {
     	String uploadDir = servletContext.getRealPath("/download");
         String realPath = new File(uploadDir).getAbsolutePath();
         int size = 500;
-        String filename = this.writeUploadFile(part, uploadDir); // 1519461025277_500x500_0.png
-        // File thumnail = new File(realPath, thumnailPath(filename, size + "x" + size));
-        
-        
+        String filename = this.writeUploadFile(part, uploadDir);
+        // 1519461025277_500x500_0.png
+        //File thumnail = new File(realPath, thumnailPath(filename, size + "x" + size));
         Thumbnails.of( new File(realPath, filename) )
                   .size(size, size)
                   .outputQuality(1.0)
 			      .outputFormat(filename.substring(filename.lastIndexOf('.') + 1 ))
-			      .toFile(new File(realPath, filename));
-        return filename;
+			      .toFile(new File(realPath, "x"+filename));
+        return "x" + filename;
     }
 
 	private String thumnailPath(String filename, String size) {
