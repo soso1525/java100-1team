@@ -18,7 +18,6 @@
 <script type="text/javascript">
 
  var imageItem = $('#image'),
-  simgs = $('#image');
   
  function show(value) {
      $('#modal-testNew').on('shown.bs.modal', (event) => {
@@ -27,7 +26,6 @@
  }
  
  function view(value) {
-     console.log(실행)
      index = value;
      if (index != -1) {
          $('.my-new').css('display','none');
@@ -36,7 +34,6 @@
                  dataType: 'json',
                  success: (result) => {
                  imageItem.html("<img src='../../download/" + result.data.image + "' height='300px'/>");
-                 imageItem.val(result.data.image);
              },
              error: () => {
                  window.alert('서버 실행 오류!');
@@ -47,42 +44,5 @@
  } else { // 신규 데이터 입력일 경우,
      $('.my-view').css('display', 'none');
  } 
-
- 
- 
-/* function load() {
-    console.log(실행)
-    if (options == undefined) options = {};
-     options.pn = pageNo; */
-    
-    $.ajax('../json/notice/list', {
-        dataType: 'json',
-        success: (result) => {
-            imageItem.html("<img src='../../download/" + result.data.image + "' height='300px'/>");
-            imageItem.val(result.data.image); */
-            
-            
-           /*  currPageNo = result.pageNo;
-            currBtn.html(currPageNo);
-            
-            if (result.pageNo == 1) {
-                $(prevBtn.parent()).addClass("disabled");
-            } else {
-                $(prevBtn.parent()).removeClass("disabled");
-            }
-            
-            if (result.lastPageNo == result.pageNo) {
-                $(nextBtn.parent()).addClass("disabled");
-            } else {
-                $(nextBtn.parent()).removeClass("disabled");
-            } */
-            },
-       error: () => {
-            window.alert('서버 실행 오류!');
-        } 
-    }); 
-     
-} 
-
 </script>
 </html>
