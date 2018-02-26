@@ -64,7 +64,7 @@ public class NoticeController {
 //        model.addAttribute("pageNo", pageNo);
 //        model.addAttribute("lastPageNo", lastPageNo);
         
-        model.addAttribute("list", noticeService.list("viewcount"));
+        //model.addAttribute("list", noticeService.list("viewcount"));
         return "notice/list";
     }
     
