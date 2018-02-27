@@ -18,7 +18,7 @@
 	<div class='container'>
 
 		<header></header>
-		<form method='get'>
+
 			<div id='nod'></div>
 			<section id="contact" class="section-space-padding">
 				<div class="container">
@@ -34,36 +34,14 @@
 						</div>
 					</div>
 
-
 					<div class="margin-top-30 margin-bottom-50">
 						<div class="row">
-
 							<div class="col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8">
-
-								<div class="row">
 									<form class="contact-us pattern-bg">
-
-										<div class="col-sm-12">
-											<div class="form-group">
-												<input type="hidden" id="mno" class="form-control my-view"
-													placeholder="number">
-											</div>
-										</div>
-										<div class="col-sm-12">
-											<div class="form-group">
-												<input type="text" id="msend" class="form-control my-view"
-													placeholder="Your Name">
-											</div>
-										</div>
+								<div class="row">
 										<div class="col-sm-12">
 											<div class="form-group">
 												<input type="text" id="mrecv" class="form-control"
-													placeholder="Your Name">
-											</div>
-										</div>
-										<div class="col-sm-12">
-											<div class="form-group">
-												<input type="text" id="mdt" class="form-control my-view"
 													placeholder="Your Name">
 											</div>
 										</div>
@@ -76,28 +54,19 @@
 
 										<div class="col-sm-12">
 											<div align="center" class="textarea-message form-group">
-												<button id="addBtn" type="submit"
-													class="button button-style button-style-dark button-style-color-2 my-new">Submit</button>
+												<button id="addBtn" 
+													class="button button-style button-style-dark button-style-color-2">Submit</button>
 											</div>
 										</div>
-
-										<div class="col-sm-12">
-											<div align="center" class="textarea-message form-group">
-												<button id="deleteBtn" type="submit"
-													class="button button-style button-style-dark button-style-color-2 my-view">Delete</button>
-											</div>
-										</div>
-									</form>
 
 								</div>
+									</form>
 							</div>
 						</div>
-
-
 					</div>
 				</div>
 			</section>
-		</form>
+
 	</div>
 
 	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
@@ -111,7 +80,6 @@
 	<script type="text/javascript">
 	$('header').load("../header.html");
 	var addBtn = $('#addBtn'),
-	deleteBtn = $('#deleteBtn'),
 	msendItem = $('#msend'),
 	mnoItem = $('#mno'),
 	mrecvItem = $('#mrecv'),
@@ -121,64 +89,22 @@
 	nodiv = $('#nod')
 	;
 
- 	    var index = location.href.indexOf('?');
-	    if (index != -1) { // 기존 데이터를 조회할 경우,
-	        var qs = location.href.substr(index + 1);
-	        var arr = qs.split('=');
-	        $('.my-new').css('display', 'none');
-	        $(() => {
-	            $.ajax('../json/msg2/' + arr[1], {
-	                dataType: 'json',
-	                success: (result) => {
-	                    mnoItem.val(result.data.mno);
-	                    msendItem.val(result.data.pid1);
-	                    mrecvItem.val(result.data.pid2);
-	                    mdtItem.val(result.data.mdt);
-	                    mcontItem.val(result.data.mcont);
-	                },
-            error: () => {
-                /* window.alert('서버 실행 오류!'); */
-            	location.href = "sendList.html";
-            }
-        });
-    });
-    
-} else { // 신규 데이터 입력일 경우,
-    $('.my-view').css('display', 'none');
-}
-	    
 addBtn.click(() => {
-    $.ajax('../json/msg2/add', {
-        data: {
-            mrecv: mrecvItem.val(),
-            mcont: mcontItem.val()
-        },
+    $.ajax('../json/message/add', {
+        data: 
+            {
+             "mrecv":mrecvItem.val(),
+             "mcont":mcontItem.val()
+            }
+        ,
         dataType: 'json',
         method: 'POST',
         success: (result) => {
-        	
             location.href = "sendList.html";
         },
         error: () => {
-            /* window.alert('서버 실행 오류!!'); */
+             window.alert('서버 실행 오류!!');
             location.href = "sendList.html";
-        }
-    });
-});
-
-
-deleteBtn.click(() => {
-    $.ajax('../json/msg2/delete', {
-        data: {
-            mno: mnoItem.val()
-        },
-        dataType: 'json',
-        success: (result) => {
-            location.href = "receiveList.html";
-        },
-        error: () => {
-            /* window.alert('서버 실행 오류!!!'); */
-            location.href="sendList.html";
         }
     });
 });

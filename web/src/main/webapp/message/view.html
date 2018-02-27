@@ -1,0 +1,112 @@
+					<div class="margin-top-30 margin-bottom-50">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8">
+						      <form class="contact-us pattern-bg">
+								<div class="row">
+										<div class="col-sm-12">
+											<div class="form-group">
+												<input type="hidden" id="mno" class="form-control my-view"
+													placeholder="number">
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<div class="form-group">
+												<input type="text" id="msend" class="form-control my-view"
+													placeholder="Your Name">
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<div class="form-group">
+												<input type="text" id="mrecv" class="form-control"
+													placeholder="Your Name">
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<div class="form-group">
+												<input type="text" id="mdt" class="form-control my-view"
+													placeholder="Your Name">
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<div class="textarea-message form-group">
+												<textarea id="mcont" class="textarea-message form-control"
+													placeholder="Your Message" rows="5"></textarea>
+											</div>
+										</div>
+
+										<div class="col-sm-12">
+											<div align="center" class="textarea-message form-group">
+												<button id="deleteBtn"
+													class="button button-style button-style-dark button-style-color-2">Delete</button>
+											</div>
+										</div>
+
+								</div>
+									</form>
+							</div>
+						</div>
+						</div>
+					</div>
+
+
+	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/plugin.js"></script>
+	<!-- Main Javascript File  -->
+	<script src="../js/scripts.js"></script>
+
+	<script type="text/javascript">
+	$('header').load("../header.html");
+	deleteBtn = $('#deleteBtn'),
+	msendItem = $('#msend'),
+	mnoItem = $('#mno'),
+	mrecvItem = $('#mrecv'),
+	pidItem = $('#pid'),
+	mdtItem = $('#mdt'),
+	mcontItem = $('#mcont'),
+	nodiv = $('#nod')
+	;
+	function view(value) {
+/*  	    var index = location.href.indexOf('?'); */
+	    if (value != -1) { // 기존 데이터를 조회할 경우,
+/* 	        var qs = location.href.substr(index + 1);
+	        var arr = qs.split('='); */
+	        $(() => {
+	            $.ajax('../json/message/' + value, {
+	                dataType: 'json',
+	                success: (result) => {
+	                    mnoItem.val(result.data.mno);
+	                    msendItem.val(result.data.pid1);
+	                    mrecvItem.val(result.data.pid2);
+	                    mdtItem.val(result.data.mdt);
+	                    mcontItem.val(result.data.mcont);
+	                },
+            error: () => {
+                /* window.alert('서버 실행 오류!'); */
+            	location.href = "sendList.html";
+            }
+        });
+    });
+}
+deleteBtn.click(() => {
+    $.ajax('../json/message/delete', {
+        data: {
+            mno: mnoItem.val()
+        },
+        dataType: 'json',
+        success: (result) => {
+            location.href = "receiveList.html";
+        },
+        error: () => {
+            window.alert('서버 실행 오류!!!');
+            location.href="sendList.html";
+        }
+    });
+});
+	}
+</script>
+</body>
+</html>

@@ -1,72 +1,101 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>이력서목록</title>
 <link rel='stylesheet' href='../css/common.css'>
+<!-- <link rel='stylesheet' href='../node_modules/bootstrap/dist/css/bootstrap.min.css'> -->
 <link rel='stylesheet' href='../css/plugin.css'>
 <link rel='stylesheet' href='../css/style.css'>
-</head>
+ 
+ </head>
 <body>
-	<div class='container'>
-		<header></header>
-		<h1 style="margin-top: 100px; margin-bottom: 30px">이력서 목록</h1>
-		<table id='list' class='table table-hover'>
-			<thead>
-				<tr>
-					<th>번호</th>
-					<!-- <th>학력</th> -->
-					<!-- <th>경력</th> -->
-					<th>직무</th>
-					<th>사진</th>
-					<!-- <th>자격증</th>
-					<th>어학</th>
-					<th>수상</th>
-					<th>전공</th>
-					<th>학교명</th>
-					<th>학점</th>
-					<th>조회수</th> -->
-					<th>동영상</th>
-					<th>이력서파일</th>
-					<!-- <th>할말</th>
-					<th>공개여부</th>
-					<th>회원번호</th> -->
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-		<button type="button" class='btn btn-primary btn-sm' id="btn-add"
-			onclick="location.href='form.html'">추가</button>
-		<nav aria-label="Page navigation">
-			<ul class="pagination justify-content-center">
-				<li class="page-item disabled"><a class="page-link"
-					href="list?pn=-1" tabindex="-1">이전</a></li>
+    <div class='container'>
+        <header></header>
+        <h1 style="margin-top: 100px; margin-bottom: 30px">이력서 목록</h1>
+        <table id='list' class='table table-hover'>
+            <thead>
+                <tr>
+                  <!--  <th width=6%>번호</th> -->
+                    <th width="30%">제목</th>
+                    <th>직무</th>
+                    <!-- <th>학력</th> -->
+                    <th>경력</th>
+                    <!-- <th>사진</th> -->
+                    <!-- <th>자격증</th>
+                    <th>어학</th>
+                    <th>수상</th>
+                    <th>전공</th>
+                    <th>학교명</th>
+                    <th>학점</th>
+                    <th>조회수</th> -->
+                    <th>동영상</th>
+                    <th>이력서파일</th>
+                    <!-- <th>할말</th>
+                    <th>공개여부</th>
+                    <th>회원번호</th> -->
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+		<div class='col-md-12 mb-3'>
+			<div align="center" style="margin-top: 15px;">
 
-				<li class="page-item"><a class="page-link" href="#"></a></li>
+				<nav aria-label="Page navigation">
+					<ul class="pagination justify-content-center">
+						<li class="page-item"><a id="prevBtn" class="page-link"
+							tabindex="-1">이전</a></li>
 
-				<li class="page-item disabled"><a class="page-link"
-					href="list?pn=1" tabindex="-1">다음</a></li>
-			</ul>
-		</nav>
-	</div>
+						<li class="page-item"><a id="currBtn" class="page-link"
+							href="#">1</a></li>
 
-	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
-	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
-	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
-</body>
+						<li class="page-item"><a id="nextBtn" class="page-link"
+							tabindex="0">다음</a></li>
+ 				     </ul>
+			     </nav>
+			</div>
+		</div>
+		
+		<div class='col-md-12 mb-3'>
+		<button style="position:absolute; right:0px; margin-top:-63px;'" type="button" class='btn btn-primary btn-sm' id="btn-add"
+            onclick="location.href='form.html'">추가</button>
+         </div>
+		
+    </div>
+
+    <script src='../node_modules/jquery/dist/jquery.min.js'></script>
+    <script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+    <script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
 <script type="text/javascript">
-	$('header').load("../header.html");
-  var
-    tbody = $('#list > tbody')
-
-load();
+  var  prevBtn = $('#prevBtn'),
+	  currBtn = $('#currBtn'),
+	  nextBtn = $('#nextBtn'),
+	  currPageNo = 1,
+	  tbody = $('#list > tbody');
   
-function load() {
-    
+
+  $('header').load('../header.html', () => {
+      load(1);
+  });
+
+
+  prevBtn.click(() => {
+	    load(currPageNo - 1)
+	});
+
+	nextBtn.click(() => {
+	    load(currPageNo + 1)
+	});
+  
+  
+function load(pageNo, options) {
+	if (options == undefined) options = {};
+    options.pn = pageNo;
+
     
     $.ajax('../json/resume/list', {
+    	    	data: options,
         dataType: 'json',
         success: (result) => {
             
@@ -80,23 +109,23 @@ function load() {
                 } else {
                     file ="Y";
                 }
-                 
                 
-               
                  var avi;
                 if(data.avi == "") {
                     avi = "N"; 
                 } else {
                     avi = "Y";
                 } 
-             
+               
+                
                 $('<tr>')
                     .html(  
-                        "<td><a href='form.html?no=" + data.no + "'>" + data.no + "</a></td>" + 
-                        /*"<td>" + data.education + "</td>" +
-                        "<td>" + data.career + "</td>" + */
+                       /*  "<td>" + data.no + "</td>" +  */
+                        "<td style='background:skyblue'><a href='view.html?no=" + data.no + "'>" + data.title +"</a></td>" +
                         "<td>" + data.kind + "</td>" +
-                        "<td><img src='../../download/" + data.image + "' height" + "='50px'/></td>"+
+                        "<td>" + data.career + "</td>" + 
+                        /*"<td>" + data.education + "</td>" +
+                        "<td><img src='../../download/" + data.image + "' height" + "='50px'/></td>"+*/
                        /*  "<td>" + data.qualification + "</td>" +
                         "<td>" + data.language + "</td>" +
                         "<td>" + data.award + "</td>" +
@@ -113,7 +142,7 @@ function load() {
                     .appendTo(tbody);
             }
             
-         /*    currPageNo = result.pageNo;
+            currPageNo = result.pageNo;
             currBtn.html(currPageNo);
             
             if (result.pageNo == 1) {
@@ -124,15 +153,18 @@ function load() {
             
             if (result.lastPageNo == result.pageNo) {
                 $(nextBtn.parent()).addClass("disabled");
+                console.log("end");
             } else {
                 $(nextBtn.parent()).removeClass("disabled");
-            } */
+            } 
+            console.log(result.lastPageNo);
+            console.log(result.pageNo);
         },
         error: () => {
             window.alert('서버 실행 오류!');
         }
     });
 }
- 
 </script>
+</body>
 </html>

@@ -49,8 +49,8 @@ public class NoticeController {
             pageNo = 1;
         }
         
-        if (pageSize < 5 || pageSize > 15) {
-            pageSize = 5;
+        if (pageSize < 9 || pageSize > 15) {
+            pageSize = 9;
         }
         
         HashMap<String,Object> options = new HashMap<>();
@@ -74,6 +74,9 @@ public class NoticeController {
         int lastPageNo = totalCount / pageSize;
         if ((totalCount % pageSize) > 0) {
             lastPageNo++;
+        }
+        if(pageNo >= lastPageNo) {
+            pageNo = lastPageNo;
         }
         HashMap<String,Object> result = new HashMap<>();
         

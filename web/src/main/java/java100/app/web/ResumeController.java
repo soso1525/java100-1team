@@ -61,7 +61,7 @@ public class ResumeController {
 //        model.addAttribute("pageNo", pageNo);
 //        model.addAttribute("lastPageNo", lastPageNo);
      
-        model.addAttribute("list", resumeService.list());
+      /*  model.addAttribute("list", resumeService.list());*/
         return "resume/list";
     }
     

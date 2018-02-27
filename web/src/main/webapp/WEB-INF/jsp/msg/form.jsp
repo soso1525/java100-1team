@@ -13,7 +13,7 @@
 <div class='container'>
 
 <h1>쪽지등록</h1>
-<form action='add' method='post'>
+<!-- <form action='add' method='post'> -->
 <!-- div class='form-group row'>
 <label for='msend' class='col-sm-2 col-form-label'>보낸이</label>
 <div class='col-sm-10'>

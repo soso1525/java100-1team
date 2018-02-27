@@ -2,6 +2,7 @@ package java100.app.domain;
 
 public class Resume {
 	int no;
+	String title;
 	String image;
 	Member member;
 	String education;
@@ -130,6 +131,14 @@ public class Resume {
 	public void setIno(int ino) {
 		this.ino = ino;
 	}
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+	
+	
 	
 	
 	

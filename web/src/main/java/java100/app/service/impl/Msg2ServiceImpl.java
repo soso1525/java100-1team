@@ -55,6 +55,10 @@ public class Msg2ServiceImpl implements Msg2Service {
     public int getTotalCount() {
         return msg2Dao.countAll();
     }
+    @Override
+    public int getMrecvCount(int pno) {
+        return msg2Dao.countMrecv(pno);
+    }
     
     @Override
     public Msg2 get(int mno, Member loginUser) {
@@ -78,8 +82,9 @@ public class Msg2ServiceImpl implements Msg2Service {
     @Override
     public int msgAdd(Msg2 msg2) {
         String pid = msg2.getPid2();     // 받는 사람 id
+        System.out.println("id : "+pid);
         int pno2 = msg2Dao.chaneId(pid); // 받는 사람 no
-        
+        System.out.println("변환한 no : "+pno2);
         Map<String, Object> params = new HashMap<String,Object>();
         
         params.put("mcont", msg2.getMcont());

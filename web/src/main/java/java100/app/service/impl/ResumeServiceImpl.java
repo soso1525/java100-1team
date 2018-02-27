@@ -2,6 +2,7 @@ package java100.app.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,13 @@ public class ResumeServiceImpl implements ResumeService {
     @Autowired ResumeDao resumeDao;
     
     @Override
-    public List<Resume> list() {
+    public List<Resume> list(int pageNo, int pageSize, Map<String, Object> options) {
         HashMap<String,Object> params = new HashMap<>();
+        params.put("startIndex", (pageNo - 1) * pageSize);
+        params.put("size", pageSize);
+        if (options != null) {
+            params.putAll(options);
+        }
         return resumeDao.findAll(params);
     }
 

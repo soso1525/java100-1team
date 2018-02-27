@@ -20,7 +20,7 @@ import java100.app.service.MemberService;
 import java100.app.service.Msg2Service;
 
 @RestController
-@RequestMapping("/msg2")
+@RequestMapping("/message")
 @SessionAttributes("loginUser")
 public class Msg2Controller {
     @Autowired Msg2Service msg2Service;
@@ -34,14 +34,40 @@ public class Msg2Controller {
         return "{\"success\": " + exist + "}";
     }
     
-    @RequestMapping(value="add", method=RequestMethod.POST)
-    public Object add(Msg2 msg2,
-           @ModelAttribute(value="loginUser") Member loginUser,
-           @RequestParam String mrecv
+//    @RequestMapping(value="add")
+//    public Object add(Msg2 msg2,
+//           @ModelAttribute(value="loginUser") Member loginUser
+//           ,@RequestParam(value="mrecv") String mrecv
+//           ) throws Exception {
+//        
+//        msg2.setWriter(loginUser); // 보내는 사람 정
+//        
+//        msg2.setPid2(mrecv); // 받는사람 id
+//
+//        int resultAdd = msg2Service.msgAdd(msg2); // Msg insert
+//        HashMap<String, Object> result = new HashMap<>();
+//        result.put("status", "success");
+//        
+//        return result;
+//    }
+    
+//    @RequestMapping("form")
+//    public Object form() throws Exception {
+//        return "msg2/form";
+//    }
+    
+    @RequestMapping(value="add",method = RequestMethod.POST)
+    public Object test(@RequestParam(value="mrecv") String mrecv,
+            @RequestParam(value="mcont") String mcont,
+            @ModelAttribute(value="loginUser") Member loginUser
            ) throws Exception {
+        System.out.println(mrecv);
+        System.out.println(loginUser);
+        Msg2 msg2 = new Msg2();
         msg2.setWriter(loginUser); // 보내는 사람 정
+        msg2.setMcont(mcont);
         msg2.setPid2(mrecv); // 받는사람 id
-
+        
         int resultAdd = msg2Service.msgAdd(msg2); // Msg insert
         HashMap<String, Object> result = new HashMap<>();
         result.put("status", "success");
@@ -49,16 +75,10 @@ public class Msg2Controller {
         return result;
     }
     
-//    @RequestMapping("form")
-//    public Object form() throws Exception {
-//        return "msg2/form";
-//    }
-    
-    
     @RequestMapping("receiveList")
     public Object receiveList (
             @RequestParam(value="pn", defaultValue="1") int pageNo,
-            @RequestParam(value="ps", defaultValue="5") int pageSize,
+            @RequestParam(value="ps", defaultValue="6") int pageSize,
             @RequestParam(value="words", required=false) String[] words,
             @RequestParam(value="oc", required=false) String orderColumn,
             @RequestParam(value="al", required=false) String align,
@@ -67,8 +87,8 @@ public class Msg2Controller {
             pageNo = 1;
         }
         
-        if (pageSize < 5 || pageSize > 15) {
-            pageSize = 5;
+        if (pageSize < 6 || pageSize > 15) {
+            pageSize = 6;
         }
         HashMap<String,Object> options = new HashMap<>();
         if (words != null && words[0].length() > 0) {
@@ -77,12 +97,14 @@ public class Msg2Controller {
         options.put("orderColumn", orderColumn);
         options.put("align", align);
         
-        int totalCount = msg2Service.getTotalCount();
-        int lastPageNo = totalCount / pageSize;
-        if ((totalCount % pageSize) > 0) {
+        int mrecvCount = msg2Service.getMrecvCount(loginUser.getNo());
+        int lastPageNo = mrecvCount / pageSize;
+        if ((mrecvCount % pageSize) > 0) {
             lastPageNo++;
         }
-        
+        if(pageNo >= lastPageNo) {
+            pageNo = lastPageNo;
+        }
         HashMap<String, Object> result = new HashMap<>();
         result.put("pageNo", pageNo);
         result.put("lastPageNo", lastPageNo);
@@ -93,8 +115,8 @@ public class Msg2Controller {
     
     @RequestMapping("sendList")
     public Object sendList(
-            @RequestParam(value="pn", defaultValue="1") int pageNo,
-            @RequestParam(value="ps", defaultValue="5") int pageSize,
+            @RequestParam(value="pn", defaultValue="2") int pageNo,
+            @RequestParam(value="ps", defaultValue="6") int pageSize,
             @RequestParam(value="words", required=false) String[] words,
             @RequestParam(value="oc", required=false) String orderColumn,
             @RequestParam(value="al", required=false) String align,
@@ -103,8 +125,8 @@ public class Msg2Controller {
             pageNo = 1;
         }
         
-        if (pageSize < 5 || pageSize > 15) {
-            pageSize = 5;
+        if (pageSize < 6 || pageSize > 15) {
+            pageSize = 6;
         }
         HashMap<String,Object> options = new HashMap<>();
         if (words != null && words[0].length() > 0) {

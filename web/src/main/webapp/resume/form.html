@@ -2,146 +2,225 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>이력서</title>
-<link rel='stylesheet'
-    href='../../node_modules/bootstrap/dist/css/bootstrap.min.css'>
-<link rel='stylesheet' href='../../css/common.css'>
+<link rel='stylesheet' href='../css/plugin.css'>
+<link rel='stylesheet' href='../css/style.css'>
+<link rel='stylesheet' href='../css/common.css'>
+<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script> 
+
+<script type="text/javascript">
+    function oneCheckbox(a){ var obj = document.getElementsByName('education','check');
+    for(var i=0; i<obj.length; i++){
+        if(obj[i] != a){obj[i].checked = false;}
+    }
+} </script>
+<style>
+div {
+    margin-bottom: 10px;
+}
+</style> 
 </head>
 <body>
-    <div class='container'>
-		<header></header>
 
-        <h1 style="margin-top: 30px; margin-bottom: 30px">이력서</h1>
-        <form id='form' method="post" enctype="multipart/form-data">
-        
-        
-            <div id="nod"></div>
-            <div class='form-group row'>
-                <label for='education' class='col-sm-2 col-form-label'>학력</label>
-                <div class='col-sm-10'>
-                    <input class='form-control' id='education' type='text'
-                        name='education'>
+	<div class='container'>
+	   <header></header>
+	   
+		<h1 style="margin-top: 90px; margin-bottom: 30px">이력서</h1>
+		<form method='post' id='form' enctype='multipart/form-data'>
+
+			<div id="nod"></div>
+			
+			<div class="form-row">
+                <div class='col-md-12 mb-3'>
+                    <label for='title'>제목</label> <input class='form-control'
+                        id='title' type='text' name='title'>
+                    <div style="font-size: 11px; color: #f7639a;">이력서 제목을 입력해주세요</div>
                 </div>
             </div>
-            <div class='form-group row'>
-                <label for='career' class='col-sm-2 col-form-label'>경력</label>
-                <div class='col-sm-10'>
-                    <input class='form-control' id='career' type='number' name='career'>
-                </div>
-            </div>
-            <div class='form-group row'>
-                <label for='kind' class='col-sm-2 col-form-label'>직종</label>
-                <div class='col-sm-10'>
-                    <input class='form-control' id='kind' type='text' name='kind'>
-                </div>
-            </div>
+			
+			<div class="form-row" >
+				<div class='col-md-6 mb-3' >
+					<label for='education'>최종 학력</label> 
+					<br> 
+					<div style="font-size:14px; word-spacing:1px; 
+					               letter-spacing:-.01px; color:#6E6E6E;">
+				    <input class='magic-checkbox' id='education1' type='checkbox' name='education'
+						value="고등학교졸업" onclick="oneCheckbox(this)"> 
+				    <label class='text'>고등학교 졸업</label>
+				     &nbsp 
+					<input class='magic-checkbox' id='education2' type='checkbox' name='education'
+						value="대학교재학중" onclick="oneCheckbox(this)"> 
+					<label class='text'>대학교 재학중</label> 
+					&nbsp 
+					<input class='magic-checkbox' id='education3' type='checkbox' name='education' 
+					    value="대학교졸업" checked='checked' onclick="oneCheckbox(this)">
+					<label class='text'>대학교 졸업</label> 
+					&nbsp 
+					<input class='magic-checkbox' id='education4' type='checkbox' name='education' 
+					    value="대학원재학중" onclick="oneCheckbox(this)">
+					<label class='text'>대학원 재학중</label> 
+					&nbsp 
+					<input class='magic-checkbox' id='education5' type='checkbox' name='education' 
+					    value="대학원졸업" onclick="oneCheckbox(this)"> 
+					<label class='text'>대학원 졸업</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class='col-md-6 mb-3'>
+					<label for='career'>경력</label> <input class='form-control'
+						id='career' type='text' name='career'>
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class='col-md-6 mb-3'>
+					<label for='kind'>희망 직무</label> <input class='form-control' id='kind'
+						type='text' name='kind'>
+					<div style="font-size: 11px; color: #f7639a;">희망 직무을 입력해주세요</div>
+				</div>
+			</div>
+
+			<div align="center" id='image'></div>
+
+			<div class="form-row">
+				<div class='col-md-6 mb-3'>
+					<label for='image'>사진</label> <input class='form-control'
+						id='image' type='file' name='files'>
+				    <div style="font-size: 11px; color: #f7639a;">나의 사진을 저장해주세요</div>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class='col-md-6 mb-3'>
+					<label for='qualification'>자격증</label> <input class='form-control'
+						id='qualification' type='text' name='qualification'>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class='col-md-6 mb-3'>
+					<label for='language'>어학</label> <input class='form-control'
+						id='language' type='text' name='language'>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class='col-md-6 mb-3'>
+					<label for='award'>수상</label> <input class='form-control'
+						id='award' type='text' name='award'>
+				</div>
+			</div>
+			
+			
+
+			<div class="form-row">
+				<div class='col-md-6 mb-3'>
+					<label for='major'>전공</label> <input class='form-control'
+						id='major' type='text' name='major'>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class='col-md-6 mb-3'>
+					<label for='schoolName'>학교명</label> <input class='form-control'
+						id='schoolName' type='text' name='schoolName'>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class='col-md-6 mb-3'>
+					<label for='grades'>학점</label> <input class='form-control'
+						id='grades' type='number' name='grades'>
+				</div>
+			</div>
+
+			<div align="center" id="vi"></div>
+
+			<div class="form-row">
+				<div class='col-md-6 mb-3'>
+					<label for='avi'>1분 동영상</label> <input class='form-control'
+						id='avi' type='file' name='files'>
+			         <div style="font-size: 11px; color: #f7639a;">동영상을 첨부할 수 있습니다.(예시 : 나의소개 등)</div>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class='col-md-6 mb-3'>
+					<label for='file'>첨부파일</label> <input class='form-control' id='file'
+						type='file' name='files'>
+				    <label for='nowFile'>현재파일</label>
+				        <div id='nowFile' style="font-size: 11px; color: #f7639a;">파일을 첨부할 수 있습니다.(예시 : 포트폴리오 등)</div>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class='col-md-6 mb-3'>
+					<label for='note'>나의 한마디</label> <input class='form-control' id='note'
+						type='text' name='note'>
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class='col-md-6 mb-3'> 
+					<label for='check'>이력서 공개여부</label> 
+					<br>
+					<input class='magic-radio"' id='check1' type='radio' name='check'
+					   value="1" checked='checked'> <label for='check' > 공개 </label>
+					&nbsp 
+					<input class='magic-radio"' id='check2' type='radio' name='check'
+                       value="2" > <label for='check' > 비공개 </label>
+				</div>
+			</div>
+
+			<!-- <div class="form-row">
+				<div class='col-md-6 mb-3'>
+					<button id="addBtn" type="button" style="margin-top:30px;"
+						class='btn btn-primary btn-sm my-new'>작성완료</button> -->
+						
+			<div class="form-row">
+                <div class='col-md-12 mb-3'>
+                    <div align="center" style="margin-top:20px;">
+                       <button id="addBtn" type="button"
+                           class="button button-style button-style-dark button-style-color-2 my-new">작성완료</button>
+                    </div>
+						
+					<button id="updateBtn" type="button"
+						class='btn btn-primary btn-sm my-view'>변경</button>
+					<button id="deleteBtn" type="button"
+						class='btn btn-primary btn-sm my-view'>삭제</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+	
+	<script type="text/javascript">
+	
             
-            <div align="center" id='image'></div>
-            <br>
-          
-            <div class='form-group row'>
-                <label for='image' class='col-sm-2 col-form-label'>사진</label>
-                <div class='col-sm-10'>
-                    <input class='form-control' id='image' type='file' name='files'>
-                </div>
-            </div>
-            <div class='form-group row'>
-                <label for='qualification' class='col-sm-2 col-form-label'>자격증</label>
-                <div class='col-sm-10'>
-                    <input class='form-control' id='qualification' type='text'
-                        name='qualification'>
-                </div>
-            </div>
-            <div class='form-group row'>
-                <label for='language' class='col-sm-2 col-form-label'>어학</label>
-                <div class='col-sm-10'>
-                    <input class='form-control' id='language' type='text'
-                        name='language'>
-                </div>
-            </div>
-            <div class='form-group row'>
-                <label for='award' class='col-sm-2 col-form-label'>수상</label>
-                <div class='col-sm-10'>
-                    <input class='form-control' id='award' type='text' name='award'>
-                </div>
-            </div>
-
-            <div class='form-group row'>
-                <label for='major' class='col-sm-2 col-form-label'>전공</label>
-                <div class='col-sm-10'>
-                    <input class='form-control' id='major' type='text' name='major'>
-                </div>
-            </div>
-            <div class='form-group row'>
-                <label for='schoolName' class='col-sm-2 col-form-label'>학교명</label>
-                <div class='col-sm-10'>
-                    <input class='form-control' id='schoolName' type='text'
-                        name='schoolName'>
-                </div>
-            </div>
-            <div class='form-group row'>
-                <label for='grades' class='col-sm-2 col-form-label'>학점</label>
-                <div class='col-sm-10'>
-                    <input class='form-control' id='grades' type='number' name='grades'>
-                </div>
-            </div>
-            
-            <div align="center" id="vi"></div>
-              
-            <div class='form-group row'>
-                <label for='avi' class='col-sm-2 col-form-label'>1분 동영상</label>
-                <div class='col-sm-10'>
-                    <input class='form-control' id='avi' type='file' name='files'>
-                </div>
-            </div>
-            
-        
-            <div class='form-group row'>
-                <label for='file' class='col-sm-2 col-form-label'>파일</label>
-                <div class='col-sm-10'>
-                    <input class='form-control' id='file' type='file' name='files'>
-                </div>
-            </div>
-
-            <div class='form-group row'>
-                <label for='note' class='col-sm-2 col-form-label'>할말</label>
-                <div class='col-sm-10'>
-                    <input class='form-control' id='note' type='text' name='note'>
-                </div>
-            </div>
-
-            <div class='form-group row'>
-                <label for='check' class='col-sm-2 col-form-label'>공개여부</label>
-                <div class='col-sm-10'>
-                    <input class='form-control' id='check' type='text' name='check'>
-                </div>
-            </div>
-
-            <div class='form-group row'>
-                <div class='col-sm-10'>
-                    <button id="addBtn" type="button"
-                        class='btn btn-primary btn-sm my-new'>추가</button>
-                    <button id="updateBtn" type="button"
-                        class='btn btn-primary btn-sm my-view'>변경</button>
-                    <button id="deleteBtn" type="button"
-                        class='btn btn-primary btn-sm my-view'>삭제</button>
-                </div>
-            </div>
-        </form>
-    </div>
-    <script src='../node_modules/jquery/dist/jquery.min.js'></script>
-    <script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
-    <script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
-
-    <script type="text/javascript">
-    
-    $('header').load("../header.html")
-    
 var addBtn = $('#addBtn'),
     updateBtn = $('#updateBtn'),
     deleteBtn = $('#deleteBtn'),
     noItem = $('#no'), 
-    educationItem = $('#education'), 
+    titleItem = $('#title'),
+    educationItem,
+    education1Item = $('#education1'),
+    education2Item = $('#education2'),
+    education3Item = $('#education3'),
+    education4Item = $('#education4'),
+    education5Item = $('#education5'),
     careerItem = $('#career'), 
     kindItem = $('#kind'), 
     qualificationItem = $('#qualification'), 
@@ -154,7 +233,9 @@ var addBtn = $('#addBtn'),
     fileItem = $('#file'),
     imageItem = $('#image'), 
     noteItem = $('#note'),
-    checkItem = $('#check'), 
+    checkItem,
+    check1Item = $('#check1'),
+    check2Item = $('#check2'),
     languageItem = $('#language'), 
     nodiv = $('#nod'),
     simgs = $('#image'),
@@ -163,34 +244,60 @@ var addBtn = $('#addBtn'),
    
     
 var index = location.href.indexOf('?');
+var qs = location.href.substr(index + 1);
+var checkNo = location.href.indexOf('no');
+var arr = qs.split('=');
+
 if (index != -1) { // 기존 데이터를 조회할 경우,
-    var qs = location.href.substr(index + 1);
-    var arr = qs.split('=');
-    $('.my-new').css('display', 'none');
+    
+	$('.my-new').css('display', 'none');
     $(() => {
         $.ajax('../json/resume/' + arr[1], {
             dataType: 'json',
             success: (result) => {
-                console.log(result.data.avi)
+                nodiv.html("<input class='form-control'  readonly id='no' type='hidden' name='no' value='" + result.data.no + "'>");
+	           	titleItem.val(result.data.title);
+	           	careerItem.val(result.data.career);
+	           	languageItem.val(result.data.language);
+	           	kindItem.val(result.data.kind);
+	           	qualificationItem.val(result.data.qualification);
+	           	awardItem.val(result.data.award);
+	           	majorItem.val(result.data.major);
+	           	schoolNameItem.val(result.data.schoolName);
+	           	gradesItem.val(result.data.grades);
+	           	noteItem.val(result.data.note);
+	            $('#nowFile').html('<p>' + result.data.file + '</p>');
+	           	
+	           	education3Item.prop('checked', false);
+ 	           	if (result.data.education == "고등학교졸업") {
+	           	    education1Item.prop('checked', true);
+	           	} else if (result.data.education == "대학교재학중"){
+	           	       education2Item.prop('checked', true);
+	           	} else if (result.data.education == "대학교졸업"){
+	           	    education3Item.prop('checked', true);
+	           	} else if (result.data.education == "대학원재학중"){
+	           	    education4Item.prop('checked', true);
+	           	} else { 
+	           	    education5Item.prop('checked', true);
+	           	}
+	
+	           	if (result.data.check == "1") {
+	           	    check1Item.prop('checked', true);
+	           	} else {
+	           	    check2Item.prop('checked', true);
+	           	} 
+	           	
+	           	
+                /*console.log(result.data.avi)
                 $('#vi').html('<video src="../download/' + result.data.avi + '" controls="controls" id="video" width="500px" height="300px"></video>')
                 simgs.html("<img src='../../download/" + result.data.image + "' height='300px'/>");
-                nodiv.html("<input class='form-control'  readonly id='no' type='hidden' name='no' value='" + result.data.no + "'>");
-                educationItem.val(result.data.education);
-                careerItem.val(result.data.career);
-                languageItem.val(result.data.language);
-                kindItem.val(result.data.kind);
-                qualificationItem.val(result.data.qualification);
-                awardItem.val(result.data.award);
-                majorItem.val(result.data.major);
-                schoolNameItem.val(result.data.schoolName);
-                gradesItem.val(result.data.grades);
-                viewCountItem.val(result.data.viewCount);
-                noteItem.val(result.data.note);
-                checkItem.val(result.data.check);
+                
+                 viewCountItem.val(result.data.viewCount);
+                checkItem.val(result.data.check); 
                 inoItem.val(result.data.ino);
                 aviItem.val(result.data.avi);
                 fileItem.val(result.data.file);
-                imageItem.val(result.data.image);
+                imageItem.val(result.data.image);*/
             },
             error: () => {
                 window.alert('서버 실행 오류!');
@@ -199,13 +306,19 @@ if (index != -1) { // 기존 데이터를 조회할 경우,
     });
     
 } else { // 신규 데이터 입력일 경우,
+    formData = new FormData($('#form')[0]);
     $('.my-view').css('display', 'none');
+    /* anoItem.val(arr[1]); */
+    /* check1Item.prop('checked', true); */
 }
+
 addBtn.click(() => {
-    var formData = new FormData($('#form')[0]);
+	var formData = new FormData($('#form')[0]);
+    
     $.ajax('../json/resume/add', {
-        data: formData,
-        dataType: 'json',
+        data:
+        	formData,
+        	dataType: 'json',
         method: 'POST',
         processData : false,
         contentType : false,
@@ -217,8 +330,10 @@ addBtn.click(() => {
         }
     });
 });
-updateBtn.click(() => {
+
+ updateBtn.click(() => {
     var formData = new FormData($('#form')[0]);
+    
     $.ajax('../json/resume/update', {
         data: formData,
         dataType: 'json',
@@ -248,12 +363,13 @@ deleteBtn.click(() => {
         }
     });
 });
-
+ 
 window.onload = function(){
     video = document.getElementsByTagName("video")[0];
     
 }
-</script>
 
+$('header').load("../header.html");
+</script>
 </body>
 </html>

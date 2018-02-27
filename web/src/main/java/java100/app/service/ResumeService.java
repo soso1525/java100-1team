@@ -1,6 +1,7 @@
 package java100.app.service;
 
 import java.util.List;
+import java.util.Map;
 
 import java100.app.domain.Resume;
 
@@ -15,7 +16,7 @@ import java100.app.domain.Resume;
 //
 public interface ResumeService {
 	int add(Resume resume);
-    List<Resume> list();
+    List<Resume> list(int pageNo, int pageSize, Map<String, Object> options);
     int getTotalCount();
     Resume get(int no);
     int update(Resume resume);

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,14 +30,14 @@ public class ResumeController {
     
     @RequestMapping("list")
     public Object list(
-          /*  @RequestParam(value="pn", defaultValue="1") int pageNo,
+            @RequestParam(value="pn", defaultValue="1") int pageNo,
             @RequestParam(value="ps", defaultValue="5") int pageSize,
             @RequestParam(value="words", required=false) String[] words,
             @RequestParam(value="oc", required=false) String orderColumn,
-            @RequestParam(value="al", required=false) String align*/
+            @RequestParam(value="al", required=false) String align
            ) throws Exception {
         
-        /* if (pageNo < 1) {
+         if (pageNo < 1) {
              pageNo = 1;
          }
         
@@ -55,19 +56,19 @@ public class ResumeController {
         int lastPageNo = totalCount / pageSize;
         if ((totalCount % pageSize) > 0) {
             lastPageNo++;
-        }*/
+        }
         
         HashMap<String,Object> result = new HashMap<>();
        
-      /*  result.put("pageNo", pageNo);
-        result.put("lastPageNo", lastPageNo);*/
-        result.put("list", resumeService.list());
+        result.put("pageNo", pageNo);
+        result.put("lastPageNo", lastPageNo);
+        result.put("list", resumeService.list(pageNo, pageSize, options));
         return result;
     }
     
     @RequestMapping("form")
     public String form() throws Exception {
-        return "resume/form";
+        return "resume/form"; 
     }
     
     @RequestMapping("add")

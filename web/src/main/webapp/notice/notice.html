@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
 <link rel="stylesheet" type="text/css" href="../css/notice.css">
 <body>
+<header></header>
 	<section id="portfolio" class="portfolio section-space-padding">
 		<div class="container">
 			<div class="row">
@@ -87,7 +88,7 @@
 	<script type="text/javascript" src="../js/scripts.js"></script>
 
 	<script type="text/javascript">
-	
+	$('header').load("../header.html");
     var index = -1;
     
     $('#modal-testNew').on('hidden.bs.modal', () => {
