@@ -4,12 +4,18 @@ public class Notice {
 	CompanyMember companyMember;
     int no;
     String image;
+    int nType;
     String startDate;
     String endDate;
     int viewCount;
     Member writer;
-    
 
+	public int getnType() {
+		return nType;
+	}
+	public void setnType(int nType) {
+		this.nType = nType;
+	}
 	public CompanyMember getCompanyMember() {
 		return companyMember;
 	}

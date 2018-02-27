@@ -19,6 +19,7 @@ public class NoticeServiceImpl implements NoticeService {
     @Override
     public List<Notice> list(int pageNo, int pageSize, Map<String, Object> options) {
         
+    	
     	 HashMap<String,Object> params = new HashMap<>();
          params.put("startIndex", (pageNo - 1) * pageSize);
          params.put("size", pageSize);

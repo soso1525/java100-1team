@@ -27,7 +27,7 @@ public class MemberController {
 			@RequestParam(value = "words", required = false) String[] words,
 			@RequestParam(value = "oc", required = false) String orderColumn,
 			@RequestParam(value = "al", required = false) String align, Model model) throws Exception {
-
+		
 		return "member/list";
 	}
 

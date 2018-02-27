@@ -18,6 +18,7 @@
         <result column="nsdt" property="startDate"/>
         <result column="nedt" property="endDate"/>
         <result column="ncnt" property="viewCount"/>
+        <result column="ntype" property="nType"/>
     
 	    <association property="companyMember" javaType="companyMember" >
 	    	<id column="cno" property="cno"/>
@@ -28,8 +29,6 @@
 	    	<id column="pno" property="no"/>
 	    	<result column="pdaddr" property="address"/>
 	    </association>
-   
-   
     </resultMap>
 
     <select id="findAll" resultMap="noticeMap" parameterType="map">
@@ -100,8 +99,8 @@
     
 	<insert id="insert" parameterType="notice"
 		useGeneratedKeys="true" keyColumn="nno" keyProperty="no">
-        insert into g_noti(nimg, nsdt, nedt, ncnt, cno)
-        values(#{image}, #{startDate}, #{endDate}, 0, #{writer.no})
+        insert into g_noti(nimg, nsdt, nedt, ncnt, ntype, cno)
+        values(#{image}, #{startDate}, #{endDate}, 0, #{nType}, #{writer.no})
     </insert>
     
     <update id="updateViewCount" parameterType="int">

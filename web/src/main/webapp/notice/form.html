@@ -33,28 +33,18 @@
 
 		<h1 style="margin-top: 30px; margin-bottom: 30px">채용공고</h1>
 		<form id="form" method='post' enctype="multipart/form-data">
-			<div id="nod">
-				<div id="img"></div>
-			</div>
-			<div class='form-group row my-view'>
-				<label for='no' class='col-sm-2 col-form-label'>번호</label>
-				<div id=nodiv class='col-sm-10'>
-					<!-- <input class='form-control' readonly id='no' type='number' 
-       name='no'> -->
-				</div>
-			</div>
-
- 			<div class='form-group row my-view'>
-				<label for='name' class='col-sm-2 col-form-label'>기업</label>
+		 	<div class='form-group row'>
+				<label for='image' class='col-sm-2 col-form-label'>신입/경력</label>
 				<div class='col-sm-10'>
-					<input class='form-control' readonly id='name' type='text'
-						name='name'>
+					<input class='magic-radio"' id='check1' type='radio' name='nType' value="0">
+						<label> 신입 </label>
+					<input class='magic-radio"' id='check2' type='radio' name='nType' value="1">
+					 	<label> 경력 </label>
+                    <input class='magic-radio"' id='check2' type='radio' name='nType' value="2" checked='checked'>
+                     	<label> 신입/경력 </label>
 				</div>
 			</div>
-
-               
-            <div align="center" id='image'></div>
-            <br>
+			
             
 			<div class='form-group row'>
 				<label for='image' class='col-sm-2 col-form-label'>공고이미지</label>
@@ -145,7 +135,28 @@ if (index != -1) { // 기존 데이터를 조회할 경우,
     
 } else { // 신규 데이터 입력일 경우,
     $('.my-view').css('display', 'none');
+    var now = new Date();
+    var month = (now.getMonth() + 1);               
+    var day = now.getDate();
+    if(month < 10) 
+        month = "0" + month;
+    if(day < 10) 
+        day = "0" + day;
+    var today = now.getFullYear() + '-' + month + '-' + day;
+    console.log(today);
+    startDateItem.attr('min', today);
+    endDateItem.attr('min', today);
+    startDateItem.val(today);
 }
+
+startDateItem.change(() => {
+	endDateItem.attr('min', startDateItem.val());
+});
+
+endDateItem.change(() => {
+	startDateItem.attr('max', endDateItem.val());
+});
+
 var cnt = 1;
 questionAddItem.click(() => {
 	if (cnt < 6) {
@@ -166,19 +177,6 @@ questionDeleteItem.click(() => {
 	}
 });
 
-
-() => {
-    var now = new Date();
-    var month = (now.getMonth() + 1);               
-    var day = now.getDate();
-    if(month < 10) 
-        month = "0" + month;
-    if(day < 10) 
-        day = "0" + day;
-    var today = now.getFullYear() + '-' + month + '-' + day;
-    $('startDate').val(today);
-    $('endDate').val(today);	
-}
 
 
 addBtn.click(() => {

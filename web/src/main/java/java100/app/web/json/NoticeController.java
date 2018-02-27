@@ -21,8 +21,8 @@ import java100.app.domain.Question;
 import java100.app.service.CompanyService;
 import java100.app.service.MemberService;
 import java100.app.service.NoticeService;
-import net.coobird.thumbnailator.Thumbnails;
 import java100.app.service.QuestionService;
+import net.coobird.thumbnailator.Thumbnails;
 
 @RestController
 @RequestMapping("/notice")
@@ -45,6 +45,7 @@ public class NoticeController {
             @RequestParam(value="al", required=false) String align
             ) throws Exception {
         
+    	
         if (pageNo < 1) {
             pageNo = 1;
         }
