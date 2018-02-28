@@ -45,6 +45,14 @@
 				</div>
 			</div>
 			
+			<div class='form-group row'>
+				<label for='duty' class='col-sm-2 col-form-label'>직무</label>
+				<div class='col-sm-10'>
+					<input class='form-control' id='duty' type='text' name='duty'>
+				</div>
+			</div>
+			
+			
             
 			<div class='form-group row'>
 				<label for='image' class='col-sm-2 col-form-label'>공고이미지</label>
@@ -105,6 +113,7 @@ var addBtn = $('#addBtn'),
     imageItem = $('#image'),
     nodivItem = $('#nodiv'),
     simgs = $('#image'),
+    dutyItem = $('#dutyItem'),
     questionAddItem = $('#questionAdd'),
     questionDeleteItem = $('#questionDelete'),
     nameItem = $('#name');
@@ -118,10 +127,10 @@ if (index != -1) { // 기존 데이터를 조회할 경우,
         $.ajax('../json/notice/' + arr[1], {
             dataType: 'json',
             success: (result) => {
-               noItem.val(result.data.no);
                nodivItem.html("<input class='form-control' readonly id='no' " +
                        "name='no' value='" + result.data.no + "'> "); 
                 simgs.html("<img src='../../download/" + result.data.image + "'/>");
+                dutyItem.val(result.data.duty);
                 nameItem.val(result.data.companyMember.name);
                 startDateItem.val(result.data.startDate);
                 endDateItem.val(result.data.endDate);

@@ -19,7 +19,7 @@
         <result column="nedt" property="endDate"/>
         <result column="ncnt" property="viewCount"/>
         <result column="ntype" property="nType"/>
-    
+        <result column="nduty" property="duty"/>
 	    <association property="companyMember" javaType="companyMember" >
 	    	<id column="cno" property="cno"/>
 	    	<result column="cname" property="cName"/>
@@ -38,6 +38,8 @@
 			n.nsdt,
 			n.nedt,
 			n.ncnt,
+			n.ntype,
+			n.nduty,
 			c.cname,
 			c.ckind,
 			c.clogo,
@@ -48,14 +50,16 @@
 		<if test="words != null">
 	        <where>
 	            <foreach collection="words" item="word">
-	               and c.cname like '${word}%'
+	               or c.cname like '${word}%'
 	            </foreach>
 	            <if test="cKind != null">
 	               and c.ckind like #{cKind}
                 </if> 
                 <if test="address != null">
 	               and p.pdaddr like #{address}
-                </if> 
+                </if>
+                and n.ntype like #{nType}
+                or n.ntype like 2
 	        </where>
         </if>
         order by 
@@ -76,7 +80,9 @@
                 n.nedt asc
             </otherwise>
         </choose>
-		limit #{startIndex}, #{size}
+		<if test="lastPageNo != null">
+			limit #{startIndex}, #{size}
+		</if>
 	</select>
 	
 	<select id="findByNo" resultMap="noticeMap" parameterType="int">
@@ -99,8 +105,8 @@
     
 	<insert id="insert" parameterType="notice"
 		useGeneratedKeys="true" keyColumn="nno" keyProperty="no">
-        insert into g_noti(nimg, nsdt, nedt, ncnt, ntype, cno)
-        values(#{image}, #{startDate}, #{endDate}, 0, #{nType}, #{writer.no})
+        insert into g_noti(nimg, nsdt, nedt, ncnt, ntype, nduty, cno)
+        values(#{image}, #{startDate}, #{endDate}, 0, #{nType}, #{duty}, #{writer.no})
     </insert>
     
     <update id="updateViewCount" parameterType="int">

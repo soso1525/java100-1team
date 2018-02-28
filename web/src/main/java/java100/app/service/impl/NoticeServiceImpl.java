@@ -23,7 +23,6 @@ public class NoticeServiceImpl implements NoticeService {
     	 HashMap<String,Object> params = new HashMap<>();
          params.put("startIndex", (pageNo - 1) * pageSize);
          params.put("size", pageSize);
-         
          if (options != null) {
              params.putAll(options);
          }

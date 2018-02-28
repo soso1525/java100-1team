@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>기업목록</title>
-<link rel='stylesheet' href='../../css/common.css'>
+	<link rel='stylesheet' href='../../css/common.css'>
     
     <!-- All CSS Plugins -->
     <link rel="stylesheet" type="text/css" href="../css/plugin.css">
@@ -28,80 +28,91 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12">
-				<form>
-					<div class="col-sm-3">
-						<input name="words" id="words" class="form-control form-control-sm mr-sm-2"
-							type="search" placeholder="기업이름" aria-label="Search"> 
-					</div>
-					<div class="col-sm-3">
-						<select id="cKind" name="cKind" class="form-control form-control-sm mr-sm-2">
-							<option>전체</option>
-							<option>경영/사무</option>
-							<option>영업/고객상담</option>
-							<option>생산/제조</option>
-							<option>IT/인터넷</option>
-							<option>전문직</option>
-							<option>교육</option>
-							<option>미디어</option>
-							<option>특수계층/공공</option>
-							<option>건설</option>
-							<option>유통/무역</option>
-							<option>서비스</option>
-							<option>디자인</option>
-							<option>의료</option>
-						</select> 
-					</div>
-					<div class="col-sm-3">
-						<select id="address" name="address" class="form-control form-control-sm mr-sm-2">
-							<option>전체</option>
-							<option>강남구</option>
-							<option>강동구</option>
-							<option>강북구</option>
-							<option>강서구</option>
-							<option>관악구</option>
-							<option>광진구</option>
-							<option>구로구</option>
-							<option>금천구</option>
-							<option>노원구</option>
-							<option>도봉구</option>
-							<option>동대문구</option>
-							<option>동작구</option>
-							<option>마포구</option>
-							<option>서대문구</option>
-							<option>서초구</option>
-							<option>성동구</option>
-							<option>성북구</option>
-							<option>송파구</option>
-							<option>양천구</option>
-							<option>영등포구</option>
-						</select>
-					</div>
-					<div class="col-sm-1">
-						<label class="switch">
-						  <input type="checkbox">
-						  <span class="slider round"></span>
-						</label>
-					</div>
-					<div class="col-sm-1">
-						<button style="margin-left: 10px" class="button search button-style button-style-dark button-style-color-2" type="button" id="searchBtn">Search</button>
-					</div>
-				</form>
+            <div class="col-sm-12 search">
+	            <div class="col-sm-12">
+	            	<div class="col-sm-3">
+	            		<strong>What</strong>
+	            	</div>
+	            	<div class="col-sm-3">
+	            		<strong>Occupation</strong>
+	            	</div>
+	            	<div class="col-sm-3">
+	            		<strong>Where</strong>
+	            	</div>
+	            </div>
+	            
+	            <div class="col-sm-12">
+					<form>
+						<div class="col-sm-3">
+							<input name="words" id="words" class="form-control form-control-sm mr-sm-2"
+								type="search" placeholder="Keyword" aria-label="Search"> 
+						</div>
+						<div class="col-sm-3">
+							<select id="cKind" name="cKind" class="form-control form-control-sm mr-sm-2">
+								<option>전체</option>
+								<option>건설</option>
+								<option>경영/사무</option>
+								<option>교육</option>
+								<option>디자인</option>
+								<option>미디어</option>
+								<option>서비스</option>
+								<option>생산/제조</option>
+								<option>IT/인터넷</option>
+								<option>영업/고객상담</option>
+								<option>유통/무역</option>
+								<option>의료</option>
+								<option>전문직</option>
+								<option>특수계층/공공</option>
+							</select> 
+						</div>
+						<div class="col-sm-3">
+							<select id="address" name="address" class="form-control form-control-sm mr-sm-2">
+								<option>전체</option>
+								<option>강남구</option>
+								<option>강동구</option>
+								<option>강북구</option>
+								<option>강서구</option>
+								<option>관악구</option>
+								<option>광진구</option>
+								<option>구로구</option>
+								<option>금천구</option>
+								<option>노원구</option>
+								<option>도봉구</option>
+								<option>동대문구</option>
+								<option>동작구</option>
+								<option>마포구</option>
+								<option>서대문구</option>
+								<option>서초구</option>
+								<option>성동구</option>
+								<option>성북구</option>
+								<option>송파구</option>
+								<option>양천구</option>
+								<option>영등포구</option>
+							</select>
+						</div>
+						<div class="col-sm-2" style="width:8%;">
+							<label class="switch">
+							  <input id="nType" type="checkbox">
+							  <span class="slider round"></span>
+							</label>
+							<strong class="my-check">신입</strong><strong class="my-check" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;경력</strong>
+						</div>
+						<div class="col-sm-2">
+							<button style="margin-left: 10px" class="button search button-style button-style-dark button-style-color-2" type="button" id="searchBtn">Catch</button>
+						</div>
+					</form>
+				</div>
 			</div>
-			<table id='list' class='table table-hover'>
-				<thead>
-					<tr>
-						<th>번호</th>
-						<th>이미지</th>
-						<th>기업이름</th>
-						<th>기업로고</th>
-						<th>채용시작일</th>
-						<th>채용종료일</th>
-						<th>조회수</th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
+			<div class="col-sm-12 notice-list" id="list">
+				<div class="notice notice-list-div" style="width: 24rem;">
+				  <img class="notice-img-top" src="../../download/lg.jpg" alt="Card image cap">
+				  <div class="notice-body">
+				    <p class="notice-title">삼성</p><br>
+				    <p class="notice-text">자바개발자</p><br>
+				    <p class="notice-text">D-2</p><br>
+				  </div>
+				</div>
+			</div>
 			
 			<button type="button" class='btn btn-primary btn-sm' id="btn-add"
 				onclick="location.href='form.html'">추가</button>
@@ -126,7 +137,7 @@
         <td><a href='form.html?no={{no}}'>{{no}}</a></td>
         <td><img src='../../download/{{image}}' height='50px'/></td>
         <td>{{companyMember.cName}}</td> 
-        <td>{{companyMember.logo}}</td>
+        <td><img src='../../download/{{companyMember.logo}}' height='50px'/></td>
         <td>{{startDate}}</td>
         <td>{{endDate}}</td>
         <td>{{viewCount}}</td>
@@ -144,25 +155,35 @@
 <script type="text/javascript">
 $('header').load("../header.html");
 
+var check = $("input[type='checkbox']");
+check.click(function(){
+  $(".my-check").toggle();
+});
+
 var prevBtn = $('#prevBtn'),
   	currBtn = $('#currBtn'),
   	nextBtn = $('#nextBtn'),
   	words = $('#words'),
 	searchBtn = $('#searchBtn'),
-	tbody = $('#list > tbody'),
+	listItem = $('#list'),
    	currPageNo = 1,
  	noticeSrc = $('#notice').html(),
+ 	nTypeItem = $('#nType'),
  	noticeEngine = Handlebars.compile(noticeSrc);
  	
 load(1);
 
 
 searchBtn.click(() => {
+	var nType = 0;
+	if (nTypeItem.prop("checked")) {
+		nType = 1;
+	}
     load(1, {
         "words": words.val(),
         "cKind": $('#cKind option:selected').text(),
-        "address": $('#address option:selected').text() 
-        
+        "address": $('#address option:selected').text(),
+        "nType": nType
     })
 });
  
@@ -185,8 +206,7 @@ function load(pageNo, options) {
     	data: options,
         dataType: 'json',
         success: (result) => {
-            tbody.html(noticeEngine(result));
-            
+            //list.html(noticeEngine(result));
             currPageNo = result.pageNo;
             currBtn.html(currPageNo);
             if (result.pageNo == 1) {

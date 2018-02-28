@@ -9,7 +9,14 @@ public class Notice {
     String endDate;
     int viewCount;
     Member writer;
-
+    String duty;
+    
+	public String getDuty() {
+		return duty;
+	}
+	public void setDuty(String duty) {
+		this.duty = duty;
+	}
 	public int getnType() {
 		return nType;
 	}

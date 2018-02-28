@@ -41,11 +41,10 @@ public class NoticeController {
             @RequestParam(value="words", required=false) String[] words,
             @RequestParam(value="cKind", required=false) String cKind,
             @RequestParam(value="address", required=false) String address,
+            @RequestParam(value="nType", required=false) String nType,
             @RequestParam(value="oc", required=false) String orderColumn,
             @RequestParam(value="al", required=false) String align
             ) throws Exception {
-        
-    	
         if (pageNo < 1) {
             pageNo = 1;
         }
@@ -53,7 +52,6 @@ public class NoticeController {
         if (pageSize < 9 || pageSize > 15) {
             pageSize = 9;
         }
-        
         HashMap<String,Object> options = new HashMap<>();
         if (words != null && words[0].length() > 0) {
             options.put("words", words);
@@ -69,6 +67,7 @@ public class NoticeController {
             	options.put("address", address);
             }
         }
+        options.put("nType", nType);
         options.put("orderColumn", orderColumn);
         options.put("align", align);
         int totalCount = noticeService.getTotalCount();
@@ -83,6 +82,9 @@ public class NoticeController {
         
         result.put("pageNo", pageNo);
         result.put("lastPageNo", lastPageNo);
+        if (lastPageNo == 0) {
+        	result.put("lastPageNo", null);
+        }
         result.put("list", noticeService.list(pageNo, pageSize, options));
         
         return result;
