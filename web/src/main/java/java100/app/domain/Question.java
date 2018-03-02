@@ -3,20 +3,45 @@ package java100.app.domain;
 import java.util.Arrays;
 
 public class Question {
-
-    int no;
-    String article;
-    String[] articles;
-    String context;
-    Member member;
-    int lno;
-    int nno;
-  
-
+	int qno; // 테이블 고유번호
+	String article;
+	String[] articles;
+	String contents;
+	int length;
+	int lno; // 자소서번호
+	int nno; // 공고번호
+	Member member;
+	Letter letter;
+ 
 	@Override
 	public String toString() {
-		return "Question [no=" + no + ", article=" + article + ", articles=" + Arrays.toString(articles) + ", context="
-				+ context + ", member=" + member + ", lno=" + lno + ", nno=" + nno + "]";
+		return "Question [qno=" + qno + ", article=" + article + ", articles=" + Arrays.toString(articles)
+				+ ", contents=" + contents + ", length=" + length + ", lno=" + lno + ", nno=" + nno + ", member="
+				+ member + "]";
+	}
+
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
+	public int getQno() {
+		return qno;
+	}
+
+	public void setQno(int qno) {
+		this.qno = qno;
+	}
+
+	public String getArticle() {
+		return article;
+	}
+
+	public void setArticle(String article) {
+		this.article = article;
 	}
 
 	public String[] getArticles() {
@@ -27,52 +52,46 @@ public class Question {
 		this.articles = articles;
 	}
 
-	public String getArticle() {
-		return article;
+	public String getContents() {
+		return contents;
 	}
-	public void setArticle(String article) {
-		this.article = article;
+
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
+
+	public int getLength() {
+		return length;
+	}
+
+	public void setLength(int length) {
+		this.length = length;
+	}
+
 	public int getLno() {
 		return lno;
 	}
+
 	public void setLno(int lno) {
 		this.lno = lno;
 	}
+
 	public int getNno() {
 		return nno;
 	}
+
 	public void setNno(int nno) {
 		this.nno = nno;
 	}
-	public int getNo() {
-        return this.no;
-    }
-    public void setNo(int no) {
-        this.no = no;
-    }
 
-    public String getContext() {
-        return this.context;
-    }
-    public void setContext(String context) {
-        this.context = context;
-    }
-    public Member getMember() {
-        return this.member;
-    }
-    public void setMember(Member member) {
-        this.member = member;
-    }
+	public Letter getLetter() {
+		return letter;
+	}
+
+	public void setLetter(Letter letter) {
+		this.letter = letter;
+	}
+	
+	
 
 }
-
-
-
-
-
-
-
-
-
-

@@ -3,57 +3,61 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
 <mapper namespace="java100.app.dao.QuestionDao">
-	
-    <resultMap type="question" id="questionMap">
-        <id column="qno" property="no"/>
-        <result column="qart" property="article"/>
-        <result column="qcont" property="context"/>
-        <result column="lno" property="lno"/>
-        <result column="nno" property="nno"/>
-    </resultMap>
 
-    <select id="findAll" resultMap="questionMap">
+	<resultMap type="question" id="questionMap">
+		<id column="qno" property="no" />
+		<result column="qart" property="article" />
+		<result column="qcont" property="contents" />
+		<result column="qleng" property="length" />
+		<result column="lno" property="lno" />
+		<result column="nno" property="nno" />
+		<association property="letter" javaType="Letter">
+			<result column="lno" property="lno" />
+			<result column="ano" property="ano" />
+		</association>
+	</resultMap>
+
+	<select id="findAll" resultMap="questionMap">
 		select
-            qno,
-            qart,
-            qcont
-			from g_que
-			where lno = #{lno}
+		qno,
+		qart,
+		qcont
+		from g_que
+		where lno = #{lno}
 	</select>
+
+	<insert id="insert" parameterType="question">
+		insert into g_que(qart, qcont, qleng, lno)
+		values(#{article}, #{contents}, #{length}, #{lno})
+	</insert>
+
+	<insert id="companyInsert" parameterType="question">
+		insert into g_que(qart, nno)
+		values(#{article}, #{nno})
+	</insert>
 	
-    <insert id="insert" parameterType="question">
-        insert into g_que(qart, qcont, lno)
-        values(#{article}, #{context}, #{lno})
-    </insert>
-    
-    <insert id="companyInsert" parameterType="question">
-        insert into g_que(qart, nno)
-        values(#{article}, #{nno})
-    </insert>
-    
-   <select id="findByNo" resultMap="questionMap" parameterType="int">
-        select
-            qno,
-            qart,
-            qcont,
-            lno
-        from g_que 
-        where qno=#{value}
-    </select>
-    
-   <update id="update" parameterType="question">
-        update g_que set 
-			qart=#{article},
-			qcont=#{context}
-        where qno=#{no}
-    </update> 
- 
-    <delete id="delete" parameterType="int">
-        delete from g_que
-        where qno=#{value}
-    </delete> 
+	<select id="findByNo" resultMap="questionMap" parameterType="int">
+		select
+		qno,
+		qart,
+		qcont,
+		lno
+		from g_que
+		where qno=#{value}
+	</select>
+
+	<update id="update" parameterType="question">
+		update g_que set
+		qart=#{article},
+		qcont=#{contents}
+		where qno=#{no}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from g_que
+		where qno=#{value}
+	</delete>
 </mapper>  
 
 

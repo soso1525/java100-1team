@@ -1,83 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- DAO 객체를 자동으로 생성하려면,
-     namespace의 값이 인터페이스 이름과 같아야 한다. -->
 <mapper namespace="java100.app.dao.LetterDao">
-	<!-- 
-	(int ino, 
-	String icont, 
-	String isdt,
-	String iedt, String ischeck, String ipcheck, String ifile, Apply apply)
-	 -->
 	<resultMap type="letter" id="letterMap">
-        <id column="lno" property="lno"/>
-        <result column="lsdt" property="lsdt"/>
-        <result column="ledt" property="ledt"/>
-        <result column="lscheck" property="lscheck"/>
-        <result column="lpcheck" property="lpcheck"/>
-        <result column="lfile" property="lfile"/>
-        <association property="apply" javaType="Apply">
-        	<result column="ano" property="ano"/>
-        	<result column="aname" property="aname"/>
-        	<result column="adt" property="adt"/>
-        	<result column="ino" property="ino"/>
-        </association>
-    </resultMap>
-    
-	<select id="findAll"  resultMap="letterMap" parameterType="map">
-		select 
-			 a.aname,
-			 a.adt,
-			 l.lno,
-			 l.lsdt,
-			 l.ledt,
-			 l.lscheck,
-			 l.lpcheck,
-			 l.lfile,
-			 a.ano
+		<id column="lno" property="lno" />
+		<result column="lsdt" property="lsdt" />
+		<result column="ltit" property="ltit" />
+		<result column="ledt" property="ledt" />
+		<result column="lscheck" property="lscheck" />
+		<result column="lpcheck" property="lpcheck" />
+		<result column="lfile" property="lfile" />
+		<association property="apply" javaType="Apply">
+			<result column="ano" property="ano" />
+			<result column="aname" property="aname" />
+			<result column="adt" property="adt" />
+			<result column="ino" property="ino" />
+		</association>
+		
+		<association property="question" javaType="Question">
+			<result column="qno" property="qno" />
+			<result column="qart" property="article" />
+			<result column="qcont" property="contents" />
+			<result column="qleng" property="length" />
+			<result column="lno" property="lno" />
+			<result column="nno" property="nno" />
+		</association>
+	</resultMap>
+
+	<select id="findAll" resultMap="letterMap" parameterType="map">
+		select
+		a.aname,
+		a.adt,
+		l.lno,
+		l.lsdt,
+		l.ltit,
+		l.ledt,
+		l.lscheck,
+		l.lpcheck,
+		l.lfile,
+		a.ano
 		from g_app a
 		inner join g_let l on a.ano = l.ano
 		where a.ano = #{ano}
 	</select>
-	
-  <!--   <select id="findByAppNo" resultType="cover" parameterType="int">
-        select ano
-        from g_app
-        where lno=#{value}
-    </select>
-     -->
-    <select id="findByNo" resultMap="letterMap" parameterType="int">
-    	select 
-    		l.lno,
-			 l.lsdt,
-			 l.ledt,
-			 l.lscheck,
-			 l.lpcheck,
-			 l.lfile
-        from g_let l
-        where l.lno=#{value}
-    </select>
-     
-	<insert id="insert" parameterType="letter">
-         insert into g_let(lsdt, ledt, lscheck, lpcheck, lfile, ano)
-        values(now(), now(), 0, 0,#{lfile}, #{ano})
-    </insert>
-    
-    <delete id="delete" parameterType="int">
-        delete from g_let
-        where lno=#{value}
-    </delete>
-    
-    <update id="update" parameterType="letter">
-        update g_let set 
-		lsdt=now()
-        where lno=#{lno}
-    </update>
-</mapper>
 
+	<select id="findByNo" resultMap="letterMap" parameterType="int">
+		select
+		l.lno,
+		l.lsdt,
+		l.ltit,
+		l.ledt,
+		l.lscheck,
+		l.lpcheck,
+		l.lfile
+		from g_let l
+		where l.lno=#{value}
+	</select>
+
+	<insert id="insert" parameterType="letter" useGeneratedKeys="true" keyColumn="lno" keyProperty="lno">
+		insert into g_let(lsdt, ltit, ledt, lscheck, lpcheck, lfile, ano)
+		values(#{lsdt}, #{ltit}, #{ledt}, 0, 0, #{lfile}, LAST_INSERT_ID())
+	</insert>
+	
+	<delete id="delete" parameterType="int">
+		delete from g_let
+		where lno=#{value}
+	</delete>
+
+	<update id="update" parameterType="letter">
+		update g_let set
+		lsdt=now()
+		where lno=#{lno}
+	</update>
+</mapper>
 
 
 

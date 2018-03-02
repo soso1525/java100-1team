@@ -46,7 +46,7 @@
 			where a.ino = #{writer.no}
 	</select>
 	
-	<insert id="insert" parameterType="apply">
+	<insert id="insert" parameterType="apply" useGeneratedKeys="true" keyColumn="ano" keyProperty="ano">
         insert into g_app(aname, adt, ino)
         values(#{aname}, now(), #{member.no})
     </insert>

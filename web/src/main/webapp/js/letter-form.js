@@ -1,5 +1,5 @@
 var addBtn = $('#addBtn'),
-	anoItem = $('#ano'),
+// anoItem = $('#ano'),
 	fileItem = $('#file'),
 	qaddBtn = $('#qaddBtn'),
 	questionNum = 1;
@@ -7,19 +7,20 @@ var addBtn = $('#addBtn'),
 var index = location.href.indexOf('?');
 var qs = location.href.substr(index + 1);
 var arr = qs.split('=');
-anoItem.val(arr[1]);
+// anoItem.val(arr[1]);
 
 
 addBtn.click(() => {
 	var formData = new FormData($('#form')[0]);
-    $.ajax('../json/letter/add', {
+    $.ajax('../json/letter/addLetter', {
         data: formData,
         dataType: 'json',
         method: 'POST',
         processData : false,
         contentType : false,
         success: (result) => {
-            location.href = "../apply/form.html?no=" + arr[1];
+        	swal("Apply Success!", "자기소개서가 정상적으로 등록되었습니다.", "success");
+            location.href = "../apply/form.html";
         },
         error: () => {
             window.alert('서버 실행 오류!');
@@ -29,23 +30,25 @@ addBtn.click(() => {
 
 qaddBtn.click(() => {
 	console.log('qAddBtn clicked');
-	var q = $('.question').clone();
-	q.attr('class', 'form-group row question' + questionNum);
-	q.find('#rmvBtn').attr('id', 'rmvBtn'+questionNum);
-	q.find('#qlabel').html('자소서 문항' + questionNum);
-	q.css('visibility', 'visible');
+	var q = $('#article').clone();
+	q.attr('id', 'article' + questionNum);
+	q.css('display', 'block');
 	q.appendTo('#questionBox');
-	questionNum++;
 });
 
 $(document).ready(function(){ 
 	$('body').click(function(e){
         var id = e.target.getAttribute('id');
-        console.log(id);
-        if(id.startsWith('rmvBtn')) {
-        	var question = document.getElementById(id).parentNode.parentNode.parentNode;
-        	question.remove();
-        	questionNum--;
-        }
+        if(id != null) {
+	        if(id.startsWith('rmvBtn')) {
+	        	var article = e.target.parentNode.parentNode.parentNode.parentNode;
+	        	article.remove();
+	        }
+	        
+	        if(id.startsWith('correct')) {
+	        	window.open("http://speller.cs.pusan.ac.kr/PnuWebSpeller/", "", "width=850px, height=701px");
+	        }
+	    }
     });
 });
+

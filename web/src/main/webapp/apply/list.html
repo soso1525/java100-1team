@@ -3,82 +3,136 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>입사지원목록</title>
-<link rel='stylesheet'
-	href='../node_modules/bootstrap/dist/css/bootstrap.min.css'>
-<link rel='stylesheet' href='../css/common.css'>
+<link rel="stylesheet" href="../css/plugin.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/apply-modal.css">
 </head>
 <body>
-	<div class='container'>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="../member/list.html">CATCH</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarNav" aria-controls="navbarNav"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item active"><a class="nav-link" href="#">Job</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../study/list.html">Study</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../apply/list.html">Apply</a></li>
-					<li class="nav-item"><a class="nav-link" href="../notice/list.html">Notice</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Message</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../app/auth/login">Login</a></li>
-				</ul>
+	<header></header>
+	<section style="background-color: white" id="services"
+		class="services-section section-space-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div style="margin-top: 100px;" class="section-title">
+						<h2>나의 지원 현항</h2>
+						<div class="divider dark">
+							<i class="icon-drop"></i>
+						</div>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+					</div>
+					<div style="margin: 10px 0" align="right">
+						<button id="addbtn" class='btn btn-primary btn-sm'>추가</button>
+					</div>
+				</div>
 			</div>
-		</nav>
 
-		<h1 style="margin-top: 30px; margin-bottom: 30px">입사지원관리</h1>
+			<table id='list' class='table table-hover'>
+				<thead>
+					<tr>
+						<th>입사지원번호</th>
+						<th>기업명</th>
+						<th>지원날짜</th>
+						<th>진행상태</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+	</section>
 
-		<a href='form.html' class='btn btn-primary btn-sm'>추가</a>
+	<div id="myModal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h2
+				style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 30px; margin: 30px 0">새로운
+				회사 지원하기</h2>
+			<form method='post' id='form' enctype='multipart/form-data'>
+				<div style="font-weight: 700">지원하는 기업 이름</div>
+				<input style="margin: 0 0 15px 0" class="form-control"
+					placeholder="지원하는 회사 이름" id="companyName" name="aname" type="text">
 
-		<table id='list' class='table table-hover'>
-			<thead>
-				<tr>
-					<th>입사지원번호</th>
-					<th>기업명</th>
-					<th>신청일</th>
-					<th>삭제</th>
-				</tr>
-			</thead>
-			<tbody id='tbody'>
-			</tbody>
-		</table>
+				<div class="row">
+					<div class="col-sm-6">
+						<div style="font-weight: 700">접수 시작일</div>
+						<input style="margin: 0 0 10px 0" class="form-control"
+							id="startDate" name="lsdt" type="date">
+					</div>
+
+					<div class="col-sm-6">
+						<div style="font-weight: 700">접수 마감일</div>
+						<input style="margin: 0 0 10px 0" class="form-control"
+							id="endDate" name="ledt" type="date">
+					</div>
+				</div>
+
+				<div style="font-weight: 700">이력서 파일</div>
+				<input style="margin: 0 0 15px 0" class="form-control" type="file">
+
+				<div style="font-weight: 700">자소서 파일</div>
+				<input style="margin: 0 0 15px 0" class="form-control" type="file">
+
+				<div style="text-align: center; margin: 50px 0">
+					<button id="myBtn"
+						class="button button-style button-style-dark button-style-color-2">입사
+						지원하기</button>
+				</div>
+			</form>
+		</div>
 	</div>
 
+	<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
 	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+	<script type="text/javascript" src="../js/plugin.js"></script>
+	<script type="text/javascript" src="../js/scripts.js"></script>
+
+	<script id="template1" type="text/x-handlebars-template">
+	{{#each apply}}
+	<tr>
+  		<td>{{ano}}</td>
+  		<td>{{aname}}</td>
+  		<td>{{adt}}</td>
+  		<td>자기소개서</td>
+	</tr>
+	{{/each}}
+	</script>
+
 	<script type="text/javascript">
-var tbody = document.querySelector('#tbody');
-load();
-
-function load() {
-	$.ajax('../json/apply/list', {
-		dataType: 'json',
-		success: (result) => {
-			for (var data of result.apply) {
-				var tr = document.createElement('tr');
-				tr.innerHTML = 
-		        	"<td><a href='form.html?no=" + data.ano + "'>" + data.ano + "</a></td>" +
-		        	"<td>" + data.aname + "</td>" +
-			        "<td>" + data.adt + "</td>";
-		        tbody.appendChild(tr);
-			}
-		},
-		error: () => {
-			alert('서버 실행 오류!');
+		$('header').load("../header.html");
+		var modal = document.getElementById('myModal');
+		var btn = document.getElementById("addbtn");
+		var span = document.getElementsByClassName("close")[0];
+		btn.onclick = function() {
+			modal.style.display = "block";
 		}
-	});
-}
 
+		span.onclick = function() {
+			modal.style.display = "none";
+		}
 
-</script>
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
 
-
+		var tbody = $('#list > tbody'),
+	    template1Src = $('#template1').html(),
+	    template1Engine = Handlebars.compile(template1Src);
+		
+		$.ajax('../json/apply/list', {
+		    dataType: 'json',
+		    success: (result) => {
+		        tbody.html(template1Engine(result));
+		    },
+		    error: () => {
+		        window.alert('서버 실행 오류!');
+		    }
+		});
+	</script>
 </body>
 </html>
