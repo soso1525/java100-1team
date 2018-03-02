@@ -28,7 +28,7 @@ public class Msg2Controller {
     @Autowired MemberService memberService;
     @Autowired ServletContext servletContext;
     
-    @RequestMapping(value="add", method=RequestMethod.POST)
+    //@RequestMapping(value="add", method=RequestMethod.POST)
     public String add(Msg2 msg2,
            @ModelAttribute(value="loginUser") Member loginUser) throws Exception {
         

@@ -28,13 +28,16 @@
    	</div>
    </div>
    <nav class="navbar navbar-light justify-content-between">
-   	<a href="sendList.html">보낸쪽지함</a>
-   	<p> 
-   	<a href="form.html">쪽지보내기</a> 
-   <!--  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-     추가
-    </button> -->
-    <!-- Modal -->
+   	<a href="sendList.html">
+   	<i class='icon-screen-smartphone color-1'></i>
+   	보낸쪽지함
+   	</a> 
+<a data-toggle='modal' href='form.html' 
+onclick="show2('mrecv', 'mcont')" 
+data-target='#modal-testNew' role='button' data-backdrop='static'>
+<i class='icon-screen-smartphone color-1'></i>
+쪽지보내기
+</a>
 	<div class="modal fade" id="modal-testNew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:10000">
 	  <div class="modal-dialog"  style="width:900px;height:700px">
 	    <div class="modal-content" style="background-color: #ffffff;"></div>
@@ -70,7 +73,7 @@
  	<tbody>
  	</tbody>
  </table>
-		
+
 	</div>
 	<script id="template1" type="text/x-handlebars-template">
 {{#each list}}
@@ -88,7 +91,7 @@
 <a data-toggle='modal' href='view.html' onclick="show('{{mno}}')" data-target='#modal-testNew' role='button' data-backdrop='static'>
 <div class='services-detail' style='cursor:pointer'>
 <i class='icon-screen-smartphone color-1'></i>
-College Name here
+{{#mcheck mckeck}}{{/mcheck}}
 </div>
 </a>
 </div>
@@ -124,7 +127,7 @@ nextBtn.click(() => {
 $('#modal-testNew').on('hidden.bs.modal', () => {
 })
 
-load();
+load(1);
 
 function show(value) {
     // modal창이 띄워졌을때 실행하는 이벤트
@@ -132,6 +135,17 @@ function show(value) {
         view(value);
     });
 }
+
+function show2(mrecv, mcont) {
+    // modal창이 띄워졌을때 실행하는 이벤트
+    $('#modal-testNew').on('shown.bs.modal', (event) => {
+        add('mrecv', 'mcont');
+    });
+}
+
+
+ 
+
 function load(pageNo, options) {
     if (options == undefined) options = {};
     options.pn = pageNo;
@@ -139,8 +153,8 @@ function load(pageNo, options) {
         data: options,
         dataType: 'json',
         success: (result) => {
-                $('#list2').html(template1Engine(result));
             
+            $('#list2').html(template1Engine(result));
             currPageNo = result.pageNo;
             currBtn.html(currPageNo);
             
@@ -162,6 +176,15 @@ function load(pageNo, options) {
     });
 };
 
+
+Handlebars.registerHelper('mcheck', function(mcheck) {
+    if(mcheck != 0) {
+console.log(mcheck)
+      return '읽은편지';
+    }
+    return '안읽은편지';
+  });
+  
 /* addMessage.click(() => {
 }); */
 

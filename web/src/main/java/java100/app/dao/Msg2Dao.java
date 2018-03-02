@@ -16,6 +16,7 @@ public interface Msg2Dao {
     int countAll();
     int countMsend();
     int countMrecv(int pno);
+    int countMsend(int pno);
 //    int update(Msg msg);
     int delete(int mno);
     
