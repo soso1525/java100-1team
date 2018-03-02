@@ -14,6 +14,7 @@ public interface Msg2Service {
 //    Msg2 get2(int mrecv);
     int getTotalCount();
     int getMrecvCount(int pno);
+    int getMsendCount(int pno);
     int delete(int mno);
     
     int msgAdd(Msg2 msg2); // Msg insert

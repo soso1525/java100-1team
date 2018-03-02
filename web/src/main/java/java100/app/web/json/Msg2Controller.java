@@ -137,10 +137,13 @@ public class Msg2Controller {
         
         
         
-        int totalCount = msg2Service.getTotalCount();
-        int lastPageNo = totalCount / pageSize;
-        if ((totalCount % pageSize) > 0) {
+        int msendCount = msg2Service.getMsendCount(loginUser.getNo());
+        int lastPageNo = msendCount / pageSize;
+        if ((msendCount % pageSize) > 0) {
             lastPageNo++;
+        }
+        if(pageNo >= lastPageNo) {
+            pageNo = lastPageNo;
         }
         
         HashMap<String, Object> result = new HashMap<>();

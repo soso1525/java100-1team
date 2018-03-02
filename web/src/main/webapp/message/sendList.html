@@ -28,16 +28,21 @@
     </div>
    </div>
    <nav class="navbar navbar-light justify-content-between">
-    <a href="sendList.html">보낸쪽지함</a>
-    <p>
-    <a href="form.html">쪽지보내기</a>  
-    <!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-     추가
-    </button> -->
+    <a href="receiveList.html">
+    <i class='icon-screen-smartphone color-1'></i>
+    받은쪽지함</a> 
+<a data-toggle='modal' href='form.html' 
+onclick="show2('mrecv', 'mcont')" 
+data-target='#modal-testNew' role='button' data-backdrop='static'>
+<!-- <div class='services-detail' style='cursor:pointer'> -->
+<i class='icon-screen-smartphone color-1'></i>
+쪽지보내기
+<!-- </div> -->
+</a>
     <!-- Modal -->
     <div class="modal fade" id="modal-testNew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:10000">
       <div class="modal-dialog"  style="width:900px;height:700px">
-        <div class="modal-content" style="background-color: #ffffff;"></div>
+        <div class="modal-content"></div>
       </div>
     </div>
     
@@ -124,12 +129,19 @@ nextBtn.click(() => {
 $('#modal-testNew').on('hidden.bs.modal', () => {
 })
 
-load();
+load(1);
 
 function show(value) {
     // modal창이 띄워졌을때 실행하는 이벤트
     $('#modal-testNew').on('shown.bs.modal', (event) => {
         view(value);
+    });
+}
+
+function show2(mrecv, mcont) {
+    // modal창이 띄워졌을때 실행하는 이벤트
+    $('#modal-testNew').on('shown.bs.modal', (event) => {
+        add('mrecv', 'mcont');
     });
 }
 function load(pageNo, options) {

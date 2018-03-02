@@ -59,6 +59,10 @@ public class Msg2ServiceImpl implements Msg2Service {
     public int getMrecvCount(int pno) {
         return msg2Dao.countMrecv(pno);
     }
+    @Override
+    public int getMsendCount(int pno) {
+        return msg2Dao.countMsend(pno);
+    }
     
     @Override
     public Msg2 get(int mno, Member loginUser) {

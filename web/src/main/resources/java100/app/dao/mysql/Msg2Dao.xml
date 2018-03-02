@@ -113,8 +113,12 @@
         group by mrecv
     </select>
     <select id="countMsend" resultType="int">
-        select count(*) from g_msg
+        select count(*) 
+          from g_msg
+         where msend = #{pno}
+        group by msend
     </select>
+
     <select id="findByNo" resultType="msg2" parameterType="int">
                  SELECT a.mno    as mno
               , b.pid    as pid1
