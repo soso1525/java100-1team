@@ -43,6 +43,11 @@ public class MemberServiceImpl implements MemberService {
 		params.put("password", password);
 		return memberDao.findByIdAndPassword(params);
 	}
+	
+	@Override
+    public Member get(String email) {
+        return memberDao.findByEmail(email);
+    }
 
 	@Override
 	public int getTotalCount() {

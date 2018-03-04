@@ -10,6 +10,7 @@ public interface MemberService {
 	List<Member> list();
 	Member get(int no);
 	Member get(String id, String password);
+	Member get(String email);
 	int getTotalCount();
 	int iAdd(Member member, IndividualMember imember);
 	int cAdd(Member member, CompanyMember cmember);

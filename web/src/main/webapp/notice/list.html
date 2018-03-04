@@ -157,17 +157,7 @@ var prevBtn = $('#prevBtn'),
  	nTypeItem = $('#nType'),
  	noticeEngine = Handlebars.compile(noticeSrc);
 
-function parse(str) {
-	var date = str.split('-');
-	console.log(date);
-	return date;
-}
-
-
-
-
 load(1);
-
 
 searchBtn.click(() => {
 	var nType = 0;
@@ -191,6 +181,23 @@ nextBtn.click(() => {
     console.log(currPageNo + 1);
 });
 
+/* D-DAY구하는 함수 */
+function parse(str) {
+	var now = new Date();
+	var date = new Date(str.split('-'));
+	var dday = date.getTime() - now.getTime();
+	dday = Math.floor(dday / (1000 * 60 * 60 * 24)) + 1;
+	if (dday <= 0) {
+		return "D-Day";
+	}
+	return "D-" + dday;
+}
+
+
+Handlebars.registerHelper('d-day', function(options){
+    return parse(this.endDate);
+});
+
 
 function load(pageNo, options) {
     
@@ -201,12 +208,7 @@ function load(pageNo, options) {
     	data: options,
         dataType: 'json',
         success: (result) => {
-        	Handlebars.registerHelper('d-day', function(endDate){
-        		
-        		var g = parse(endDate);
-        		console.log(g);
-                return g;
-            });
+        	
             listItem.html(noticeEngine(result));
             currPageNo = result.pageNo;
             currBtn.html(currPageNo);
