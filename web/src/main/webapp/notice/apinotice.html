@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel='stylesheet' href='../../css/common.css'>
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" type="text/css" href="https://tympanus.net/Development/HoverEffectIdeas/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
+<link rel="stylesheet" type="text/css" href="../css/notice.css">
+<body>
+
+<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/plugin.js"></script>
+<script type="text/javascript" src="../js/scripts.js"></script>
+<script type="text/javascript">
+
+$.ajax({
+	  type: 'GET',
+	  url: "http://14.49.41.130:8880/saramin/job-search",
+	  data: data,
+	  success: success,
+	  x-waple-authorization: "NDgyLTE1MjAyMzYyODg0MzItNjg3NDZlYWEtN2ZmMi00ODcyLWI0NmUtYWE3ZmYyZTg3MmIw",
+	  dataType: dataType
+	});
+
+</script>
+</body>
+</html>

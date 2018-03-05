@@ -63,7 +63,7 @@ public class MemberServiceImpl implements MemberService {
 	public int cAdd(Member member, CompanyMember cmember) {
 		return memberDao.insert(member) + cmemberDao.insert(cmember);
 	}
-
+	
 	@Override
 	public int delete(int no) {
 		return memberDao.delete(no);

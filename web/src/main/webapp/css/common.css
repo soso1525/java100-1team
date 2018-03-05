@@ -25,7 +25,6 @@
 .notice-body {
 	width: 100%;
 	text-align: left;
-	background-color: #E0F8F7;
 }
 
 .notice-footer {
@@ -60,8 +59,10 @@
 
 
 div.notice-list {
+	background-color: white;
 	float: left;
-	margin: 50px auto; 
+	margin: 20px auto;
+	padding-top: 50px; 
 	width: 100%;
 }
 

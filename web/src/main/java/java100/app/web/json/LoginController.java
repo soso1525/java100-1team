@@ -69,7 +69,8 @@ public class LoginController {
 		try {
             @SuppressWarnings("rawtypes")
             Map userInfo = facebookService.me(accessToken, Map.class);
-            
+            System.out.println(userInfo.toString());
+            System.out.println((String)userInfo.get("birthday"));
             Member member = memberService.get(
                                 (String)userInfo.get("email"));
             
@@ -80,13 +81,17 @@ public class LoginController {
                 member.setEmail((String)userInfo.get("email"));
                 member.setPassword("1111");
                 member.setType("1");
-                member.setId("asdfasdf");
-                member.setTel("010-123-123");
-                member.setAddress("강남구");
+                member.setId((String)userInfo.get("id"));
+                member.setTel("010-0000-0000");
+                member.setAddress("전체");
                 IndividualMember imember = new IndividualMember();
                 imember.setName((String)userInfo.get("name"));
-                imember.setBirth("123");
-                imember.setLoginType("2");
+                String birth = (String)userInfo.get("birthday");
+                imember.setBirth((String)userInfo.get("birthday"));
+                if (birth == null) {
+                	imember.setBirth("1900-01-01");
+                }
+                imember.setLoginType("2");	//페이스북 계정타입 2
                 memberService.iAdd(member, imember);
             }
             

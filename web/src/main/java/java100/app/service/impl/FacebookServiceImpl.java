@@ -29,7 +29,7 @@ public class FacebookServiceImpl implements FacebookService {
                     // => 객체에 값을 담아서 전달하거나, 값을 순서대로 나열한다.
                     // => 객체를 전달한다면 프로퍼티명으로 값을 찾아 삽입한다.
                     // => 값을 나열한다면, 값이 나온 순서대로 삽입한다.
-                    accessToken, "id,name,email");
+                    accessToken, "id,name,birthday,email");
             
         } catch (Exception e) {
             throw new RuntimeException(
