@@ -36,7 +36,7 @@
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/plugin.js"></script>
-	<!-- Main Javascript File  -->
+	<script type="text/javascript" src="../js/context.js"></script>
 	<script src="../js/scripts.js"></script>
 
 	<script type="text/javascript">
@@ -53,7 +53,7 @@
 
 function add(mrecv, mcont) {
 addBtn.click(() => {
-    $.ajax('../json/message/add', {
+    $.ajax(host + '/json/message/add', {
         data: 
             {
              "mrecv":mrecvItem.val(),

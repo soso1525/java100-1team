@@ -106,6 +106,7 @@ data-target='#modal-testNew' role='button' data-backdrop='static'>
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/plugin.js"></script>
     <script type="text/javascript" src="../js/scripts.js"></script>
+    <script type="text/javascript" src="../js/context.js"></script>
     <script type="text/javascript">
     $('header').load("../header.html");
 var prevBtn = $('#prevBtn'),
@@ -147,7 +148,7 @@ function show2(mrecv, mcont) {
 function load(pageNo, options) {
     if (options == undefined) options = {};
     options.pn = pageNo;
-    $.ajax('../json/message/sendList', {
+    $.ajax(host + '/json/message/sendList', {
         data: options,
         dataType: 'json',
         success: (result) => {

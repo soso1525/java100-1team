@@ -102,6 +102,7 @@
 	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+	<script type="text/javascript" src="../js/context.js"></script>
 
 	<script type="text/javascript">
 var addBtn = $('#addBtn'),
@@ -124,7 +125,7 @@ if (index != -1) { // 기존 데이터를 조회할 경우,
     var arr = qs.split('=');
     $('.my-new').css('display', 'none');
     $(() => {
-        $.ajax('../json/notice/' + arr[1], {
+        $.ajax(host + '/json/notice/' + arr[1], {
             dataType: 'json',
             success: (result) => {
                nodivItem.html("<input class='form-control' readonly id='no' " +
@@ -190,7 +191,7 @@ questionDeleteItem.click(() => {
 
 addBtn.click(() => {
     var formData = new FormData($('#form')[0]);
-    $.ajax('../json/notice/add', {
+    $.ajax(host + '/json/notice/add', {
         data: formData,
         dataType: 'json',
         method: 'POST',
@@ -206,7 +207,7 @@ addBtn.click(() => {
 });
 updateBtn.click(() => {
     var formData = new FormData($('#form')[0]);
-    $.ajax('../json/notice/update', {
+    $.ajax(host + '/json/notice/update', {
         data: formData,
         dataType: 'json',
         method: 'POST',
@@ -221,7 +222,7 @@ updateBtn.click(() => {
     });
 });
 deleteBtn.click(() => {
-    $.ajax('../json/notice/delete', {
+    $.ajax(host + '/json/notice/delete', {
         data: {
         	no: $('#no').val()
         },

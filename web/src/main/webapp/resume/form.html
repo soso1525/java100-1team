@@ -205,7 +205,7 @@ div {
 	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
-	
+	<script type="text/javascript" src="../js/context.js"></script>
 	<script type="text/javascript">
 	
             
@@ -251,7 +251,7 @@ if (index != -1) { // 기존 데이터를 조회할 경우,
     
 	$('.my-new').css('display', 'none');
     $(() => {
-        $.ajax('../json/resume/' + arr[1], {
+        $.ajax(host + '/json/resume/' + arr[1], {
             dataType: 'json',
             success: (result) => {
                 nodiv.html("<input class='form-control'  readonly id='no' type='hidden' name='no' value='" + result.data.no + "'>");
@@ -314,7 +314,7 @@ if (index != -1) { // 기존 데이터를 조회할 경우,
 addBtn.click(() => {
 	var formData = new FormData($('#form')[0]);
     
-    $.ajax('../json/resume/add', {
+    $.ajax(host + '/json/resume/add', {
         data:
         	formData,
         	dataType: 'json',
@@ -333,7 +333,7 @@ addBtn.click(() => {
  updateBtn.click(() => {
     var formData = new FormData($('#form')[0]);
     
-    $.ajax('../json/resume/update', {
+    $.ajax(host + '/json/resume/update', {
         data: formData,
         dataType: 'json',
         method: 'POST',
@@ -349,7 +349,7 @@ addBtn.click(() => {
 });
 deleteBtn.click(() => {
     noItem = $('#no');
-    $.ajax('../json/resume/delete', {
+    $.ajax(host + '/json/resume/delete', {
         data: {
             no: noItem.val()
         },

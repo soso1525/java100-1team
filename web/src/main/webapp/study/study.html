@@ -104,7 +104,7 @@
 	<script src="../js/wow.min.js"></script>
 	<script src="../js/jquery.easing.min.js"></script>
 	<script src="../js/main.js"></script>
-
+	<script type="text/javascript" src="../js/context.js"></script>
 
 
 
@@ -121,7 +121,7 @@ function load(pageNo, options) {
     if (options == undefined) options = {};
     options.pn = pageNo;
     
-    $.ajax('../json/study/list', {
+    $.ajax(host + '/json/study/list', {
         data: options,
         dataType: 'json',
         success: (result) => {

@@ -62,6 +62,7 @@
 	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+	<script type="text/javascript" src="../js/context.js"></script>
 	<script type="text/javascript">
 	var updateBtn = $('#updateBtn');
 	var index = location.href.indexOf('?');
@@ -69,7 +70,7 @@
 	    var qs = location.href.substr(index + 1);
 	    var arr = qs.split('=');
 	    $(() => {
-	        $.ajax('../json/company/' + arr[1], {
+	        $.ajax(host + '/json/company/' + arr[1], {
 	            dataType: 'json',
 	            success: (result) => {
 	            	$('#cno').val(result.cmember.cno);
@@ -86,7 +87,7 @@
 	}
 	updateBtn.click(() => {
 		var formData = new FormData($('#form')[0]);
-	    $.ajax('../json/company/update', {
+	    $.ajax(host + '/json/company/update', {
 	        data: formData,
 	        dataType: 'json',
 	        method: 'POST',

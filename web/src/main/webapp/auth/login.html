@@ -57,7 +57,9 @@
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src='../js/context.js'></script>
 	<script src='../js/login.js'></script>
+	<script type="text/javascript" src="../js/context.js"></script>
 	<script type="text/javascript">
 		$('header').load("../header.html");
 	</script>
@@ -65,7 +67,7 @@
 	<script type="text/javascript">
 	function autoServerLogin(accessToken) {
 	    $.getJSON(
-	        '../json/auth/facebookLogin', 
+	        host + '/json/auth/facebookLogin', 
 	        {'accessToken': accessToken},
 	        function(result) {
 	          if (result.status == 'success') {

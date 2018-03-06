@@ -50,7 +50,7 @@
 		<if test="words != null">
 	        <where>
 	            <foreach collection="words" item="word">
-	               or c.cname like '${word}%'
+	               or (c.cname like '%${word}%' or n.nduty like '%${word}%')
 	            </foreach>
 	            <if test="cKind != null">
 	               and c.ckind like #{cKind}
@@ -58,8 +58,7 @@
                 <if test="address != null">
 	               and p.pdaddr like #{address}
                 </if>
-                and n.ntype like #{nType}
-                or n.ntype like 2
+                and (n.ntype like #{nType} or n.ntype like 2)
 	        </where>
         </if>
         order by 

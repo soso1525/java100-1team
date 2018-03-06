@@ -58,6 +58,7 @@ class="button button-style button-style-dark button-style-color-2">Close</button
 	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+	<script type="text/javascript" src="../js/context.js"></script>
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/plugin.js"></script>
 	<!-- Main Javascript File  -->
@@ -81,7 +82,7 @@ class="button button-style button-style-dark button-style-color-2">Close</button
 /* 	        var qs = location.href.substr(index + 1);
 	        var arr = qs.split('='); */
 	        $(() => {
-	            $.ajax('../json/message/' + value, {
+	            $.ajax(host + '/json/message/' + value, {
 	                dataType: 'json',
 	                success: (result) => {
 	                    mnoItem.val(result.data.mno);
@@ -98,7 +99,7 @@ class="button button-style button-style-dark button-style-color-2">Close</button
     });
 }
 deleteBtn.click(() => {
-    $.ajax('../json/message/delete', {
+    $.ajax(host + '/json/message/delete', {
         data: {
             mno: mnoItem.val()
         },

@@ -67,6 +67,7 @@
     <script src='../node_modules/jquery/dist/jquery.min.js'></script>
     <script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
     <script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+    <script type="text/javascript" src="../js/context.js"></script>
 <script type="text/javascript">
   var  prevBtn = $('#prevBtn'),
 	  currBtn = $('#currBtn'),
@@ -94,7 +95,7 @@ function load(pageNo, options) {
     options.pn = pageNo;
 
     
-    $.ajax('../json/resume/list', {
+    $.ajax(host + '/json/resume/list', {
     	    	data: options,
         dataType: 'json',
         success: (result) => {

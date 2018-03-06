@@ -16,7 +16,7 @@
 			bnoItem = $('#businessNo');
 		
 		submitBtn.click(() => {
-		    $.ajax('../json/company/cAdd', {
+		    $.ajax(host + '/json/company/cAdd', {
 		        data: {
 		        	email: emailItem.val(),
 		        	id: idItem.val(),

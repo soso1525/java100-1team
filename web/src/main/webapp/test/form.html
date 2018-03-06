@@ -101,6 +101,7 @@
 <script src='../node_modules/jquery/dist/jquery.min.js'></script>
 <script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 <script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+<script type="text/javascript" src="../js/context.js"></script>
 
 <script type="text/javascript">
 var addBtn = $('#addBtn'),
@@ -130,7 +131,7 @@ if (checkNo == -1) {
 	$('.my-new').css('display','none');
 	$(() =>{
 			
-		$.ajax('../json/test/' + arr[1], {
+		$.ajax(host + '/json/test/' + arr[1], {
 			dataType: 'json',
 			success: (result) => {
 				if (result.test.type == 0) {
@@ -171,7 +172,7 @@ addBtn.click(() => {
 	} else {
 		typeItem = 0;
 	}
-    $.ajax('../json/test/add', {
+    $.ajax(host + '/json/test/add', {
         data: {
         	ano: anoItem.val(),
     		date: dateItem.val(),
@@ -205,7 +206,7 @@ updateBtn.click(() => {
 	} else {
 		checkItem = 2;
 	}
-    $.ajax('../json/test/update', {
+    $.ajax(host + '/json/test/update', {
         data: {
         	no: noItem.val(),
         	ano: anoItem.val(),
@@ -229,7 +230,7 @@ updateBtn.click(() => {
 
 
 deleteBtn.click(() => {
-	$.ajax('../json/test/delete', {
+	$.ajax(host + '/json/test/delete', {
 		data: {
 			no: noItem.val()
 		},

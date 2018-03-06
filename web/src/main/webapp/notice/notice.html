@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel='stylesheet' href='../../css/common.css'>
+<link rel="stylesheet" type="text/css" href="../css/common.css">
 <link rel="stylesheet" type="text/css" href="../css/plugin.css">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <link rel="stylesheet" type="text/css" href="https://tympanus.net/Development/HoverEffectIdeas/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
@@ -18,7 +18,7 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="section-title">
-						<h2>채용 공고</h2>
+						<h2>채용정보</h2>
 						<div class="divider dark">
 							<i class="icon-picture"></i>
 						</div>
@@ -95,7 +95,7 @@
 							  <input id="nType" type="checkbox">
 							  <span class="slider round"></span>
 							</label>
-							<strong class="my-check">신입</strong><strong class="my-check" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;경력</strong>
+							<strong class="my-check">신입</strong><strong class="my-check" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;경력</strong>
 						</div>
 						<div class="col-sm-2">
 							<button style="margin-left: 10px" class="button search button-style button-style-dark button-style-color-2" type="button" id="searchBtn">Catch</button>
@@ -103,13 +103,13 @@
 					</form>
 				</div>
 			</div>
-			<div class="row my-main">
-				<div class="col-xs-12">
+			<div class="my-main">
+				<div class="col-md-12">
 					<ul class="portfolio">
 						<li class="filter" data-filter=".apps" data-order="viewcount">Hot</li>
 						<li class="filter" data-filter=".mockups" data-order="later">Best</li>
 						<li class="filter" data-filter=".wordpress" data-order="startdate">New</li>
-					</ul> 
+					</ul>
 				</div>
 				<div class="col-xs-12">
 					<div id='list' class="portfolio-inner margin-top-30">
@@ -119,19 +119,17 @@
 					</div>
 				</div>
 			</div>
-		</div>
-
-
-		<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog"
-	     aria-labelledby="테스트정보 등록" aria-describedby="테스트 모달">
-	    <div class="modal-dialog" style="width: 800px; height: 500px">
-		    <div class="modal-content"></div>
+			<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog"
+		     aria-labelledby="테스트정보 등록" aria-describedby="테스트 모달">
+		    <div class="modal-dialog" style="width: 800px; height: 500px">
+			    <div class="modal-content"></div>
+				</div>
 			</div>
-		</div>
-		<div class= "notice-list">
-			<strong style="font-size:20	px; margin-left: 80px;">채용공고 목록</strong>
-			<ul id="searchList">
-			</ul>
+			<div class="notice-list">
+				<strong style="font-size:20	px; margin-left: 80px;">채용정보 검색</strong>
+				<ul id="searchList">
+				</ul>
+			</div>
 		</div>
 	</section>
 <script id="noticeList" type="text/x-handlebars-template">
@@ -159,7 +157,7 @@
     <class="portfolio-popup">
     <div class="grid">
     <figure class="effect-apollo">
-    <img src="../../download/{{image}}" alt=""/>
+    <img src="../../download/{{companyMember.logo}}" alt=""/>
     <figcaption>
     <h2>{{companyMember.cName}} <span></span></h2>
     <p>{{startDate}} ~ <br>{{endDate}}</p>
@@ -183,6 +181,7 @@
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/plugin.js"></script>
 <script type="text/javascript" src="../js/scripts.js"></script>
+<script src='../js/context.js'></script>
 <script type="text/javascript">
 $('header').load("../header.html");
 
@@ -204,6 +203,7 @@ var prevBtn = $('#prevBtn'),
 
 searchBtn.click(() => {
 	$(".my-main").css('display', 'none');
+	$(".notice-list").css('display', 'block');
 	var nType = 0;
 	if (nTypeItem.prop("checked")) {
 		nType = 1;
@@ -247,7 +247,7 @@ function listload(pageNo, options) {
      if (options == undefined) options = {};
      options.pn = pageNo;
     
-    $.ajax('../json/notice/list', {
+    $.ajax(host + '/json/notice/list', {
     	data: options,
         dataType: 'json',
         success: (result) => {
@@ -277,7 +277,7 @@ function listload(pageNo, options) {
 <script type="text/javascript">
 	$('header').load("../header.html");
     var index = -1;
-    
+    $(".notice-list").css('display', 'none');
     $('#modal-testNew').on('hidden.bs.modal', () => {
     })
     
@@ -306,11 +306,10 @@ function listload(pageNo, options) {
     }
     
     function load(orderType, panelId) {
-        
     	   /*  if (options == undefined) options = {};
     	     options.pn = pageNo; */
     	    
-    	    $.ajax('../json/notice/list', {
+    	    $.ajax(host + '/json/notice/list', {
     	        dataType: 'json',
     	        data : {oc : orderType},
     	        success: (result) => {
