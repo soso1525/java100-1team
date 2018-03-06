@@ -45,6 +45,7 @@
 		function checkID() {
 			var ctxpath = '/json';
 			var userID = $('#id').val();
+			
 			$
 					.ajax({
 						type : 'GET',
@@ -55,33 +56,25 @@
 						success : function(data) {
 							var result = JSON.parse(data);
 							if (result.success) {
-								console.log("success");
+								if(userID.length == 0) {
+									passID = false;
+									$('#validID').css('color', '#4c9cef');
+									$('#validID').html('사용하실 아이디를 입력해주세요');
+									return;
+								}
 								passID = true;
-								$('#id').removeClass("form-control");
-								$('#id').removeClass("form-control is-invalid");
-								$('#id').addClass("form-control is-valid");
-								$('#validID').removeClass("valid-feedback");
-								$('#validID').removeClass("invalid-feedback");
-								$('#validID').addClass("valid-feedback");
-								document.querySelector('#validID').innerHTML = "사용 가능한 ID입니다";
+								$('#validID').css('color', '#4CAF50');
+								$('#validID').html('사용 가능한 아이디입니다');
 								checkPass();
 							} else {
 								passID = false;
-								console.log("fail");
-								$('#submitBtn').prop("disabled", true);
-								$('#id').removeClass("form-control");
-								$('#id').removeClass("form-control is-valid");
-								$('#id').addClass("form-control is-invalid");
-								$('#validID').removeClass("invalid-feedback");
-								$('#validID').removeClass("valid-feedback");
-								$('#validID').addClass("invalid-feedback");
-								document.querySelector('#validID').innerHTML = "사용 불가능한 ID입니다. 다른 ID를 입력해주세요";
+								$('#validID').css('color', '#f7639a');
+								$('#validID').html('이미 사용 중인 아이디입니다. 다른 아이디를 입력해주세요');
 								checkPass();
 							}
 						}
 					});
 		}
-
 		function checkEmail() {
 			var ctxpath = '/json';
 			var userEmail = $('#email').val();
@@ -95,64 +88,52 @@
 						success : function(data) {
 							var result = JSON.parse(data);
 							if (result.success) {
-								console.log("success");
+								if(userEmail.length == 0) {
+									passEmail = false;
+									$('#validEmail').css('color', '#4c9cef');
+									$('#validEmail').html('사용하실 이메일을 입력해주세요');
+									checkPass();
+									return;
+								}
+								
 								passEmail = true;
-								$('#email').removeClass("form-control");
-								$('#email').removeClass(
-										"form-control is-invalid");
-								$('#email').addClass("form-control is-valid");
-								$('#validEmail').removeClass("valid-feedback");
-								$('#validEmail')
-										.removeClass("invalid-feedback");
-								$('#validEmail').addClass("valid-feedback");
-								document.querySelector('#validEmail').innerHTML = "사용 가능한 email입니다";
+								$('#validEmail').css('color', '#4CAF50');
+								$('#validEmail').html('사용 가능한 이메일입니다');
 								checkPass();
 							} else {
-								console.log("fail");
 								passEmail = false;
-								$('#submitBtn').prop("disabled", true);
-								$('#email').removeClass("form-control");
-								$('#email')
-										.removeClass("form-control is-valid");
-								$('#email').addClass("form-control is-invalid");
-								$('#validEmail')
-										.removeClass("invalid-feedback");
-								$('#validEmail').removeClass("valid-feedback");
-								$('#validEmail').addClass("invalid-feedback");
-								document.querySelector('#validEmail').innerHTML = "이미 사용중인 email입니다. 다른 Email을 입력해주세요";
+								$('#validEmail').css('color', '#f7639a');
+								$('#validEmail').html("이미 사용중인 이메일입니다. 다른 이메일을 입력해주세요");
 								checkPass();
 							}
 						}
 					});
 		}
-
+		
 		function checkPwd() {
-			var password = document.querySelector('#password')
-			var repassword = document.querySelector('#repassword')
-			var checkpassword = document.querySelector('#validPWD')
-			repassword.addEventListener('keyup', function() {
-				if (password.value == repassword.value) {
+			var password = $('#password'),
+			    repassword = $('#repassword'),
+			    checkpassword = $('#validPWD');
+				
+				if (password.val() == repassword.val()) {
 					passPwd = true;
-					$('#repassword').removeClass("form-control");
-					$('#repassword').removeClass("form-control is-invalid");
-					$('#repassword').addClass("form-control is-valid");
-					$('#validPWD').removeClass("valid-feedback");
-					$('#validPWD').removeClass("invalid-feedback");
-					$('#validPWD').addClass("valid-feedback");
-					checkpassword.innerHTML = "비밀번호가 일치합니다";
+					checkpassword.css('color', '#4CAF50');
+					checkpassword.html('비밀번호가 일치합니다');
 					checkPass();
 				} else {
 					passPwd = false;
-					$('#repassword').removeClass("form-control");
-					$('#repassword').removeClass("form-control is-valid");
-					$('#repassword').addClass("form-control is-invalid");
-					$('#validPWD').removeClass("valid-feedback");
-					$('#validPWD').removeClass("invalid-feedback");
-					$('#validPWD').addClass("invalid-feedback");
-					checkpassword.innerHTML = "비밀번호가 일치하지않습니다";
+					
+					if(repassword.val().length == 0) {
+						checkpassword.css('color', '#4c9cef');
+						checkpassword.html('비밀번호 확인을 위해 다시 입력해주세요');
+						checkPass();
+						return;
+					}
+					
+					checkpassword.css('color', '#f7639a');
+					checkpassword.html('비밀번호가 일치하지않습니다');
 					checkPass();
 				}
-			});
 		}
 
 		function checkPass() {
