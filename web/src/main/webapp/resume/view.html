@@ -1,8 +1,11 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>이력서</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel='stylesheet' href='../css/plugin.css'>
 <link rel='stylesheet' href='../css/style.css'>
 <link rel='stylesheet' href='../css/common.css'>
@@ -10,14 +13,14 @@
 	href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!-- <link rel="stylesheet" href="../css/main.css"> -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
 <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 
 <style>
 td#t {
-	width: 28%;
+	width: 30%;
 }
 </style>
 </head>
@@ -79,11 +82,11 @@ td#t {
 							</tr>
 							<tr>
 								<td>동영상</td>
-								<td id='avi'></td>
+								<td id='avi' style='cursor:pointer'></td>
 							</tr>
 							<tr>
 								<td>첨부파일</td>
-								<td id='file'></td>
+								<td id='file' style='cursor:pointer'></td>
 							</tr>
 							<tr>
 								<td>나의한마디</td>
@@ -99,21 +102,40 @@ td#t {
 				</div>
 
 
+				<div id="id01" class="w3-modal">
+					<div class="w3-modal-content">
+						<div class="w3-container">
+							<span
+								onclick="document.getElementById('id01').style.display='none'"
+								class="w3-button w3-display-topright">&times;</span>
+							<p>
+								<video src="" controls="controls" id="video" width="840px"
+									height="500px"></video>
+							</p>
+						</div>
+					</div>
+				</div>
 
 				<div class="col-md-5 col-sm-6">
 					<div id="me-image"></div>
 				</div>
+				
 			</div>
+			
 			<div class="form-row">
-				<div class='col-md-6 mb-3' style="">
-					<button id="updateBtn" type="button"
-						class='btn btn-primary btn-sm my-view'>변경</button>
-					<button id="deleteBtn" type="button"
-						class='btn btn-primary btn-sm my-view'>삭제</button>
+				<div class='col-md-14 mb-3' >
+				    <div align='center' style='margin: 40px 0px 30px 0;'>
+					   <button id="updateBtn" type="button" style='margin-right: 6px;'
+						  class='button button-style button-style-dark button-style-color-1'>변경</button>
+					   <button id="deleteBtn" type="button"
+						  class='button button-style button-style-dark button-style-color-2'>삭제</button>
+				    </div>
 				</div>
 			</div>
-		</form>
+			
+		</form> 
 	</div>
+	
 
 	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
@@ -123,7 +145,7 @@ td#t {
 	<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
 
 	<script type="text/javascript">
-var url = "";
+	
 
 var addBtn = $('#addBtn'),
 	updateBtn = $('#updateBtn'),
@@ -160,18 +182,15 @@ var index = location.href.indexOf('?');
 var qs = location.href.substr(index + 1);
 var checkNo = location.href.indexOf('ano');
 var arr = qs.split('=');
+var videoSrc='';
 
-if (index != -1) { // 기존 데이터를 조회할 경우,
-$('.my-new').css('display', 'none');
 $(() => { 
     $.ajax('../json/resume/' + arr[1], {
         dataType: 'json',
         success: (result) => {
             console.log(result);
             
-            url="../download/" + result.data.avi;
-            
-            /* $("#no").html("<a href='form.html?no=" + result.data.no + "'>" + result.data.no + "</a>"); */
+            /* $("#no").html("<a href='form.html?no=" + result.data.no + "'>" + result.data.no + "</a>");  */
             $("#title").html(result.data.title);
             $("#education").html(result.data.education);
             kindItem.html(result.data.kind);
@@ -185,7 +204,6 @@ $(() => {
             $("#avi").html(result.data.avi);
             $("#file").html(result.data.file);
             $("#note").html(result.data.note);
-            
             
             var imageFile = result.data.image;
             console.log(imageFile);
@@ -213,10 +231,11 @@ $(() => {
                 check2Item.prop('checked', true);
             }  
             
-           console.log(result.data.avi)
+           /* console.log(result.data.avi)
             $('#vi').html('<video src="../download/' + result.data.avi + '" controls="controls" id="video" width="500px" height="300px"></video>')
-            simgs.html("<img src='../../download/" + result.data.image + "' height='300px'/>");
-            nodiv.html("<input class='form-control'  readonly id='no' type='hidden' name='no' value='" + result.data.no + "'>");
+            simgs.html("<img src='../../download/" + result.data.image + "' height='300px'/>");*/
+            nodiv.html("<input class='form-control'  readonly id='no' type='hidden' name='no' value='" + result.data.no + "'>"); 
+            videoSrc = '../download/' + result.data.avi;
             /* educationItem.val(result.data.education); */
             careerItem.val(result.data.career);
             languageItem.val(result.data.language);
@@ -234,6 +253,11 @@ $(() => {
             fileItem.val(result.data.file);
             imageItem.val(result.data.image);
             
+            var fname = result.data.file;
+            $('#file').click(() => {
+            	SaveToDisk('/download/' + fname,fname);	
+            });
+            
         },
         error: () => {
             window.alert('서버 실행 오류!');
@@ -242,16 +266,11 @@ $(() => {
     });
 });
 
-} else { // 신규 데이터 입력일 경우,
-formData = new FormData($('#form')[0]);
-$('.my-view').css('display', 'none');
-/* anoItem.val(arr[1]);
-check1Item.prop('checked', true);*/
-}
 
 updateBtn.click(() => {
     location.href="form.html?no=" + $("#no").val();    
 });
+
 deleteBtn.click(() => {
     noItem = $('#no');
     $.ajax('../json/resume/delete', {
@@ -273,12 +292,48 @@ window.onload = function(){
     
 }
 
-
-
-
+$('#avi').click(() => {
+	console.log('avi clicked');
+	if($('#avi').html() != '')
+	$('#id01').css('display', 'block');
+	$('#video').attr('src', videoSrc);
+});
 
 
  $('header').load("../header.html");
+ 
+ function SaveToDisk(fileURL, fileName) {
+	    // for non-IE
+	    if (!window.ActiveXObject) {
+	        var save = document.createElement('a');
+	        save.href = fileURL;
+	        
+	        save.download = fileName || 'unknown';
+	        save.style = 'display:none;opacity:0;color:transparent;';
+	        (document.body || document.documentElement).appendChild(save);
+
+	        if (typeof save.click === 'function') {
+	            save.click();
+	        } else {
+	            save.target = '_blank';
+	            var event = document.createEvent('Event');
+	            event.initEvent('click', true, true);
+	            save.dispatchEvent(event);
+	        }
+
+	        (window.URL || window.webkitURL).revokeObjectURL(save.href);
+	    }
+
+	    // for IE
+	    else if (!!window.ActiveXObject && document.execCommand) {
+	        var _window = window.open(fileURL, '_blank');
+	        _window.document.close();
+	        _window.document.execCommand('SaveAs', true, fileName || fileURL)
+	        _window.close();
+	    }
+	}
+
+ 
 </script>
 </body>
 </html>
