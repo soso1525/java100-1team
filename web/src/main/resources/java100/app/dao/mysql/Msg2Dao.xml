@@ -25,7 +25,10 @@
               , c.pid    as pid2
               , a.mdt    as mdt
               , a.mcont  as mcont
-              , a.mcheck as mcheck
+              , case 
+                  when a.mcheck ="0" then "안읽은편지" 
+                  else "읽은편지" 
+                end as mcheck
            FROM g_msg a
          left outer join g_per b
                       on a.msend = b.pno
@@ -66,7 +69,10 @@
               , c.pid    as pid2
               , a.mdt    as mdt
               , a.mcont  as mcont
-              , a.mcheck as mcheck
+              , case 
+                  when a.mcheck ="0" then "안읽은편지" 
+                  else "읽은편지" 
+                end as mcheck
            FROM g_msg a
        left outer join g_per b
                     on a.msend = b.pno

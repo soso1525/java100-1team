@@ -91,7 +91,7 @@ data-target='#modal-testNew' role='button' data-backdrop='static'>
 <a data-toggle='modal' href='view.html' onclick="show('{{mno}}')" data-target='#modal-testNew' role='button' data-backdrop='static'>
 <div class='services-detail' style='cursor:pointer'>
 <i class='icon-screen-smartphone color-1'></i>
-{{#mcheck mckeck}}{{/mcheck}}
+{{mcheck}}</a>
 </div>
 </a>
 </div>
@@ -176,15 +176,16 @@ function load(pageNo, options) {
     });
 };
 
-
+/* 
 Handlebars.registerHelper('mcheck', function(mcheck) {
+    console.log(mcheck)
     if(mcheck != 0) {
-console.log(mcheck)
+
       return '읽은편지';
     }
     return '안읽은편지';
   });
-  
+   */
 /* addMessage.click(() => {
 }); */
 

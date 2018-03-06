@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
+import org.junit.runner.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -96,8 +98,12 @@ public class NoticeController {
     }
     
     @RequestMapping("{no}")
-    public Object view(@PathVariable int no) throws Exception {
+    public Object view(@PathVariable int no,
+            HttpSession session) throws Exception {
         HashMap<String, Object> result = new HashMap<>();
+
+        Member loginUser = (Member) session.getAttribute("loginUser"); // 세션에서 유저정보 가져옴
+        result.put("userInfo", loginUser.getNo()); // 유저의 no셋팅 -- 유저의 no와 공고의 작성자의 no를 확인하기 위함
         result.put("data", noticeService.get(no));
         return result;
     }
@@ -183,8 +189,8 @@ public class NoticeController {
                   .size(size, size)
                   .outputQuality(1.0)
 			      .outputFormat(filename.substring(filename.lastIndexOf('.') + 1 ))
-			      .toFile(new File(realPath, "x"+filename));
-        return "x" + filename;
+			      .toFile(new File(realPath + filename));
+        return filename;
     }
 
 	private String thumnailPath(String filename, String size) {

@@ -92,8 +92,10 @@
 			n.nsdt,
 			n.nedt,
 			n.ncnt,
+			n.nduty,
 			c.cname,
-			c.clogo
+			c.clogo,
+			c.cno
 		from g_noti n
 		left join g_corp c on n.cno=c.cno
 		where n.nno = #{no}
