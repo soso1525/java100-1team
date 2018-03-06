@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel='stylesheet' href='../../css/common.css'>
 <link rel="stylesheet" type="text/css" href="../css/plugin.css">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <link rel="stylesheet" type="text/css" href="https://tympanus.net/Development/HoverEffectIdeas/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
@@ -27,7 +28,82 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div class="col-sm-12 search">
+	            <div class="col-sm-12">
+	            	<div class="col-sm-3">
+	            		<strong>What</strong>
+	            	</div>
+	            	<div class="col-sm-3">
+	            		<strong>Occupation</strong>
+	            	</div>
+	            	<div class="col-sm-3">
+	            		<strong>Where</strong>
+	            	</div>
+	            </div>
+	            
+	            <div class="col-sm-12">
+					<form>
+						<div class="col-sm-3">
+							<input name="words" id="words" class="form-control form-control-sm mr-sm-2"
+								type="search" placeholder="Keyword" aria-label="Search"> 
+						</div>
+						<div class="col-sm-3">
+							<select id="cKind" name="cKind" class="form-control form-control-sm mr-sm-2">
+								<option>전체</option>
+								<option>건설</option>
+								<option>경영/사무</option>
+								<option>교육</option>
+								<option>디자인</option>
+								<option>미디어</option>
+								<option>서비스</option>
+								<option>생산/제조</option>
+								<option>IT/인터넷</option>
+								<option>영업/고객상담</option>
+								<option>유통/무역</option>
+								<option>의료</option>
+								<option>전문직</option>
+								<option>특수계층/공공</option>
+							</select> 
+						</div>
+						<div class="col-sm-3">
+							<select id="address" name="address" class="form-control form-control-sm mr-sm-2">
+								<option>전체</option>
+								<option>강남구</option>
+								<option>강동구</option>
+								<option>강북구</option>
+								<option>강서구</option>
+								<option>관악구</option>
+								<option>광진구</option>
+								<option>구로구</option>
+								<option>금천구</option>
+								<option>노원구</option>
+								<option>도봉구</option>
+								<option>동대문구</option>
+								<option>동작구</option>
+								<option>마포구</option>
+								<option>서대문구</option>
+								<option>서초구</option>
+								<option>성동구</option>
+								<option>성북구</option>
+								<option>송파구</option>
+								<option>양천구</option>
+								<option>영등포구</option>
+							</select>
+						</div>
+						<div class="col-sm-2" style="width:8%;">
+							<label class="switch">
+							  <input id="nType" type="checkbox">
+							  <span class="slider round"></span>
+							</label>
+							<strong class="my-check">신입</strong><strong class="my-check" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;경력</strong>
+						</div>
+						<div class="col-sm-2">
+							<button style="margin-left: 10px" class="button search button-style button-style-dark button-style-color-2" type="button" id="searchBtn">Catch</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row my-main">
 				<div class="col-xs-12">
 					<ul class="portfolio">
 						<li class="filter" data-filter=".apps" data-order="viewcount">Hot</li>
@@ -52,8 +128,29 @@
 		    <div class="modal-content"></div>
 			</div>
 		</div>
-
+		<div class= "notice-list">
+			<strong style="font-size:20	px; margin-left: 80px;">채용공고 목록</strong>
+			<ul id="searchList">
+			</ul>
+		</div>
 	</section>
+<script id="noticeList" type="text/x-handlebars-template">
+{{#each list}}
+<li>
+	<div class="notice-head">
+		<img class="notice-img-top" src='../../download/{{companyMember.logo}}' alt="Card image cap">
+	</div>
+	<div class="notice-body">
+  		<p class="notice-title">{{companyMember.cName}}</p><br>
+  		<p class="notice-text">{{duty}}</p><br>
+		<div class="notice-footer">
+			<p class="notice-text">{{d-day}}</p><br>
+		</div>
+	</div>
+</li>
+{{/each}}
+</script>
+
 
 
 	<script id="notice" type="text/x-handlebars-template">
@@ -82,12 +179,102 @@
 {{/each}}
 </script>
 
-	<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
-	<script type="text/javascript" src="../js/jquery.min.js"></script>
-	<script type="text/javascript" src="../js/plugin.js"></script>
-	<script type="text/javascript" src="../js/scripts.js"></script>
+<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/plugin.js"></script>
+<script type="text/javascript" src="../js/scripts.js"></script>
+<script type="text/javascript">
+$('header').load("../header.html");
 
-	<script type="text/javascript">
+var check = $("input[type='checkbox']");
+check.click(function(){
+  $(".my-check").toggle();
+});
+
+var prevBtn = $('#prevBtn'),
+  	currBtn = $('#currBtn'),
+  	nextBtn = $('#nextBtn'),
+  	words = $('#words'),
+	searchBtn = $('#searchBtn'),
+	listItem = $('#searchList'),
+   	currPageNo = 1,
+ 	noticeListSrc = $('#noticeList').html(),
+ 	nTypeItem = $('#nType'),
+ 	noticeListEngine = Handlebars.compile(noticeListSrc);
+
+searchBtn.click(() => {
+	$(".my-main").css('display', 'none');
+	var nType = 0;
+	if (nTypeItem.prop("checked")) {
+		nType = 1;
+	}
+    listload(1, {
+        "words": words.val(),
+        "cKind": $('#cKind option:selected').text(),
+        "address": $('#address option:selected').text(),
+        "nType": nType
+    })
+});
+
+
+prevBtn.click(() => {
+    listload(currPageNo - 1)
+});
+
+nextBtn.click(() => {
+    listload(currPageNo + 1)
+});
+
+/* D-DAY구하는 함수 */
+function parse(str) {
+	var now = new Date();
+	var date = new Date(str.split('-'));
+	var dday = date.getTime() - now.getTime();
+	dday = Math.floor(dday / (1000 * 60 * 60 * 24)) + 1;
+	if (dday <= 0) {
+		return "D-Day";
+	}
+	return "D-" + dday;
+}
+
+
+Handlebars.registerHelper('d-day', function(options){
+    return parse(this.endDate);
+});
+
+
+function listload(pageNo, options) {
+     if (options == undefined) options = {};
+     options.pn = pageNo;
+    
+    $.ajax('../json/notice/list', {
+    	data: options,
+        dataType: 'json',
+        success: (result) => {
+            listItem.html(noticeListEngine(result));
+            currPageNo = result.pageNo;
+            currBtn.html(currPageNo);
+            if (result.pageNo == 1) {
+                $(prevBtn.parent()).addClass("disabled");
+            } else {
+                $(prevBtn.parent()).removeClass("disabled");
+            }
+            
+            if (result.lastPageNo == result.pageNo) {
+                $(nextBtn.parent()).addClass("disabled");
+            } else {
+                $(nextBtn.parent()).removeClass("disabled");
+            }
+       },
+       error: () => {
+            window.alert('서버 실행 오류!');
+       } 
+    }); 
+}
+
+</script>
+
+<script type="text/javascript">
 	$('header').load("../header.html");
     var index = -1;
     
@@ -97,8 +284,6 @@
     noticeSrc = $('#notice').html(),
     noticeEngine = Handlebars.compile(noticeSrc);
     // load('viewcount', 'wordpress');
-    
-      
     
     function view( v ) {
     	console.log ('yes ', v);
@@ -113,12 +298,12 @@
 	    	}
 	    })
     }
+    
     function show(value) {
         $('#modal-testNew').on('shown.bs.modal', (event) => {
             view(value);
         });
     }
-
     
     function load(orderType, panelId) {
         
@@ -173,7 +358,7 @@
         	var ot = $(e.target).data('order');
         	var panel = $(e.target).data('filter');
         	load ( ot, panel );
-        });
+        });	
     </script>
 
 </body>

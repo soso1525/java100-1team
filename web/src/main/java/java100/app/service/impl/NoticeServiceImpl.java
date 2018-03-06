@@ -28,7 +28,6 @@ public class NoticeServiceImpl implements NoticeService {
          }
         return noticeDao.findAll(params);
     }
-    
     @Override
     public int getTotalCount() {
         return noticeDao.countAll();

@@ -43,6 +43,11 @@ public class MemberServiceImpl implements MemberService {
 		params.put("password", password);
 		return memberDao.findByIdAndPassword(params);
 	}
+	
+	@Override
+    public Member get(String email) {
+        return memberDao.findByEmail(email);
+    }
 
 	@Override
 	public int getTotalCount() {
@@ -58,7 +63,7 @@ public class MemberServiceImpl implements MemberService {
 	public int cAdd(Member member, CompanyMember cmember) {
 		return memberDao.insert(member) + cmemberDao.insert(cmember);
 	}
-
+	
 	@Override
 	public int delete(int no) {
 		return memberDao.delete(no);

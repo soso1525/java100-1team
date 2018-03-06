@@ -60,7 +60,8 @@
 		select count(*) from g_per
 	</select>
 
-	<insert id="insert" parameterType="member">
+	<insert id="insert" parameterType="member"
+		useGeneratedKeys="true" keyColumn="pno" keyProperty="no">
 		insert into
 		g_per(pmail,pid,ppwd,pregdt,ptel,pdaddr,ptype)
 		values(#{email},#{id},password(#{password}),now(),#{tel},#{address},#{type})
