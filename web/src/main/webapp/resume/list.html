@@ -7,20 +7,21 @@
 <!-- <link rel='stylesheet' href='../node_modules/bootstrap/dist/css/bootstrap.min.css'> -->
 <link rel='stylesheet' href='../css/plugin.css'>
 <link rel='stylesheet' href='../css/style.css'>
- 
+
  </head>
 <body>
     <div class='container'>
         <header></header>
         <h1 style="margin-top: 100px; margin-bottom: 30px">이력서 목록</h1>
+        <div id="tmp" style="display:none"></div>
         <table id='list' class='table table-hover'>
             <thead>
                 <tr>
-                  <!--  <th width=6%>번호</th> -->
-                    <th width="30%">제목</th>
-                    <th>직무</th>
+                    <th width=5%>번호</th>
+                    <th width="55%">제목</th>
+                    <th width="11%">직무</th>
                     <!-- <th>학력</th> -->
-                    <th>경력</th>
+                    <th width="11%">경력</th>
                     <!-- <th>사진</th> -->
                     <!-- <th>자격증</th>
                     <th>어학</th>
@@ -29,7 +30,7 @@
                     <th>학교명</th>
                     <th>학점</th>
                     <th>조회수</th> -->
-                    <th>동영상</th>
+                    <th width="8%">동영상</th>
                     <th>이력서파일</th>
                     <!-- <th>할말</th>
                     <th>공개여부</th>
@@ -68,13 +69,15 @@
     <script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
     <script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
     <script type="text/javascript" src="../js/context.js"></script>
+
 <script type="text/javascript">
+
   var  prevBtn = $('#prevBtn'),
-	  currBtn = $('#currBtn'),
-	  nextBtn = $('#nextBtn'),
-	  currPageNo = 1,
-	  tbody = $('#list > tbody');
-  
+	   currBtn = $('#currBtn'),
+	   nextBtn = $('#nextBtn'),
+	   currPageNo = 1,
+	   tbody = $('#list > tbody');
+      
 
   $('header').load('../header.html', () => {
       load(1);
@@ -93,15 +96,25 @@
 function load(pageNo, options) {
 	if (options == undefined) options = {};
     options.pn = pageNo;
-
+ 
+    
     
     $.ajax(host + '/json/resume/list', {
     	    	data: options,
         dataType: 'json',
         success: (result) => {
-            
+            console.log(result)
+        	if(result.list.length == 0){
+        		$('#list').hide();
+        		$('#tmp').css('display', 'block');
+        		$('#tmp').html("등록된 자기소개서가 없습니다.");
+        		return;
+        	}
+        	
+        	$('#list').show();
+            $('#tmp').css('display', 'none');
             tbody.html(""); 
-            
+            var a=0;
             for (var data of result.list) {
                 
                 var file;
@@ -117,12 +130,12 @@ function load(pageNo, options) {
                 } else {
                     avi = "Y";
                 } 
-               
                 
+                var bno = (result.totalCount - (a++)) - ((result.pageNo - 1) * 9)
                 $('<tr>')
                     .html(  
-                       /*  "<td>" + data.no + "</td>" +  */
-                        "<td style='background:skyblue'><a href='view.html?no=" + data.no + "'>" + data.title +"</a></td>" +
+                        "<td>" + bno + "</td>" + 
+                        "<td><a href='view.html?no=" + data.no + "'>" + data.title +"</a></td>" +
                         "<td>" + data.kind + "</td>" +
                         "<td>" + data.career + "</td>" + 
                         /*"<td>" + data.education + "</td>" +

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CATCH : 나의 지원 현황</title>
+<link rel="stylesheet" href="../css/plugin.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/apply-modal.css">
+<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style type="text/css">
+body {
+	background-color: #ffffff;
+}
+
+.w3-tag {
+	text-align:center;
+}
+</style>
+</head>
+<body>
+	<header></header>
+	<section id="services" class="services-section section-space-padding">
+		<div class="container">
+			<div style="border-radius: 10px; background-color: #fce469">
+				<div class="row">
+					<div class="col-sm-12">
+						<div style="margin-top: 100px;" class="section-title">
+							<h2>나의 지원 현항</h2>
+							<div class="divider dark">
+								<i class="icon-drop"></i>
+							</div>
+							<p>You can cut all the flowers but you cannot keep Spring
+								from coming</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="row margin-top-30">
+					<div class="col-md-4 col-sm-6">
+						<div style="width: 270px; height: 270px; margin-bottom:70px" class="services-detail" id="resume">
+							<i style="color: #f306a0" class="far fa-address-card"></i>
+							<h3>이력서</h3>
+							<hr>
+						</div>
+					</div>
+
+					<div class="col-md-4 col-sm-6">
+						<div style="width: 270px; height: 270px; margin-bottom:70px" class="services-detail" id="letter">
+							<i style="color: #d60bfb" class="far fa-file-alt"></i>
+							<h3>자기소개서</h3>
+							<hr>
+						</div>
+					</div>
+
+					<div class="col-md-4 col-sm-6">
+						<div style="width: 270px; height: 270px; margin-bottom:70px" class="services-detail" id="test">
+							<i style="color: #d8be10" class="far fa-calendar-alt"></i>
+							<h3>인적성/면접</h3>
+							<hr>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div style="padding: 15px"></div>
+
+			<table style="text-align: center" id='list' class='table table-hover'>
+				<thead>
+					<tr>
+						<th style="text-align: center">번호</th>
+						<th id='thcname' style="text-align: center">기업명<div id='nametag' style="display:none; position: absolute; float:center" class="w3-text w3-tag">9 million inhabitants</div></th>
+						<th style="text-align: center">지원날짜</th>
+						<th style="text-align: center" class="w3-tooltip">진행상태<span style="position:absolute;float:right" class="w3-text w3-tag">9 million inhabitants</span></th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+
+		</div>
+
+		<div style="padding: 22px"></div>
+		<div style="text-align: center">
+			<button id="myBtn"
+				class="button button-style button-style-dark button-style-color-2">입사
+				지원하기</button>
+		</div>
+	</section>
+
+	<div id="myModal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h2
+				style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 30px; margin-top: 40px; margin-bottom: 60px">
+				새로운 회사 지원하기<i style="margin-left: 10px" class="far fa-edit"></i>
+			</h2>
+			<form method='post' id='form' enctype='multipart/form-data'>
+				<div style="font-weight: 700">지원하는 기업 이름</div>
+				<input style="margin: 0 0 15px 0" class="form-control"
+					placeholder="지원하는 회사 이름" id="aname" name="aname" type="text">
+
+				<div class="row">
+					<div class="col-sm-6">
+						<div style="font-weight: 700">접수 시작일</div>
+						<input style="margin: 0 0 10px 0" class="form-control" id="lsdt"
+							name="lsdt" type="date">
+					</div>
+
+					<div class="col-sm-6">
+						<div style="font-weight: 700">접수 마감일</div>
+						<input style="margin: 0 0 10px 0" class="form-control" id="ledt"
+							name="ledt" type="date">
+					</div>
+				</div>
+
+				<div style="font-weight: 700">이력서 파일</div>
+				<input style="margin: 0 0 15px 0" class="form-control" type="file"
+					name="files">
+
+				<div style="font-weight: 700">자소서 파일</div>
+				<input style="margin: 0 0 15px 0" class="form-control" type="file"
+					name="files">
+
+				<div style="text-align: center; margin: 50px 0">
+					<button id="applyBtn" type="button"
+						class="button button-style button-style-dark button-style-color-2">입사
+						지원하기</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/plugin.js"></script>
+<script type="text/javascript" src="../js/scripts.js"></script>
+<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+<script src="../js/apply-simple.js"></script>
+<script id="template1" type="text/x-handlebars-template">
+	{{#each apply}}
+	<tr>
+  		<td>{{count}}</td>
+  		<td>{{aname}}</td>
+  		<td>{{adt}}</td>
+  		<td>{{#typeCheck test}}{{/typeCheck}}</td>
+	</tr>
+	{{/each}}
+</script>
+
+<script type="text/javascript">
+	$('header').load("../header.html");
+	$('#thcname').mouseover(() => {
+		$('#nametag').css('display', 'block');
+	});
+	
+	$('#thcname').mouseout(() => {
+		$('#nametag').css('display', 'none');
+	});
+	
+	var num = 1;
+	var tbody = $('#list > tbody'),
+    template1Src = $('#template1').html(),
+    template1Engine = Handlebars.compile(template1Src);
+	
+	$.ajax('../json/apply/list', {
+	    dataType: 'json',
+	    success: (result) => {
+	    	console.log(result.apply[0].test.type);
+	    	tbody.html(template1Engine(result));
+	    },
+	    error: () => {
+	        window.alert('서버 실행 오류!');
+	    }
+	});
+	
+	Handlebars.registerHelper('count', function() {
+		return (num++);
+	});
+	
+	Handlebars.registerHelper('typeCheck', function(test) {
+		  if(test.type == null) {
+		    return '서류';
+		  }
+		  return test.type;
+		});
+</script>
+</html>

@@ -38,11 +38,11 @@ var loginBtn = $('#loginBtn'), email = $('#email'), password = $('#password'), s
 		});
 
 		$('#logoutbtn').click(() => {
-		    $.getJSON('../json/auth/logout', (result) => {
+		    $.getJSON(host + '/json/auth/logout', (result) => {
 			    $('#loginbtn').html('Login');
 		    	 $('#loginbtn').attr("href", "../auth/login.html");
 		    	 $('#logoutbtn').hide();
 		    	 $('#msgMenu').hide();
 			    location.href = '../auth/login.html';
 		    });
-		})
+		});
