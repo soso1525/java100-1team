@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CATCH : 자소서리스트</title>
+<link rel="shortcut icon" href="images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="144x144" type="image/x-icon"
+	href="../images/favicon/apple-touch-icon.png">
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<style>
+.delcol {
+	background-color: #f7639a;
+	color: white;
+}
+</style>
+</head>
+<body>
+	<header></header>
+	<section style="background-color: white" id="services"
+		class="services-section section-space-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div style="margin-top: 100px;" class="section-title">
+						<h2>자소서 리스트</h2>
+						<div class="divider dark">
+							<i class="icon-drop"></i>
+						</div>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+					</div>
+
+				</div>
+			</div>
+
+			<table style="text-align: center" id="list" class='table table-hover'>
+				<thead>
+					<tr>
+						<th style="text-align: center">번호</th>
+						<th style="text-align: center">제목</th>
+						<th style="text-align: center">작성일</th>
+						<th style="text-align: center">파일</th>
+						<th style="text-align: center">삭제</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+			<div style="margin: 10px 0" align="left">
+				<button id="addletterbtn" class='btn btn-primary btn-sm'>추가</button>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div style="margin-top: 100px;" class="section-title">
+						<h2>인적성/면접 일정</h2>
+						<div class="divider dark">
+							<i class="icon-drop"></i>
+						</div>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="row" style="overflow: hidden; padding: 15px">
+				<div style="float: left; width: 48%">
+					<table style="text-align: center; width: 100%;" id="list2"
+						class='table table-hover'>
+						<thead>
+						</thead>
+						<tbody></tbody>
+					</table>
+					<div style="margin: 10px 0" align="left">
+						<button id="updatetestbtn" class='btn btn-primary btn-sm'>변경</button>
+					</div>
+				</div>
+				<div id="map" style="width: 50%; float: right">
+					<div id="map" style="width: 50%; height: 400px"></div>
+					<input class='form-control'
+						style="width: 40%; margin: 15px 0 0 5px; display: inline"
+						type="text" id="search" placeholder="주소"> <input
+						class='btn btn-primary btn-sm' id='addressSearchBtn'
+						style='padding: 0 15px; border-color: #fce469; height: 50px; background-color: #f7639a;'
+						type="button" value="주소 검색"><br>
+				</div>
+
+				<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+				<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+				<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+				<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+				<script src='../js/login.js'></script>
+				<script id="template1" type="text/x-handlebars-template">
+{{#each letterList}}
+<tr>
+  <td>{{count}}</td>
+  <td><a href="view.html?no={{lno}}"></a>{{ltit}}</td>
+  <td>{{writedt}}</td>
+  <td>{{#fileCheck lfile}}{{/fileCheck}}</td>
+  <td class='delcol'><a href="#">삭제</a></td>
+</tr>
+{{/each}}
+</script>
+
+				<script id="template2" type="text/x-handlebars-template">
+<tr><td>일정 유형</td><td>{{test.type}}</td></tr>
+<tr><td>날짜</td><td>{{test.date}}</td></tr>
+<tr><td>시간</td><td>{{test.time}}</td></tr>
+<tr><td>준비물</td><td>{{test.prepare}}</td></tr>
+<tr><td>장소</td><td>{{test.location}}</td></tr>
+</script>
+				<script type="text/javascript">
+	$('header').load("../header.html");
+	var num = 1;
+	var tbody = $('#list > tbody'),
+    template1Src = $('#template1').html(),
+    template1Engine = Handlebars.compile(template1Src);
+	
+	var tbody2 = $('#list2 > tbody'),
+    template2Src = $('#template2').html(),
+    template2Engine = Handlebars.compile(template2Src);
+	
+	var index = location.href.indexOf('?');
+	if (index != -1) { 
+	    var qs = location.href.substr(index + 1);
+	    var arr = qs.split('=');
+	    $(() => {
+	        $.ajax('../json/letter/' + arr[1], {
+	        	 dataType: 'json',
+	     	    success: (result) => {
+	     	        tbody.html(template1Engine(result));
+	     	    },
+	     	    error: () => {
+	     	        window.alert('서버 실행 오류!');
+	     	    }
+	        });
+	        $.ajax('../json/test/' + arr[1], {
+	        	 dataType: 'json',
+	     	    success: (result) => {
+	     	        tbody2.html(template2Engine(result));
+	     	    },
+	     	    error: () => {
+	     	        window.alert('서버 실행 오류!');
+	     	    }
+	        });
+	    });
+	}
+	
+	Handlebars.registerHelper('count', function() {
+		return (num++);
+	});
+	
+	Handlebars.registerHelper('fileCheck', function(lfile) {
+		  if(lfile == null) {
+		    return 'N';
+		  }
+		  return 'Y';
+		});
+
+	</script>
+				<script type="text/javascript"
+					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0594a0c4e6386f7548ca7057f30a5da9&libraries=services"></script>
+				<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new daum.maps.Map(mapContainer, mapOption); 
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new daum.maps.services.Geocoder();
+
+$('#addressSearchBtn').click(() => {
+// 주소로 좌표를 검색합니다
+	geocoder.addressSearch($('#search').val(), function(result, status) {
+	
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === daum.maps.services.Status.OK) {
+	        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+	
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new daum.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
+	
+	        /* // 인포윈도우로 장소에 대한 설명을 표시합니다
+	        var infowindow = new daum.maps.InfoWindow({
+	            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+	        });
+	        infowindow.open(map, marker); */
+	
+	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	        map.setCenter(coords);
+	    } 
+	});   
+});
+</script>
+</body>
+</html>
