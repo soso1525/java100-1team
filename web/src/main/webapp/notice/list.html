@@ -2,136 +2,140 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>기업목록</title>
-	<link rel='stylesheet' href='../../css/common.css'>
-    
-    <!-- All CSS Plugins -->
-    <link rel="stylesheet" type="text/css" href="../css/plugin.css">
-    
-    <!-- Main CSS Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    
-    <!-- Google Web Fonts  -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CATCH : 채용공고목록</title>
+<link rel='stylesheet' href='../css/plugin.css'>
+<link rel='stylesheet' href='../css/style.css'>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-<body>
-<header></header>
-	<section id="services" class="services-section section-space-padding">
-        <div class="container">
-           <div class="row">
-                <div class="col-sm-12">
-                    <div class="section-title">
-                        <h2>공고 목록</h2>
-                          <div class="divider dark">
-						   <i class="icon-drop"></i>
-						 </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 search">
-	            <div class="col-sm-12">
-	            	<div class="col-sm-3">
-	            		<strong>What</strong>
-	            	</div>
-	            	<div class="col-sm-3">
-	            		<strong>Occupation</strong>
-	            	</div>
-	            	<div class="col-sm-3">
-	            		<strong>Where</strong>
-	            	</div>
-	            </div>
-	            
-	            <div class="col-sm-12">
-					<form>
-						<div class="col-sm-3">
-							<input name="words" id="words" class="form-control form-control-sm mr-sm-2"
-								type="search" placeholder="Keyword" aria-label="Search"> 
+<body style='background-color: white'>
+	<header></header>
+	<section style='background-color: white' class="section-space-padding">
+		<div class="container">
+			<div style="border-radius: 10px; background-color: #fce469">
+				<div class="row">
+					<div class="col-sm-12">
+						<div style="margin: 80px 0 50px 0" class="section-title">
+							<h2>채용 공고 목록</h2>
+							<div class="divider dark">
+								<i class="icon-graduation"></i>
+							</div>
 						</div>
-						<div class="col-sm-3">
-							<select id="cKind" name="cKind" class="form-control form-control-sm mr-sm-2">
-								<option>전체</option>
-								<option>건설</option>
-								<option>경영/사무</option>
-								<option>교육</option>
-								<option>디자인</option>
-								<option>미디어</option>
-								<option>서비스</option>
-								<option>생산/제조</option>
-								<option>IT/인터넷</option>
-								<option>영업/고객상담</option>
-								<option>유통/무역</option>
-								<option>의료</option>
-								<option>전문직</option>
-								<option>특수계층/공공</option>
-							</select> 
+					</div>
+					<div style='margin-bottom: 30px' class="col-sm-12 search">
+						<div class="col-sm-12">
+							<div class="col-sm-3">
+								<strong>What</strong>
+							</div>
+							<div class="col-sm-3">
+								<strong>Occupation</strong>
+							</div>
+							<div class="col-sm-3">
+								<strong>Where</strong>
+							</div>
 						</div>
-						<div class="col-sm-3">
-							<select id="address" name="address" class="form-control form-control-sm mr-sm-2">
-								<option>전체</option>
-								<option>강남구</option>
-								<option>강동구</option>
-								<option>강북구</option>
-								<option>강서구</option>
-								<option>관악구</option>
-								<option>광진구</option>
-								<option>구로구</option>
-								<option>금천구</option>
-								<option>노원구</option>
-								<option>도봉구</option>
-								<option>동대문구</option>
-								<option>동작구</option>
-								<option>마포구</option>
-								<option>서대문구</option>
-								<option>서초구</option>
-								<option>성동구</option>
-								<option>성북구</option>
-								<option>송파구</option>
-								<option>양천구</option>
-								<option>영등포구</option>
-							</select>
+						<div class="col-sm-12">
+							<form>
+								<div class="col-sm-3">
+									<input name="words" id="words"
+										class="form-control form-control-sm mr-sm-2" type="search"
+										placeholder="Keyword" aria-label="Search">
+								</div>
+								<div class="col-sm-3">
+									<select id="cKind" name="cKind"
+										class="form-control form-control-sm mr-sm-2">
+										<option>전체</option>
+										<option>건설</option>
+										<option>경영/사무</option>
+										<option>교육</option>
+										<option>디자인</option>
+										<option>미디어</option>
+										<option>서비스</option>
+										<option>생산/제조</option>
+										<option>IT/인터넷</option>
+										<option>영업/고객상담</option>
+										<option>유통/무역</option>
+										<option>의료</option>
+										<option>전문직</option>
+										<option>특수계층/공공</option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<select id="address" name="address"
+										class="form-control form-control-sm mr-sm-2">
+										<option>전체</option>
+										<option>강남구</option>
+										<option>강동구</option>
+										<option>강북구</option>
+										<option>강서구</option>
+										<option>관악구</option>
+										<option>광진구</option>
+										<option>구로구</option>
+										<option>금천구</option>
+										<option>노원구</option>
+										<option>도봉구</option>
+										<option>동대문구</option>
+										<option>동작구</option>
+										<option>마포구</option>
+										<option>서대문구</option>
+										<option>서초구</option>
+										<option>성동구</option>
+										<option>성북구</option>
+										<option>송파구</option>
+										<option>양천구</option>
+										<option>영등포구</option>
+									</select>
+								</div>
+								<div class="col-sm-2" style="width: 8%;">
+									<label class="switch"> <input id="nType"
+										type="checkbox"> <span class="slider round"></span>
+									</label> <strong class="my-check">신입</strong><strong class="my-check"
+										style="display: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;경력</strong>
+								</div>
+								<div class="col-sm-2">
+									<button style="margin-left: 10px"
+										class="button search button-style button-style-dark button-style-color-2"
+										type="button" id="searchBtn">Catch</button>
+								</div>
+							</form>
 						</div>
-						<div class="col-sm-2" style="width:8%;">
-							<label class="switch">
-							  <input id="nType" type="checkbox">
-							  <span class="slider round"></span>
-							</label>
-							<strong class="my-check">신입</strong><strong class="my-check" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;경력</strong>
-						</div>
-						<div class="col-sm-2">
-							<button style="margin-left: 10px" class="button search button-style button-style-dark button-style-color-2" type="button" id="searchBtn">Catch</button>
-						</div>
-					</form>
+					</div>
 				</div>
+
 			</div>
 			<div class="col-sm-12 notice-list" id="list">
 				<div class="notice notice-list-div" style="width: 24rem;">
-				  <img class="notice-img-top" src="../../download/lg.jpg" alt="Card image cap">
-				  <div class="notice-body">
-				    <p class="notice-title">삼성</p><br>
-				    <p class="notice-text">자바개발자</p><br>
-				    <p class="notice-text">D-2</p><br>
-				  </div>
+					<img class="notice-img-top" src="../../download/lg.jpg"
+						alt="Card image cap">
+					<div class="notice-body">
+						<p class="notice-title">삼성</p>
+						<br>
+						<p class="notice-text">자바개발자</p>
+						<br>
+						<p class="notice-text">D-2</p>
+						<br>
+					</div>
 				</div>
 			</div>
-			
+
 			<button type="button" class='btn btn-primary btn-sm' id="btn-add"
 				onclick="location.href='form.html'">추가</button>
 			<nav aria-label="Page navigation">
-			  <ul class="pagination justify-content-center">
-			    <li class="page-item">
-			        <a id="prevBtn" class="page-link" tabindex="-1">이전</a></li>
-			        
-			    <li class="page-item">
-			        <a id="currBtn" class="page-link" href="#">1</a></li>
-			    
-			    <li class="page-item ">
-			        <a id="nextBtn" class="page-link" tabindex="0">다음</a></li>
-			  </ul>
+				<ul class="pagination justify-content-center">
+					<li class="page-item"><a id="prevBtn" class="page-link"
+						tabindex="-1">이전</a></li>
+
+					<li class="page-item"><a id="currBtn" class="page-link"
+						href="#">1</a></li>
+
+					<li class="page-item "><a id="nextBtn" class="page-link"
+						tabindex="0">다음</a></li>
+				</ul>
 			</nav>
 		</div>
 	</section>
-	
-<script id="notice" type="text/x-handlebars-template">
+
+	<script id="notice" type="text/x-handlebars-template">
 {{#each list}}
 <tr>
         <td><a href='form.html?no={{no}}'>{{no}}</a></td>
@@ -147,10 +151,10 @@
 </script>
 
 
-<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-<script type="text/javascript" src="../js/plugin.js"></script>
-<script type="text/javascript" src="../js/scripts.js"></script>
+	<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/plugin.js"></script>
+	<script type="text/javascript" src="../js/scripts.js"></script>
 </body>
 <script type="text/javascript">
 $('header').load("../header.html");
