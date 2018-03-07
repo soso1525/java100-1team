@@ -16,10 +16,10 @@ import java100.app.service.MsgService;
 public class MsgServiceImpl implements MsgService {
     @Autowired MsgDao msgDao;
     
-    @Override
-    public int add(Msg msg) {
-        return msgDao.insert(msg);
-    }
+//    @Override
+//    public int add(msg msg) {
+//        return msgDao.insert(msg);
+//    }
     
     @Override
     public List<Msg> receiveList(int pageNo, int pageSize,Map<String,Object> options,
@@ -49,22 +49,54 @@ public class MsgServiceImpl implements MsgService {
         return msgDao.findAll2(params);
     }
     
+
+    
     @Override
     public int getTotalCount() {
         return msgDao.countAll();
     }
+    @Override
+    public int getMrecvCount(int pno) {
+        return msgDao.countMrecv(pno);
+    }
+    @Override
+    public int getMsendCount(int pno) {
+        return msgDao.countMsend(pno);
+    }
     
     @Override
-    public Msg get(int mno) {
+    public Msg get(int mno, Member loginUser) {
         msgDao.updateViewCount(mno);
         Msg msg = msgDao.findByNo(mno);
         return msg;
     }
-
+    
+//    @Override
+//    public msg get2(int mrecv) {
+//        msg msg = msgDao.memberByNoAndId(mrecv);
+//        return msg;
+//    }
+    
 
     @Override
     public int delete(int mno) {
         return msgDao.delete(mno);
+    }
+
+    @Override
+    public int msgAdd(Msg msg) {
+        String pid = msg.getPid2();     // 받는 사람 id
+        System.out.println("id : "+pid);
+        int pno2 = msgDao.chaneId(pid); // 받는 사람 no
+        System.out.println("변환한 no : "+pno2);
+        Map<String, Object> params = new HashMap<String,Object>();
+        
+        params.put("mcont", msg.getMcont());
+        params.put("writer", msg.getWriter());
+        params.put("pno2", pno2);
+        msgDao.insert(params); // Msg insert
+        
+        return 0;
     }
 
 //    @Override

@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java100.app.domain.Member;
-import java100.app.domain.Msg2;
+import java100.app.domain.Msg;
 import java100.app.service.MemberService;
-import java100.app.service.Msg2Service;
+import java100.app.service.MsgService;
 
 @RestController
 @RequestMapping("/message")
 @SessionAttributes("loginUser")
-public class Msg2Controller {
-    @Autowired Msg2Service msg2Service;
+public class MsgController {
+    @Autowired MsgService msgService;
     @Autowired MemberService memberService;
     @Autowired ServletContext servletContext;
     
@@ -63,12 +63,12 @@ public class Msg2Controller {
            ) throws Exception {
         System.out.println(mrecv);
         System.out.println(loginUser);
-        Msg2 msg2 = new Msg2();
-        msg2.setWriter(loginUser); // 보내는 사람 정
-        msg2.setMcont(mcont);
-        msg2.setPid2(mrecv); // 받는사람 id
+        Msg msg = new Msg();
+        msg.setWriter(loginUser); // 보내는 사람 정
+        msg.setMcont(mcont);
+        msg.setPid2(mrecv); // 받는사람 id
         
-        int resultAdd = msg2Service.msgAdd(msg2); // Msg insert
+        int resultAdd = msgService.msgAdd(msg); // Msg insert
         HashMap<String, Object> result = new HashMap<>();
         result.put("status", "success");
         
@@ -97,7 +97,7 @@ public class Msg2Controller {
         options.put("orderColumn", orderColumn);
         options.put("align", align);
         
-        int mrecvCount = msg2Service.getMrecvCount(loginUser.getNo());
+        int mrecvCount = msgService.getMrecvCount(loginUser.getNo());
         int lastPageNo = mrecvCount / pageSize;
         if ((mrecvCount % pageSize) > 0) {
             lastPageNo++;
@@ -109,7 +109,7 @@ public class Msg2Controller {
         result.put("pageNo", pageNo);
         result.put("lastPageNo", lastPageNo);
         result.put("writer", loginUser);
-        result.put("list", msg2Service.receiveList(pageNo, pageSize, options, loginUser));
+        result.put("list", msgService.receiveList(pageNo, pageSize, options, loginUser));
         return result;
     }
     
@@ -137,7 +137,7 @@ public class Msg2Controller {
         
         
         
-        int msendCount = msg2Service.getMsendCount(loginUser.getNo());
+        int msendCount = msgService.getMsendCount(loginUser.getNo());
         int lastPageNo = msendCount / pageSize;
         if ((msendCount % pageSize) > 0) {
             lastPageNo++;
@@ -150,7 +150,7 @@ public class Msg2Controller {
         result.put("pageNo", pageNo);
         result.put("lastPageNo", lastPageNo);
         result.put("writer", loginUser);
-        result.put("list", msg2Service.sendList(pageNo, pageSize, options, loginUser));
+        result.put("list", msgService.sendList(pageNo, pageSize, options, loginUser));
         return result;
     }
      
@@ -158,7 +158,7 @@ public class Msg2Controller {
     public Object view(@PathVariable int mno, @ModelAttribute(value="loginUser") Member loginUser) throws Exception {
         HashMap<String, Object> result = new HashMap<>();
         result.put("writer", loginUser);
-        result.put("data", msg2Service.get(mno, loginUser));
+        result.put("data", msgService.get(mno, loginUser));
         return result;
     }
     
@@ -172,7 +172,7 @@ public class Msg2Controller {
     @RequestMapping("delete")
     public Object delete(int mno) throws Exception {
 
-        msg2Service.delete(mno);
+        msgService.delete(mno);
         HashMap<String, Object> result = new HashMap<>();
         result.put("status", "success");
         return result;
