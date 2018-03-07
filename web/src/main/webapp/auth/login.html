@@ -59,20 +59,29 @@
 					<div class='col-sm-12'>
 						<button id='loginBtn' type='button'
 							class="button button-style button-style-dark button-style-color-2">로그인</button>
+						<button
+							style='background-color: #4267b2; color: white; margin-top: 20px'
+							class="button button-style button-style-dark button-style-color-2"
+							onclick="FB.login();">
+							<i style='size: 1em' class="fab fa-facebook"> </i> Facebook 로그인
+						</button>
+
 					</div>
-					<div style='margin-top: 20px' class='col-sm-12'>	
+						<div id="status"></div>
+
+					<!-- <div style='margin-top: 20px' class='col-sm-12'>
 						<fb:login-button scope="public_profile,email"
 							onlogin="checkLoginState();">
 						</fb:login-button>
-					</div>
-					<div id="status"></div>
+					</div> -->
+					
 				</div>
 			</form>
 
 			<div align="center" style="text-align: center; display: none"
 				id="register">
 				<div style="display: inline-block;">
-					<i style="font-size: 13em; cursor:pointer"
+					<i style="font-size: 13em; cursor: pointer"
 						onmouseover="$(this).css('color', '#f7639a')"
 						onclick="location.href='../member/individual-register.html'"
 						onmouseout="$(this).css('color', 'black')" class="fas fa-user"></i>
@@ -80,7 +89,7 @@
 				</div>
 				<span style="display: inline-block; padding: 0 5em 0 2em"></span>
 				<div style="display: inline-block;">
-					<i style="font-size: 13em; cursor:pointer" 
+					<i style="font-size: 13em; cursor: pointer"
 						onmouseover="$(this).css('color', '#4c9cef')"
 						onclick="location.href='../member/company-register.html'"
 						onmouseout="$(this).css('color', 'black')" class="fas fa-user"></i>
