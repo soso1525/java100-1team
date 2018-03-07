@@ -5,6 +5,8 @@
 <title>CATCH : 로그인</title>
 <link rel='stylesheet' href='../css/plugin.css'>
 <link rel='stylesheet' href='../css/style.css'>
+<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+	rel="stylesheet">
 </head>
 <body>
 	<header></header>
@@ -17,14 +19,14 @@
 						<div class="divider dark">
 							<i class="icon-graduation"></i>
 						</div>
-						<p style='margin-top: 10px'>
-							아직 회원이 아니세요? <a href="#">회원가입</a>
+						<p id='ptag' style='margin-top: 10px'>
+							아직 회원이 아니세요? <a id="gotoRegister" href="#">회원가입</a>
 						</p>
 					</div>
 				</div>
 			</div>
 
-			<form action="login" method='post'>
+			<form id='loginform' method='post'>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label">ID</label>
 					<div class="col-sm-10">
@@ -59,13 +61,33 @@
 							class="button button-style button-style-dark button-style-color-2">로그인</button>
 					</div>
 					<div style='margin-top: 20px' class='col-sm-12'>
-						<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+						<fb:login-button scope="public_profile,email"
+							onlogin="checkLoginState();">
 						</fb:login-button>
 					</div>
 					<div id="status"></div>
-					r
 				</div>
 			</form>
+
+			<div align="center" style="text-align: center; display: none"
+				id="register">
+				<div style="display: inline-block;">
+					<i style="font-size: 13em; cursor:pointer"
+						onmouseover="$(this).css('color', '#f7639a')"
+						onclick="location.href='../member/individual-register.html'"
+						onmouseout="$(this).css('color', 'black')" class="fas fa-user"></i>
+					<h5 align="center" style='margin-top: 2em; font-weight: 700'>개인회원</h5>
+				</div>
+				<span style="display: inline-block; padding: 0 5em 0 2em"></span>
+				<div style="display: inline-block;">
+					<i style="font-size: 13em; cursor:pointer" 
+						onmouseover="$(this).css('color', '#4c9cef')"
+						onclick="location.href='../member/company-register.html'"
+						onmouseout="$(this).css('color', 'black')" class="fas fa-user"></i>
+					<h5 align="center" style='margin-top: 2em; font-weight: 700'>기업회원</h5>
+				</div>
+			</div>
+
 		</div>
 	</section>
 
@@ -76,7 +98,13 @@
 	<script src='../js/context.js'></script>
 	<script src='../js/login.js'></script>
 	<script type="text/javascript">
-		$('header').load("../header.html");
+		$('header').load("../header.html"); 
+		$('#gotoRegister').click(() => {
+			$('#loginform').fadeOut("fast", function() {
+				$('#ptag').html('회원 유형을 선택해주세요');
+				$('#register').fadeIn("fast");				
+			});
+		});
 	</script>
 
 	<script type="text/javascript">
