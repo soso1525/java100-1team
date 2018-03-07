@@ -12,7 +12,7 @@ var arr = qs.split('=');
 
 addBtn.click(() => {
 	var formData = new FormData($('#form')[0]);
-    $.ajax(host + '/json/letter/addLetter', {
+    $.ajax('../json/letter/addLetter', {
         data: formData,
         dataType: 'json',
         method: 'POST',
@@ -29,6 +29,7 @@ addBtn.click(() => {
 });
 
 qaddBtn.click(() => {
+	console.log('qAddBtn clicked');
 	var q = $('#article').clone();
 	q.attr('id', 'article' + questionNum);
 	q.css('display', 'block');
@@ -50,3 +51,4 @@ $(document).ready(function(){
 	    }
     });
 });
+

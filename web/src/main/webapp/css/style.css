@@ -229,6 +229,10 @@ fieldset {
 	color: #fff;
 }
 
+.button-style:disabled {
+	cursor: not-allowed;
+}
+
 .button-style:hover,
 .button-style:active,
 .button-style:focus {

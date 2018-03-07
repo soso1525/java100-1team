@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java100.app.dao.ApplyDao;
 import java100.app.domain.Apply;
+import java100.app.domain.Letter;
 import java100.app.domain.Member;
+import java100.app.domain.Resume;
 import java100.app.service.ApplyService;
 
 @Service
@@ -47,5 +49,4 @@ public class ApplyServiceImpl implements ApplyService {
 	public int delete(int no) {
 		return applyDao.delete(no);
 	}
-    
 }

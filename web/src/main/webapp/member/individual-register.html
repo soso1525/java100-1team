@@ -39,7 +39,7 @@
 					<label class='col-sm-2 col-form-label'>Password</label>
 					<div class='col-sm-5'>
 						<input class='form-control' placeholder='password' id='password'
-							name='password' type='password'
+							name='password' type='password' onkeyup="checkPwd()"
 							pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
 							required>
 						<div style='margin-top: 5px; font-size: 11px; color: #4c9cef'>문자/숫자/특수문자를

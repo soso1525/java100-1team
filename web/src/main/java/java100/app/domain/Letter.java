@@ -1,5 +1,7 @@
 package java100.app.domain;
 
+import java.util.List;
+
 public class Letter {
 
 	int lno;
@@ -7,17 +9,21 @@ public class Letter {
 	String ltit;
 	String lsdt;
 	String ledt;
+	String writedt;
 	int lscheck;
 	int lpcheck;
 	String lfile;
+	Question question;
+	List<Question> questions;
 	Apply apply;
 	Member member;
 
 	@Override
 	public String toString() {
 		return "Letter [lno=" + lno + ", ano=" + ano + ", ltit=" + ltit + ", lsdt=" + lsdt + ", ledt=" + ledt
-				+ ", lscheck=" + lscheck + ", lpcheck=" + lpcheck + ", lfile=" + lfile + ", apply=" + apply
-				+ ", member=" + member + "]";
+				+ ", writedt=" + writedt + ", lscheck=" + lscheck + ", lpcheck=" + lpcheck + ", lfile=" + lfile
+				+ ", question=" + question + ", questions=" + questions + ", apply=" + apply + ", member=" + member
+				+ "]";
 	}
 
 	public int getLno() {
@@ -60,6 +66,14 @@ public class Letter {
 		this.ledt = ledt;
 	}
 
+	public String getWritedt() {
+		return writedt;
+	}
+
+	public void setWritedt(String writedt) {
+		this.writedt = writedt;
+	}
+
 	public int getLscheck() {
 		return lscheck;
 	}
@@ -84,6 +98,14 @@ public class Letter {
 		this.lfile = lfile;
 	}
 
+	public List<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
+	}
+
 	public Apply getApply() {
 		return apply;
 	}
@@ -98,6 +120,14 @@ public class Letter {
 
 	public void setMember(Member member) {
 		this.member = member;
+	}
+
+	public Question getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(Question question) {
+		this.question = question;
 	}
 
 }

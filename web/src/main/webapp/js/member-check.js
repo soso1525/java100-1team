@@ -130,7 +130,7 @@
 				} else {
 					passPwd = false;
 					
-					if(repassword.val().length == 0) {
+					if(password.val().length == 0 || repassword.val().length == 0) {
 						checkpassword.css('color', '#4c9cef');
 						checkpassword.html('비밀번호 확인을 위해 다시 입력해주세요');
 						checkPass();

@@ -54,7 +54,7 @@
 					<label class='col-sm-2 col-form-label'>Password</label>
 					<div class='col-sm-5'>
 						<input class='form-control' placeholder='password' id='password'
-							name='password' type='password'
+							name='password' type='password' onkeyup="checkPwd()"
 							pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
 							required>
 						<div style='margin-top: 5px; font-size: 11px; color: #4c9cef'>문자/숫자/특수문자를
@@ -210,7 +210,7 @@
 							</div>
 							<div style="padding: 10px"
 								class="mdl-card__supporting-text mdl-color-text--grey-600">
-								<p style="color: black; padding: 10px" id="phone-sign">Authenticate
+								<p style="color: black; margin: 20px 0 30px 0" id="phone-sign">Authenticate
 									your business number below.</p>
 
 								<form style="color: black" id="sign-in-form">
@@ -230,7 +230,7 @@
 											<input class='form-control' placeholder='business no'
 												id='bno' type="text" pattern="[(0-9)]{10}" required>
 											<div style='margin-top: 5px; font-size: 11px; color: #4c9cef'
-												id='validEmail'>기업 이름을 입력해주세요</div>
+												id='validEmail'>사업자 등록번호를 입력해주세요</div>
 										</div>
 									</div>
 

@@ -19,10 +19,11 @@ public class LetterServiceImpl implements LetterService {
     @Autowired LetterDao letterDao;
     
     @Override
-    public List<Letter> list(int no) {
-        HashMap<String,Object> params = new HashMap<>();
-        params.put("ano", no);
-        return letterDao.findAll(params);
+    public List<Letter> list(int ano) {
+//        HashMap<String,Object> params = new HashMap<>();
+//        params.put("ano", no);
+//        return letterDao.findAll(params);
+    	return letterDao.list(ano);
     }
 
     @Override
