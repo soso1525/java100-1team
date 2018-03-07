@@ -71,7 +71,6 @@
 	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
-	<script type="text/javascript" src="../js/context.js"></script>
 
 	<script type="text/javascript">
 $('header').load("../header.html");
@@ -103,14 +102,12 @@ function load(pageNo, options) {
     if (options == undefined) options = {};
     options.pn = pageNo;
     
-    $.ajax(host + '/json/study/list', {
+    $.ajax('../json/study/list', {
         data: options,
         dataType: 'json',
         success: (result) => {
             tbody.html(studyEngine(result));
                
-                
-            
             currPageNo = result.pageNo;
             currBtn.html(currPageNo);
             

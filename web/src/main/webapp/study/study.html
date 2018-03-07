@@ -5,7 +5,8 @@
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="https://tympanus.net/Development/HoverEffectIdeas/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="https://tympanus.net/Development/HoverEffectIdeas/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="../css/plugin.css">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -14,68 +15,140 @@
 </head>
 <body>
 	<header> </header>
-	<br><br><br><br><br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<section id="services">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="section-title">
+						<h2>스터디 그룹</h2>
+						<div class="divider dark">
+							<i class="icon-drop"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-12 search" style="height:70px;">
+				<div class="col-sm-12">
+					<div class="col-sm-3">
+						<strong>Search</strong>
+					</div>
+					<div class="col-sm-3">
+						<strong>Region</strong>
+					</div>
+				</div>
+
+				<div class="col-sm-12">
+					<form action="list" method="GET">
+						<div class="col-sm-3">
+							<input name="words" id="words"
+								class="form-control form-control-sm mr-sm-2" type="search"
+								placeholder="Keyword" aria-label="Search">
+						</div>
+
+						<div class="col-sm-3">
+							<select id="address" name="address"
+								class="form-control form-control-sm mr-sm-2">
+								<option>전체</option>
+								<option>강남구</option>
+								<option>강동구</option>
+								<option>강북구</option>
+								<option>강서구</option>
+								<option>관악구</option>
+								<option>광진구</option>
+								<option>구로구</option>
+								<option>금천구</option>
+								<option>노원구</option>
+								<option>도봉구</option>
+								<option>동대문구</option>
+								<option>동작구</option>
+								<option>마포구</option>
+								<option>서대문구</option>
+								<option>서초구</option>
+								<option>성동구</option>
+								<option>성북구</option>
+								<option>송파구</option>
+								<option>양천구</option>
+								<option>영등포구</option>
+							</select>
+						</div>
+
+						<div class="col-sm-2">
+							<button style="margin-left: 10px"
+								class="button search button-style button-style-dark button-style-color-2"
+								type="button" id="searchBtn" style="padding: 6px 20px">Catch</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+	<!-- 
+	<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog"
+		aria-labelledby="테스트정보 등록" aria-describedby="테스트 모달">
+		<div class="modal-dialog" style="width: 800px; height: 1000px">
+			<div class="modal-content">
+				<div id="img-area"></div>
+			</div>
+		</div>
+	</div>
+	 -->
+	<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+	
 	<section id="portfolio" class="portfolio section-space-padding">
 		<div class="container">
 			<div class="center">
-				<div class="col-md-6 col-md-offset-3">
-					<h2>Study Group</h2>
-					<hr>
-					<p class="lead">Study Group with Same Direction</p>
-				</div>
+				<!-- <div class="col-md-6 col-md-offset-3">
+							<h2></h2>
+							<hr>
+							<p class="lead"></p>
+						</div> -->
 			</div>
 		</div>
 		<div class="container">
 			<div class="col-lg-12">
 				<ul class="portfolio-filter text-center">
-					<li><a class="btn btn-default active" href="#" data-filter="*">관심기업</a></li>
-					<li><a class="btn btn-default" href="#"
-						data-filter=".bootstrap">관심분야</a></li>
-					<li><a class="btn btn-default" href="#" data-filter=".html">모집상태</a></li>
-					<li><a class="btn btn-default" href="#"
-						data-filter=".wordpress">지역</a></li>
+					<!-- <li><a class="btn btn-default active" href="#"
+								data-filter="*">관심기업</a></li>
+							<li><a class="btn btn-default" href="#"
+								data-filter=".bootstrap">관심분야</a></li>
+							<li><a class="btn btn-default" href="#" data-filter=".html">모집상태</a></li>
+							<li><a class="btn btn-default" href="#"
+								data-filter=".wordpress">지역</a></li> -->
 				</ul>
 
 
 				<div class="row">
 					<div id='list' class="portfolio-items"></div>
 					<div class="grid">
-                    <figure class="effect-steve">
-                    </figure>
-                    </div>
+						<figure class="effect-steve">
+						</figure>
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	
-	<div class="map">
-		<iframe
-			src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Kuningan,+Jakarta+Capital+Region,+Indonesia&amp;aq=3&amp;oq=kuningan+&amp;sll=37.0625,-95.677068&amp;sspn=37.410045,86.572266&amp;ie=UTF8&amp;hq=&amp;hnear=Kuningan&amp;t=m&amp;z=14&amp;ll=-6.238824,106.830177&amp;output=embed">
-		</iframe>
-	</div>
 
-	<footer id="footer" class="midnight-blue">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
-					<div class="text-center">
-						<a href="#home" class="scrollup"><i
-							class="fa fa-angle-up fa-3x"></i></a>
-					</div>
-					<a target="_blank" href="http://localhost:9999/app/member/list">CATCH</a>
-				</div>
-			</div>
-		</div>
-	</footer>
-
-
-<script id="study" type="text/x-handlebars-template">
+	<script id="study" type="text/x-handlebars-template">
 {{#each list}}
 
  <div class="portfolio-item apps col-xs-12 col-sm-4 col-md-3">
  <div class="recent-work-wrap">
  <div class="grid">
- <figure class="effect-julia">
+ <figure class="effect-julia" href='view.html' onclick="show('{{sno}}')"  data-toggle='modal' data-target='#modal-testNew' role='button' data-backdrop='static'>
  <img src="../../download/{{simg}}" alt="">
  <figcaption>
  <h2><span>{{sname}}</span></h2>
@@ -83,8 +156,8 @@
  <p>지역: {{sloc}}</p>
  <p>관심기업: {{scorp}}</p>
  <p>인원: {{sppl}}</p>
+ 
  </div>
- <a href="form.html?sno={{sno}}">View more</a>
  </figcaption>           
  </figure>
  </div>
@@ -104,24 +177,47 @@
 	<script src="../js/wow.min.js"></script>
 	<script src="../js/jquery.easing.min.js"></script>
 	<script src="../js/main.js"></script>
-	<script type="text/javascript" src="../js/context.js"></script>
+
 
 
 
 	<script type="text/javascript">
-
 $('header').load('../header.html');
 var studySrc = $('#study').html(),
 studyEngine = Handlebars.compile(studySrc);
 member = null;
-load();
+$('#searchBtn').on('click', function(e){
+	load(1, {
+        "words": $('#words').val(),
+        "address": $('#address option:selected').text(),
+    })
+});
+
+$('#modal-testNew').on('hidden.bs.modal', () => {
+})
+load(1, {});
+function show(value) {
+
+    $('#modal-testNew').on('shown.bs.modal', (event) => {
+    	view(value);
+        $('body .modal-backdrop').hide();
+    });
+
+}
+
+
 
 function load(pageNo, options) {
     
     if (options == undefined) options = {};
     options.pn = pageNo;
+    /*
+    options.words='강아';
+    options.address='강남구';
+    console.log('안갔나?');
+    */
     
-    $.ajax(host + '/json/study/list', {
+    $.ajax('../json/study/list', {
         data: options,
         dataType: 'json',
         success: (result) => {
@@ -132,10 +228,10 @@ function load(pageNo, options) {
             window.alert('서버 실행 오류!');
         }
     });
-}
+};
+
 
 </script>
-
 </body>
 </html>
 

@@ -1,0 +1,125 @@
+<div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">스터디 그룹</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div class='row'>
+		<label for='sname' class='col-sm-2'>이름</label>
+		<div class='col-sm-10'>
+			<input id='sno' type='hidden'>
+			<!-- <div class="form-control-static" id='sname'></div> -->
+			<input class='form-control' id='sname' type='text' name='sname'>
+		</div>
+	</div>
+	<div class='row'>
+		<label for='sloc' class='col-sm-2 '>지역</label>
+		<div class='col-sm-10'>
+			<input class='form-control' id='sloc' type='text' name='sloc'>
+		</div>
+	</div>
+
+	<div class='row'>
+		<label for='sint' class='col-sm-2 '>관심분야</label>
+		<div class='col-sm-10'>
+			<input class='form-control' id='sint' type='text' name='sint'>
+		</div>
+	</div>
+	<div class='row'>
+		<label for='sppl' class='col-sm-2 '>인원수</label>
+		<div class='col-sm-10'>
+			<input class='form-control' id='sppl' type='number' name='sppl'>
+		</div>
+	</div>
+	<div class='row'>
+		<label for='scorp' class='col-sm-2 '>대상기업</label>
+		<div class='col-sm-10'>
+			<input class='form-control' id='scorp' type='text' name='scorp'>
+		</div>
+	</div>
+	<div class='row'>
+		<label for='scheck' class='col-sm-2 '>모집상태</label>
+		<div class='col-sm-10'>
+			<input class='form-control' id='scheck' type='text' name='scheck'>
+		</div>
+	</div>
+	<div class='row'>
+		<label for='sregdt' class='col-sm-2 '>등록날짜</label>
+		<div class='col-sm-10'>
+			<input class='form-control' readonly id='sregdt' type='date'>
+		</div>
+	</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" id="btnApply" class="btn btn-primary" onclick='applyStudy(23233, 1111)'>신청하기</button>
+	      </div>
+<script type="text/javascript">
+var addBtn = $('#addBtn'),
+updateBtn = $('#updateBtn'),
+deleteBtn = $('#deleteBtn'),
+snoItem = $('#sno'),
+slocItem = $('#sloc'),
+snameItem = $('#sname'),
+sdescItem = $('#sdesc'),
+sintItem = $('#sint'),
+spplItem = $('#sppl'),
+sregdtItem = $('#sregdt'),
+scorpItem = $('#scorp'),
+simgItem = $('#simg'),
+nodiv = $('#nod'),
+simgs = $('#simgs'),
+scheckItem = $('#scheck');
+
+function view(value) {
+		    if (value != -1) { 
+		        $(() => {
+		            $.ajax('../json/study/' + value, {
+		                dataType: 'json',
+		                success: (result) => {
+		                	snoItem.val(result.data.sno);
+		                    snameItem.val(result.data.sname);
+		                    slocItem.val(result.data.sloc);
+		                    sintItem.val(result.data.sint);
+		                    spplItem.val(result.data.sppl);
+		                    sregdtItem.val(result.data.sregdt);
+		                    scorpItem.val(result.data.scorp);
+		                    // here!
+		                    var total = parseInt(result.data.sppl);
+		                    var cur = parseInt(result.data.scheck);
+		                    if ( cur < total ) {
+		                    	scheckItem.val('신청 가능');		                    	
+		                    } else {
+		                    	scheckItem.val('꽉찼음');
+		                    	$('#btnApply').addClass('disabled');
+		                    	
+		                    }
+		                },
+	            error: () => {
+	                /* window.alert('서버 실행 오류!'); */
+	            	location.href = "sendList.html";
+	            }
+	        });
+	    });
+		    };
+};
+
+function applyStudy ( userId ) {
+	var param = { study : $('#sno').val() , user : userId };
+	console.log ( param );
+	$.ajax ({
+		method : 'POST',
+		url : '../json/study/apply',
+		data : param,
+		success :function ( res ) {
+			if ( res.success ) {
+				
+			} else {
+				;
+			}		
+		}
+	});
+}
+</script>
+
+</body>
+</html>
