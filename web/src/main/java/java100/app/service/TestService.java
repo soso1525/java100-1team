@@ -6,6 +6,7 @@ import java100.app.domain.Test;
 
 public interface TestService {
 	List<Test> list(int no);
+	Test find(int ano);
 	int countAll();
 	int insert(Test test);
 	Test findByNo(int no);

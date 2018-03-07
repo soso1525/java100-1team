@@ -2,240 +2,101 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판</title>
-<link rel='stylesheet'
-	href='../../node_modules/bootstrap/dist/css/bootstrap.min.css'>
-<link rel='stylesheet' href='../../css/common.css'>
+<title>CATCH : 채용공고등록</title>
+<link rel="shortcut icon" href="images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="144x144" type="image/x-icon"
+	href="../images/favicon/apple-touch-icon.png">
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
-	<div class='container'>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="../member/list.html">CATCH</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarNav" aria-controls="navbarNav"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item active"><a class="nav-link" href="#">Job</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../study/list.html">Study</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../apply/list.html">Apply</a></li>
-					<li class="nav-item"><a class="nav-link" href="../notice/list.html">Notice</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Message</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../app/auth/login">Login</a></li>
-				</ul>
-			</div>
-		</nav>
+	<header></header>
+	<section style="background-color: white" id="services"
+		class="services-section section-space-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div style="margin: 80px 0 40px 0;" class="section-title">
+						<h2>채용 공고 등록</h2>
+						<div class="divider dark">
+							<i class="icon-drop"></i>
+						</div>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+					</div>
 
-		<h1 style="margin-top: 30px; margin-bottom: 30px">채용공고</h1>
-		<form id="form" method='post' enctype="multipart/form-data">
-		 	<div class='form-group row'>
-				<label for='image' class='col-sm-2 col-form-label'>신입/경력</label>
-				<div class='col-sm-10'>
-					<input class='magic-radio"' id='check1' type='radio' name='nType' value="0">
-						<label> 신입 </label>
-					<input class='magic-radio"' id='check2' type='radio' name='nType' value="1">
-					 	<label> 경력 </label>
-                    <input class='magic-radio"' id='check2' type='radio' name='nType' value="2" checked='checked'>
-                     	<label> 신입/경력 </label>
 				</div>
 			</div>
-			
-			<div class='form-group row'>
-				<label for='duty' class='col-sm-2 col-form-label'>직무</label>
-				<div class='col-sm-10'>
-					<input class='form-control' id='duty' type='text' name='duty'>
+			<form id="form" method='post' enctype="multipart/form-data">
+				<div class='form-group row'>
+					<label class='col-sm-2 col-form-label'>신입/경력</label>
+					<div class='col-sm-10'>
+						<input class='magic-radio' id='check1' type='radio' name='nType'
+							value="0"> <label> 신입 </label> <input
+							class='magic-radio"' id='check2' type='radio' name='nType'
+							value="1"> <label> 경력 </label> <input
+							class='magic-radio"' id='check2' type='radio' name='nType'
+							value="2" checked='checked'> <label> 신입/경력 </label>
+					</div>
 				</div>
-			</div>
-			
-			
-            
-			<div class='form-group row'>
-				<label for='image' class='col-sm-2 col-form-label'>공고이미지</label>
-				<div class='col-sm-10'>
-					<input class='form-control' id='image' type='file' name='file'>
-				</div>
-			</div>
 
-			<div class='form-group row'>
-				<label for='startDate' class='col-sm-2 col-form-label'>채용시작일</label>
-				<div class='col-sm-10'>
-					<input class='form-control' id='startDate' type='Date'
-						name='startDate'>
+				<div class='form-group row'>
+					<label class='col-sm-2 col-form-label'>직무</label>
+					<div class='col-sm-10'>
+						<input class='form-control' id='duty' type='text' name='duty'>
+					</div>
 				</div>
-			</div>
 
-			<div class='form-group row'>
-				<label for='endDate' class='col-sm-2 col-form-label'>채용종료일</label>
-				<div class='col-sm-10'>
-					<input class='form-control' id='endDate' type='Date' name='endDate'>
+				<div class='form-group row'>
+					<label class='col-sm-2 col-form-label'>공고이미지</label>
+					<div class='col-sm-10'>
+						<input class='form-control' id='image' type='file' name='file'>
+					</div>
 				</div>
-			</div>
-			
-			<div class='form-group row'>
-				<label for='question' class='col-sm-2 col-form-label'>자소서 문항등록(최대 5개)</label>
-				<div class='col-sm-10'>
-						<button id="questionAdd" type="button" class='btn btn-primary btn-sm'>추가</button>
-						<button id="questionDelete" type="button" class='btn btn-primary btn-sm'>삭제</button>
-				</div>
-			</div>
-			
-			<div id='questionForm'>
-			</div>
 
-			<div class='form-group row'>
-				<div class='col-sm-10'>
-					<button id="addBtn" type="button"
-						class='btn btn-primary btn-sm my-new'>추가</button>
-					<button id="updateBtn" type="button"
-						class='btn btn-primary btn-sm my-view'>변경</button>
-					<button id="deleteBtn" type="button"
-						class='btn btn-primary btn-sm my-view'>삭제</button>
+				<div class='form-group row'>
+					<label class='col-sm-2 col-form-label'>채용시작일</label>
+					<div class='col-sm-10'>
+						<input class='form-control' id='startDate' type='Date'
+							name='startDate'>
+					</div>
 				</div>
-			</div>
-		</form>
-	</div>
+
+				<div class='form-group row'>
+					<label class='col-sm-2 col-form-label'>채용종료일</label>
+					<div class='col-sm-10'>
+						<input class='form-control' id='endDate' type='Date'
+							name='endDate'>
+					</div>
+				</div>
+
+				<div class='form-group row'>
+					<label class='col-sm-2 col-form-label'>자소서 문항등록(최대 5개)</label>
+					<div class='col-sm-10'>
+						<button id="questionAdd" type="button"
+							class='btn btn-primary btn-sm'>추가</button>
+						<button id="questionDelete" type="button"
+							class='btn btn-primary btn-sm'>삭제</button>
+					</div>
+				</div>
+
+				<div id='questionForm'></div>
+
+				<div class='form-group row'>
+					<div class='col-sm-10'>
+						<button id="addBtn" type="button"
+							class='btn btn-primary btn-sm my-new'>추가</button>
+						<button id="updateBtn" type="button"
+							class='btn btn-primary btn-sm my-view'>변경</button>
+						<button id="deleteBtn" type="button"
+							class='btn btn-primary btn-sm my-view'>삭제</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</section>
 	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
-	<script type="text/javascript" src="../js/context.js"></script>
-
-	<script type="text/javascript">
-var addBtn = $('#addBtn'),
-    updateBtn = $('#updateBtn'),
-    deleteBtn = $('#deleteBtn'),
-    noItem = $('#no'), 
-    startDateItem = $('#startDate'), 
-    endDateItem = $('#endDate'),
-    imageItem = $('#image'),
-    nodivItem = $('#nodiv'),
-    simgs = $('#image'),
-    dutyItem = $('#dutyItem'),
-    questionAddItem = $('#questionAdd'),
-    questionDeleteItem = $('#questionDelete'),
-    nameItem = $('#name');
-    
-var index = location.href.indexOf('?');
-if (index != -1) { // 기존 데이터를 조회할 경우,
-    var qs = location.href.substr(index + 1);
-    var arr = qs.split('=');
-    $('.my-new').css('display', 'none');
-    $(() => {
-        $.ajax(host + '/json/notice/' + arr[1], {
-            dataType: 'json',
-            success: (result) => {
-               nodivItem.html("<input class='form-control' readonly id='no' " +
-                       "name='no' value='" + result.data.no + "'> "); 
-                simgs.html("<img src='../../download/" + result.data.image + "'/>");
-                dutyItem.val(result.data.duty);
-                nameItem.val(result.data.companyMember.name);
-                startDateItem.val(result.data.startDate);
-                endDateItem.val(result.data.endDate);
-                imageItem.val(result.data.image);
-            },
-            error: () => {
-                window.alert('서버 실행 오류!');
-            }
-        });
-    });
-    
-} else { // 신규 데이터 입력일 경우,
-    $('.my-view').css('display', 'none');
-    var now = new Date();
-    var month = (now.getMonth() + 1);               
-    var day = now.getDate();
-    if(month < 10) 
-        month = "0" + month;
-    if(day < 10) 
-        day = "0" + day;
-    var today = now.getFullYear() + '-' + month + '-' + day;
-    console.log(today);
-    startDateItem.attr('min', today);
-    endDateItem.attr('min', today);
-    startDateItem.val(today);
-}
-
-startDateItem.change(() => {
-	endDateItem.attr('min', startDateItem.val());
-});
-
-endDateItem.change(() => {
-	startDateItem.attr('max', endDateItem.val());
-});
-
-var cnt = 1;
-questionAddItem.click(() => {
-	if (cnt < 6) {
-		var div = $("<div class='form-group row'></div>");
-		div.html("<label for='startDate' class='col-sm-2 col-form-label'>문항" + cnt + "</label>" +
-		"<div class='col-sm-10'>" +
-			"<input class='form-control' type='text' name='articles'>" +
-		"</div>");
-		$('#questionForm').append(div);
-		cnt++;
-	}
-});
-
-questionDeleteItem.click(() => {
-	if (cnt > 0) {
-		$('#questionForm > div:last-child').remove();
-		cnt--;
-	}
-});
-
-
-
-addBtn.click(() => {
-    var formData = new FormData($('#form')[0]);
-    $.ajax(host + '/json/notice/add', {
-        data: formData,
-        dataType: 'json',
-        method: 'POST',
-        processData : false,
-        contentType : false,
-        success: (result) => {
-            location.href = "notice.html";
-        },
-        error: () => {
-            window.alert('서버 실행 오류!');
-        }
-    });
-});
-updateBtn.click(() => {
-    var formData = new FormData($('#form')[0]);
-    $.ajax(host + '/json/notice/update', {
-        data: formData,
-        dataType: 'json',
-        method: 'POST',
-        processData : false,
-        contentType : false,
-        success: (result) => {
-            location.href = "notice.html";
-        },
-        error: () => {
-            window.alert('서버 실행 오류!');
-        }
-    });
-});
-deleteBtn.click(() => {
-    $.ajax(host + '/json/notice/delete', {
-        data: {
-        	no: $('#no').val()
-        },
-        dataType: 'json',
-        success: (result) => {
-            location.href = "notice.html";
-        },
-        error: () => {
-            window.alert('서버 실행 오류!');
-        }
-    });
-});
-</script>
-
+	<script src='../js/notice-form.js'></script>
 </body>
 </html>

@@ -2,53 +2,75 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>catch</title>
+<title>CATCH : 스터디리스트</title>
+<link rel="shortcut icon" href="images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="144x144" type="image/x-icon"
+	href="../images/favicon/apple-touch-icon.png">
 <link rel="stylesheet" type="text/css" href="../css/plugin.css">
-<link rel='stylesheet' href='../css/common.css'>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<style>
+.delcol {
+	background-color: #f7639a;
+	color: white;
+}
+</style>
 </head>
 <body>
 	<header></header>
-	<div class='container'>
+	<section style="background-color: white" id="services"
+		class="services-section section-space-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div style="margin-top: 80px;" class="section-title">
+						<h2>스터디 그룹 목록</h2>
+						<div class="divider dark">
+							<i class="icon-drop"></i>
+						</div>
+						<p>Study Groups with the Same Direction</p>
+					</div>
 
-		<h1 style="margin-top: 30px; margin-bottom: 30px">스터디 목록</h1>
+				</div>
+			</div>
 
-		<table id='list' class='table table-hover'>
-			<thead>
-				<tr>
-					<th>번호</th>
-					<th>지역</th>
-					<th>이름</th>
-					<th>관심분야</th>
-					<th>인원수</th>
-					<th>등록일</th>
-					<th>대상기업</th>
-					<th>모집상태</th>
-					<th>이미지</th>
-				</tr>
-			</thead>
-			<tbody>
+			<table id='list' class='table table-hover'>
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>지역</th>
+						<th>이름</th>
+						<th>관심분야</th>
+						<th>인원수</th>
+						<th>등록일</th>
+						<th>대상기업</th>
+						<th>모집상태</th>
+						<th>이미지</th>
+					</tr>
+				</thead>
+				<tbody>
 
 
-			</tbody>
-		</table>
-		<nav class="navbar navbar-light justify-content-between">
-			<a href='form.html' class='btn-primary btn-sm'>추가</a>
-		</nav>
-		<nav aria-label="Page navigation">
-			<ul class="pagination justify-content-center">
-				<li class="page-item disabled"><a id='prevBtn'
-					class="page-link" tabindex="-1">이전</a></li>
+				</tbody>
+			</table>
+			<nav class="navbar navbar-light justify-content-between">
+				<a href='form.html' class='btn-primary btn-sm'>추가</a>
+			</nav>
+			<nav aria-label="Page navigation">
+				<ul class="pagination justify-content-center">
+					<li class="page-item disabled"><a id='prevBtn'
+						class="page-link" tabindex="-1">이전</a></li>
 
-				<li class="page-item"><a id='currbtn' class="page-link"
-					href="#">1</a></li>
+					<li class="page-item"><a id='currbtn' class="page-link"
+						href="#">1</a></li>
 
-				<li class="page-item disabled"><a id='nextBtn'
-					class="page-link" tabindex="-1">다음</a></li>
-			</ul>
-		</nav>
+					<li class="page-item disabled"><a id='nextBtn'
+						class="page-link" tabindex="-1">다음</a></li>
+				</ul>
+			</nav>
 
-		<footer></footer>
-	</div>
+			<footer></footer>
+		</div>
+	</section>
 
 	<script id="study" type="text/x-handlebars-template">
 {{#each list}}
@@ -71,7 +93,6 @@
 	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
-	<script type="text/javascript" src="../js/context.js"></script>
 
 	<script type="text/javascript">
 $('header').load("../header.html");
@@ -103,14 +124,12 @@ function load(pageNo, options) {
     if (options == undefined) options = {};
     options.pn = pageNo;
     
-    $.ajax(host + '/json/study/list', {
+    $.ajax('../json/study/list', {
         data: options,
         dataType: 'json',
         success: (result) => {
             tbody.html(studyEngine(result));
                
-                
-            
             currPageNo = result.pageNo;
             currBtn.html(currPageNo);
             
@@ -133,6 +152,5 @@ function load(pageNo, options) {
 }
 
 </script>
-
 </body>
 </html>

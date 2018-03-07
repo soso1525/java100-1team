@@ -127,7 +127,7 @@ fieldset {
 }
 
 .section-space-padding {
-    padding: 100px 0px;
+    padding: 20px 0px;
 }
 
 .section-title {
@@ -227,6 +227,10 @@ fieldset {
 .button-style {
 	border: 3px solid #fff;
 	color: #fff;
+}
+
+.button-style:disabled {
+	cursor: not-allowed;
 }
 
 .button-style:hover,

@@ -32,6 +32,14 @@ public class LetterController {
 	@Autowired QuestionService questionService;
 	@Autowired ApplyService applyService;
 
+//	@RequestMapping("list")
+//	public Object list() throws Exception {
+//		HashMap<String, Object> result = new HashMap<>();
+//		result.put("letterList", letterService.list(ano));
+//		result.put("status", "success");
+//		return result;
+//	}
+	
 	@RequestMapping("form")
 	public Object form() throws Exception {
 		HashMap<String, Object> result = new HashMap<>();
@@ -79,11 +87,12 @@ public class LetterController {
 		return result;
 	}
 
-	@RequestMapping("{no}")
-	public Object view(@PathVariable int no) throws Exception {
+	@RequestMapping("{ano}")
+	public Object view(@PathVariable int ano) throws Exception {
+//		result.put("letter", letterService.get(no));
+//		result.put("question", questionService.list(no));
 		HashMap<String, Object> result = new HashMap<>();
-		result.put("letter", letterService.get(no));
-		result.put("question", questionService.list(no));
+		result.put("letterList", letterService.list(ano));
 		return result;
 	}
 

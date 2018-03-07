@@ -24,6 +24,11 @@ public class TestServiceImpl implements TestService {
 	}
 
 	@Override
+	public Test find(int ano) {
+		return testDao.list(ano);
+	}
+	
+	@Override
 	public int countAll() {
 		return testDao.countAll();
 	}

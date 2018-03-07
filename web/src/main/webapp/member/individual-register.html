@@ -14,7 +14,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
-					<div style="margin: 100px 0" class="section-title">
+					<div style="margin: 80px 0" class="section-title">
 						<h2>개인 회원가입</h2>
 						<div class="divider dark">
 							<i class="icon-graduation"></i>
@@ -39,7 +39,7 @@
 					<label class='col-sm-2 col-form-label'>Password</label>
 					<div class='col-sm-5'>
 						<input class='form-control' placeholder='password' id='password'
-							name='password' type='password'
+							name='password' type='password' onkeyup="checkPwd()"
 							pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
 							required>
 						<div style='margin-top: 5px; font-size: 11px; color: #4c9cef'>문자/숫자/특수문자를

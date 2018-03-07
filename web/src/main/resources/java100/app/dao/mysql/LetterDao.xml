@@ -10,6 +10,7 @@
 		<result column="lscheck" property="lscheck" />
 		<result column="lpcheck" property="lpcheck" />
 		<result column="lfile" property="lfile" />
+		<result column="writedt" property="writedt"/>
 		<association property="apply" javaType="Apply">
 			<result column="ano" property="ano" />
 			<result column="aname" property="aname" />
@@ -17,14 +18,14 @@
 			<result column="ino" property="ino" />
 		</association>
 		
-		<association property="question" javaType="Question">
+		<collection property="question" javaType="Question">
 			<result column="qno" property="qno" />
 			<result column="qart" property="article" />
 			<result column="qcont" property="contents" />
 			<result column="qleng" property="length" />
 			<result column="lno" property="lno" />
 			<result column="nno" property="nno" />
-		</association>
+		</collection>
 	</resultMap>
 
 	<select id="findAll" resultMap="letterMap" parameterType="map">
@@ -43,6 +44,12 @@
 		inner join g_let l on a.ano = l.ano
 		where a.ano = #{ano}
 	</select>
+	
+	<select id="list" resultMap="letterMap" parameterType="int">
+		select 
+		lno, ltit, lfile, writedt from g_let where ano=#{ano}
+		
+	</select>
 
 	<select id="findByNo" resultMap="letterMap" parameterType="int">
 		select
@@ -52,14 +59,19 @@
 		l.ledt,
 		l.lscheck,
 		l.lpcheck,
-		l.lfile
+		l.lfile, 
+		q.qno,
+		q.qart,
+		q.qcont,
+		q.qleng
 		from g_let l
-		where l.lno=#{value}
+		left join g_que as q
+		on l.lno=#{lno}
 	</select>
 
 	<insert id="insert" parameterType="letter" useGeneratedKeys="true" keyColumn="lno" keyProperty="lno">
-		insert into g_let(lsdt, ltit, ledt, lscheck, lpcheck, lfile, ano)
-		values(#{lsdt}, #{ltit}, #{ledt}, 0, 0, #{lfile}, LAST_INSERT_ID())
+		insert into g_let(lsdt, ltit, ledt, lscheck, lpcheck, lfile, ano, writedt)
+		values(#{lsdt}, #{ltit}, #{ledt}, 0, 0, #{lfile}, LAST_INSERT_ID(), now())
 	</insert>
 	
 	<delete id="delete" parameterType="int">
