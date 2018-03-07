@@ -4,34 +4,44 @@
 <meta charset="UTF-8">
 <title>CATCH : 스터디리스트</title>
 <link rel="shortcut icon" href="images/favicon/favicon.ico">
-<link rel="apple-touch-icon" sizes="144x144" type="image/x-icon"
-	href="../images/favicon/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="../images/favicon/apple-touch-icon.png">
 <link rel="stylesheet" type="text/css" href="../css/plugin.css">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
+<!-- <link href="../css/bootstrap.min.css" rel="stylesheet"> -->
+<!-- <link href="../css/style1.css" rel="stylesheet"> -->
+<link rel="stylesheet" type="text/css" href="../css/notice.css">
+
 <style>
 .delcol {
-	background-color: #f7639a;
+	background-color: #f2f2f2;
 	color: white;
+}
+
+body {
+    background-color: #f2f2f2;
 }
 </style>
 </head>
 <body>
 	<header></header>
-	<section style="background-color: white" id="services"
+	<section style="background-color: #f2f2f2" id="services"
 		class="services-section section-space-padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
 					<div style="margin-top: 80px;" class="section-title">
-						<h2>스터디 그룹</h2>
+						<h2>STUDY GROUP</h2>
 						<div class="divider dark">
 							<i class="icon-drop"></i>
 						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+						<p>Study Groups with the Same Direction</p>
 					</div>
 
 				</div>
 			</div>
+			 <div>
+    <a href="form.html" class='btn btn-primary btn-sm'>스터디등록</a>
+    </div>
 
 			<div class="col-sm-12 search" style="height: 70px;">
 				<div class="col-sm-12">
@@ -90,7 +100,7 @@
 	</section>
 
 	<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog" style="margin-top: 200px" role="document">
 			<div class="modal-content"></div>
 		</div>
 	</div>
@@ -116,9 +126,9 @@
 		</div>
 	</section>
 
-	<script id="study" type="text/x-handlebars-template">
-{{#each list}}
 
+<script id="study" type="text/x-handlebars-template">
+{{#each list}}
  <div class="portfolio-item apps col-xs-12 col-sm-4 col-md-3">
  <div class="recent-work-wrap">
  <div class="grid">
@@ -144,17 +154,14 @@
 	<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src="../js/jquery.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script> 
 	<script src="../js/jquery.prettyPhoto.js"></script>
 	<script src="../js/jquery.isotope.min.js"></script>
-	<script src="../js/wow.min.js"></script>
+	<script src="../js/wow.min.js"></script> 
 	<script src="../js/jquery.easing.min.js"></script>
 	<script src="../js/main.js"></script>
 
-
-
-
-	<script type="text/javascript">
+<script type="text/javascript">
 $('header').load('../header.html');
 var studySrc = $('#study').html(),
 studyEngine = Handlebars.compile(studySrc);
@@ -175,10 +182,7 @@ function show(value) {
     	view(value);
         $('body .modal-backdrop').hide();
     });
-
 }
-
-
 
 function load(pageNo, options) {
     
@@ -206,7 +210,6 @@ $('#words').keydown((key) => {
         })
     }
  });
-
 
 
 </script>

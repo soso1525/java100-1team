@@ -25,9 +25,14 @@
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous"></script>
 </head>
-
+<style>
+body{
+background:#708090;
+}
+</style>
 <body>
 <header></header>
+
 	<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
 	</nav>
 	<div class="body-wrapper">
@@ -52,7 +57,7 @@
 						<div class="clear-fix"></div>
 					</div>
 					<div id="list"></div>
-					
+					</div>
 				</div>
 			</div>
 		</div>
@@ -60,7 +65,7 @@
 
 
 
-	<script id="resume" type="text/x-handlebars-template">
+<script id="resume" type="text/x-handlebars-template">
 {{#each list}}
      <div class="{{className}}">
      <div class="avatar" style="background-image: url('../../download/{{image}}');"></div>
