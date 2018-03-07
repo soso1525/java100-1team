@@ -5,8 +5,7 @@
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css"
-	href="https://tympanus.net/Development/HoverEffectIdeas/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="https://tympanus.net/Development/HoverEffectIdeas/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="../css/plugin.css">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -44,7 +43,7 @@
 				</div>
 
 				<div class="col-sm-12">
-					<form action="list" method="GET">
+					<form>
 						<div class="col-sm-3">
 							<input name="words" id="words"
 								class="form-control form-control-sm mr-sm-2" type="search"
@@ -90,44 +89,22 @@
 
 	</section>
 
-	<!-- 
-	<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog"
-		aria-labelledby="테스트정보 등록" aria-describedby="테스트 모달">
-		<div class="modal-dialog" style="width: 800px; height: 1000px">
-			<div class="modal-content">
-				<div id="img-area"></div>
-			</div>
-		</div>
-	</div>
-	 -->
 	<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      
-	    </div><!-- /.modal-content -->
-	  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+	    </div>
+	  </div>
+</div>
 	
 	<section id="portfolio" class="portfolio section-space-padding">
 		<div class="container">
 			<div class="center">
-				<!-- <div class="col-md-6 col-md-offset-3">
-							<h2></h2>
-							<hr>
-							<p class="lead"></p>
-						</div> -->
 			</div>
 		</div>
 		<div class="container">
 			<div class="col-lg-12">
 				<ul class="portfolio-filter text-center">
-					<!-- <li><a class="btn btn-default active" href="#"
-								data-filter="*">관심기업</a></li>
-							<li><a class="btn btn-default" href="#"
-								data-filter=".bootstrap">관심분야</a></li>
-							<li><a class="btn btn-default" href="#" data-filter=".html">모집상태</a></li>
-							<li><a class="btn btn-default" href="#"
-								data-filter=".wordpress">지역</a></li> -->
 				</ul>
 
 
@@ -156,7 +133,6 @@
  <p>지역: {{sloc}}</p>
  <p>관심기업: {{scorp}}</p>
  <p>인원: {{sppl}}</p>
- 
  </div>
  </figcaption>           
  </figure>
@@ -181,7 +157,7 @@
 
 
 
-	<script type="text/javascript">
+<script type="text/javascript">
 $('header').load('../header.html');
 var studySrc = $('#study').html(),
 studyEngine = Handlebars.compile(studySrc);
@@ -211,11 +187,6 @@ function load(pageNo, options) {
     
     if (options == undefined) options = {};
     options.pn = pageNo;
-    /*
-    options.words='강아';
-    options.address='강남구';
-    console.log('안갔나?');
-    */
     
     $.ajax('../json/study/list', {
         data: options,
@@ -229,6 +200,16 @@ function load(pageNo, options) {
         }
     });
 };
+
+$('#words').keydown((key) => {
+    if(key.keyCode == 13) {
+        load(1, {
+            "words": $('#words').val(),
+            "address": $('#address option:selected').text(),
+        })
+    }
+ });
+
 
 
 </script>

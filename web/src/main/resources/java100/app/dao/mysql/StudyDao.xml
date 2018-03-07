@@ -20,17 +20,26 @@
         </association>
     </resultMap>
     <select id="findAll" resultMap="studyMap" parameterType="map">
-        select sno, sloc, sname, sint, sppl,
-               sregdt, scorp, simg, scheck
+        select sno, 
+               sloc, 
+               sname, 
+               sint, 
+               sppl,
+               sregdt, 
+               scorp, 
+               simg, 
+               scheck
         from g_study 
         <if test="words != null">
             <where>
                 <foreach collection="words" item="word">
-                    or title like '%${word}%'
+                    or sname like '%${word}%' or sdesc like '%${word}%' or scorp like '%${word}%' or sloc like '%${word}%'
                 </foreach>
-            </where>
+         <if test="address != null">
+                   and sloc like #{address}
+                    </if>
+                   </where>
         </if>
-        
         order by 
         <choose>
             <when test="orderColumn == 'sloc' and align == 'desc'">
@@ -70,7 +79,7 @@
         values(
         #{sloc},#{sname},#{sdesc},#{sint},
         #{sppl},now(),#{scorp},
-        #{simg},#{scheck},#{writer.no})
+        #{simg}, 1 ,#{writer.no})
     </insert>
     
     <update id="update" parameterType="study">
