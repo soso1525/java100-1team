@@ -60,14 +60,52 @@
 
 				<hr style='border: 2px solid white'>
 
-				<div id='questionBox'></div>
+				<div id='questionBox'>
+					<div id="lq">
+						<div class="form-group row">
+							<label style="text-align: center" class='col-sm-2 col-form-label'>자소서
+								문항</label>
+							<div class='col-sm-9'>
+								<div class='row'>
+									<div style="padding: 0" class="col-sm-9">
+										<textarea style="margin: 0 0 5px 0" class='form-control'
+											placeholder='질문을 입력하세요' id='article' name="articles" rows="2"></textarea>
+									</div>
+									<div class='col-sm-3'>
+										<input style="height: 56px; margin: 0 0 10px 0"
+											class='form-control' id='length' name='lengths' type='number'
+											placeholder="글자수">
+									</div>
+								</div>
+							</div>
 
-				<div style="margin-bottom: 50px" class='form-group row'>
+						</div>
+						<div class="form-group row question">
+							<label id='checkCnt' style="text-align: center"
+								class='col-sm-2 col-form-label'>0 / 글자수</label>
+							<div class='col-sm-9'>
+								<div class='row'>
+									<textarea class="form-control" id="content" name="contents"
+										placeholder='질문에 대한 내용을 입력하세요' rows="19"></textarea>
+								</div>
+								<div class='row'>
+									<button style="margin: 10px 5px 5px 0" id='correct'
+										type="button" class='btn btn-primary btn-sm'>맞춤법검사</button>
+									<button style="margin: 10px 5px 5px 0" id='rmvBtn'
+										type="button" class='btn btn-primary btn-sm'>삭제</button>
+								</div>
+							</div>
+						</div>
+						<hr style='border: 2px solid white'>
+					</div>
+				</div>
+
+				<div style="margin-bottom: 50px" class="form-group row">
 					<label style="text-align: center" class='col-sm-2 col-form-label'>자기소개서
 						파일</label>
-					<div class='col-sm-10 row'>
-						<div class="col-sm-6">
-							<input type="file" name="file" id="letterFile">
+					<div class='col-sm-6'>
+						<div class='row'>
+							<input class='form-control' id='letterFile' name="file" type='file'>
 						</div>
 					</div>
 				</div>
@@ -87,49 +125,13 @@
 		</div>
 	</section>
 
-	<div style="display: none" id="article">
-		<div class="form-group row">
-			<label style="text-align: center" class='col-sm-2 col-form-label'>자소서
-				문항</label>
-			<div class='col-sm-9'>
-				<div class='row'>
-					<div style="padding: 0" class="col-sm-9">
-						<textarea style="margin: 0 0 5px 0" class='form-control'
-							placeholder='질문을 입력하세요' id='question' name="questions" rows="2"></textarea>
-					</div>
-					<div class='col-sm-3'>
-						<input style="height: 56px; margin: 0 0 10px 0"
-							class='form-control' id='length' name='lengths' type='number'
-							placeholder="글자수">
-					</div>
-				</div>
-			</div>
 
-		</div>
-		<div class="form-group row question">
-			<label id='checkCnt' style="text-align: center"
-				class='col-sm-2 col-form-label'>0 / 글자수</label>
-			<div class='col-sm-9'>
-				<div class='row'>
-					<textarea class="form-control" id="content" name="contents"
-						placeholder='질문에 대한 내용을 입력하세요' e rows="19"></textarea>
-				</div>
-				<div class='row'>
-					<button style="margin: 10px 5px 5px 0" id='correct' type="button"
-						class='btn btn-primary btn-sm'>맞춤법검사</button>
-					<button style="margin: 10px 5px 5px 0" id='rmvBtn' type="button"
-						class='btn btn-primary btn-sm'>삭제</button>
-				</div>
-			</div>
-		</div>
-		<hr style='border: 2px solid white'>
-	</div>
 
 	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script type="text/javascript" src="../js/context.js"></script>
+	<script type="text/javascript" src="../js/co	ntext.js"></script>
 	<script src='../js/letter-form.js'></script>
 	<script type="text/javascript">
 		$('header').load("../header.html");

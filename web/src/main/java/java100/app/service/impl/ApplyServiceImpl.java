@@ -8,37 +8,36 @@ import org.springframework.stereotype.Service;
 
 import java100.app.dao.ApplyDao;
 import java100.app.domain.Apply;
-import java100.app.domain.Letter;
 import java100.app.domain.Member;
-import java100.app.domain.Resume;
 import java100.app.service.ApplyService;
 
 @Service
 public class ApplyServiceImpl implements ApplyService {
 
-    @Autowired ApplyDao applyDao;
-    
-    @Override
-    public List<Apply> list(Member loginUser) {
-        HashMap<String,Object> params = new HashMap<>();
-        params.put("writer", loginUser);
-        return applyDao.findAll(params);
-    }
+	@Autowired
+	ApplyDao applyDao;
 
-    @Override
-    public int getTotalCount() {
-        return applyDao.countAll();
-    }
-    
-    @Override
-    public int add(Apply apply) {
-        return applyDao.insert(apply);
-    }
+	@Override
+	public List<Apply> list(Member loginUser) {
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("writer", loginUser);
+		return applyDao.findAll(params);
+	}
 
-    @Override
-    public Apply get(int no) {
-        return applyDao.findByNo(no);
-    }
+	@Override
+	public int getTotalCount() {
+		return applyDao.countAll();
+	}
+
+	@Override
+	public int add(Apply apply) {
+		return applyDao.insert(apply);
+	}
+
+	@Override
+	public Apply get(int no) {
+		return applyDao.findByNo(no);
+	}
 
 	@Override
 	public int update(Apply apply) {

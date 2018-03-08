@@ -8,7 +8,7 @@
 	<resultMap type="question" id="questionMap">
 		<id column="qno" property="no" />
 		<result column="qart" property="article" />
-		<result column="qcont" property="contents" />
+		<result column="qcont" property="content" />
 		<result column="qleng" property="length" />
 		<result column="lno" property="lno" />
 		<result column="nno" property="nno" />
@@ -29,7 +29,7 @@
 
 	<insert id="insert" parameterType="question">
 		insert into g_que(qart, qcont, qleng, lno)
-		values(#{article}, #{contents}, #{length}, #{lno})
+		values(#{article}, #{content}, #{length}, #{lno})
 	</insert>
 
 	<insert id="companyInsert" parameterType="question">
@@ -50,7 +50,7 @@
 	<update id="update" parameterType="question">
 		update g_que set
 		qart=#{article},
-		qcont=#{contents}
+		qcont=#{content}
 		where qno=#{no}
 	</update>
 
