@@ -59,9 +59,9 @@ background-color: #f2f2f2;
         </div>
         <div class="col-sm-12">
 <div align="center" class="textarea-message form-group">
-<button id="updateBtn"
+<button id="applyBtn"
 class="button button-style button-style-dark button-style-color-2">지원하기</button>
-<button id="deleteBtn"
+<button id="scrapBtn"
 class="button button-style button-style-dark button-style-color-2">스크랩</button>
 </div>
 </div>
@@ -95,6 +95,8 @@ class="button button-style button-style-dark button-style-color-2">Delete</butto
     $('header').load('../header.html');
 var updateBtn = $('#updateBtn'),
     deleteBtn = $('#deleteBtn'),
+    applyBtn = $('#applyBtn'),
+    scrapBtn = $('#scrapBtn'),
     noItem = $('#no'), 
     startDateItem = $('#startDate'), 
     endDateItem = $('#endDate'),
@@ -134,7 +136,8 @@ if (index != -1) { // 기존 데이터를 조회할 경우,
                 console.log("resultCno : "+ resultCno + " resultPno : "+ resultPno + " >>>> ");
                 
                 if(resultCno == resultPno) {
-                    
+                    applyBtn.css("display","none");
+                    scrapBtn.css("display","none");
                 } else {
                     updateBtn.css("display","none");
                     deleteBtn.css("display","none");
