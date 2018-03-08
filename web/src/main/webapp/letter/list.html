@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CATCH : 나의 자소서</title>
+<link rel="shortcut icon" href="images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="144x144" type="image/x-icon"
+	href="../images/favicon/apple-touch-icon.png">
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body style='background-color: #f2f2f2'>
+	<header></header>
+	<section class="section-space-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div style="margin: 100px 0 50px 0" class="section-title">
+						<h2>자기소개서 목록</h2>
+						<div class="divider dark">
+							<i class="icon-graduation"></i>
+						</div>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+					</div>
+				</div>
+			</div>
+
+	
+			<table id="list" class='table table-hover'>
+				<thead>
+					<tr>
+						<th style='text-align:center'>번호</th>
+						<th style='text-align:center'>기업이름</th>
+						<th style='text-align:center'>자기소개서</th>
+						<th style='text-align:center'>작성일</th>
+						<th style='text-align:center'>파일</th>
+						<th style='text-align:center'>합격여부</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+	</section>
+	
+	<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+	<script type="text/javascript" src="../js/context.js"></script>
+	<script src='../js/login.js'></script>
+	<script id="template1" type="text/x-handlebars-template">
+{{#each letterList}}
+<tr>
+  <td style='text-align:center'>{{count}}</td>
+  <td style='text-align:center'>{{apply.aname}}</td>
+  <td style='text-align:center; background-color: white'>{{ltit}}</td>
+  <td style='text-align:center; background-color: white'>{{writedt}}</td>
+  <td style='text-align:center; background-color: white'>{{#fileCheck f}}{{/fileCheck}}</td>
+  <td style='text-align:center; background-color: #f7639a; color: white'>{{#passCheck p}}{{/passCheck}}</td>
+</tr>
+{{/each}}
+</script>
+
+	<script type="text/javascript">
+	$('header').load("../header.html");
+	var num = 1;
+	var tbody = $('#list > tbody'),
+    template1Src = $('#template1').html(),
+    template1Engine = Handlebars.compile(template1Src);
+	
+	$.ajax(host + '/json/letter/list', {
+	    dataType: 'json',
+	    success: (result) => {
+	        tbody.html(template1Engine(result));
+	    },
+	    error: () => {
+	        window.alert('서버 실행 오류!');
+	    }
+	});
+
+	Handlebars.registerHelper('count', function() {
+		return (num++);
+	});
+	
+	Handlebars.registerHelper('passCheck', function(options) {
+		
+		if(this.lpcheck == '0') return '대기';
+		if(this.lpcheck == '1') return '합격';
+		if(this.lpcheck == '2') return '불합격';
+	});
+	
+	Handlebars.registerHelper('fileCheck', function(options) {
+		  if(this.lfile != null){
+			 return 'YES';	
+		  }	
+		  return 'NO';
+		});
+	</script>
+</body>
+</html>
+

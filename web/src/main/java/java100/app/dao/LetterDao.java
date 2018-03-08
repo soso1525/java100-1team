@@ -6,7 +6,7 @@ import java.util.List;
 import java100.app.domain.Letter;
 
 public interface LetterDao {
-	 public List<Letter> findAll(HashMap<String, Object> params); 
+	 public List<Letter> findAll(int no); 
 	 public List<Letter> list(int ano);
 	 public int countAll();
 	 public int insert(Letter letter);

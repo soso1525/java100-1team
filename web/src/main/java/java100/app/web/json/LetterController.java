@@ -27,19 +27,23 @@ import java100.app.service.QuestionService;
 @RequestMapping("/letter")
 @SessionAttributes("loginUser")
 public class LetterController {
-	@Autowired ServletContext servletContext; // for file
-	@Autowired LetterService letterService;
-	@Autowired QuestionService questionService;
-	@Autowired ApplyService applyService;
+	@Autowired
+	ServletContext servletContext; // for file
+	@Autowired
+	LetterService letterService;
+	@Autowired
+	QuestionService questionService;
+	@Autowired
+	ApplyService applyService;
 
-//	@RequestMapping("list")
-//	public Object list() throws Exception {
-//		HashMap<String, Object> result = new HashMap<>();
-//		result.put("letterList", letterService.list(ano));
-//		result.put("status", "success");
-//		return result;
-//	}
-	
+	@RequestMapping("list")
+	public Object list(@ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("letterList", letterService.findAll(loginUser.getNo()));
+		result.put("status", "success");
+		return result;
+	}
+
 	@RequestMapping("form")
 	public Object form() throws Exception {
 		HashMap<String, Object> result = new HashMap<>();
@@ -55,14 +59,14 @@ public class LetterController {
 		String filename = writeUploadFile(file, uploadDir);
 		letter.setLfile(filename);
 		letter.setMember(loginUser);
-//		letterService.add(letter);
+		// letterService.add(letter);
 		System.out.println(letter);
 		result.put("status", "success");
 		return result;
 	}
 
 	@RequestMapping(value = "addLetter", method = RequestMethod.POST)
-	public Object addLetter(Apply apply, Letter letter, String[] questions, String[] contents, String[] lengths,
+	public Object addLetter(Apply apply, Letter letter, int[] lengths, String[] contents, String[] articles,
 			MultipartFile file, @ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
 		String uploadDir = servletContext.getRealPath("/download");
 		String filename = writeUploadFile(file, uploadDir);
@@ -72,25 +76,26 @@ public class LetterController {
 		letter.setLfile(filename);
 
 		HashMap<String, Object> result = new HashMap<>();
-
 		letterService.addLetter(apply, letter);
-		for (int i = 0; i < questions.length; i++) {
+
+		for (int i = 0; i < articles.length; i++) {
 			Question q = new Question();
-			q.setArticle(questions[i]);
-			q.setContents(contents[i]);
-			q.setLength(Integer.parseInt(lengths[i]));
+			q.setArticle(articles[i]);
+			q.setContent(contents[i]);
+			q.setLength(lengths[i]);
 			q.setLno(letter.getLno());
+			System.out.println("Question: " + q);
 			questionService.add(q);
 		}
-		
+
 		result.put("status", "success");
 		return result;
 	}
 
 	@RequestMapping("{ano}")
 	public Object view(@PathVariable int ano) throws Exception {
-//		result.put("letter", letterService.get(no));
-//		result.put("question", questionService.list(no));
+		// result.put("letter", letterService.get(no));
+		// result.put("question", questionService.list(no));
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("letterList", letterService.list(ano));
 		return result;

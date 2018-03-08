@@ -3,9 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판</title>
-<link rel='stylesheet' href='../css/common.css'>
-<link rel='stylesheet' href='../css/plugin.css'>
-<link rel='stylesheet' href='../css/style.css'>
+<link rel="stylesheet" href="../css/plugin.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/apply-modal.css"> 
+<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <style>
 body{
@@ -25,7 +28,6 @@ background-color: #f2f2f2;
                     </div>
                 </div>
 
-        <form id="form" method='post' enctype="multipart/form-data">
         <div class="col-sm-12">
         <div class="form-group">
         <input type="hidden" id="no" class="form-control my-view"
@@ -59,9 +61,7 @@ background-color: #f2f2f2;
         </div>
         <div class="col-sm-12">
 <div align="center" class="textarea-message form-group">
-<button id="applyBtn"
-class="button button-style button-style-dark button-style-color-2">지원하기</button>
-<button id="scrapBtn"
+<button id="deleteBtn"
 class="button button-style button-style-dark button-style-color-2">스크랩</button>
 </div>
 </div>
@@ -76,16 +76,62 @@ class="button button-style button-style-dark button-style-color-2">스크랩</bu
             
             <div id='questionForm'>
             </div>
-<div class="col-sm-12">
-<div align="center" class="textarea-message form-group">
-<button id="updateBtn"
-class="button button-style button-style-dark button-style-color-2">Update</button>
-<button id="deleteBtn"
-class="button button-style button-style-dark button-style-color-2">Delete</button>
-</div>
-</div>
-
-        </form>
+		<div class="col-sm-12">
+		<div align="center" class="textarea-message form-group">
+		<button id="updateBtn"
+		class="button button-style button-style-dark button-style-color-2">Update</button>
+		<button id="deleteBtn"
+		class="button button-style button-style-dark button-style-color-2">Delete</button>
+		</div>
+		</div>
+		
+		
+		
+		
+		<div style="text-align: center">
+			<button id="myBtn"
+				class="button button-style button-style-dark button-style-color-2">입사
+				지원하기</button>
+		</div>
+		
+		<div id="myModal" class="modal">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<h2
+					style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 30px; margin-top: 40px; margin-bottom: 60px">
+					회사 지원하기<i style="margin-left: 10px" class="far fa-edit"></i>
+				</h2>
+				<form method='post' id='form' enctype='multipart/form-data'>
+					<div style="font-weight: 700">지원하는 기업 이름</div>
+					<input style="margin: 0 0 15px 0" class="form-control" readonly
+						id="aname" name="aname" type="text">
+	
+					<div class="row">
+						<div class="col-sm-6">
+							<div style="font-weight: 700">접수 시작일</div>
+							<input style="margin: 0 0 10px 0" class="form-control" id="lsdt" readonly
+								name="lsdt" type="date">
+						</div>
+	
+						<div class="col-sm-6">
+							<div style="font-weight: 700">접수 마감일</div>
+							<input style="margin: 0 0 10px 0" class="form-control" id="ledt" readonly
+								name="ledt" type="date">
+						</div>
+					</div>
+	
+					<div style="font-weight: 700">이력서 파일</div>
+					<input style="margin: 0 0 15px 0" class="form-control" type="file"
+						name="files">
+	
+					<div style="text-align: center; margin: 50px 0">
+						<button id="applyBtn" type="button"
+							class="button button-style button-style-dark button-style-color-2">입사
+							지원하기</button>
+					</div>
+				</form>
+			</div>
+		</div>
     </div>
     <script src='../node_modules/jquery/dist/jquery.min.js'></script>
     <script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
@@ -95,8 +141,6 @@ class="button button-style button-style-dark button-style-color-2">Delete</butto
     $('header').load('../header.html');
 var updateBtn = $('#updateBtn'),
     deleteBtn = $('#deleteBtn'),
-    applyBtn = $('#applyBtn'),
-    scrapBtn = $('#scrapBtn'),
     noItem = $('#no'), 
     startDateItem = $('#startDate'), 
     endDateItem = $('#endDate'),
@@ -106,8 +150,6 @@ var updateBtn = $('#updateBtn'),
     simgs = $('#image'),
     dutyItem = $('#duty'),
     titleItem = $('#title'),
-    questionAddItem = $('#questionAdd'),
-    questionDeleteItem = $('#questionDelete'),
     nameItem = $('#name');
     
 var index = location.href.indexOf('?');
@@ -131,13 +173,15 @@ if (index != -1) { // 기존 데이터를 조회할 경우,
                 nTypeItem.val(result.data.nType);
                 titleItem.val(result.data.title);
                 nameItem.val(result.data.companyMember.cName);
+                $('#aname').val(result.data.companyMember.cName);
+                $('#lsdt').val(result.data.startDate);
+                $('#ledt').val(result.data.endDate);
                 var resultCno = result.data.companyMember.cno;
                 var resultPno = result.userInfo;
                 console.log("resultCno : "+ resultCno + " resultPno : "+ resultPno + " >>>> ");
                 
                 if(resultCno == resultPno) {
-                    applyBtn.css("display","none");
-                    scrapBtn.css("display","none");
+                    
                 } else {
                     updateBtn.css("display","none");
                     deleteBtn.css("display","none");
@@ -149,66 +193,46 @@ if (index != -1) { // 기존 데이터를 조회할 경우,
         });
     });
     
-} else { // 신규 데이터 입력일 경우,
-    $('.my-view').css('display', 'none');
-    var now = new Date();
-    var month = (now.getMonth() + 1);               
-    var day = now.getDate();
-    if(month < 10) 
-        month = "0" + month;
-    if(day < 10) 
-        day = "0" + day;
-    var today = now.getFullYear() + '-' + month + '-' + day;
-    console.log(today);
-    startDateItem.attr('min', today);
-    endDateItem.attr('min', today);
-    startDateItem.val(today);
 }
 
-startDateItem.change(() => {
-    endDateItem.attr('min', startDateItem.val());
-});
+var modal = document.getElementById('myModal');
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+btn.onclick = function() {
+	modal.style.display = "block";
+}
 
-endDateItem.change(() => {
-    startDateItem.attr('max', endDateItem.val());
-});
+span.onclick = function() {
+	modal.style.display = "none";
+}
 
-var cnt = 1;
-questionAddItem.click(() => {
-    if (cnt < 6) {
-        var div = $("<div class='form-group row'></div>");
-        div.html("<label for='startDate' class='col-sm-2 col-form-label'>문항" + cnt + "</label>" +
-        "<div class='col-sm-10'>" +
-            "<input class='form-control' type='text' name='articles'>" +
-        "</div>");
-        $('#questionForm').append(div);
-        cnt++;
-    }
-});
+window.onclick = function(event) {
+	if (event.target == modal) {
+		modal.style.display = "none";
+	}
+}
 
-questionDeleteItem.click(() => {
-    if (cnt > 0) {
-        $('#questionForm > div:last-child').remove();
-        cnt--;
-    }
-});
-
-updateBtn.click(() => {
-    var formData = new FormData($('#form')[0]);
-    $.ajax('../json/notice/update', {
-        data: formData,
-        dataType: 'json',
+$('#applyBtn').click(() => {
+	var formData = new FormData($('#form')[0]);
+    
+    $.ajax('../json/apply/add-simple', {
+        data:
+        	formData,
+        	dataType: 'json',
         method: 'POST',
         processData : false,
         contentType : false,
         success: (result) => {
-            location.href = "notice.html";
+        	console.log('success');
+        	modal.style.display = "none";
+        	location.href="../apply/my-apply-list.html";
         },
         error: () => {
             window.alert('서버 실행 오류!');
         }
     });
 });
+
 deleteBtn.click(() => {
     $.ajax('../json/notice/delete', {
         data: {

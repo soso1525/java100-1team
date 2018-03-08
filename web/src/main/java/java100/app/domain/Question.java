@@ -6,26 +6,30 @@ public class Question {
 	int qno; // 테이블 고유번호
 	String article;
 	String[] articles;
-	String contents;
+	String content;
 	int length;
 	int lno; // 자소서번호
 	int nno; // 공고번호
 	Member member;
 	Letter letter;
- 
+
+	public Question() {
+
+	}
+
+	public Question(String article, String content, int length, Member member, Letter letter) {
+		this.article = article;
+		this.content = content;
+		this.length = length;
+		this.member = member;
+		this.letter = letter;
+	}
+
 	@Override
 	public String toString() {
 		return "Question [qno=" + qno + ", article=" + article + ", articles=" + Arrays.toString(articles)
-				+ ", contents=" + contents + ", length=" + length + ", lno=" + lno + ", nno=" + nno + ", member="
-				+ member + "]";
-	}
-
-	public Member getMember() {
-		return member;
-	}
-
-	public void setMember(Member member) {
-		this.member = member;
+				+ ", content=" + content + ", length=" + length + ", lno=" + lno + ", nno=" + nno + ", member=" + member
+				+ ", letter=" + letter + "]";
 	}
 
 	public int getQno() {
@@ -52,12 +56,12 @@ public class Question {
 		this.articles = articles;
 	}
 
-	public String getContents() {
-		return contents;
+	public String getContent() {
+		return content;
 	}
 
-	public void setContents(String contents) {
-		this.contents = contents;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public int getLength() {
@@ -84,6 +88,14 @@ public class Question {
 		this.nno = nno;
 	}
 
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
 	public Letter getLetter() {
 		return letter;
 	}
@@ -91,7 +103,5 @@ public class Question {
 	public void setLetter(Letter letter) {
 		this.letter = letter;
 	}
-	
-	
 
 }

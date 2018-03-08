@@ -28,7 +28,7 @@
 		</collection>
 	</resultMap>
 
-	<select id="findAll" resultMap="letterMap" parameterType="map">
+	<select id="findAll" resultMap="letterMap" parameterType="int">
 		select
 		a.aname,
 		a.adt,
@@ -36,13 +36,14 @@
 		l.lsdt,
 		l.ltit,
 		l.ledt,
+		l.writedt,
 		l.lscheck,
 		l.lpcheck,
 		l.lfile,
 		a.ano
 		from g_app a
 		inner join g_let l on a.ano = l.ano
-		where a.ano = #{ano}
+		where a.ino = #{member.no}
 	</select>
 	
 	<select id="list" resultMap="letterMap" parameterType="int">
