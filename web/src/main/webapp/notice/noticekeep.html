@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CATCH : 채용공고등록</title>
+<link rel="shortcut icon" href="images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="144x144" type="image/x-icon"
+	href="../images/favicon/apple-touch-icon.png">
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body>
+	<header></header>
+	<section id="portfolio" class="portfolio section-space-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div style="margin: 80px 0 40px 0;" class="section-title">
+						<h2>채용 공고</h2>
+						<div class="divider dark">
+							<i class="icon-drop"></i>
+						</div>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+						<div>
+							<a href="form.html" class='btn btn-primary btn-sm'>공고등록</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-12 search">
+			  <div class="col-sm-12" style="font-size:14px;">
+			   	<div class="col-sm-3" style="padding-left:19px;">
+			   		<strong>What</strong>
+			   	</div>
+			   	<div class="col-sm-3" style="padding-left:19px;">
+			   		<strong>Occupation</strong>
+			   	</div>
+			   	<div class="col-sm-3" style="padding-left:19px;">
+			   		<strong>Where</strong>
+			   	</div>
+			  </div>
+			  <div class="col-sm-12">
+				<form>
+					<div class="col-sm-3">
+						<input name="words" id="words" class="form-control form-control-sm mr-sm-2"
+							type="search" placeholder="Keyword" aria-label="Search"> 
+					</div>
+					<div class="col-sm-3">
+						<select id="cKind" name="cKind" class="form-control form-control-sm mr-sm-2">
+							<option>전체</option>
+							<option>건설</option>
+							<option>경영/사무</option>
+							<option>교육</option>
+							<option>디자인</option>
+							<option>미디어</option>
+							<option>서비스</option>
+							<option>생산/제조</option>
+							<option>IT/인터넷</option>
+							<option>영업/고객상담</option>
+							<option>유통/무역</option>
+							<option>의료</option>
+							<option>전문직</option>
+							<option>특수계층/공공</option>
+						</select> 
+					</div>
+					<div class="col-sm-3">
+						<select id="address" name="address" class="form-control form-control-sm mr-sm-2">
+							<option>전체</option>
+							<option>강남구</option>
+							<option>강동구</option>
+							<option>강북구</option>
+							<option>강서구</option>
+							<option>관악구</option>
+							<option>광진구</option>
+							<option>구로구</option>
+							<option>금천구</option>
+							<option>노원구</option>
+							<option>도봉구</option>
+							<option>동대문구</option>
+							<option>동작구</option>
+							<option>마포구</option>
+							<option>서대문구</option>
+							<option>서초구</option>
+							<option>성동구</option>
+							<option>성북구</option>
+							<option>송파구</option>
+							<option>양천구</option>
+							<option>영등포구</option>
+						</select>
+					</div>
+					<div class="col-sm-2" style="width:8%;">
+						<label class="switch">
+						  <input id="nType" type="checkbox">
+						  <span class="slider round"></span>
+						</label>
+						<strong class="my-check">신입</strong><strong class="my-check" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;경력</strong>
+					</div>
+					<div class="col-sm-2">
+						<button style="margin-left: 10px" class="button search button-style button-style-dark button-style-color-2" type="button" id="searchBtn">Catch</button>
+					</div>
+				</form>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<ul class="portfolio">
+						<li class="filter" data-filter=".apps" data-order="viewcount">Hot</li>
+						<li class="filter" data-filter=".mockups" data-order="later">Best</li>
+						<li class="filter" data-filter=".wordpress" data-order="startdate">New</li>
+					</ul>
+				</div>
+				<div class="col-xs-12">
+					<div id='list' class="portfolio-inner margin-top-30">
+						<div id="hot" class="mix apps"></div>
+						<div id="best" class="mix mockups"></div>
+						<div id="new" class="mix wordpress"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+
+		<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog"
+			aria-labelledby="테스트정보 등록" aria-describedby="테스트 모달">
+			<div class="modal-dialog" style="width: 800px; height: 500px">
+				<div class="modal-content"></div>
+			</div>
+		</div>
+
+	</section>
+
+
+	<script id="notice" type="text/x-handlebars-template">
+{{#each list}}
+<div class="col-md-4 col-sm-6 col-xs-12" >
+    <class="portfolio-popup">
+    <div class="grid">
+    <figure class="effect-apollo">
+    <img src="../../download/{{image}}" alt=""/>
+    <figcaption>
+    <h2>{{companyMember.cName}} <span></span></h2>
+    <p>{{startDate}} ~ <br>{{endDate}}</p>
+    <a data-toggle='modal' href='view.html' onclick="show('{{no}}')" data-target='#modal-testNew' role='button' data-backdrop='static'>
+    <div class='services-detail' style='cursor:pointer'> 
+    <i class='icon-screen-smartphone color-1'></i>
+    <h5></h5>
+    <hr>
+    </div>
+    </a>
+    </figcaption>           
+    </figure>
+    </div>
+    </div>
+    </div>
+</div>
+{{/each}}
+</script>
+
+	<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/plugin.js"></script>
+	<script type="text/javascript" src="../js/scripts.js"></script>
+
+	<script type="text/javascript">
+	$('header').load("../header.html");
+    var index = -1;
+    
+    $('#modal-testNew').on('hidden.bs.modal', () => {
+    })
+    
+    noticeSrc = $('#notice').html(),
+    noticeEngine = Handlebars.compile(noticeSrc);
+    // load('viewcount', 'wordpress');
+    
+    
+      
+    
+    function view( v ) {
+    	console.log ('yes ', v);
+	    $.ajax ( {
+	    	url : '/json/notice/' + v,
+	    	dataType: 'json',
+	    	success ( res ) {
+	    		console.log ( res );
+	    		var img = '../../download/' + res.data.image;
+	    		$('#image').html('<img src={} style="height:500px"/>'.replace('{}', img));
+	    		
+	    	}
+	    })
+    }
+    function show(value) {
+        $('#modal-testNew').on('shown.bs.modal', (event) => {
+            view(value);
+        });
+    }
+    var check = $("input[type='checkbox']");
+	check.click(function(){
+	  $(".my-check").toggle();
+	});
+	searchBtn.click(() => {
+		var nType = 0;
+		if (nTypeItem.prop("checked")) {
+			nType = 1;
+		}
+	    load(1, {
+	        "words": words.val(),
+	        "cKind": $('#cKind option:selected').text(),
+	        "address": $('#address option:selected').text(),
+	        "nType": nType
+	    });
+	});	
+	    
+    function load(orderType, panelId) {
+        
+    	   /*  if (options == undefined) options = {};
+    	     options.pn = pageNo; */
+    	    
+    	    $.ajax('../json/notice/list', {
+    	        dataType: 'json',
+    	        data : {oc : orderType},
+    	        success: (result) => {
+    	        	var html = noticeEngine(result);
+    	            $('#list ' + panelId ).html(html); // '#list #new' 
+    	            
+    	         /*    currPageNo = result.pageNo;
+    	            currBtn.html(currPageNo);
+    	            
+    	            if (result.pageNo == 1) {
+    	                $(prevBtn.parent()).addClass("disabled");
+    	            } else {
+    	                $(prevBtn.parent()).removeClass("disabled");
+    	            }
+    	            
+    	            if (result.lastPageNo == result.pageNo) {
+    	                $(nextBtn.parent()).addClass("disabled");
+    	            } else {
+    	                $(nextBtn.parent()).removeClass("disabled");
+    	            } */
+    	        },
+    	        error: () => {
+    	            window.alert('서버 실행 오류!');
+    	        }
+    	    });
+    	}
+    
+/*     var index = location.href.indexOf('?');
+    if (index != -1) { // 기존 데이터를 조회할 경우,
+        var qs = location.href.substr(index + 1);
+        var arr = qs.split('=');
+        $('.my-new').css('display', 'none');
+        $(() => {
+            $.ajax('../json/notice/' + arr[1], {
+                dataType: 'json',
+                success: (result) => {
+                    tbody.html(noticeEngine(result)); 
+                },
+                error: () => {
+                    window.alert('서버 실행 오류!');
+                }
+            });
+        });  */
+        $('.filter').on('click', function(e){ 
+        	var ot = $(e.target).data('order');
+        	var panel = $(e.target).data('filter');
+        	load ( ot, panel );
+        });
+    </script>
+
+</body>
+</html>

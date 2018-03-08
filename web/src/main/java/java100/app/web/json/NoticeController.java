@@ -54,6 +54,9 @@ public class NoticeController {
         if (pageSize < 9 || pageSize > 15) {
             pageSize = 9;
         }
+        System.out.println(words);
+        System.out.println(address);
+        System.out.println(cKind);
         HashMap<String,Object> options = new HashMap<>();
         if (words != null && words[0].length() > 0) {
             options.put("words", words);

@@ -1,180 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
 <meta charset="UTF-8">
-<title>CATCH : 채용공고등록</title>
-<link rel="shortcut icon" href="images/favicon/favicon.ico">
-<link rel="apple-touch-icon" sizes="144x144" type="image/x-icon"
-	href="../images/favicon/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" type="text/css" href="../css/common.css">
 <link rel="stylesheet" type="text/css" href="../css/plugin.css">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
-</head>
+<link rel="stylesheet" type="text/css" href="https://tympanus.net/Development/HoverEffectIdeas/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
+<link rel="stylesheet" type="text/css" href="../css/notice.css">
 <body>
-	<header></header>
+<header></header>
 	<section id="portfolio" class="portfolio section-space-padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
 					<div style="margin: 80px 0 40px 0;" class="section-title">
-						<h2>채용 공고</h2>
+						<h2>채용정보</h2>
 						<div class="divider dark">
-							<i class="icon-drop"></i>
+							<i class="icon-picture"></i>
 						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-						<div>
-							<a href="form.html" class='btn btn-primary btn-sm'>공고등록</a>
-						</div>
+						<p><a href="form.html">
+					<button type="button" class='btn btn-primary btn-sm'>공고등록</button>
+				</a></p>
 					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">
-					<ul class="portfolio">
-						<li class="filter" data-filter=".apps" data-order="viewcount">Hot</li>
-						<li class="filter" data-filter=".mockups" data-order="later">Best</li>
-						<li class="filter" data-filter=".wordpress" data-order="startdate">New</li>
-					</ul>
-				</div>
-				<div class="col-xs-12">
-					<div id='list' class="portfolio-inner margin-top-30">
-						<div id="hot" class="mix apps"></div>
-						<div id="best" class="mix mockups"></div>
-						<div id="new" class="mix wordpress"></div>
+				<div class="col-sm-12 search"></div>
+				<div class="col-sm-12" style="padding:0 100px 0 100px; margin-top:30px">
+					<div id="notice-new" class="col-sm-3" style="margin: 40px; padding:0px;background-color:white;box-shadow:2px 2px 5px #999;">
+						
+					</div>
+					
+					<div id="notice-best" class="col-sm-3" style="margin: 40px; padding:0px;background-color:white;box-shadow:2px 2px 5px #999;">
+						
+					</div>
+					
+					<div id="notice-hot" class="col-sm-3" style="margin: 40px; padding:0px;background-color:white;box-shadow:2px 2px 5px #999;">
+						
 					</div>
 				</div>
 			</div>
 		</div>
-
-
-		<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog"
-			aria-labelledby="테스트정보 등록" aria-describedby="테스트 모달">
-			<div class="modal-dialog" style="width: 800px; height: 500px">
-				<div class="modal-content"></div>
-			</div>
-		</div>
-
 	</section>
 
+<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/plugin.js"></script>
+<script type="text/javascript" src="../js/scripts.js"></script>
+<script src='../js/context.js'></script>
 
-	<script id="notice" type="text/x-handlebars-template">
-{{#each list}}
-<div class="col-md-4 col-sm-6 col-xs-12" >
-    <class="portfolio-popup">
-    <div class="grid">
-    <figure class="effect-apollo">
-    <img src="../../download/{{image}}" alt=""/>
-    <figcaption>
-    <h2>{{companyMember.cName}} <span></span></h2>
-    <p>{{startDate}} ~ <br>{{endDate}}</p>
-    <a data-toggle='modal' href='view.html' onclick="show('{{no}}')" data-target='#modal-testNew' role='button' data-backdrop='static'>
-    <div class='services-detail' style='cursor:pointer'> 
-    <i class='icon-screen-smartphone color-1'></i>
-    <h5></h5>
-    <hr>
-    </div>
-    </a>
-    </figcaption>           
-    </figure>
-    </div>
-    </div>
-    </div>
-</div>
-{{/each}}
+<script type="text/javascript">
+
+$('header').load("../header.html");
+$('.search').load("search.html");
+
+load({
+	"oc": "nsdt",
+	"al": "desc"
+}, "new");
+
+load({
+	"oc": "ncnt",
+	"al": "desc"
+}, "hot");
+
+
+load({}, "best");
+
+var check = $("input[type='checkbox']");
+check.click(function(){
+  $(".my-check").toggle();
+});
+
+var words = $('#words'),
+   	currPageNo = 1,
+ 	nTypeItem = $('#nType');
+
+
+/* D-DAY구하는 함수 */
+function parse(str) {
+	var now = new Date();
+	var date = new Date(str.split('-'));
+	var dday = date.getTime() - now.getTime();
+	dday = Math.floor(dday / (1000 * 60 * 60 * 24)) + 1;
+	if (dday <= 0) {
+		return "D-Day";
+	}
+	return "D-" + dday;
+}
+
+var timer;
+var noticeIndex = 0;
+
+
+function load(options, kind) {
+    $.ajax(host + '/json/notice/list', {
+    	data: options,
+        dataType: 'json',
+        success: (result) => {
+        	var data = result.list[noticeIndex++];
+        	changeNoticeNew(data,kind);
+        	timer = setInterval(() => {
+        		if (noticeIndex >= result.list.length) {
+        			noticeIndex = 0;
+        		} 
+        		var data = result.list[noticeIndex++];
+        		changeNoticeNew(data,kind);
+        		     		
+        	}, 3000);
+        },
+        error: () => {
+            window.alert('서버 실행 오류!');
+        }
+    });
+}
+
+function changeNoticeNew(data, kind) {
+	$('#notice-' + kind + ' > div:last-child').remove();
+   	$('<div></div>').html(
+          	"<div style='text-align:left; width:100%'>" +
+				"<div class='col-sm-3' style='padding:5px 10px; background-color:#f0ad4e;color:white;font-size:14px;font-weight:bold;text-align:center;'>"+ kind.toUpperCase() + "</div>" +
+			"</div>" +
+			"<div class='notice-head' style='width:100%;'>" +
+				"<img class='notice-img-top' src='../download/" + data.companyMember.logo + "' alt='Card image cap'>" +
+			"</div>" +
+			"<div class='notice-body' style='text-align:center;height:150px'>" +
+		  		"<p class='notice-title'>" + data.companyMember.cName + "</p><br><br>" +
+		  		"<p class='notice-text'>" + data.duty +"</p><br>" +
+				"<p class='notice-text' style='color:red;'>" + parse(data.endDate) + "</p><br>" +
+				"<div class='notice-footer' style='text-align:center'>" +
+					"<button class='btn btn-primary btn-sm'>채용공고 보러가기</button>" +
+				"</div>" +
+			"</div>").appendTo($('#notice-' + kind));
+}
 </script>
-
-	<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
-	<script type="text/javascript" src="../js/jquery.min.js"></script>
-	<script type="text/javascript" src="../js/plugin.js"></script>
-	<script type="text/javascript" src="../js/scripts.js"></script>
-
-	<script type="text/javascript">
-	$('header').load("../header.html");
-    var index = -1;
-    
-    $('#modal-testNew').on('hidden.bs.modal', () => {
-    })
-    
-    noticeSrc = $('#notice').html(),
-    noticeEngine = Handlebars.compile(noticeSrc);
-    // load('viewcount', 'wordpress');
-    
-      
-    
-    function view( v ) {
-    	console.log ('yes ', v);
-	    $.ajax ( {
-	    	url : '/json/notice/' + v,
-	    	dataType: 'json',
-	    	success ( res ) {
-	    		console.log ( res );
-	    		var img = '../../download/' + res.data.image;
-	    		$('#image').html('<img src={} style="height:500px"/>'.replace('{}', img));
-	    		
-	    	}
-	    })
-    }
-    function show(value) {
-        $('#modal-testNew').on('shown.bs.modal', (event) => {
-            view(value);
-        });
-    }
-
-    
-    function load(orderType, panelId) {
-        
-    	   /*  if (options == undefined) options = {};
-    	     options.pn = pageNo; */
-    	    
-    	    $.ajax('../json/notice/list', {
-    	        dataType: 'json',
-    	        data : {oc : orderType},
-    	        success: (result) => {
-    	        	var html = noticeEngine(result);
-    	            $('#list ' + panelId ).html(html); // '#list #new' 
-    	            
-    	         /*    currPageNo = result.pageNo;
-    	            currBtn.html(currPageNo);
-    	            
-    	            if (result.pageNo == 1) {
-    	                $(prevBtn.parent()).addClass("disabled");
-    	            } else {
-    	                $(prevBtn.parent()).removeClass("disabled");
-    	            }
-    	            
-    	            if (result.lastPageNo == result.pageNo) {
-    	                $(nextBtn.parent()).addClass("disabled");
-    	            } else {
-    	                $(nextBtn.parent()).removeClass("disabled");
-    	            } */
-    	        },
-    	        error: () => {
-    	            window.alert('서버 실행 오류!');
-    	        }
-    	    });
-    	}
-    
-/*     var index = location.href.indexOf('?');
-    if (index != -1) { // 기존 데이터를 조회할 경우,
-        var qs = location.href.substr(index + 1);
-        var arr = qs.split('=');
-        $('.my-new').css('display', 'none');
-        $(() => {
-            $.ajax('../json/notice/' + arr[1], {
-                dataType: 'json',
-                success: (result) => {
-                    tbody.html(noticeEngine(result)); 
-                },
-                error: () => {
-                    window.alert('서버 실행 오류!');
-                }
-            });
-        });  */
-        $('.filter').on('click', function(e){ 
-        	var ot = $(e.target).data('order');
-        	var panel = $(e.target).data('filter');
-        	load ( ot, panel );
-        });
-    </script>
 
 </body>
 </html>
