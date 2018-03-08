@@ -27,10 +27,14 @@ import java100.app.service.QuestionService;
 @RequestMapping("/letter")
 @SessionAttributes("loginUser")
 public class LetterController {
-	@Autowired ServletContext servletContext; // for file
-	@Autowired LetterService letterService;
-	@Autowired QuestionService questionService;
-	@Autowired ApplyService applyService;
+	@Autowired
+	ServletContext servletContext; // for file
+	@Autowired
+	LetterService letterService;
+	@Autowired
+	QuestionService questionService;
+	@Autowired
+	ApplyService applyService;
 
 	@RequestMapping("list")
 	public Object list(@ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
@@ -62,7 +66,7 @@ public class LetterController {
 	}
 
 	@RequestMapping(value = "addLetter", method = RequestMethod.POST)
-	public Object addLetter(Apply apply, Letter letter, String[] questions, String[] contents, String[] lengths,
+	public Object addLetter(Apply apply, Letter letter, int[] lengths, String[] contents, String[] articles,
 			MultipartFile file, @ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
 		String uploadDir = servletContext.getRealPath("/download");
 		String filename = writeUploadFile(file, uploadDir);
@@ -72,17 +76,16 @@ public class LetterController {
 		letter.setLfile(filename);
 
 		HashMap<String, Object> result = new HashMap<>();
-
 		letterService.addLetter(apply, letter);
-		if (questions.length != 0) {
-			for (int i = 0; i < questions.length; i++) {
-				Question q = new Question();
-				q.setArticle(questions[i]);
-				q.setContents(contents[i]);
-				q.setLength(Integer.parseInt(lengths[i]));
-				q.setLno(letter.getLno());
-				questionService.add(q);
-			}
+
+		for (int i = 0; i < articles.length; i++) {
+			Question q = new Question();
+			q.setArticle(articles[i]);
+			q.setContent(contents[i]);
+			q.setLength(lengths[i]);
+			q.setLno(letter.getLno());
+			System.out.println("Question: " + q);
+			questionService.add(q);
 		}
 
 		result.put("status", "success");

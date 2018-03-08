@@ -28,9 +28,9 @@ addBtn.click(() => {
 
 qaddBtn.click(() => {
 	console.log('qAddBtn clicked');
-	var q = $('#article').clone();
-	q.attr('id', 'article' + questionNum);
-	q.css('display', 'block');
+	var q = $('#lq').clone();
+	q.attr('id', 'lq' + questionNum);
+//	q.css('display', 'block');
 	q.appendTo('#questionBox');
 });
 
