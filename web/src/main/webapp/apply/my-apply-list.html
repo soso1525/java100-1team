@@ -76,12 +76,10 @@ body {
 						<th id='thcname' style="text-align: center">기업명
 							<div id='nametag'
 								style="display: none; position: absolute; float: center"
-								class="w3-text w3-tag">9 million inhabitants</div>
+								class="w3-text w3-tag">기업별 현황을 보시려면 기업명을 누르세요</div>
 						</th>
 						<th style="text-align: center">지원날짜</th>
-						<th style="text-align: center" class="w3-tooltip">진행상태<span
-							style="position: absolute; float: right" class="w3-text w3-tag">9
-								million inhabitants</span></th>
+						<th style="text-align: center" class="w3-tooltip">진행상태</th>
 					</tr>
 				</thead>
 				<tbody></tbody>
@@ -94,7 +92,7 @@ body {
 			<button id="myBtn"
 				class="button button-style button-style-dark button-style-color-2">입사
 				지원하기</button>
-		</div>
+		</div>	
 	</section>
 
 	<div id="myModal" class="modal">
@@ -149,7 +147,7 @@ body {
 	{{#each apply}}
 	<tr>
   		<td>{{count}}</td>
-  		<td>{{aname}}</td>
+  		<td><a href="my-apply-status.html?ano={{ano}}">{{aname}}</a></td>
   		<td>{{adt}}</td>
   		<td>{{#typeCheck test}}{{/typeCheck}}</td>
 	</tr>

@@ -131,7 +131,7 @@ function changeNoticeNew(data, kind) {
 		  		"<p class='notice-text'>" + data.duty +"</p><br>" +
 				"<p class='notice-text' style='color:red;'>" + parse(data.endDate) + "</p><br>" +
 				"<div class='notice-footer' style='text-align:center'>" +
-					"<button class='btn btn-primary btn-sm'>채용공고 보러가기</button>" +
+					"<a class='btn btn-primary btn-sm' href='view.html?no="+ data.no +"'>채용공고 보러가기</a>" +
 				"</div>" +
 			"</div>").appendTo($('#notice-' + kind));
 }

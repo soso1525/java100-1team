@@ -6,6 +6,7 @@
 <link rel="shortcut icon" href="images/favicon/favicon.ico">
 <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon"
 	href="../images/favicon/apple-touch-icon.png">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" type="text/css" href="../css/plugin.css">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
@@ -25,23 +26,27 @@
 				</div>
 			</div>
 
-	
+
 			<table id="list" class='table table-hover'>
 				<thead>
 					<tr>
-						<th style='text-align:center'>번호</th>
-						<th style='text-align:center'>기업이름</th>
-						<th style='text-align:center'>자기소개서</th>
-						<th style='text-align:center'>작성일</th>
-						<th style='text-align:center'>파일</th>
-						<th style='text-align:center'>합격여부</th>
+						<th style='text-align: center'>번호</th>
+						<th style='text-align: center'>기업이름</th>
+						<th id='thletter' style='text-align: center'>자기소개서
+							<div id='nametag'
+								style="display: none; position: absolute; margin-left: 30px; float: center"
+								class="w3-text w3-tag">기업별 현황을 보시려면 기업명을 누르세요</div>
+						</th>
+						<th style='text-align: center'>작성일</th>
+						<th style='text-align: center'>파일</th>
+						<th style='text-align: center'>합격여부</th>
 					</tr>
 				</thead>
 				<tbody></tbody>
 			</table>
 		</div>
 	</section>
-	
+
 	<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
 	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
@@ -53,7 +58,7 @@
 <tr>
   <td style='text-align:center'>{{count}}</td>
   <td style='text-align:center'>{{apply.aname}}</td>
-  <td style='text-align:center; background-color: white'>{{ltit}}</td>
+  <td style='text-align:center; background-color: white;'><a style='color:black' href="view.html?/lno={{lno}}">{{ltit}}</a></td>
   <td style='text-align:center; background-color: white'>{{writedt}}</td>
   <td style='text-align:center; background-color: white'>{{#fileCheck f}}{{/fileCheck}}</td>
   <td style='text-align:center; background-color: #f7639a; color: white'>{{#passCheck p}}{{/passCheck}}</td>
@@ -63,6 +68,15 @@
 
 	<script type="text/javascript">
 	$('header').load("../header.html");
+	
+	$('#thletter').mouseover(() => {
+		$('#nametag').css('display', 'block');
+	});
+	
+	$('#thletter').mouseout(() => {
+		$('#nametag').css('display', 'none');
+	});
+	
 	var num = 1;
 	var tbody = $('#list > tbody'),
     template1Src = $('#template1').html(),
