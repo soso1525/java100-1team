@@ -1,0 +1,77 @@
+<!-- 					<div class="margin-top-30 margin-bottom-50">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8">
+									<form class="contact-us pattern-bg">
+								<div class="row">
+										<div class="col-sm-12">
+											<div class="form-group">
+												<input type="text" id="mrecv" class="form-control"
+													placeholder="Your Name">
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<div class="textarea-message form-group">
+												<textarea id="mcont" class="textarea-message form-control"
+													placeholder="Your Message" rows="5"></textarea>
+											</div>
+										</div>
+
+										<div class="col-sm-12">
+											<div align="center" class="textarea-message form-group">
+												<button id="addBtn" 
+													class="button button-style button-style-dark button-style-color-2">Submit</button>
+											</div>
+										</div>
+
+								</div>
+									</form>
+							</div>
+							</div>
+						</div>
+					</div>
+
+	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/plugin.js"></script>
+	<script type="text/javascript" src="../js/context.js"></script>
+	<script src="../js/scripts.js"></script>
+
+	<script type="text/javascript">
+	$('header').load("../header.html");
+	var addBtn = $('#addBtn'),
+	msendItem = $('#msend'),
+	mnoItem = $('#mno'),
+	mrecvItem = $('#mrecv'),
+	pidItem = $('#pid'),
+	mdtItem = $('#mdt'),
+	mcontItem = $('#mcont'),
+	nodiv = $('#nod')
+	;
+
+function add(mrecv, mcont) {
+addBtn.click(() => {
+    $.ajax(host + '/json/message/add', {
+        data: 
+            {
+             "mrecv":mrecvItem.val(),
+             "mcont":mcontItem.val()
+            }
+        ,
+        dataType: 'json',
+        method: 'POST',
+        success: (result) => {
+            location.href = "sendList.html";
+        },
+        error: () => {
+            window.alert('서버 실행 오류!!');
+            location.href = "sendList.html";
+        }
+    });
+});
+}
+</script>
+</body>
+</html> -->

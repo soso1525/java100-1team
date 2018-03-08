@@ -10,6 +10,7 @@ public class Notice {
     int viewCount;
     Member writer;
     String duty;
+    String title;
     
 	public String getDuty() {
 		return duty;
@@ -64,6 +65,12 @@ public class Notice {
     }
     public void setWriter(Member writer) {
         this.writer = writer;
+    }
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
     }
     
 }
