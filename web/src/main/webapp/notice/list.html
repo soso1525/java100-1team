@@ -22,100 +22,11 @@
 							</div>
 						</div>
 					</div>
-					<div style='margin-bottom: 30px' class="col-sm-12 search">
-						<div class="col-sm-12">
-							<div class="col-sm-3">
-								<strong>What</strong>
-							</div>
-							<div class="col-sm-3">
-								<strong>Occupation</strong>
-							</div>
-							<div class="col-sm-3">
-								<strong>Where</strong>
-							</div>
-						</div>
-						<div class="col-sm-12">
-							<form>
-								<div class="col-sm-3">
-									<input name="words" id="words"
-										class="form-control form-control-sm mr-sm-2" type="search"
-										placeholder="Keyword" aria-label="Search">
-								</div>
-								<div class="col-sm-3">
-									<select id="cKind" name="cKind"
-										class="form-control form-control-sm mr-sm-2">
-										<option>전체</option>
-										<option>건설</option>
-										<option>경영/사무</option>
-										<option>교육</option>
-										<option>디자인</option>
-										<option>미디어</option>
-										<option>서비스</option>
-										<option>생산/제조</option>
-										<option>IT/인터넷</option>
-										<option>영업/고객상담</option>
-										<option>유통/무역</option>
-										<option>의료</option>
-										<option>전문직</option>
-										<option>특수계층/공공</option>
-									</select>
-								</div>
-								<div class="col-sm-3">
-									<select id="address" name="address"
-										class="form-control form-control-sm mr-sm-2">
-										<option>전체</option>
-										<option>강남구</option>
-										<option>강동구</option>
-										<option>강북구</option>
-										<option>강서구</option>
-										<option>관악구</option>
-										<option>광진구</option>
-										<option>구로구</option>
-										<option>금천구</option>
-										<option>노원구</option>
-										<option>도봉구</option>
-										<option>동대문구</option>
-										<option>동작구</option>
-										<option>마포구</option>
-										<option>서대문구</option>
-										<option>서초구</option>
-										<option>성동구</option>
-										<option>성북구</option>
-										<option>송파구</option>
-										<option>양천구</option>
-										<option>영등포구</option>
-									</select>
-								</div>
-								<div class="col-sm-2" style="width: 8%;">
-									<label class="switch"> <input id="nType"
-										type="checkbox"> <span class="slider round"></span>
-									</label> <strong class="my-check">신입</strong><strong class="my-check"
-										style="display: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;경력</strong>
-								</div>
-								<div class="col-sm-2">
-									<button style="margin-left: 10px"
-										class="button search button-style button-style-dark button-style-color-2"
-										type="button" id="searchBtn">Catch</button>
-								</div>
-							</form>
-						</div>
-					</div>
 				</div>
-
+			</div>
+			<div style='margin-bottom: 30px' class="col-sm-12 search">
 			</div>
 			<div class="col-sm-12 notice-list" id="list">
-				<div class="notice notice-list-div" style="width: 24rem;">
-					<img class="notice-img-top" src="../../download/lg.jpg"
-						alt="Card image cap">
-					<div class="notice-body">
-						<p class="notice-title">삼성</p>
-						<br>
-						<p class="notice-text">자바개발자</p>
-						<br>
-						<p class="notice-text">D-2</p>
-						<br>
-					</div>
-				</div>
 			</div>
 
 			<button type="button" class='btn btn-primary btn-sm' id="btn-add"
@@ -137,16 +48,19 @@
 
 	<script id="notice" type="text/x-handlebars-template">
 {{#each list}}
-<tr>
-        <td><a href='form.html?no={{no}}'>{{no}}</a></td>
-        <td><img src='../../download/{{image}}' height='50px'/></td>
-        <td>{{companyMember.cName}}</td> 
-        <td><img src='../../download/{{companyMember.logo}}' height='50px'/></td>
-        <td>{{startDate}}</td>
-        <td>{{endDate}}</td>
-        <td>{{viewCount}}</td>
-    </tr>
-<tr>
+<div id="notice-new" class="col-sm-3" style="margin: 40px; padding:0px;background-color:white;box-shadow:2px 2px 5px #999;">
+  <div class='notice-head' style='width:100%;'> 
+  	<img class='notice-img-top' src='../download/{{companyMember.logo}}' alt='Card image cap'> 
+  </div> 
+  <div class='notice-body' style='text-align:center;height:150px'> 
+  	<p class='notice-title'>{{companyMember.cName}}</p><br><br> 
+  	<p class='notice-text'>{{duty}}</p><br> 
+  	<p class='notice-text' style='color:red;'>{{d-day}}</p><br> 
+  	<div class='notice-footer' style='text-align:center'> 
+  		<button class='btn btn-primary btn-sm'>채용공고 보러가기</button> 
+  	</div> 
+  </div>
+</div>
 {{/each}}
 </script>
 
@@ -158,11 +72,7 @@
 </body>
 <script type="text/javascript">
 $('header').load("../header.html");
-
-var check = $("input[type='checkbox']");
-check.click(function(){
-  $(".my-check").toggle();
-});
+$('.search').load("search.html");
 
 var prevBtn = $('#prevBtn'),
   	currBtn = $('#currBtn'),
@@ -172,25 +82,22 @@ var prevBtn = $('#prevBtn'),
 	listItem = $('#list'),
    	currPageNo = 1,
  	noticeSrc = $('#notice').html(),
- 	nTypeItem = $('#nType'),
  	noticeEngine = Handlebars.compile(noticeSrc);
  	
-load(1);
 
+var index = location.href.indexOf('?');
 
-searchBtn.click(() => {
-	var nType = 0;
-	if (nTypeItem.prop("checked")) {
-		nType = 1;
-	}
-    load(1, {
-        "words": words.val(),
-        "cKind": $('#cKind option:selected').text(),
-        "address": $('#address option:selected').text(),
-        "nType": nType
-    })
-});
- 
+var qs = location.href.substr(index + 1);
+var arr = qs.split("&");
+var keywordIndex = arr[0].indexOf('words=');
+var keyword = arr[0].substr(keywordIndex + 6);
+
+qs = JSON.parse('{"' + qs.replace(/&/g, '","').replace(/=/g,'":"') + '"}', 
+		function(key, value) { return key===""?value:decodeURIComponent(value)});
+
+		
+load(1,qs);
+
 prevBtn.click(() => {
     load(currPageNo - 1)
 });
@@ -200,6 +107,21 @@ nextBtn.click(() => {
     console.log(currPageNo + 1);
 });
 
+/* D-DAY 구하는 함수 */
+function parse(str) {
+	var now = new Date();
+	var date = new Date(str.split('-'));
+	var dday = date.getTime() - now.getTime();
+	dday = Math.floor(dday / (1000 * 60 * 60 * 24)) + 1;
+	if (dday <= 0) {
+		return "D-Day";
+	}
+	return "D-" + dday;
+}
+
+Handlebars.registerHelper('d-day', function(options){
+    return parse(this.endDate);
+});
 
 function load(pageNo, options) {
     
@@ -210,7 +132,13 @@ function load(pageNo, options) {
     	data: options,
         dataType: 'json',
         success: (result) => {
-            //list.html(noticeEngine(result));
+            listItem.html(noticeEngine(result));
+        	if (!result.list.length) {
+        		listItem.html(
+    			"<div style='margin:60px;text-align:center;'>" + 
+	        		"<p style='font-size:18px;'>" + keyword + "와(과) 일치하는 검색결과가 없습니다.</p><br>" + 
+        		"</div>");
+        	}
             currPageNo = result.pageNo;
             currBtn.html(currPageNo);
             if (result.pageNo == 1) {
@@ -231,6 +159,7 @@ function load(pageNo, options) {
     }); 
      
 } 
+
 
 </script>
 </html>

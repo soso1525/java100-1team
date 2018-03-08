@@ -1,22 +1,25 @@
-  <div class="col-sm-12">
-   	<div class="col-sm-3">
-   		<strong>What</strong>
-   	</div>
-   	<div class="col-sm-3">
-   		<strong>Occupation</strong>
-   	</div>
-   	<div class="col-sm-3">
-   		<strong>Where</strong>
-   	</div>
-  </div>
-  <div class="col-sm-12">
-	<form action="list.html">
+
+<div class="col-sm-12">
+	<div class="col-sm-3">
+		<strong>What</strong>
+	</div>
+	<div class="col-sm-3">
+		<strong>Occupation</strong>
+	</div>
+	<div class="col-sm-3">
+		<strong>Where</strong>
+	</div>
+</div>
+<div class="col-sm-12">
+	<form action="list.html" onsubmit="return submitResult();">
 		<div class="col-sm-3">
-			<input name="words" id="words" class="form-control form-control-sm mr-sm-2"
-				type="search" placeholder="Keyword" aria-label="Search"> 
+			<input name="words" id="words"
+				class="form-control form-control-sm mr-sm-2" type="search"
+				placeholder="Keyword" aria-label="Search">
 		</div>
 		<div class="col-sm-3">
-			<select id="cKind" name="cKind" class="form-control form-control-sm mr-sm-2">
+			<select id="cKind" name="cKind"
+				class="form-control form-control-sm mr-sm-2">
 				<option>전체</option>
 				<option>건설</option>
 				<option>경영/사무</option>
@@ -31,10 +34,11 @@
 				<option>의료</option>
 				<option>전문직</option>
 				<option>특수계층/공공</option>
-			</select> 
+			</select>
 		</div>
 		<div class="col-sm-3">
-			<select id="address" name="address" class="form-control form-control-sm mr-sm-2">
+			<select id="address" name="address"
+				class="form-control form-control-sm mr-sm-2">
 				<option>전체</option>
 				<option>강남구</option>
 				<option>강동구</option>
@@ -58,15 +62,38 @@
 				<option>영등포구</option>
 			</select>
 		</div>
-		<div class="col-sm-2" style="width:8%;">
-			<label class="switch">
-			  <input id="nType" type="checkbox">
-			  <span class="slider round"></span>
-			</label>
-			<strong class="my-check">신입</strong><strong class="my-check" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;경력</strong>
+		<div class="col-sm-2" style="width: 8%;">
+			<label class="switch"> <input id="check"
+				type="checkbox"> <span class="slider round"></span>
+			</label> <strong class="my-check">신입</strong><strong class="my-check"
+				style="display: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;경력</strong>
 		</div>
+		<input type="hidden" name="nType" id="nType">
 		<div class="col-sm-2">
-			<button style="margin-left: 10px" class="button search button-style button-style-dark button-style-color-2" type="submit" id="searchBtn">Catch</button>
+			<button style="margin-left: 10px"
+				class="button search button-style button-style-dark button-style-color-2"
+				type="submit" id="searchBtn">Catch</button>
 		</div>
 	</form>
 </div>
+
+<script type="text/javascript">
+function submitResult() {
+	if ($('#words').val() == "") {
+		alert("키워드를 입력해주세요");
+		return false;
+	}
+	var nType = 0;
+	if ($('#check').prop("checked")) {
+		nType = 1;
+	}
+	$('#nType').val(nType);
+	return true;
+}
+
+var check = $("input[type='checkbox']");
+check.click(function(){
+  $(".my-check").toggle();
+});
+
+</script>

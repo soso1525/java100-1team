@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CATCH : 인적성/면접 리스트</title>
+<link rel="shortcut icon" href="images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="144x144" type="image/x-icon"
+	href="../images/favicon/apple-touch-icon.png">
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<style>
+.delcol {
+	background-color: #f7639a;
+	color: white;
+}
+</style>
+</head>
+<body>
+	<header></header>
+	<section style="background-color: white" id="services"
+		class="services-section section-space-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div style="margin-top: 100px;" class="section-title">
+						<h2>인적성/면접 리스트</h2>
+						<div class="divider dark">
+							<i class="icon-drop"></i>
+						</div>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+					</div>
+					<div style="margin: 10px 0" align="right">
+						<button id="addbtn" class='btn btn-primary btn-sm'>추가</button>
+					</div>
+				</div>
+			</div>
+
+			<table style="text-align: center; width:50%" id="list" class='table table-hover'>
+				<thead>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+
+		<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+		<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+		<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+		<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+		<script src='../js/login.js'></script>
+		<script id="template1" type="text/x-handlebars-template">
+<tr><td>일정 유형</td><td>{{test.type}}</td></tr>
+<tr><td>날짜</td><td>{{test.date}}</td></tr>
+<tr><td>시간</td><td>{{test.time}}</td></tr>
+<tr><td>준비물</td><td>{{test.prepare}}</td></tr>
+<tr><td>장소</td><td>{{test.location}}</td></tr>
+</script>
+		<script type="text/javascript">
+	$('header').load("../header.html");
+	var num = 1;
+	var tbody = $('#list > tbody'),
+    template1Src = $('#template1').html(),
+    template1Engine = Handlebars.compile(template1Src);
+	
+	var index = location.href.indexOf('?');
+	if (index != -1) { 
+	    var qs = location.href.substr(index + 1);
+	    var arr = qs.split('=');
+	    $(() => {
+	        $.ajax('../json/test/' + arr[1], {
+	        	 dataType: 'json',
+	     	    success: (result) => {
+	     	        tbody.html(template1Engine(result));
+	     	    },
+	     	    error: () => {
+	     	        window.alert('서버 실행 오류!');
+	     	    }
+	        });
+	    });
+	}
+	
+	Handlebars.registerHelper('count', function() {
+		return (num++);
+	});
+	
+	</script>
+</body>
+</html>
