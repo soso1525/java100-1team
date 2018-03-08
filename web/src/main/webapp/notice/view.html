@@ -1,24 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>게시판</title>
-<link rel='stylesheet' href='../css/common.css'>
-<link rel='stylesheet' href='../css/plugin.css'>
-<link rel='stylesheet' href='../css/style.css'>
-</head>
-<style>
-body{
-background-color: #f2f2f2;
-}
-</style>
-<body>
-	<div class='container'>
-		<header></header>
-		<h1 style="margin-top: 30px; margin-bottom: 30px">채용공고</h1>
 
 		<form id="form" method='post' enctype="multipart/form-data">
-		<div style="text-align: center; margin-left: 150px; width: 900px;">
+		<div class="modal-body" style="border: 3px solid black; height: 3000px">
+		<div class="col-sm-12">
+        <div class="form-group">
+        <input type="hidden" id="no" class="form-control my-view"
+        placeholder="number">
+        </div>
+        </div>
+		<div style="text-align: center; margin-left: 170px; width: 760px;">
 	    <div class='contact-us' style="margin:15px;width: 220px; height: 200px; padding: 15px;float: left;">
 	      <p style="font-size: 25px;">담당업무</p>
 	      <br>
@@ -46,44 +35,12 @@ background-color: #f2f2f2;
 	    
 		<div class='form-group row'>
             <label for='photo' class='col-sm-2 col-form-label'></label>
-            <div class='col-sm-10' id='image'></div>
+            <div class='col-sm-10' id='image' style="width: 784px"></div>
         </div> 
 		</div>
 		<div class='biew_summary'>
 		</div>
-<!-- 		 	<div class='form-group row'>
-				<label for='image' class='col-sm-2 col-form-label'>신입/경력</label>
-				<div class='col-sm-10'>
-					<input class='magic-radio"' id='check1' type='radio' name='nType' value="0">
-						<label> 신입 </label>
-					<input class='magic-radio"' id='check2' type='radio' name='nType' value="1">
-					 	<label> 경력 </label>
-                    <input class='magic-radio"' id='check2' type='radio' name='nType' value="2" checked='checked'>
-                     	<label> 신입/경력 </label>
-				</div>
-			</div>
 
-			<div class='form-group row'>
-				<label for='duty' class='col-sm-2 col-form-label'>직무</label>
-				<div class='col-sm-10'>
-					<input class='form-control' readonly id='duty' type='text' name='duty'>
-				</div>
-			</div>
-
-			<div class='form-group row'>
-				<label for='startDate' class='col-sm-2 col-form-label'>채용시작일</label>
-				<div class='col-sm-10'>
-					<input class='form-control' readonly id='startDate' type='Date'
-						name='startDate'>
-				</div>
-			</div>
-
-			<div class='form-group row'>
-				<label for='endDate' class='col-sm-2 col-form-label'>채용종료일</label>
-				<div class='col-sm-10'>
-					<input class='form-control' readonly id='endDate' type='Date' name='endDate'>
-				</div>
-			</div> -->
 			
 			<div id='questionForm'>
 			</div>
@@ -95,16 +52,8 @@ class="button button-style button-style-dark button-style-color-2">Update</butto
 class="button button-style button-style-dark button-style-color-2">Delete</button>
 </div>
 </div>
-<!-- 			<div class='form-group row'>
-				<div class='col-sm-10'>
-					<button id="updateBtn" type="button"
-						class='btn btn-primary btn-sm my-view'>변경</button>
-					<button id="deleteBtn" type="button"
-						class='btn btn-primary btn-sm my-view'>삭제</button>
-				</div>
-			</div> -->
+</div>
 		</form>
-	</div>
 	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
@@ -137,6 +86,7 @@ if (index != -1) { // 기존 데이터를 조회할 경우,
                nodivItem.html("<input class='form-control' readonly id='no' " +
                        "name='no' value='" + result.data.no + "'> "); 
                 simgs.html("<img src='../../download/" + result.data.image + "'/>");
+                noItem.val(result.data.no);
                 dutyItem.val(result.data.duty);
                 nameItem.val(result.data.companyMember.name);
                 startDateItem.val(result.data.startDate);
@@ -223,7 +173,7 @@ updateBtn.click(() => {
 deleteBtn.click(() => {
     $.ajax('../json/notice/delete', {
         data: {
-        	no: $('#no').val()
+        	no: noItem.val()
         },
         dataType: 'json',
         success: (result) => {
@@ -235,6 +185,3 @@ deleteBtn.click(() => {
     });
 });
 </script>
-
-</body>
-</html>
