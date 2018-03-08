@@ -28,6 +28,7 @@
 	        success: (result) => {
 	        	console.log('success');
 	        	modal.style.display = "none";
+	        	location.href="my-apply-list.html";
 	        },
 	        error: () => {
 	            window.alert('서버 실행 오류!');
@@ -40,9 +41,9 @@
 	});
 	
 	$('#letter').click(() => {
-		location.href="../letter/form.html";
+		location.href="../letter/list.html";
 	});
 	
 	$('#test').click(() => {
-		location.href="calendar.html";
+		location.href="../test/calendar.html";
 	});
