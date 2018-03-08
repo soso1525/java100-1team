@@ -30,8 +30,7 @@ background-color: #f2f2f2;
 
         <div class="col-sm-12">
         <div class="form-group">
-        <input type="hidden" id="no" class="form-control my-view"
-        placeholder="number">
+        <input type="hidden" id="no" class="form-control my-view" placeholder="number">
         </div>
         </div>
         <div style="text-align: center; margin-left: 170px; width: 760px;">
@@ -132,6 +131,7 @@ background-color: #f2f2f2;
     <script src='../node_modules/jquery/dist/jquery.min.js'></script>
     <script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
     <script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+    <script type="text/javascript" src="../js/context.js"></script>
 
     <script type="text/javascript">
     $('header').load('../header.html');
@@ -156,7 +156,7 @@ if (index != -1) { // 기존 데이터를 조회할 경우,
     var arr = qs.split('=');
     $('.my-new').css('display', 'none');
     $(() => {
-        $.ajax('../json/notice/' + arr[1], {
+        $.ajax(host + '/json/notice/' + arr[1], {
             dataType: 'json',
             success: (result) => {
                nodivItem.html("<input class='form-control' readonly id='no' " +
@@ -214,7 +214,7 @@ window.onclick = function(event) {
 $('#applyBtn').click(() => {
 	var formData = new FormData($('#form')[0]);
     
-    $.ajax('../json/apply/add-simple', {
+    $.ajax(host + '/json/apply/add-simple', {
         data:
         	formData,
         	dataType: 'json',
@@ -232,8 +232,23 @@ $('#applyBtn').click(() => {
     });
 });
 
+scrapBtn.click(() => {
+	$.ajax(host + '/json/notice/scrap', {
+		data: {
+			nno: noItem.val() 
+		},
+		dataType: 'json',
+        success: (result) => {
+            location.href = "notice.html";
+        },
+        error: () => {
+            window.alert('서버 실행 오류!');
+        }
+	});
+});
+
 deleteBtn.click(() => {
-    $.ajax('../json/notice/delete', {
+    $.ajax(host + '/json/notice/delete', {
         data: {
             no: noItem.val()
         },

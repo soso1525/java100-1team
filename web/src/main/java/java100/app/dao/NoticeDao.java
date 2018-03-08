@@ -8,6 +8,7 @@ import java100.app.domain.Notice;
 public interface NoticeDao {
     List<Notice> findAll(Map<String,Object> params);
     int insert(Notice notice);
+    int scrap(Notice notice);
     int countAll();
     Notice findByNo(int no);
     int updateViewCount(int no);

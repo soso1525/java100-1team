@@ -38,7 +38,7 @@ public class NoticeServiceImpl implements NoticeService {
 	public int add(Notice notice) {
 		return noticeDao.insert(notice);
 	}
-
+	
 	@Override
 	public Notice get(int no) {
 		noticeDao.updateViewCount(no);

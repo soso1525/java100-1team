@@ -69,6 +69,7 @@
 	<script type="text/javascript" src="../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../js/plugin.js"></script>
 	<script type="text/javascript" src="../js/scripts.js"></script>
+	<script type="text/javascript" src="../js/context.js"></script>
 </body>
 <script type="text/javascript">
 $('header').load("../header.html");
@@ -128,7 +129,7 @@ function load(pageNo, options) {
      if (options == undefined) options = {};
      options.pn = pageNo;
     
-    $.ajax('../json/notice/list', {
+    $.ajax(host + '/json/notice/list', {
     	data: options,
         dataType: 'json',
         success: (result) => {

@@ -7,7 +7,6 @@ import java.util.HashMap;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
-import org.junit.runner.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,10 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import java100.app.domain.Like;
 import java100.app.domain.Member;
 import java100.app.domain.Notice;
 import java100.app.domain.Question;
 import java100.app.service.CompanyService;
+import java100.app.service.LikeService;
 import java100.app.service.MemberService;
 import java100.app.service.NoticeService;
 import java100.app.service.QuestionService;
@@ -33,6 +34,7 @@ public class NoticeController {
     @Autowired NoticeService noticeService;
     @Autowired ServletContext servletContext;
     @Autowired MemberService memberService;
+    @Autowired LikeService likeService;
     @Autowired CompanyService comService;
     @Autowired QuestionService questionService;
     
@@ -134,6 +136,17 @@ public class NoticeController {
     	notice.setImage(addFile(file));
         noticeService.update(notice);
         
+        HashMap<String,Object> result = new HashMap<>();
+        result.put("status", "success");
+        return result;
+    }
+    
+    @RequestMapping("scrap")
+    public Object scrap(int nno, @ModelAttribute(value="loginUser") Member loginUser) throws Exception {
+    	Like like = new Like();
+    	like.setNno(nno);
+    	like.setIno(loginUser.getNo());
+        likeService.add(like);
         HashMap<String,Object> result = new HashMap<>();
         result.put("status", "success");
         return result;
