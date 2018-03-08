@@ -2,6 +2,7 @@ package java100.app.web.json;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.servlet.ServletContext;
@@ -34,7 +35,8 @@ public class StudyController {
     public Object list(
             @RequestParam(value="pn", defaultValue="1") int pageNo,
             @RequestParam(value="ps", defaultValue="8") int pageSize,
-            @RequestParam(value="words", required=false) String[] words,
+            @RequestParam(value="words", required=false) String [] words,
+            @RequestParam(value="address", required=false) String address,
             @RequestParam(value="oc", required=false) String orderColumn,
             @RequestParam(value="al", required=false) String align) throws Exception {
         if (pageNo < 1) {
@@ -44,13 +46,22 @@ public class StudyController {
         if (pageSize < 8 || pageSize > 15) {
             pageSize = 8;
         }
-        HashMap<String,Object> options = new HashMap<>();
         
-        if (words != null && words[0].length() > 0) {
+        HashMap<String,Object> options = new HashMap<>();
+        if ("전체".equals(address)) {
+        	options.put("address", null);
+        } else {
+        	options.put("address", address);
+        }
+        
+        if (words != null && words.length > 0) {
             options.put("words", words);
         }
+        
         options.put("orderColumn", orderColumn);
         options.put("align", align);
+        
+        System.out.println(options);
         
         int totalCount = studyService.getTotalCount();
         int lastPageNo = totalCount / pageSize;
@@ -139,6 +150,14 @@ public class StudyController {
         
         return result;
     }
+    
+    @RequestMapping("apply")
+    public void applyStudy (@RequestParam Integer study ) throws Exception {
+    	System.out.println(study);
+    	Integer dummyUser = 1000; // TODO 안쓰임!
+    	studyService.applyStudy ( study, dummyUser );
+    }
+
     
     long prevMillis = 0;
     int count = 0;

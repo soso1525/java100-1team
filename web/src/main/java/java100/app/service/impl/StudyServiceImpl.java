@@ -52,6 +52,15 @@ public class StudyServiceImpl implements StudyService {
     public int update(Study study) {
         return studyDao.update(study);
     }
+
+	@Override
+	public void applyStudy(Integer studyId, Integer userId) {
+		Study study = studyDao.findByNo(studyId);
+		String cur = study.getScheck(); // ["3" of 5]
+		cur = (Integer.parseInt(cur) + 1) + "";
+		study.setScheck(cur);
+		studyDao.update(study);
+	}
     
 
 }

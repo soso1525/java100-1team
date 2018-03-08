@@ -12,6 +12,7 @@ public interface StudyService {
     int getTotalCount();
     int update(Study study);
     int delete(int sno);
+	void applyStudy(Integer studyId, Integer userId);
     
 }
 
