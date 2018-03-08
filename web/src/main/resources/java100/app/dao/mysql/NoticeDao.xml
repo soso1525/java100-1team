@@ -50,7 +50,7 @@
 		<if test="words != null">
 	        <where>
 	            <foreach collection="words" item="word">
-	               or c.cname like '${word}%'
+	               or (c.cname like '%${word}%' or n.nduty like '%${word}%')
 	            </foreach>
 	            <if test="cKind != null">
 	               and c.ckind like #{cKind}
@@ -58,9 +58,13 @@
                 <if test="address != null">
 	               and p.pdaddr like #{address}
                 </if>
-                and n.ntype like #{nType}
-                or n.ntype like 2
+                and (n.ntype like #{nType} or n.ntype like 2)
 	        </where>
+        </if>
+        <if test="orderColumn == 'nsdt'">
+        	<where>
+        		and nsdt > (now() - interval 1 month)
+        	</where>
         </if>
         order by 
         <choose>
@@ -69,6 +73,12 @@
             </when>
             <when test="orderColumn == 'nedt' and align == 'asc'">
                 n.nedt asc
+            </when>
+            <when test="orderColumn == 'nsdt' and align == 'desc'">
+                n.nsdt desc
+            </when>
+            <when test="orderColumn == 'ncnt' and align == 'desc'">
+                n.ncnt desc
             </when>
             <when test="orderColumn == 'viewcount'">
                 n.ncnt desc

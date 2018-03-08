@@ -9,10 +9,10 @@ var loginBtn = $('#loginBtn'), email = $('#email'), password = $('#password'), s
 				if (result.status == "success") {
 					console.log(result);
 					 $('#loginbtn').html('Mypage');
-					 $('#loginbtn').attr("href", "../apply/apply.html");
+					 $('#loginbtn').attr("href", "../apply/my-apply-list.html");
 					 $('#logoutbtn').show();
 					 $('#msgMenu').show();
-					 location.href = "../apply/apply.html"
+					 location.href = "../apply/my-apply-list.html"
 				} else {
 					$('#loginbtn').html('Login');
 			    	 $('#loginbtn').attr("href", "../auth/login.html");
@@ -34,7 +34,7 @@ var loginBtn = $('#loginBtn'), email = $('#email'), password = $('#password'), s
 		    }
 		    
 		    $('#loginbtn').html('Mypage');
-		    $('#loginbtn').attr("href", "../apply/apply.html");
+		    $('#loginbtn').attr("href", "../apply/my-apply-list.html");
 		    $('#logoutbtn').show();
 		    $('#msgMenu').show();
 		});

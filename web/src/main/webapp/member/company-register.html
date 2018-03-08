@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CATCH : 기업회원가입</title>
+<link rel='stylesheet' href='../css/plugin.css'>
+<link rel='stylesheet' href='../css/style.css'>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<style>
+.ml12 {
+	font-weight: 200;
+	font-size: 1.8em;
+	text-transform: uppercase;
+	letter-spacing: 0.5em;
+}
+
+.ml12 .letter {
+	display: inline-block;
+	line-height: 1em;
+}
+</style>
+</head>
+<body>
+	<header></header>
+	<section class="section-space-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div style="margin: 80px 0" class="section-title">
+						<h2>기업 회원가입</h2>
+						<div class="divider dark">
+							<i class="icon-graduation"></i>
+						</div>
+						<p style='margin-top: 10px'>전체 정보를 입력해야 가입이 완료됩니다</p>
+					</div>
+				</div>
+			</div>
+			<form method='post' name="frm">
+				<div class="form-group row">
+					<label class='col-sm-2 col-form-label'>ID</label>
+					<div class='col-sm-10'>
+						<input class='form-control' placeholder='User ID' id='id'
+							name='id' type='text' onkeyup='checkID()' required>
+						<div style='margin-top: 5px; font-size: 11px; color: #4c9cef'
+							id='validID'>사용하실 아이디를 입력해주세요</div>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class='col-sm-2 col-form-label'>Password</label>
+					<div class='col-sm-5'>
+						<input class='form-control' placeholder='password' id='password'
+							name='password' type='password' onkeyup="checkPwd()"
+							pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
+							required>
+						<div style='margin-top: 5px; font-size: 11px; color: #4c9cef'>문자/숫자/특수문자를
+							포함하여 최소 8자 이상</div>
+					</div>
+					<div class='col-sm-5'>
+						<input class='form-control' placeholder='password' id='repassword'
+							type='password'
+							pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
+							onkeyup="checkPwd()" name="repassword" required>
+						<div style='margin-top: 5px; font-size: 11px; color: #4c9cef'
+							id="validPWD">비밀번호 확인을 위해 다시 입력해주세요</div>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class='col-sm-2 col-form-label'>Name</label>
+					<div class='col-sm-10'>
+						<input class='form-control' placeholder='company name' id='cName'
+							name='cName' type='text' required>
+					</div>
+				</div>
+
+
+				<div class="form-group row">
+					<label class='col-sm-2 col-form-label'>Business Number</label>
+					<div class='col-sm-5'>
+						<input class='form-control' placeholder='사업자 등록번호' id='businessNo'
+							name='businessNo' type='text' onkeyup='checkID()'
+							pattern="[(0-9)]{10}" required>
+						<div style='margin-top: 5px; font-size: 11px; color: #4c9cef'>
+							- 빼고 숫자 10자리만 입력해주세요</div>
+					</div>
+					<div class='col-sm-2' style='padding: 0'>
+						<button id="btnCheckInfo" type="button" class="btn btn-primary"
+							style='padding: 15px'>조회하기</button>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class='col-sm-2 col-form-label'>Email</label>
+					<div class='col-sm-10'>
+						<input class='form-control' placeholder='User Email' id='email'
+							name='email' type='email' onkeyup='checkEmail()' required>
+						<div style='margin-top: 5px; font-size: 11px; color: #4c9cef'
+							id='validEmail'>사용하실 이메일을 입력해주세요</div>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class='col-sm-2 col-form-label'>Phone</label>
+					<div class='col-sm-5'>
+						<input class='form-control' placeholder='company tel' id='tel'
+							name='tel' type='text' required>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class='col-sm-2 col-form-label'>Location</label>
+					<div class='col-sm-5' style='padding-right: 10px'>
+						<select class="form-control" id="address" name="address">
+							<option label="회사위치"></option>
+							<option value="서울전체">서울전체</option>
+							<option value="강남구">강남구</option>
+							<option value="강동구">강동구</option>
+							<option value="강북구">강북구</option>
+							<option value="강서구">강서구</option>
+							<option value="관악구">관악구</option>
+							<option value="광진구">광진구</option>
+							<option value="구로구">구로구</option>
+							<option value="금천구">금천구</option>
+							<option value="노원구">노원구</option>
+							<option value="도봉구">도봉구</option>
+							<option value="동대문구">동대문구</option>
+							<option value="동작구">동작구</option>
+							<option value="마포구">마포구</option>
+							<option value="서대문구">서대문구</option>
+							<option value="서초구">서초구</option>
+							<option value="성동구">성동구</option>
+							<option value="성북구">성북구</option>
+							<option value="송파구">송파구</option>
+							<option value="양천구">양천구</option>
+							<option value="영등포구">영등포구</option>
+						</select>
+					</div>
+				</div>
+
+				<div style="padding: 15px 0" class="form-group row">
+					<div class='col-sm-6'>
+						<div style='margin-bottom: 10px; font-weight: 700'>Business
+							Type</div>
+						<select class="form-control" id="cKind" name="kind">
+							<option value="경영/사무">경영/사무</option>
+							<option value="영업/고객상담">영업/고객상담</option>
+							<option value="생산/제조">생산/제조</option>
+							<option value="IT/인터넷">IT/인터넷</option>
+							<option value="전문직">전문직</option>
+							<option value="교육">교육</option>
+							<option value="미디어">미디어</option>
+							<option value="특수계층/공공">특수계층/공공</option>
+							<option value="건설">건설</option>
+							<option value="유통/무역">유통/무역</option>
+							<option value="서비스">서비스</option>
+							<option value="디자인">디자인</option>
+							<option value="의료">의료</option>
+						</select>
+					</div>
+
+					<div class='col-sm-6'>
+						<div style='margin-bottom: 10px; font-weight: 700'>Company
+							Type</div>
+						<select class="form-control" id="cType" name="cType"> 대기업
+							</option>
+
+
+							<option value="중견기업">중견기업</option>
+							<option value="공사/공기업">공사/공기업</option>
+							<option value="코스닥">코스닥</option>
+							<option value="코스피">코스피</option>
+							<option value="외국계">외국계</option>
+							<option value="매출1000대기업">매출1000대기업</option>
+							<option value="중소기업">중소기업</option>
+							<option value="기타">기타</option>
+						</select>
+					</div>
+				</div>
+
+				<div style='margin: 100px 0' align="center">
+					<button
+						class="button button-style button-style-dark button-style-color-2"
+						type="button" id="submitBtn" disabled>가입하기</button>
+					<button
+						class="button button-style button-style-dark button-style-color-2"
+						onclick="location.href='../notice/list.html'">취소하기</button>
+				</div>
+			</form>
+
+			<div style="display: none" id="myModal" class="w3-modal">
+				<div class="w3-modal-content w3-animate-top">
+					<div style="overflow: hidden; height: auto; text-align: left"
+						class="w3-container">
+						<span
+							onclick="document.getElementById('myModal').style.display='none'"
+							class="w3-button w3-display-topright">&times;</span>
+
+						<!-- Container for the demo -->
+						<div id="sign-in-card"
+							class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+							<div style="background-color: #f7639a; color: white"
+								class="mdl-card__title mdl-color--black-600 mdl-color-text--white">
+								<h2 style='padding: 15px' class="mdl-card__title-text">Business
+									Number Authentication</h2>
+							</div>
+							<div style="padding: 10px"
+								class="mdl-card__supporting-text mdl-color-text--grey-600">
+								<p style="color: black; margin: 20px 0 30px 0" id="phone-sign">Authenticate
+									your business number below.</p>
+
+								<form style="color: black" id="sign-in-form">
+									<div class="form-group row">
+										<label class='col-sm-2 col-form-label'>Name</label>
+										<div class='col-sm-6'>
+											<input class='form-control' placeholder='company name'
+												id='compName' type="text" required>
+											<div style='margin-top: 5px; font-size: 11px; color: #4c9cef'
+												id='validEmail'>기업 이름을 입력해주세요</div>
+										</div>
+									</div>
+
+									<div class="form-group row">
+										<label class='col-sm-2 col-form-label'>Business Number</label>
+										<div class='col-sm-6'>
+											<input class='form-control' placeholder='business no'
+												id='bno' type="text" pattern="[(0-9)]{10}" required>
+											<div style='margin-top: 5px; font-size: 11px; color: #4c9cef'
+												id='validEmail'>사업자 등록번호를 입력해주세요</div>
+										</div>
+									</div>
+
+									<div align="right">
+										<button style="margin-left: 30px; margin-right: 5px"
+											type="button" class="btn btn-primary" id="bnoBtn">조회하기</button>
+										<button type="button" class="btn btn-primary" id="closeBtn">닫기</button>
+									</div>
+								</form>
+
+
+
+								<!-- <div align="center" id="loading" class="loader"
+									style="display: none; maring: 10px 0 10px 0">Loading...</div> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div style="display: none" id="loading" class="w3-modal">
+				<div class="w3-modal-content w3-animate-top">
+					<div class="w3-modal-content w3-animate-top">
+						<div style="overflow: hidden; height: 100%; width:100%; background-color: rgba(0, 0, 0, 0.4); text-align: left"
+							class="w3-container">
+							<span
+								onclick="document.getElementById('loading').style.display='none'"
+								class="w3-button w3-display-topright">&times;</span>
+
+							<div style='height: 100%; width:100%;' id="sign-in-card"
+								class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+								<h1 style='color: white; height: 100%; width:100%; background-color: rgba(0, 0, 0, 0.4)' align="center" class="ml12">Identifying</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+	<script src="../js/company-check.js"></script>
+	<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script type="text/javascript">
+		$('header').load("../header.html");
+		$('.ml12').each(
+				function() {
+					$(this).html(
+							$(this).text().replace(/([^\x00-\x80]|\w)/g,
+									"<span class='letter'>$&</span>"));
+				});
+
+		anime.timeline({
+			loop : true
+		}).add({
+			targets : '.ml12 .letter',
+			translateX : [ 40, 0 ],
+			translateZ : 0,
+			opacity : [ 0, 1 ],
+			easing : "easeOutExpo",
+			duration : 1100,
+			delay : function(el, i) {
+				return 500 + 30 * i;
+			}
+		}).add({
+			targets : '.ml12 .letter',
+			translateX : [ 0, -30 ],
+			opacity : [ 1, 0 ],
+			easing : "easeInExpo",
+			duration : 1000,
+			delay : function(el, i) {
+				return 100 + 30 * i;
+			}
+		});
+	</script>
+</body>
+</html>

@@ -33,13 +33,14 @@
 	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+	<script type="text/javascript" src="../js/context.js"></script>
 	<script src='../js/login.js'></script>
 	<script id="template1" type="text/x-handlebars-template">
 {{#each memberList}}
 <tr>
   <td>{{no}}</td>
-  <td><a href="{{#viewpage type}}{{/viewpage}}.html?no={{no}}">{{id}}</a></td>
-  <td>{{email}}</td>
+  <td><a href="{{#viewpage type}}{{/viewpage}}.html?no={{lno}}">{{ltit}}</a></td>
+  <td>{{writedt}}</td>
   <td>{{#typeCheck type}}{{/typeCheck}}</td>
 </tr>
 {{/each}}
@@ -51,7 +52,7 @@
     template1Src = $('#template1').html(),
     template1Engine = Handlebars.compile(template1Src);
 	
-	$.ajax('../json/member/list', {
+	$.ajax(host + '/json/member/list', {
 	    dataType: 'json',
 	    success: (result) => {
 	        tbody.html(template1Engine(result));

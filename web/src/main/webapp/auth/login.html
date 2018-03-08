@@ -2,114 +2,168 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인</title>
+<title>CATCH : 로그인</title>
 <link rel='stylesheet' href='../css/plugin.css'>
 <link rel='stylesheet' href='../css/style.css'>
+<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+	rel="stylesheet">
 </head>
 <body>
-	<div class='container'>
-
-		<header></header>
-		<h1 style="margin-top:100px; margin-bottom:30px">로그인</h1>
-		<form action="login" method='post'>
-			<div class='form-group row'>
-				<label for='email' class='col-sm-2 col-form-label'>아이디</label>
-				<div class='col-sm-10'>
-					<input id='email' class='form-control' id='email' type='text'
-						name='email' placeholder='Enter your ID'>
-				</div>
-			</div>
-
-			<div class='form-group row'>
-				<label for='password' class='col-sm-2 col-form-label'>암호</label>
-				<div class='col-sm-10'>
-					<input id='password' class='form-control' id='password'
-						type='password' placeholder="Enter your password" name='password'>
-				</div>
-			</div>
-
-			<div class='form-group row'>
-				<div class="col-sm-2"></div>
-				<div class="col-sm-10">
-					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="saveEmail"
-							name="saveEmail"> <label class="form-check-label"
-							for="saveEmail">이메일 저장</label>
+	<header></header>
+	<section class="section-space-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div style="margin: 100px 0 50px 0" class="section-title">
+						<h2>CATCH LOGIN</h2>
+						<div class="divider dark">
+							<i class="icon-graduation"></i>
+						</div>
+						<p id='ptag' style='margin-top: 10px'>
+							아직 회원이 아니세요? <a id="gotoRegister" href="#">회원가입</a>
+						</p>
 					</div>
 				</div>
 			</div>
 
-			<div class='form-group row'>
-				<div class='col-sm-10'>
-					<button id='loginBtn' type='button' class='btn btn-primary btn-sm'>로그인</button>
-					<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-					</fb:login-button>
-					<div id="status">
+			<form id='loginform' method='post'>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">ID</label>
+					<div class="col-sm-10">
+						<input class="form-control" placeholder="Enter your ID" id="email"
+							name="email" type="text" required="">
 					</div>
-					<button id='individualRegister' type='button' onclick="location.href='../member/register-form.html'" class='btn btn-primary btn-sm'>개인 회원가입</button>
-					<button id='companyRegister' type='button' onclick="location.href='../company/register-form.html'" class='btn btn-primary btn-sm'>기업 회원가입</button>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">Password</label>
+					<div class="col-sm-10">
+						<input class="form-control" placeholder="Enter your password"
+							id="password" name="password" type="password" required>
+					</div>
+				</div>
+
+
+				<div class='form-group row'>
+					<div class="col-sm-2"></div>
+					<div class="col-sm-10">
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" id="saveEmail"
+								name="saveEmail"> <label class="form-check-label"
+								for="saveEmail">이메일 저장</label>
+						</div>
+					</div>
+				</div>
+
+				<div align='center' class='form-group row'>
+					<div class='col-sm-12'>
+						<button id='loginBtn' type='button'
+							class="button button-style button-style-dark button-style-color-2">로그인</button>
+						<button
+							style='background-color: #4267b2; color: white; margin-top: 20px'
+							class="button button-style button-style-dark button-style-color-2"
+							onclick="FB.login();">
+							<i style='size: 1em' class="fab fa-facebook"> </i> Facebook 로그인
+						</button>
+
+					</div>
+						<div id="status"></div>
+
+					<!-- <div style='margin-top: 20px' class='col-sm-12'>
+						<fb:login-button scope="public_profile,email"
+							onlogin="checkLoginState();">
+						</fb:login-button>
+					</div> -->
+					
+				</div>
+			</form>
+
+			<div align="center" style="text-align: center; display: none"
+				id="register">
+				<div style="display: inline-block;">
+					<i style="font-size: 13em; cursor: pointer"
+						onmouseover="$(this).css('color', '#f7639a')"
+						onclick="location.href='../member/individual-register.html'"
+						onmouseout="$(this).css('color', 'black')" class="fas fa-user"></i>
+					<h5 align="center" style='margin-top: 2em; font-weight: 700'>개인회원</h5>
+				</div>
+				<span style="display: inline-block; padding: 0 5em 0 2em"></span>
+				<div style="display: inline-block;">
+					<i style="font-size: 13em; cursor: pointer"
+						onmouseover="$(this).css('color', '#4c9cef')"
+						onclick="location.href='../member/company-register.html'"
+						onmouseout="$(this).css('color', 'black')" class="fas fa-user"></i>
+					<h5 align="center" style='margin-top: 2em; font-weight: 700'>기업회원</h5>
 				</div>
 			</div>
-		</form>
-	</div>
+
+		</div>
+	</section>
 
 	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src='../js/context.js'></script>
 	<script src='../js/login.js'></script>
 	<script type="text/javascript">
-		$('header').load("../header.html");
-	</script>
-	
-	<script type="text/javascript">
-	function autoServerLogin(accessToken) {
-	    $.getJSON(
-	        '../json/auth/facebookLogin', 
-	        {'accessToken': accessToken},
-	        function(result) {
-	          if (result.status == 'success') {
-	              location.href = '../apply/apply.html';
-	          } else {
-	              window.alert('로그인 실패입니다!');
-	          }
-	    });
-	}
-	
-	function statusChangeCallback(response) {
-	  console.log(response);
-	
-	  if (response.status === 'connected') { // 로그인이 정상적으로 되었을 때,
-	      autoServerLogin(response.authResponse.accessToken);
-	  
-	  } else { // 로그인이 되지 않았을 때,
-	      console.log("로그인 되지 않았음");
-	  }
-	}
-	  
-	function checkLoginState() {
-	    FB.getLoginStatus(function(response) { 
-	      statusChangeCallback(response);
-	    });
-	}
-	
-	window.fbAsyncInit = function() {
-	  FB.init({
-	    appId      : '162326581225432', // 개발자가 등록한 앱 ID
-	    cookie     : true,  
-	    xfbml      : true,  
-	    version    : 'v2.12' 
-	  });
-	};
-	
-	(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "https://connect.facebook.net/en_US/sdk.js";
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
+		$('header').load("../header.html"); 
+		$('#gotoRegister').click(() => {
+			$('#loginform').fadeOut("fast", function() {
+				$('#ptag').html('회원 유형을 선택해주세요');
+				$('#register').fadeIn("fast");				
+			});
+		});
 	</script>
 
+	<script type="text/javascript">
+		function autoServerLogin(accessToken) {
+			$.getJSON(host + '/json/auth/facebookLogin', {
+				'accessToken' : accessToken
+			}, function(result) {
+				if (result.status == 'success') {
+					location.href = '../apply/apply.html';
+				} else {
+					window.alert('로그인 실패입니다!');
+				}
+			});
+		}
+
+		function statusChangeCallback(response) {
+			console.log(response);
+
+			if (response.status === 'connected') { // 로그인이 정상적으로 되었을 때,
+				autoServerLogin(response.authResponse.accessToken);
+
+			} else { // 로그인이 되지 않았을 때,
+				console.log("로그인 되지 않았음");
+			}
+		}
+
+		function checkLoginState() {
+			FB.getLoginStatus(function(response) {
+				statusChangeCallback(response);
+			});
+		}
+
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId : '162326581225432', // 개발자가 등록한 앱 ID
+				cookie : true,
+				xfbml : true,
+				version : 'v2.12'
+			});
+		};
+
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id))
+				return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "https://connect.facebook.net/en_US/sdk.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
 </body>
 </html>

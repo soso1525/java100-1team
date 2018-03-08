@@ -100,14 +100,14 @@
 	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
-
+	<script type="text/javascript" src="../js/context.js"></script>
 	<script type="text/javascript">
 	var index = location.href.indexOf('?');
 	if (index != -1) { 
 	    var qs = location.href.substr(index + 1);
 	    var arr = qs.split('=');
 	    $(() => {
-	        $.ajax('../json/member/' + arr[1], {
+	        $.ajax(host + '/json/member/' + arr[1], {
 	            dataType: 'json',
 	            success: (result) => {
 	            	$('#id').val(result.member.id);

@@ -37,6 +37,10 @@
 		inner join g_test t on a.ano = t.ano
 		where a.ano = #{ano}
 	</select>
+	
+	<select id="list" resultMap="testMap" parameterType="int">
+		select * from g_test where ano=#{ano}
+	</select>
 
 	<select id="findByNo" resultMap="testMap" parameterType="integer">
 		select

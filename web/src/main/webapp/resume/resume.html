@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CATCH : Main</title>
+<link rel="stylesheet" href="../css/catch-main.css"">
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<!-- <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous"> -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<!-- <script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script> -->
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+	crossorigin="anonymous"></script>
+</head>
+<style>
+body{
+background:#708090;
+}
+</style>
+<body>
+<header></header>
+
+	<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+	</nav>
+	<div class="body-wrapper">
+		<div class="wrapper">
+			<div class="header">
+				<div class="content">
+					<div class="arrows">
+						<div class="left-arrow">
+							<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+								xmlns:xlink="http://www.w3.org/1999/xlink" width="24"
+								height="24" viewBox="0 0 24 24">
+                <path fill="#cfd8dc"
+									d="M15.422 16.078l-1.406 1.406-6-6 6-6 1.406 1.406-4.594 4.594z"></path></svg>
+						</div>
+						<div class="right-arrow">
+							<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+								xmlns:xlink="http://www.w3.org/1999/xlink" width="24"
+								height="24" viewBox="0 0 24 24">
+                  <path fill="#cfd8dc"
+									d="M15.422 16.078l-1.406 1.406-6-6 6-6 1.406 1.406-4.594 4.594z"></path></svg>
+						</div>
+						<div class="clear-fix"></div>
+					</div>
+					<div id="list"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+<script id="resume" type="text/x-handlebars-template">
+{{#each list}}
+     <div class="{{className}}">
+     <div class="avatar" style="background-image: url('../../download/{{image}}');"></div>
+     <div class="info">
+     <div class="name">{{title}}</div>
+     <div class="status">{{education}}</div>
+     </div>
+     <div class="missed-msg">
+     <div class="num">
+     </div>
+     <div class="desc">
+      {{note}}
+     <div class="clear-fix"></div>
+     </div>
+     </div>
+     <div class="setting">
+     <div class="options"></div>
+     <div class="clear-fix"></div>
+     </div>
+</div>
+{{/each}}
+</script>
+
+	<script src="../js/main1.js"></script>
+	<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+	<script type="text/javascript" src="../js/context.js"></script>
+
+
+	<script type="text/javascript">
+$('header').load("../header.html");
+resumeSrc = $('#resume').html(),
+resumeEngine = Handlebars.compile(resumeSrc);
+
+var classArray = ["card left l4", "card left l3", "card left l2", "card left l1", "card active", "card right l1", "card right l2", "card right l3", "card right l4"]
+load();
+
+function load() {
+    $.ajax(host + '/json/resume/list', {
+        dataType: 'json',
+        success: (result) => {
+            var i = 0;
+            for (var item of result.list) {
+                item.className = classArray[i++];    
+            }
+            $('#list').html(resumeEngine(result));
+        },
+        error: () => {
+            window.alert('서버 실행 오류!');
+        }
+    });
+};
+
+
+</script>
+</body>
+</html>

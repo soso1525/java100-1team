@@ -8,10 +8,16 @@ public class Test {
 	String time; // 시험 시간
 	String location;
 	String prepare; // 준비물
-	char check; // 합격여부
+	int check; // 합격여부
 	Apply apply;
 	Member member;
-
+	
+	@Override
+	public String toString() {
+		return "Test [no=" + no + ", ano=" + ano + ", type=" + type + ", date=" + date + ", time=" + time
+				+ ", location=" + location + ", prepare=" + prepare + ", check=" + check + ", apply=" + apply
+				+ ", member=" + member + "]"; 
+	}
 
 	public int getNo() {
 		return no;
@@ -69,11 +75,11 @@ public class Test {
 		this.prepare = prepare;
 	}
 
-	public char getCheck() {
+	public int getCheck() {
 		return check;
 	}
 
-	public void setCheck(char check) {
+	public void setCheck(int check) {
 		this.check = check;
 	}
 
@@ -92,4 +98,5 @@ public class Test {
 	public void setMember(Member member) {
 		this.member = member;
 	}
+
 }

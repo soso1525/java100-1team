@@ -40,10 +40,19 @@ public class TestController {
 		return result;
 	}
 
-	@RequestMapping("{no}")
-	public Object view(@PathVariable int no) throws Exception {
+//	@RequestMapping("{no}")
+//	public Object view(@PathVariable int no) throws Exception {
+//		HashMap<String, Object> result = new HashMap<>();
+//		result.put("test", testService.findByNo(no));
+//		return result;
+//	}
+	
+	@RequestMapping("{ano}")
+	public Object find(@PathVariable int ano) throws Exception {
+//		result.put("letter", letterService.get(no));
+//		result.put("question", questionService.list(no));
 		HashMap<String, Object> result = new HashMap<>();
-		result.put("test", testService.findByNo(no));
+		result.put("test", testService.find(ano));
 		return result;
 	}
 

@@ -127,7 +127,7 @@ fieldset {
 }
 
 .section-space-padding {
-    padding: 100px 0px;
+    padding: 20px 0px;
 }
 
 .section-title {
@@ -229,6 +229,10 @@ fieldset {
 	color: #fff;
 }
 
+.button-style:disabled {
+	cursor: not-allowed;
+}
+
 .button-style:hover,
 .button-style:active,
 .button-style:focus {
@@ -249,7 +253,11 @@ fieldset {
 }
 
 .button.search {
-	padding: 10px 20px;
+	padding: 12px 24px;
+}
+
+div.search {
+	text-align: left;
 }
 
 /* switch버튼 석희수정 */
@@ -686,6 +694,12 @@ tr > td:nth-child(2) {
 }
 
 
+.modal-body.login {
+	text-align: center;
+    height: 275px;
+    margin-top: 50px
+}
+
 
 /* Subscribe */
 
@@ -785,12 +799,10 @@ tr > td:nth-child(2) {
     display: none;
 	padding: 0px;
 }
-
+/* 석희수정 */
 ul.portfolio {
-    padding: 30px 10px;
+    padding: 15px 10px;
     list-style: none;
-    margin-top: 30px;
-    margin-left: 8px;
     text-align: center;
     background-color: #4c9cef;
 }

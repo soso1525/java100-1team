@@ -2,97 +2,117 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>스터디관리</title>
-<link rel='stylesheet' href='../css/common.css'>
-<link rel='stylesheet' href='../css/plugin.css'>
-<link rel='stylesheet' href='../css/style.css'>
+<title>CATCH : 스터디등록</title>
+<link rel="shortcut icon" href="images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="144x144" type="image/x-icon"
+	href="../images/favicon/apple-touch-icon.png">
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<style>
+.delcol {
+	background-color: #f7639a;
+	color: white;
+}
+</style>
 </head>
 <body>
-	<div class='container'>
-	<header></header>		
-		<h1 style="margin-top:100px; margin-bottom:30px">스터디 정보</h1>
-		<div class='form-group row'>
-			<label for='photo' class='col-sm-2 col-form-label'></label>
-			<div class='col-sm-10' id='simgs'></div>
-		</div>
-		<div class='form-group row my-view'>
-			<label for='sno' class='col-sm-2 col-form-label'>번호</label>
-			<div class='col-sm-10'>
-				<input class='form-control' readonly id='sno' type='number'
-					name='sno'>
-			</div>
-		</div>
-		<form id='form' method="post" enctype="multipart/form-data">
-			<div id='nod'></div>
-			<div class='form-group row'>
-				<label for='sloc' class='col-sm-2 col-form-label'>지역</label>
-				<div class='col-sm-10'>
-					<input class='form-control' id='sloc' type='text' name='sloc'>
+	<header></header>
+	<section style="background-color: white" id="services"
+		class="services-section section-space-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div style="margin-top: 80px;" class="section-title">
+						<h2>스터디 등록</h2>
+						<div class="divider dark">
+							<i class="icon-drop"></i>
+						</div>
+						<p>Study Groups with the Same Direction</p>
+					</div>
 				</div>
 			</div>
+
 			<div class='form-group row'>
-				<label for='sname' class='col-sm-2 col-form-label'>이름</label>
-				<div class='col-sm-10'>
-					<input class='form-control' id='sname' type='text' name='sname'>
-				</div>
-			</div>
-			<div class='form-group row'>
-				<label for='sdesc' class='col-sm-2 col-form-label'>설명</label>
-				<div class='col-sm-10'>
-					<input class='form-control' id='sdesc' type='text' name='sdesc'>
-				</div>
-			</div>
-			<div class='form-group row'>
-				<label for='sint' class='col-sm-2 col-form-label'>관심분야</label>
-				<div class='col-sm-10'>
-					<input class='form-control' id='sint' type='text' name='sint'>
-				</div>
-			</div>
-			<div class='form-group row'>
-				<label for='sppl' class='col-sm-2 col-form-label'>인원수</label>
-				<div class='col-sm-10'>
-					<input class='form-control' id='sppl' type='number' name='sppl'>
-				</div>
+				<label for='photo' class='col-sm-2 col-form-label'></label>
+				<div class='col-sm-10' id='simgs'></div>
 			</div>
 			<div class='form-group row my-view'>
-				<label for='sregdt' class='col-sm-2 col-form-label'>등록날짜</label>
+				<label for='sno' class='col-sm-2 col-form-label'>번호</label>
 				<div class='col-sm-10'>
-					<input class='form-control' readonly id='sregdt' type='date'>
+					<input class='form-control' readonly id='sno' type='number'
+						name='sno'>
 				</div>
 			</div>
-			<div class='form-group row'>
-				<label for='scorp' class='col-sm-2 col-form-label'>대상기업</label>
-				<div class='col-sm-10'>
-					<input class='form-control' id='scorp' type='text' name='scorp'>
+			<form id='form' method="post" enctype="multipart/form-data">
+				<div id='nod'></div>
+				<div class='form-group row'>
+					<label for='sloc' class='col-sm-2 col-form-label'>지역</label>
+					<div class='col-sm-10'>
+						<input class='form-control' id='sloc' type='text' name='sloc'>
+					</div>
 				</div>
-			</div>
-			<div class='form-group row'>
-				<label for='scheck' class='col-sm-2 col-form-label'>모집상태</label>
-				<div class='col-sm-10'>
-					<input class='form-control' id='scheck' type='text' name='scheck'>
+				<div class='form-group row'>
+					<label for='sname' class='col-sm-2 col-form-label'>이름</label>
+					<div class='col-sm-10'>
+						<input class='form-control' id='sname' type='text' name='sname'>
+					</div>
 				</div>
-			</div>
-			<div class='form-group row'>
-				<label for='file' class='col-sm-2 col-form-label'>이미지</label>
-				<div class='col-sm-10'>
-					<input class='form-control-file' id='file' type='file' name='file'>
+				<div class='form-group row'>
+					<label for='sdesc' class='col-sm-2 col-form-label'>설명</label>
+					<div class='col-sm-10'>
+						<input class='form-control' id='sdesc' type='text' name='sdesc'>
+					</div>
 				</div>
-			</div>
+				<div class='form-group row'>
+					<label for='sint' class='col-sm-2 col-form-label'>관심분야</label>
+					<div class='col-sm-10'>
+						<input class='form-control' id='sint' type='text' name='sint'>
+					</div>
+				</div>
+				<div class='form-group row'>
+					<label for='sppl' class='col-sm-2 col-form-label'>인원수</label>
+					<div class='col-sm-10'>
+						<input class='form-control' id='sppl' type='number' name='sppl'>
+					</div>
+				</div>
+				<div class='form-group row my-view'>
+					<label for='sregdt' class='col-sm-2 col-form-label'>등록날짜</label>
+					<div class='col-sm-10'>
+						<input class='form-control' readonly id='sregdt' type='date'>
+					</div>
+				</div>
+				<div class='form-group row'>
+					<label for='scorp' class='col-sm-2 col-form-label'>대상기업</label>
+					<div class='col-sm-10'>
+						<input class='form-control' id='scorp' type='text' name='scorp'>
+					</div>
+				</div>
+				<div class='form-group row'>
+					<label for='scheck' class='col-sm-2 col-form-label'>모집상태</label>
+					<div class='col-sm-10'>
+						<input class='form-control' id='scheck' type='text' name='scheck'>
+					</div>
+				</div>
+				<div class='form-group row'>
+					<label for='file' class='col-sm-2 col-form-label'>이미지</label>
+					<div class='col-sm-10'>
+						<input class='form-control-file' id='file' type='file' name='file'>
+					</div>
+				</div>
 
-			<div class='form-group row'>
-				<div class='col-sm-10'>
-					<button id="addBtn" type="button"
-						class='btn btn-primary btn-sm my-new'>추가</button>
-					<button id="updateBtn" type="button"
-						class='btn btn-primary btn-sm my-view'>변경</button>
-					<button id="deleteBtn" type="button"
-						class='btn btn-primary btn-sm my-view'>삭제</button>
+				<div class='form-group row'>
+					<div class='col-sm-10'>
+						<button id="addBtn" type="button"
+							class='btn btn-primary btn-sm my-new'>추가</button>
+						<button id="updateBtn" type="button"
+							class='btn btn-primary btn-sm my-view'>변경</button>
+						<button id="deleteBtn" type="button"
+							class='btn btn-primary btn-sm my-view'>삭제</button>
+					</div>
 				</div>
-			</div>
-		</form>
-		<footer></footer>
-	</div>
-
+			</form>
+		</div>
+	</section>
 
 	<script src='/node_modules/jquery/dist/jquery.min.js'></script>
 	<script src='/node_modules/popper.js/dist/umd/popper.min.js'></script>
@@ -115,9 +135,6 @@ var addBtn = $('#addBtn'),
     nodiv = $('#nod'),
     simgs = $('#simgs'),
     scheckItem = $('#scheck');
-
-/* $('header').load('../header.html');
-$('footer').load('../footer.html'); */
 
 var index = location.href.indexOf('?');
 if (index != -1) { // 기존 데이터를 조회할 경우,

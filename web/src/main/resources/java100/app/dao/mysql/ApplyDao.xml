@@ -38,11 +38,12 @@
             a.aname,
             a.adt,
             a.ino,
+            l.lno,
             t.tno,
-            l.lno
+            t.ttype
 			from g_app a
-			left join g_test t on t.ano = a.ano
 			left join g_let l on l.ano = a.ano
+			left join g_test t on t.ano = a.ano
 			where a.ino = #{writer.no}
 	</select>
 	

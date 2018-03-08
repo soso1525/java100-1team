@@ -33,7 +33,7 @@
 		<result column="ino" property="ino"/>
     </resultMap>
     <sql id="select1">
-    select
+    select 
 			r.rno,
 			r.rtit,
 			r.redu,
@@ -58,6 +58,7 @@
 		<include refid="select1"/>
 			from g_res r
 			left join g_iper i on r.ino = i.ino 
+			order by r.rno desc
 			   limit #{startIndex}, #{size}
 	</select>
 	
@@ -79,15 +80,15 @@
             redu=#{education},
 			rcar=#{career},
 			rkind=#{kind},
-			rimg=#{image},
+			rimg=if(#{image} = '', rimg, #{image}), 
 			rqua=#{qualification},
 			rlang=#{language},
 			raward=#{award},
 			rmaj=#{major},
 			rsch=#{schoolName},
 			rgpa=#{grades},
-			ravi=#{avi},
-			rfile=#{file},
+			ravi=if(#{avi} = '', ravi, #{avi}),
+			rfile=if(#{file} = '', rfile, #{file}),
 			rnote=#{note},
 			rcheck=#{check}
         where rno=#{no}

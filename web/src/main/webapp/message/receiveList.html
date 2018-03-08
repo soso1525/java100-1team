@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>catch</title>
-<link rel='stylesheet' href='../../css/common.css'>
 <link rel="shortcut icon" href="../images/favicon/favicon.ico">
 <link rel="stylesheet" type="text/css" href="../css/plugin.css">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
@@ -104,6 +103,7 @@ data-target='#modal-testNew' role='button' data-backdrop='static'>
 	<script type="text/javascript" src="../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../js/plugin.js"></script>
 	<script type="text/javascript" src="../js/scripts.js"></script>
+	<script type="text/javascript" src="../js/context.js"></script>
 	<script type="text/javascript">
 	$('header').load("../header.html");
 var prevBtn = $('#prevBtn'),
@@ -149,7 +149,7 @@ function show2(mrecv, mcont) {
 function load(pageNo, options) {
     if (options == undefined) options = {};
     options.pn = pageNo;
-    $.ajax('../json/message/receiveList', {
+    $.ajax(host + '/json/message/receiveList', {
         data: options,
         dataType: 'json',
         success: (result) => {
