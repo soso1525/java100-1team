@@ -27,10 +27,14 @@ import java100.app.service.QuestionService;
 @RequestMapping("/letter")
 @SessionAttributes("loginUser")
 public class LetterController {
-	@Autowired ServletContext servletContext; // for file
-	@Autowired LetterService letterService;
-	@Autowired QuestionService questionService;
-	@Autowired ApplyService applyService;
+	@Autowired
+	ServletContext servletContext; // for file
+	@Autowired
+	LetterService letterService;
+	@Autowired
+	QuestionService questionService;
+	@Autowired
+	ApplyService applyService;
 
 	@RequestMapping("list")
 	public Object list(@ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
@@ -73,8 +77,8 @@ public class LetterController {
 
 		HashMap<String, Object> result = new HashMap<>();
 		letterService.addLetter(apply, letter);
-		
-		for(int i=0; i<articles.length; i++) {
+
+		for (int i = 0; i < articles.length; i++) {
 			Question q = new Question();
 			q.setArticle(articles[i]);
 			q.setContent(contents[i]);

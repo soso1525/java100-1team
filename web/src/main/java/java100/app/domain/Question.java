@@ -12,11 +12,11 @@ public class Question {
 	int nno; // 공고번호
 	Member member;
 	Letter letter;
-	
+
 	public Question() {
-		
+
 	}
-	
+
 	public Question(String article, String content, int length, Member member, Letter letter) {
 		this.article = article;
 		this.content = content;
@@ -24,7 +24,7 @@ public class Question {
 		this.member = member;
 		this.letter = letter;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Question [qno=" + qno + ", article=" + article + ", articles=" + Arrays.toString(articles)
@@ -103,5 +103,5 @@ public class Question {
 	public void setLetter(Letter letter) {
 		this.letter = letter;
 	}
-	
+
 }
