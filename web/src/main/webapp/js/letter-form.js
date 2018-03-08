@@ -1,5 +1,4 @@
 var addBtn = $('#addBtn'),
-// anoItem = $('#ano'),
 	fileItem = $('#file'),
 	qaddBtn = $('#qaddBtn'),
 	questionNum = 1;
@@ -7,7 +6,6 @@ var addBtn = $('#addBtn'),
 var index = location.href.indexOf('?');
 var qs = location.href.substr(index + 1);
 var arr = qs.split('=');
-// anoItem.val(arr[1]);
 
 
 addBtn.click(() => {
@@ -19,6 +17,7 @@ addBtn.click(() => {
         processData : false,
         contentType : false,
         success: (result) => {
+        	swal("Apply Success!", "자기소개서가 정상적으로 등록되었습니다.", "success");
             location.href = "../apply/my-apply-list.html";
         },
         error: () => {

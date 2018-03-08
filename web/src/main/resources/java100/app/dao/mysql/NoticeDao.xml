@@ -105,7 +105,12 @@
 			n.nduty,
 			c.cname,
 			c.clogo,
-			c.cno
+			c.cno,
+ 			case
+			 when n.ntype ="0" then "신입"
+			 when n.ntype ="1" then "경력"
+			 when n.ntype ="2" then "신입/경력"
+			 end as ntype
 		from g_noti n
 		left join g_corp c on n.cno=c.cno
 		where n.nno = #{no}

@@ -4,7 +4,7 @@ public class Notice {
 	CompanyMember companyMember;
     int no;
     String image;
-    int nType;
+    String nType;
     String startDate;
     String endDate;
     int viewCount;
@@ -17,10 +17,10 @@ public class Notice {
 	public void setDuty(String duty) {
 		this.duty = duty;
 	}
-	public int getnType() {
+	public String getnType() {
 		return nType;
 	}
-	public void setnType(int nType) {
+	public void setnType(String nType) {
 		this.nType = nType;
 	}
 	public CompanyMember getCompanyMember() {
