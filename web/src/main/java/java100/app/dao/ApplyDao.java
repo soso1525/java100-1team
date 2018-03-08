@@ -4,11 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import java100.app.domain.Apply;
-import java100.app.domain.Letter;
-import java100.app.domain.Resume;
 
 public interface ApplyDao {
-	public int insert(Apply apply);
+	 public int insert(Apply apply);
 	 public List<Apply> findAll(HashMap<String, Object> params);
 	 public int countAll();
 	 public Apply findByNo(int no);
