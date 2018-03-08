@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" type="text/css" href="../css/common.css">
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" type="text/css" href="https://tympanus.net/Development/HoverEffectIdeas/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
+<link rel="stylesheet" type="text/css" href="../css/notice.css">
+<body>
+<header></header>
+	<section id="portfolio" class="portfolio section-space-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="section-title">
+						<h2>채용정보</h2>
+						<div class="divider dark">
+							<i class="icon-picture"></i>
+						</div>
+						<p><a href="form.html">
+					<button type="button" class='btn btn-primary btn-sm'>공고등록</button>
+				</a></p>
+					</div>
+				</div>
+				<div class="col-sm-12 search"></div>
+				<div class="col-sm-12" style="border:1px solid black; padding:0 100px 0 100px; margin-top:30px">
+					<div id="notice-new" class="col-sm-3" style="margin: 40px; padding:0px;">
+						
+					</div>
+					
+					<div id="notice-best" class="col-sm-3" style="margin: 40px; padding:0px;">
+						
+					</div>
+					
+					<div id="notice-hot" class="col-sm-3" style="margin: 40px; padding:0px;">
+						
+					</div>
+					
+					
+					
+					
+					
+				</div>
+			</div>
+		</div>
+	</section>
+
+<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/plugin.js"></script>
+<script type="text/javascript" src="../js/scripts.js"></script>
+<script src='../js/context.js'></script>
+
+<script type="text/javascript">
+
+$('header').load("../header.html");
+$('.search').load("search.html");
+load({
+	"oc": "nsdt",
+	"al": "desc"
+}, "new");
+
+load({
+	"oc": "ncnt",
+	"al": "desc"
+}, "hot");
+
+
+load({}, "best");
+
+var check = $("input[type='checkbox']");
+check.click(function(){
+  $(".my-check").toggle();
+});
+
+var words = $('#words'),
+	searchBtn = $('#searchBtn'),
+   	currPageNo = 1,
+ 	nTypeItem = $('#nType');
+
+
+/* D-DAY구하는 함수 */
+function parse(str) {
+	var now = new Date();
+	var date = new Date(str.split('-'));
+	var dday = date.getTime() - now.getTime();
+	dday = Math.floor(dday / (1000 * 60 * 60 * 24)) + 1;
+	if (dday <= 0) {
+		return "D-Day";
+	}
+	return "D-" + dday;
+}
+
+searchBtn.click(() => {
+	$(".my-main").css('display', 'none');
+	$(".notice-list").css('display', 'block');
+	var nType = 0;
+	if (nTypeItem.prop("checked")) {
+		nType = 1;
+	}
+});
+
+var timer;
+var noticeIndex = 0;
+
+
+function load(options, kind) {
+    $.ajax(host + '/json/notice/list', {
+    	data: options,
+        dataType: 'json',
+        success: (result) => {
+        	var data = result.list[noticeIndex++];
+        	changeNoticeNew(data,kind);
+        	timer = setInterval(function() {
+        		if (noticeIndex >= result.list.length) {
+        			noticeIndex = 0;
+        		} 
+        		var data = result.list[noticeIndex++];
+        		changeNoticeNew(data,kind);
+        		     		
+        	}, 3000);
+        },
+        error: () => {
+            window.alert('서버 실행 오류!');
+        }
+    });
+}
+
+function changeNoticeNew(data, kind) {
+	$('#notice-' + kind + ' > div:last-child').remove();
+   	$('<div></div>').html(
+          	"<div style='text-align:left; width:100%'>" +
+				"<div class='col-sm-3' style='padding:5px 10px; background-color:#f0ad4e;color:white;font-size:14px;font-weight:bold;text-align:center;'>"+ kind.toUpperCase() + "</div>" +
+			"</div>" +
+			"<div class='notice-head' style='width:100%;'>" +
+				"<img class='notice-img-top' src='../download/" + data.companyMember.logo + "' alt='Card image cap'>" +
+			"</div>" +
+			"<div class='notice-body' style='text-align:center;height:150px'>" +
+		  		"<p class='notice-title'>" + data.companyMember.cName + "</p><br><br>" +
+		  		"<p class='notice-text'>" + data.duty +"</p><br>" +
+				"<p class='notice-text' style='color:red;'>" + parse(data.endDate) + "</p><br>" +
+				"<div class='notice-footer' style='text-align:center'>" +
+					"<button class='btn btn-primary btn-sm'>채용공고 보러가기</button>" +
+				"</div>" +
+			"</div>").appendTo($('#notice-' + kind));
+}
+</script>
+
+</body>
+</html>

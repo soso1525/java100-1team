@@ -62,7 +62,6 @@ public class NoticeController {
             } else {
             	options.put("cKind", cKind);
             }
-            
             if (address.equals("전체")) {
             	options.put("address", null);
             } else {

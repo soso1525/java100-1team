@@ -61,6 +61,11 @@
                 and (n.ntype like #{nType} or n.ntype like 2)
 	        </where>
         </if>
+        <if test="orderColumn == 'nsdt'">
+        	<where>
+        		and nsdt > (now() - interval 1 month)
+        	</where>
+        </if>
         order by 
         <choose>
             <when test="orderColumn == 'nedt' and align == 'desc'">
@@ -68,6 +73,12 @@
             </when>
             <when test="orderColumn == 'nedt' and align == 'asc'">
                 n.nedt asc
+            </when>
+            <when test="orderColumn == 'nsdt' and align == 'desc'">
+                n.nsdt desc
+            </when>
+            <when test="orderColumn == 'ncnt' and align == 'desc'">
+                n.ncnt desc
             </when>
             <when test="orderColumn == 'viewcount'">
                 n.ncnt desc
