@@ -317,7 +317,7 @@ figure.effect-julia {
 }
 
 figure.effect-julia img {
-    max-width: 290px;
+    max-width: none;
     height: 300px;
     -webkit-transition: opacity 1s, -webkit-transform 1s;
     transition: opacity 1s, transform 1s;
