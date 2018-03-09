@@ -13,6 +13,7 @@ public interface QuestionService {
     int update(Question apply);
     int delete(int no);
     String getCompanyName(int no);
+    String getFileName(int no);
 }
 
 

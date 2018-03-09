@@ -45,6 +45,7 @@ public class QuestionController {
     public Object view(@PathVariable int no) throws Exception {
     	HashMap<String, Object> result = new HashMap<>();
     	result.put("compName", questionService.getCompanyName(no));
+    	result.put("file", questionService.getFileName(no));
         result.put("question", questionService.list(no));
         return result;
     }
