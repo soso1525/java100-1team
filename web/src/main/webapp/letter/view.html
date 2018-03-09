@@ -83,7 +83,7 @@
 			dataType: 'json',
 			success: (result) => {
 				letter.html(letter.html() + template1Engine(result));
-				$('#title').html(result.compName);
+				$('#title').html(result.compName + ' 자기소개서');
 				if(result.file != null) 
 					fileName = result.file;
 					$('#fileTag').html(fileName);

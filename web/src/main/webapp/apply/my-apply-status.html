@@ -15,9 +15,9 @@
 }
 </style>
 </head>
-<body>
+<body style='background-color: #f2f2f2'>
 	<header></header>
-	<section style="background-color: white" id="services"
+	<section style="background-color: #f2f2f2" id="services"
 		class="services-section section-space-padding">
 		<div class="container">
 			<div class="row">
@@ -27,7 +27,10 @@
 						<div class="divider dark">
 							<i class="icon-drop"></i>
 						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+						<p>
+							기업별 자기소개서 작성 현황입니다<br>자기소개서를 보고싶으면 <strong>제목</strong>을
+							누르세요.
+						</p>
 					</div>
 
 				</div>
@@ -57,12 +60,12 @@
 						<div class="divider dark">
 							<i class="icon-drop"></i>
 						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+						<p>인적성 및 면접 일정입니다<br>일정이 없는 경우 표시되지 않습니다</p>
 					</div>
 				</div>
 			</div>
 
-			<div class="row" style="overflow: hidden; padding: 15px">
+			<div id='detail' class="row" style="overflow: hidden; padding: 15px">
 				<div style="float: left; width: 48%">
 					<table style="text-align: center; width: 100%;" id="list2"
 						class='table table-hover'>
@@ -105,9 +108,9 @@
 <tr>
   <td>{{count}}</td>
   <td><a href="../letter/view.html?no={{lno}}">{{ltit}}</a></td>
-  <td>{{writedt}}</td>
-  <td>{{#fileCheck lfile}}{{/fileCheck}}</td>
-  <td class='delcol'><a href="#">삭제</a></td>
+  <td style='background-color:white'>{{writedt}}</td>
+  <td style='background-color:white'>{{#fileCheck lfile}}{{/fileCheck}}</td>
+  <td class='delcol'>삭제</td>
 </tr>
 {{/each}}
 </script>
@@ -144,10 +147,16 @@
 	     	        window.alert('서버 실행 오류!');
 	     	    }
 	        });
+	        
 	        $.ajax('../json/test/' + arr[1], {
 	        	 dataType: 'json',
 	     	    success: (result) => {
-	     	        tbody2.html(template2Engine(result));
+	     	    	if(result.test != null) {
+	     	       		tbody2.html(template2Engine(result));
+	     	       		$('#detail').css('displsay', 'block');
+	     	    	} else {
+	     	    		$('#detail').css('display', 'none');
+	     	    	}
 	     	    },
 	     	    error: () => {
 	     	        window.alert('서버 실행 오류!');
