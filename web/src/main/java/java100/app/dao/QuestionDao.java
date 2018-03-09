@@ -13,5 +13,6 @@ public interface QuestionDao {
 	public Question findByNo(int no);
 	public int update(Question question);
 	public int delete(int no);
- 	
+	public String getCompanyName(int no);
+	public String getFileName(int no);
 }

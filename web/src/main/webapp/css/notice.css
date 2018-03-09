@@ -307,48 +307,6 @@ figure.effect-apollo figcaption::before {
     transform: scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,-100%,0);
 }
 
-@font-face{font-family:'Nanum Gothic'; src:url('/fonts/NanumGothic.woff')}
-figure.effect-apollo p {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    margin: 3em;
-    padding: 0 1em;
-    max-width: 150px;
-    color: #fff;
-    font-weight: bold;
-    border-right: 4px solid #fff;
-    text-align: right;
-    opacity: 0;
-    -webkit-transition: opacity 0.35s;
-    transition: opacity 0.35s;
-}
-
-figure.effect-apollo h2 {
-    text-align: left;
-    color: #f5f5f5;
-    font-size: 1.25em;
-    font-family:'Nanum Gothic';
-}
-
-figure.effect-apollo:hover img {
-    opacity: 0.6;
-    -webkit-transform: scale3d(1,1,1);
-    transform: scale3d(1,1,1);
-}
-
-figure.effect-apollo:hover figcaption::before {
-    -webkit-transform: scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,100%,0);
-    transform: scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,100%,0);
-}
-
-figure.effect-apollo:hover p {
-    opacity: 1;
-    -webkit-transition-delay: 0.1s;
-    transition-delay: 0.1s;
-}
-
-
 
 /*---------------*/
 /***** Julia *****/
@@ -358,14 +316,14 @@ figure.effect-julia {
     background: #2f3238;
 }
 
-/* figure.effect-julia img {
+figure.effect-julia img {
     max-width: none;
-    height: 400px;
+    height: 300px;
     -webkit-transition: opacity 1s, -webkit-transform 1s;
     transition: opacity 1s, transform 1s;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-} */
+}
 
 figure.effect-julia figcaption {
     text-align: left;
