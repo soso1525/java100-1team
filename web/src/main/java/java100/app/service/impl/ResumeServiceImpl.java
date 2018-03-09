@@ -19,12 +19,23 @@ public class ResumeServiceImpl implements ResumeService {
     @Override
     public List<Resume> list(int pageNo, int pageSize, Map<String, Object> options) {
         HashMap<String,Object> params = new HashMap<>();
-        params.put("startIndex", (pageNo - 1) * pageSize);
+        params.put("startIndex", (pageNo -1) * pageSize);
         params.put("size", pageSize);
         if (options != null) {
             params.putAll(options);
         }
         return resumeDao.findAll(params);
+    }
+    
+    @Override
+    public List<Resume> listMy(int pageNo, int pageSize, Map<String, Object> options) {
+        HashMap<String,Object> params = new HashMap<>();
+         params.put("startIndex", (pageNo - 1) * pageSize);
+         params.put("size", pageSize);
+         if (options != null) {
+             params.putAll(options);
+         }
+         return resumeDao.findMy(params);
     }
 
     @Override

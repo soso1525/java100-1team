@@ -143,7 +143,6 @@ td#t {
 	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
-	<script type="text/javascript" src="../js/context.js"></script>
 
 	<script type="text/javascript">
 	
@@ -186,7 +185,7 @@ var arr = qs.split('=');
 var videoSrc='';
 
 $(() => { 
-    $.ajax(host + '/json/resume/' + arr[1], {
+    $.ajax('../json/resume/' + arr[1], {
         dataType: 'json',
         success: (result) => {
             console.log(result);
@@ -205,6 +204,14 @@ $(() => {
             $("#avi").html(result.data.avi);
             $("#file").html(result.data.file);
             $("#note").html(result.data.note);
+            var resultPno = result.userInfo.no;
+            var resultRno = result.data.ino;
+            console.log("resultRno : "+ resultRno + " resultPno : "+ resultPno + " >>>> ");
+            
+            if(resultRno != resultPno) {
+                	updateBtn.css("display","none");
+                	deleteBtn.css("display","none");
+            }else{}
             
             var imageFile = result.data.image;
             console.log(imageFile);
@@ -274,7 +281,7 @@ updateBtn.click(() => {
 
 deleteBtn.click(() => {
     noItem = $('#no');
-    $.ajax(host + '/json/resume/delete', {
+    $.ajax('../json/resume/delete', {
         data: {
             no: noItem.val()
         },

@@ -36,6 +36,10 @@
 	    });
 	});
 	
+	$('#like').click(() => {
+		location.href="like.html";
+	});
+	
 	$('#resume').click(() => {
 		location.href="../resume/list.html";
 	});
