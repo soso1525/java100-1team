@@ -38,6 +38,11 @@ public class ApplyServiceImpl implements ApplyService {
 	public Apply get(int no) {
 		return applyDao.findByNo(no);
 	}
+	
+	@Override
+	public Apply getApply(String aname) {
+		return applyDao.findByName(aname);
+	}
 
 	@Override
 	public int update(Apply apply) {

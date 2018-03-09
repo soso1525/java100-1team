@@ -9,21 +9,37 @@ var arr = qs.split('=');
 
 
 addBtn.click(() => {
-	var formData = new FormData($('#form')[0]);
-    $.ajax(host + '/json/letter/addLetter', {
-        data: formData,
-        dataType: 'json',
-        method: 'POST',
-        processData : false,
-        contentType : false,
-        success: (result) => {
-        	swal("Apply Success!", "자기소개서가 정상적으로 등록되었습니다.", "success");
-            location.href = "../apply/my-apply-list.html";
-        },
-        error: () => {
+	$.ajax(host + '/json/apply/find', {
+		data: {
+			aname: $('#companyName').val()
+		},
+		dataType: 'json',
+		success: (result) => {
+			if (result.data) {
+				
+			} else {
+				var formData = new FormData($('#form')[0]);
+			    $.ajax(host + '/json/letter/addLetter', {
+			        data: formData,
+			        dataType: 'json',
+			        method: 'POST',
+			        processData : false,
+			        contentType : false,
+			        success: () => {
+			        	swal("Apply Success!", "자기소개서가 정상적으로 등록되었습니다.", "success");
+			            location.href = "../apply/my-apply-list.html";
+			        },
+			        error: () => {
+			            window.alert('서버 실행 오류!');
+			        }
+			    });
+			}
+		},
+		error: () => {
             window.alert('서버 실행 오류!');
         }
-    });
+		
+	});
 });
 
 qaddBtn.click(() => {

@@ -10,6 +10,7 @@ public interface ApplyDao {
 	 public List<Apply> findAll(HashMap<String, Object> params);
 	 public int countAll();
 	 public Apply findByNo(int no);
+	 public Apply findByName(String aname);
 	 public int update(Apply apply);
 	 public int delete(int no);
 }

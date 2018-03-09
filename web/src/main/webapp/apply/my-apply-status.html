@@ -103,6 +103,7 @@
 				<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 				<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
 				<script src='../js/login.js'></script>
+				<script src='../js/context.js'></script>
 				<script id="template1" type="text/x-handlebars-template">
 {{#each letterList}}
 <tr>
@@ -115,14 +116,14 @@
 {{/each}}
 </script>
 
-				<script id="template2" type="text/x-handlebars-template">
+<script id="template2" type="text/x-handlebars-template">
 <tr><td>일정 유형</td><td>{{test.type}}</td></tr>
 <tr><td>날짜</td><td>{{test.date}}</td></tr>
 <tr><td>시간</td><td>{{test.time}}</td></tr>
 <tr><td>준비물</td><td>{{test.prepare}}</td></tr>
 <tr><td>장소</td><td>{{test.location}}</td></tr>
 </script>
-				<script type="text/javascript">
+<script type="text/javascript">
 	$('header').load("../header.html");
 	var num = 1;
 	var tbody = $('#list > tbody'),
@@ -138,7 +139,7 @@
 	    var qs = location.href.substr(index + 1);
 	    var arr = qs.split('=');
 	    $(() => {
-	        $.ajax('../json/letter/' + arr[1], {
+	        $.ajax(host + '/json/letter/' + arr[1], {
 	        	 dataType: 'json',
 	     	    success: (result) => {
 	     	        tbody.html(template1Engine(result));
@@ -148,7 +149,7 @@
 	     	    }
 	        });
 	        
-	        $.ajax('../json/test/' + arr[1], {
+	        $.ajax(host + '/json/test/' + arr[1], {
 	        	 dataType: 'json',
 	     	    success: (result) => {
 	     	    	if(result.test != null) {
