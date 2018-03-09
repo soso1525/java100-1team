@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" type="text/css" href="../css/plugin.css">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
+</body>
 </head>
 <body style='background-color: #f2f2f2'>
 	<header></header>
@@ -17,13 +18,16 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div style="margin: 100px 0 50px 0" class="section-title">
-						<h2></h2>
+						<h2 id='title'></h2>
 						<div class="divider dark">
 							<i class="icon-graduation"></i>
 						</div>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
 					</div>
 				</div>
+			</div>
+
+			<div id='paper' style='padding: 30px; border-radius: 10px; background-color: white; box-shadow: 4px 6px 14px 4px #00000054'>
 			</div>
 		</div>
 	</section>
@@ -33,22 +37,25 @@
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
 	<script type="text/javascript" src="../js/context.js"></script>
-
-
 	<script id="template1" type="text/x-handlebars-template">
 {{#each question}}
-
+<div class="form-group row">
+	<label style="text-align: right" class="col-sm-2 col-form-label">자소서 문항</label>
+	<div style='font-weight:700; font-size: 1.2em' class="col-sm-8">{{article}}</div>
+</div>
+<div class="form-group row question">
+	<label style="text-align: right" class="col-sm-2 col-form-label">{{article.length}} / {{length}}자</label>
+	<div class="col-sm-8">
+		<div style='padding: 20px; border: 1.2px dotted #f7639a; overflow: hidden; height:auto; line-height: 170%' class="form-control">{{content}}</div>
+	</div>
+</div>
 {{/each}}
 </script>
 
 	<script type="text/javascript">
 	$('header').load("../header.html");
 	
-	var updateBtn = $('#updateBtn'),
-		anoItem = $('#ano'),
-		fileItem = $('#file'),
-		tbody = $('#list > tbody'),
-		questionAddBtn = $('#questionAddBtn'),
+	var letter = $('#paper'),
 		template1Src = $('#template1').html(),
 		template1Engine = Handlebars.compile(template1Src);
 	
@@ -57,25 +64,16 @@
 	var qs = location.href.substr(index + 1);
 	var arr = qs.split('=');
 	$(() => {
-		$.ajax(host + '/json/letter/' + arr[1], {
+		$.ajax(host + '/json/question/' + arr[1], {
 			dataType: 'json',
 			success: (result) => {
-				tbody.html(template1Engine(result));
+				letter.html(letter.html() + template1Engine(result));
+				$('#title').html(result.compName);
 			},
 			error: () => {
 				window.alert('서버 실행 오류!');
 			}
 		});
-	});
-	questionAddBtn.click(() => {
-		$.ajax({
-			success: (result) => {
-				location.href = "../question/form.html?lno="+ arr[1];
-			},
-			error: () => {
-				window.alert('서버 실행 오류!');
-			}
-		})
 	});
 </script>
 </body>

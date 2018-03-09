@@ -55,5 +55,10 @@ public class QuestionServiceImpl implements QuestionService {
 	public int delete(int no) {
 		return questionDao.delete(no);
 	}
+
+	@Override
+	public String getCompanyName(int no) {
+		return questionDao.getCompanyName(no);
+	}
     
 }
