@@ -37,7 +37,7 @@ public class LetterServiceImpl implements LetterService {
     
     @Override
     public int add(Letter letter) {
-        return letterDao.insert(letter);
+        return letterDao.insert2(letter);
     }
     
     @Override

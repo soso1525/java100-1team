@@ -75,6 +75,11 @@
 		values(#{lsdt}, #{ltit}, #{ledt}, 0, 0, #{lfile}, LAST_INSERT_ID(), now())
 	</insert>
 	
+	<insert id="insert2" parameterType="letter" useGeneratedKeys="true" keyColumn="lno" keyProperty="lno">
+		insert into g_let(lsdt, ltit, ledt, lscheck, lpcheck, lfile, ano, writedt)
+		values(#{lsdt}, #{ltit}, #{ledt}, 0, 0, #{lfile}, #{ano}, now())
+	</insert>
+	
 	<delete id="delete" parameterType="int">
 		delete from g_let
 		where lno=#{value}

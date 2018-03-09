@@ -15,7 +15,24 @@ addBtn.click(() => {
 		},
 		dataType: 'json',
 		success: (result) => {
+			$('#ano').val(0);
 			if (result.data) {
+				$('#ano').val(result.data.ano);
+				var formData = new FormData($('#form')[0]);
+			    $.ajax(host + '/json/letter/add', {
+			        data: formData,
+			        dataType: 'json',
+			        method: 'POST',
+			        processData : false,
+			        contentType : false,
+			        success: () => {
+			        	swal("Apply Success!", "자기소개서가 정상적으로 등록되었습니다.", "success");
+			            location.href = "../apply/my-apply-list.html";
+			        },
+			        error: () => {
+			            window.alert('서버 실행 오류!');
+			        }
+			    });
 				
 			} else {
 				var formData = new FormData($('#form')[0]);
