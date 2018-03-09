@@ -22,7 +22,8 @@
 		select
 		qno,
 		qart,
-		qcont
+		qcont,
+		qleng
 		from g_que
 		where lno = #{lno}
 	</select>
@@ -50,7 +51,8 @@
 		qno,
 		qart,
 		qcont,
-		lno
+		lno,
+		qleng
 		from g_que
 		where qno=#{value}
 	</select>
