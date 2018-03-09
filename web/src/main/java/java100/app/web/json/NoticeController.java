@@ -56,9 +56,6 @@ public class NoticeController {
         if (pageSize < 9 || pageSize > 15) {
             pageSize = 9;
         }
-        System.out.println(words);
-        System.out.println(address);
-        System.out.println(cKind);
         HashMap<String,Object> options = new HashMap<>();
         if (words != null && words[0].length() > 0) {
             options.put("words", words);
@@ -141,17 +138,6 @@ public class NoticeController {
         return result;
     }
     
-    @RequestMapping("scrap")
-    public Object scrap(int nno, @ModelAttribute(value="loginUser") Member loginUser) throws Exception {
-    	Like like = new Like();
-    	like.setNno(nno);
-    	like.setIno(loginUser.getNo());
-        likeService.add(like);
-        HashMap<String,Object> result = new HashMap<>();
-        result.put("status", "success");
-        return result;
-    }
-
     @RequestMapping("delete")
     public Object delete(int no) throws Exception {
 

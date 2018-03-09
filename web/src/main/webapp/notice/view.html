@@ -233,15 +233,41 @@ $('#applyBtn').click(() => {
 });
 
 scrapBtn.click(() => {
-	$.ajax(host + '/json/notice/scrap', {
-		data: {
-			nno: noItem.val() 
-		},
+	$.ajax(host + '/json/like/' + noItem.val(), {
 		dataType: 'json',
-        success: (result) => {
-            location.href = "notice.html";
-        },
-        error: () => {
+		success: (result) => {
+			if (result.data) {
+				$.ajax(host + '/json/like/delete', {
+			        data: {
+			            nno: noItem.val()
+			        },
+			        dataType: 'json',
+			        success: (result) => {
+			        	alert('스크랩취소');
+			        	location.href = "";
+			        },
+			        error: () => {
+			            window.alert('서버 실행 오류!');
+			        }
+			    });
+				
+			} else {
+				$.ajax(host + '/json/like/add', {
+					data: {
+						nno: noItem.val()
+					},
+					dataType: 'json',
+			        success: (result) => {
+			        	alert('스크랩완료');
+			            location.href = "";
+			        },
+			        error: () => {
+			            window.alert('서버 실행 오류!');
+			        }
+				});
+			}
+		},
+		error: () => {
             window.alert('서버 실행 오류!');
         }
 	});

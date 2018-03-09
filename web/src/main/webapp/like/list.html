@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CATCH : 나의 관심공고</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+	<header></header>
+	<section class="section-space-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div style="margin: 100px 0 50px 0" class="section-title">
+						<h2>나의 관심공고</h2>
+						<div class="divider dark">
+							<i class="icon-graduation"></i>
+						</div>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+					</div>
+				</div>
+			</div>
+
+
+			<table id="list" class='table table-hover'>
+				<thead>
+					<tr>
+						<th style='text-align: center'>기업이름</th>
+						<th style='text-align: center'>제목</th>
+						<th style='text-align: center'>장소</th>
+						<th style='text-align: center'>마감일</th>
+						<th style='text-align: center'>공고보기</th>
+						<th style='text-align: center'>삭제</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+	</section>
+
+	<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+	<script type="text/javascript" src="../js/context.js"></script>
+	<script src='../js/login.js'></script>
+	<script id="template1" type="text/x-handlebars-template">
+{{#each list}}
+<tr>
+  <td style='text-align:center'>{{companyMember.cName}}</td>
+  <td style='text-align:center'>{{notice.title}}</td>
+  <td style='text-align:center; background-color: white'>{{writer.address}}</td>
+  <td style='text-align:center; background-color: white'>{{notice.endDate}}</td>
+  <td style='text-align:center; background-color: white'><a style='color:black;'href='../notice/view.html?no={{notice.no}}'>채용공고</a></td>"
+  <td onclick="deleteLike('{{notice.no}}')" style='cursor:pointer; text-align:center; background-color: white'>삭제</td>
+</tr>
+{{/each}}
+</script>
+
+<script type="text/javascript">
+$('header').load("../header.html");
+
+$('#thletter').mouseover(() => {
+	$('#nametag').css('display', 'block');
+});
+
+$('#thletter').mouseout(() => {
+	$('#nametag').css('display', 'none');
+});
+
+var num = 1;
+var tbody = $('#list > tbody'),
+   template1Src = $('#template1').html(),
+   template1Engine = Handlebars.compile(template1Src);
+
+$.ajax(host + '/json/like/list', {
+    dataType: 'json',
+    success: (result) => {
+        tbody.html(template1Engine(result));
+    },
+    error: () => {
+        window.alert('서버 실행 오류!');
+    }
+});
+
+function deleteLike(number) {
+    $.ajax(host + '/json/like/delete', {
+        data: {
+            nno: number
+        },
+        dataType: 'json',
+        success: (result) => {
+            location.href = "list.html";
+        },
+        error: () => {
+            window.alert('서버 실행 오류!');
+        }
+    });
+}
+
+
+
+</script>
+</body>
+</html>
+
