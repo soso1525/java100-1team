@@ -6,7 +6,7 @@
 <mapper namespace="java100.app.dao.QuestionDao">
 
 	<resultMap type="question" id="questionMap">
-		<id column="qno" property="no" />
+		<id column="qno" property="qno" />
 		<result column="qart" property="article" />
 		<result column="qcont" property="content" />
 		<result column="qleng" property="length" />
@@ -25,6 +25,10 @@
 		qcont
 		from g_que
 		where lno = #{lno}
+	</select>
+
+	<select id="getCompanyName" parameterType="int" resultType="string">
+		select aname from g_app where ano=(select lno from g_let where lno=#{value})
 	</select>
 
 	<insert id="insert" parameterType="question">

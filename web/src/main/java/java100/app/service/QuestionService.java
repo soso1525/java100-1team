@@ -12,6 +12,7 @@ public interface QuestionService {
     Question get(int no);
     int update(Question apply);
     int delete(int no);
+    String getCompanyName(int no);
 }
 
 
