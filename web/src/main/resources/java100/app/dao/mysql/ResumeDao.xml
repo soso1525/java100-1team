@@ -62,6 +62,13 @@
 			   limit #{startIndex}, #{size}
 	</select>
 	
+	<select id="findMy" resultMap="resumeMap">
+      select * from g_res 
+      where ino=#{mno}
+      order by rno desc
+      limit #{startIndex}, #{size}
+    </select>
+	
 	<insert id="insert" parameterType="resume"
 		useGeneratedKeys="true" keyColumn="no" keyProperty="no">
         insert into g_res(rtit, redu, rcar, rkind, rimg, rqua, rlang, raward, rmaj, rsch, rgpa, rcnt, ravi, rfile, rnote, rcheck, ino)

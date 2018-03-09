@@ -17,6 +17,7 @@ import java100.app.domain.Resume;
 public interface ResumeService {
 	int add(Resume resume);
     List<Resume> list(int pageNo, int pageSize, Map<String, Object> options);
+    List<Resume> listMy(int pageNo, int pageSize, Map<String, Object> options);
     int getTotalCount();
     Resume get(int no);
     int update(Resume resume);
