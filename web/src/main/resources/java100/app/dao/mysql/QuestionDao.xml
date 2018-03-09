@@ -29,7 +29,7 @@
 	</select>
 
 	<select id="getCompanyName" parameterType="int" resultType="string">
-		select aname from g_app where ano=(select lno from g_let where lno=#{value})
+		select aname from g_app where ano=(select ano from g_let where lno=#{value})
 	</select>
 	
 	<select id="getFileName" parameterType="int" resultType="string">

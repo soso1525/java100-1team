@@ -29,7 +29,7 @@ public class ResumeController {
     
     @RequestMapping("list")
     public Object list(@RequestParam(value = "pn", defaultValue = "1") int pageNo,
-          @RequestParam(value = "ps", defaultValue = "5") int pageSize,
+          @RequestParam(value = "ps", defaultValue = "12") int pageSize,
           @RequestParam(value = "words", required = false) String[] words,
           @RequestParam(value = "oc", required = false) String orderColumn,
           @RequestParam(value = "al", required = false) String align,
@@ -39,8 +39,8 @@ public class ResumeController {
           pageNo = 1;
        }
 
-       if (pageSize < 5 || pageSize > 15) {
-          pageSize = 5;
+       if (pageSize < 12 || pageSize > 15) {
+          pageSize = 12;
        }
 
        HashMap<String, Object> options = new HashMap<>();
