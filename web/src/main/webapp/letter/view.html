@@ -22,12 +22,25 @@
 						<div class="divider dark">
 							<i class="icon-graduation"></i>
 						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+						<p>
+							자기소개서 상세보기 페이지입니다.<br>첨부파일이 있는 경우 다운받으시려면 파일 이름을 누르세요
+						</p>
 					</div>
 				</div>
 			</div>
 
-			<div id='paper' style='padding: 30px; border-radius: 10px; background-color: white; box-shadow: 4px 6px 14px 4px #00000054'>
+			<div id='paper2'
+				style='padding: 15px; margin-bottom: 20px; border-radius: 10px; background-color: white; box-shadow: 4px 6px 14px 4px #00000054'>
+				<div class="form-group row" style='margin-bottom: 0'>
+					<label style="text-align: right" class="col-sm-2 col-form-label">파일
+						유무</label>
+					<div id="fileTag" style='font-weight: 700; font-size: 1.2em'
+						class="col-sm-8"></div>
+				</div>
+			</div>
+
+			<div id='paper'
+				style='padding: 30px; border-radius: 10px; background-color: white; box-shadow: 4px 6px 14px 4px #00000054'>
 			</div>
 		</div>
 	</section>
@@ -63,18 +76,72 @@
 	var index = location.href.indexOf('?');
 	var qs = location.href.substr(index + 1);
 	var arr = qs.split('=');
+	var fileName = null;
+	
 	$(() => {
 		$.ajax(host + '/json/question/' + arr[1], {
 			dataType: 'json',
 			success: (result) => {
 				letter.html(letter.html() + template1Engine(result));
 				$('#title').html(result.compName);
+				if(result.file != null) 
+					fileName = result.file;
+					$('#fileTag').html(fileName);
+					
+						$('#fileTag').hover(() => {
+							$('#fileTag').css('cursor', 'pointer');
+							$('#fileTag').css('color', '#f7639a');
+						});
+						
+						$('#fileTag').mouseout(() => {
+							$('#fileTag').css('color', 'black');
+						});
+
+						$('#fileTag').click(() => {
+							SaveToDisk('/download/' + fileName, fileName);	
+						});
 			},
 			error: () => {
 				window.alert('서버 실행 오류!');
 			}
 		});
 	});
+	
+	
+	
+	
+	
+	
+	function SaveToDisk(fileURL, fileName) {
+	    // for non-IE
+	    if (!window.ActiveXObject) {
+	        var save = document.createElement('a');
+	        save.href = fileURL;
+	        
+	        save.download = fileName || 'unknown';
+	        save.style = 'display:none;opacity:0;color:transparent;';
+	        (document.body || document.documentElement).appendChild(save);
+
+	        if (typeof save.click === 'function') {
+	            save.click();
+	        } else {
+	            save.target = '_blank';
+	            var event = document.createEvent('Event');
+	            event.initEvent('click', true, true);
+	            save.dispatchEvent(event);
+	        }
+
+	        (window.URL || window.webkitURL).revokeObjectURL(save.href);
+	    }
+
+	    // for IE
+	    else if (!!window.ActiveXObject && document.execCommand) {
+	        var _window = window.open(fileURL, '_blank');
+	        _window.document.close();
+	        _window.document.execCommand('SaveAs', true, fileName || fileURL)
+	        _window.close();
+	    }
+	}
 </script>
 </body>
 </html>

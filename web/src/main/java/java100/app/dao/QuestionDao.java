@@ -14,5 +14,5 @@ public interface QuestionDao {
 	public int update(Question question);
 	public int delete(int no);
 	public String getCompanyName(int no);
- 	
+	public String getFileName(int no);
 }
