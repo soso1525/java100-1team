@@ -1,6 +1,5 @@
 package java100.app.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,16 +36,15 @@ public class LetterServiceImpl implements LetterService {
     }
     
     @Override
-    public int add(Letter cover) {
-        
-        return letterDao.insert(cover);
+    public int add(Letter letter) {
+        return letterDao.insert(letter);
     }
     
     @Override
     public int addLetter(Apply apply, Letter letter) {
     	return applyDao.insert(apply) + letterDao.insert(letter);
     }
-
+    
     @Override
     public Letter get(int no) {
         return letterDao.findByNo(no);

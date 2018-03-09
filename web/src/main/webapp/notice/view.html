@@ -242,7 +242,7 @@ scrapBtn.click(() => {
 			            nno: noItem.val()
 			        },
 			        dataType: 'json',
-			        success: (result) => {
+			        success: () => {
 			        	alert('스크랩취소');
 			        	location.href = "";
 			        },
@@ -257,7 +257,7 @@ scrapBtn.click(() => {
 						nno: noItem.val()
 					},
 					dataType: 'json',
-			        success: (result) => {
+			        success: () => {
 			        	alert('스크랩완료');
 			            location.href = "";
 			        },

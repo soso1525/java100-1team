@@ -52,15 +52,27 @@ public class LetterController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public Object add(Letter letter, MultipartFile file, @ModelAttribute(value = "loginUser") Member loginUser)
-			throws Exception {
-		HashMap<String, Object> result = new HashMap<>();
+	public Object add(int ano, Letter letter, int[] lengths, String[] contents, String[] articles,
+			MultipartFile file, @ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
 		String uploadDir = servletContext.getRealPath("/download");
 		String filename = writeUploadFile(file, uploadDir);
-		letter.setLfile(filename);
+		letter.setAno(ano);
 		letter.setMember(loginUser);
-		// letterService.add(letter);
-		System.out.println(letter);
+		letter.setLfile(filename);
+
+		HashMap<String, Object> result = new HashMap<>();
+		letterService.add(letter);
+
+		for (int i = 0; i < articles.length; i++) {
+			Question q = new Question();
+			q.setArticle(articles[i]);
+			q.setContent(contents[i]);
+			q.setLength(lengths[i]);
+			q.setLno(letter.getLno());
+			System.out.println("Question: " + q);
+			questionService.add(q);
+		}
+
 		result.put("status", "success");
 		return result;
 	}

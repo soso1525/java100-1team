@@ -143,6 +143,7 @@ body {
 <script type="text/javascript" src="../js/scripts.js"></script>
 <script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
 <script src="../js/apply-simple.js"></script>
+<script src="../js/context.js"></script>
 <script id="template1" type="text/x-handlebars-template">
 	{{#each apply}}
 	<tr>
@@ -169,7 +170,7 @@ body {
     template1Src = $('#template1').html(),
     template1Engine = Handlebars.compile(template1Src);
 	
-	$.ajax('../json/apply/list', {
+	$.ajax(host + '/json/apply/list', {
 	    dataType: 'json',
 	    success: (result) => {
 	    	console.log(result.apply[0].test.type);

@@ -18,7 +18,7 @@
 	$('#applyBtn').click(() => {
 		var formData = new FormData($('#form')[0]);
 	    
-	    $.ajax('../json/apply/add-simple', {
+	    $.ajax(host + '/json/apply/add-simple', {
 	        data:
 	        	formData,
 	        	dataType: 'json',
