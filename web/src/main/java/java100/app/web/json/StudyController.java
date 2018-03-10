@@ -43,8 +43,8 @@ public class StudyController {
             pageNo = 1;
         }
         
-        if (pageSize < 8 || pageSize > 15) {
-            pageSize = 8;
+        if (pageSize < 3 || pageSize > 15) {
+            pageSize = 3;
         }
         
         HashMap<String,Object> options = new HashMap<>();
