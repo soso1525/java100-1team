@@ -5,13 +5,10 @@
 <title>CATCH : 스터디리스트</title>
 <link rel="stylesheet" type="text/css" href="../css/plugin.css">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
-<link rel="stylesheet" type="text/css" href="../css/notice.css">
-<style>
-.delcol {
-	background-color: #f2f2f2;
-	color: white;
-}
+<link rel="stylesheet" type="text/css" href="../css/study.css">
 
+
+<style>
 body {
     background-color: #f2f2f2;
 }
@@ -33,14 +30,12 @@ body {
 					</div>
 
 				</div>
-			</div>
-			 <div>
-    <a href="form.html" class='btn btn-primary btn-sm'>스터디등록</a>
-    </div>
-    <br>
-    <br>
-
-			<div class="col-sm-12 search" style="height: 70px; margin-left:230px;">
+			 <div class="col-sm-12">
+			    <a href="form.html" class='btn btn-primary btn-sm' style="margin-left:520px;">스터디등록</a>
+			    <br>
+			    <br>
+			 </div>
+			<div class="col-sm-12 search" style="margin-left:230px;">
 				<div class="col-sm-12">
 					<div class="col-sm-3" style= "font-size:14px">
 						<strong>Search</strong>
@@ -93,6 +88,9 @@ body {
 					</form>
 				</div>
 			</div>
+			<div id="list">
+			 
+		   </div>
 		</div>
 	</section>
 
@@ -102,66 +100,46 @@ body {
 		</div>
 	</div>
 
-	<section id="portfolio" class="portfolio section-space-padding">
-		<div class="container">
-			<div class="center"></div>
-		</div>
-		<div class="container">
-			<div class="col-lg-12">
-				<ul class="portfolio-filter text-center">
-				</ul>
-
-
-				<div class="row">
-					<div id='list' class="portfolio-items"></div>
-					<div class="grid">
-						<figure class="effect-steve">
-						</figure>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-
 <script id="study" type="text/x-handlebars-template">
 {{#each list}}
- <div class="portfolio-item apps col-xs-12 col-sm-4 col-md-3">
- <div class="recent-work-wrap">
- <div class="grid">
- <figure class="effect-julia" href='view.html' onclick="show('{{sno}}')"  data-toggle='modal' data-target='#modal-testNew' role='button' data-backdrop='static'>
- <img src="../../download/{{simg}}">
- <figcaption>
- <h2><span>{{sname}}</span></h2>
- <div>
- <p>지역: {{sloc}}</p>
- <p>관심기업: {{scorp}}</p>
- <p>인원: {{sppl}}</p>
- </div>
- </figcaption>           
- </figure>
- </div>
- </div>
- </div>
-
+  <div class="blog-card col-sm-2" style="width:30%; margin-right: 39px;  padding-left: 0px;" href='view.html' onclick="show('{{sno}}')"  data-toggle='modal' data-target='#modal-testNew' role='button' data-backdrop='static'>
+  <div style= "width: 500px; height:500px;">
+  <img src="../../download/{{simg}}">
+  </div>
+  <div class="title-content">
+  <h3>{{sname}}</h3>
+  <hr />
+  <div class="intro">{{sloc}}</div>
+  </div>
+  <div class="card-info">
+  <p>기업이름: {{scorp}}</p><br>
+  <p>관심내용: {{sint}}</p><br>
+  <p>인원: {{sppl}}</p>
+  </div>
+  <div class="utility-info">
+  <ul class="utility-list">
+  <li class="comments">{{sppl}}</li>
+  <li class="date">{{sregdt}}</li>
+  </ul>
+  </div>
+  <div class="gradient-overlay"></div>
+  <div class="color-overlay"></div>
+</div>
 {{/each}}
 </script>
 
 	<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src="../js/jquery.js"></script>
-	<script src="../js/bootstrap.min.js"></script> 
-	<script src="../js/jquery.prettyPhoto.js"></script>
-	<script src="../js/jquery.isotope.min.js"></script>
-	<script src="../js/wow.min.js"></script> 
-	<script src="../js/jquery.easing.min.js"></script>
-	<script src="../js/main.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	
+	
 
 <script type="text/javascript">
 $('header').load('../header.html');
 var studySrc = $('#study').html(),
 studyEngine = Handlebars.compile(studySrc);
-member = null;
+
 $('#searchBtn').on('click', function(e){
 	load(1, {
         "words": $('#words').val(),
@@ -176,9 +154,10 @@ function show(value) {
 
     $('#modal-testNew').on('shown.bs.modal', (event) => {
     	view(value);
-        $('body .modal-backdrop').hide();
+       $('body .modal-backdrop').hide();
     });
 }
+
 
 function load(pageNo, options) {
     
@@ -189,6 +168,8 @@ function load(pageNo, options) {
         data: options,
         dataType: 'json',
         success: (result) => {
+            console.log(result);
+
             $('#list').html(studyEngine(result));
             
         },
