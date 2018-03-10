@@ -13,7 +13,7 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div style="margin: 100px 0 50px 0" class="section-title">
-						<h2>나의 관심공고</h2>
+						<h2>내가 작성한 공고</h2>
 						<div class="divider dark">
 							<i class="icon-graduation"></i>
 						</div>
@@ -26,11 +26,12 @@
 			<table id="list" class='table table-hover'>
 				<thead>
 					<tr>
-						<th style='text-align: center'>기업이름</th>
 						<th style='text-align: center'>제목</th>
-						<th style='text-align: center'>장소</th>
+						<th style='text-align: center'>직무</th>
+						<th style='text-align: center'>시작일</th>
 						<th style='text-align: center'>마감일</th>
-						<th style='text-align: center'>삭제</th>
+						<th style='text-align: center'>신입/경력</th>
+						<th style='text-align: center'>조회수</th>
 					</tr>
 				</thead>
 				<tbody></tbody>
@@ -47,11 +48,12 @@
 	<script id="template1" type="text/x-handlebars-template">
 {{#each list}}
 <tr>
-  <td style='text-align:center'>{{companyMember.cName}}</td>
-  <td style='text-align:center'><a style='color:white;'href='../notice/view.html?no={{notice.no}}'>{{notice.title}}</a></td>
-  <td style='text-align:center; background-color: white'>{{writer.address}}</td>
-  <td style='text-align:center; background-color: white'>{{notice.endDate}}</td>
-  <td onclick="deleteLike('{{notice.no}}')" style='cursor:pointer; text-align:center; background-color: #f7639a'>삭제</td>
+  <td style='text-align:center'>{{title}}</td>
+  <td style='text-align:center'><a style='color:white;'href='../notice/view.html?no={{no}}'>{{duty}}</a></td>
+  <td style='text-align:center; background-color: white'>{{startDate}}</td>
+  <td style='text-align:center; background-color: white'>{{endDate}}</td>
+  <td style='text-align:center; background-color: white'>{{nType}}</td>
+  <td style='text-align:center; background-color: white'>{{viewCount}}</td>
 </tr>
 {{/each}}
 </script>
@@ -64,7 +66,7 @@ var tbody = $('#list > tbody'),
    template1Src = $('#template1').html(),
    template1Engine = Handlebars.compile(template1Src);
 
-$.ajax(host + '/json/like/list', {
+$.ajax(host + '/json/notice/writerList', {
     dataType: 'json',
     success: (result) => {
         tbody.html(template1Engine(result));
@@ -74,7 +76,7 @@ $.ajax(host + '/json/like/list', {
     }
 });
 
-function deleteLike(number) {
+/* function deleteLike(number) {
     $.ajax(host + '/json/like/delete', {
         data: {
             nno: number
@@ -87,7 +89,7 @@ function deleteLike(number) {
             window.alert('서버 실행 오류!');
         }
     });
-}
+} */
 
 
 

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java100.app.dao.NoticeDao;
+import java100.app.domain.Member;
 import java100.app.domain.Notice;
 import java100.app.service.NoticeService;
 
@@ -28,6 +29,13 @@ public class NoticeServiceImpl implements NoticeService {
          }
         return noticeDao.findAll(params);
     }
+    
+    @Override
+	public List<Notice> writerList(Member loginUser) {
+    	HashMap<String,Object> params = new HashMap<>();
+    	params.put("writer", loginUser);
+		return noticeDao.writerFindAll(params);
+	}
     @Override
     public int getTotalCount() {
         return noticeDao.countAll();

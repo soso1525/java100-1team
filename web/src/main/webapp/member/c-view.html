@@ -10,97 +10,138 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
 </head>
 <body>
-	<div class="container">
-		<h1 style="margin-top: 30px; margin-bottom: 30px">기업회원 상세 정보</h1>
-
-		<form id="form" method='post' enctype="multipart/form-data">
-			
-			<div class="form-row">
-				<div class="col-md-6 mb-3">
-					<label for="cname">Name</label> <input type="text"
-						class="form-control" id="cName" name="cName">
+	<header></header>
+	<section id="services" class="services-section section-space-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div style="margin-top: 100px;" class="section-title">
+						<h1 style="margin-top: 30px; margin-bottom: 30px">기업회원 상세 정보</h1>
+					</div>
 				</div>
 			</div>
-			<div class="col-md-6 mb-3">
-				<input type="hidden" class="form-control" id="cno" name="cno">
-			</div>
-
-			<div class="form-row">
-				<div class="col-md-6 mb-3">
-					<label for="ckind">kind</label> <input type="text"
-						class="form-control" id="cKind" name="cKind">
+	
+			<form id="form" method='post' enctype="multipart/form-data">
+				
+				<div class="form-row">
+					<div class="col-md-6 mb-3">
+						<label for="cname">Name</label> <input type="text"
+							class="form-control" id="cName" name="cName">
+					</div>
 				</div>
-			</div>
-
-			<div class="form-row">
 				<div class="col-md-6 mb-3">
-					<label for="cType">Phone</label> <input type="text"
-						class="form-control" id="cType" name="cType">
+					<input type="hidden" class="form-control" id="cno" name="cno">
 				</div>
-			</div>
-
-			<div class="form-row">
-				<div class="col-md-6 mb-3">
-					<label for="businessNo">businessNo</label> <input type="text"
-						class="form-control" id="businessNo" name="businessNo">
+	
+				<div class="form-row">
+					<div class="col-md-6 mb-3">
+						<div style='margin-bottom: 10px; font-weight: 700'>Business
+							Type</div>
+						<select class="form-control" id="cKind" name="cKind">
+							<option value="경영/사무">경영/사무</option>
+							<option value="영업/고객상담">영업/고객상담</option>
+							<option value="생산/제조">생산/제조</option>
+							<option value="IT/인터넷">IT/인터넷</option>
+							<option value="전문직">전문직</option>
+							<option value="교육">교육</option>
+							<option value="미디어">미디어</option>
+							<option value="특수계층/공공">특수계층/공공</option>
+							<option value="건설">건설</option>
+							<option value="유통/무역">유통/무역</option>
+							<option value="서비스">서비스</option>
+							<option value="디자인">디자인</option>
+							<option value="의료">의료</option>
+						</select>
+					</div>
 				</div>
-			</div>
-
-			<div class="form-row">
-				<div class="col-md-6 mb-3">
-					<label for="logo">logo</label> <input type="file"
-						class="form-control" id="logo" name="file">
+	
+				<div class="form-row">
+					<div class="col-md-6 mb-3">
+						<div style='margin-bottom: 10px; font-weight: 700'>Company
+							Type</div>
+						<select class="form-control" id="cType" name="cType"> 
+							<option value="대기업">대기업</option>
+							<option value="중견기업">중견기업</option>
+							<option value="공사/공기업">공사/공기업</option>
+							<option value="코스닥">코스닥</option>
+							<option value="코스피">코스피</option>
+							<option value="외국계">외국계</option>
+							<option value="매출1000대기업">매출1000대기업</option>
+							<option value="중소기업">중소기업</option>
+							<option value="기타">기타</option>
+						</select>
+					</div>
 				</div>
-			</div>
-			<div class='col-sm-10'>
-				<button id="updateBtn" type="button"
-					class='btn btn-primary btn-sm my-new'>변경</button>
-			</div>
-		</form>
-	</div>
+	
+				<div class="form-row">
+					<div class="col-md-6 mb-3">
+						<label for="businessNo">businessNo</label> <input type="text"
+							class="form-control" id="businessNo" name="businessNo">
+					</div>
+				</div>
+	
+				<div class="form-row">
+					<div class="col-md-6 mb-3">
+						<label for="logo">logo</label> <input type="file"
+							class="form-control" id="logo" name="file">
+					</div>
+				</div>
+				<div class='col-sm-10'>
+					<button id="updateBtn" type="button"
+						class='btn btn-primary btn-sm my-new'>변경</button>
+				</div>
+			</form>
+		</div>
+	</section>
 
-	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
-	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
-	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
-	<script type="text/javascript" src="../js/context.js"></script>
-	<script type="text/javascript">
-	var updateBtn = $('#updateBtn');
-	var index = location.href.indexOf('?');
-	if (index != -1) { 
-	    var qs = location.href.substr(index + 1);
-	    var arr = qs.split('=');
-	    $(() => {
-	        $.ajax(host + '/json/company/' + arr[1], {
-	            dataType: 'json',
-	            success: (result) => {
-	            	$('#cno').val(result.cmember.cno);
-	            	$('#cName').val(result.cmember.cName);
-	            	$('#cKind').val(result.cmember.cKind);
-	            	$('#cType').val(result.cmember.cType);
-	            	$('#businessNo').val(result.cmember.businessNo);
-	            },
-	            error: () => {
-	                window.alert('서버 실행 오류!');
-	            }
-	        });
-	    });
-	}
-	updateBtn.click(() => {
-		var formData = new FormData($('#form')[0]);
-	    $.ajax(host + '/json/company/update', {
-	        data: formData,
-	        dataType: 'json',
-	        method: 'POST',
-	        processData : false,
-	        contentType : false,
-	        success: (result) => {
-	            location.href = "list.html";
-	        },
-	        error: () => {
-	            window.alert('서버 실행 오류!');
-	        }
-		});
+<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+<script type="text/javascript" src="../js/context.js"></script>
+<script type="text/javascript">
+
+$('header').load("../header.html");
+
+var updateBtn = $('#updateBtn');
+
+$.ajax(host + '/json/auth/loginUser', {
+       dataType: 'json',
+       success: (result) => {
+  	        $.ajax(host + '/json/company/' + result.member.no, {
+  	            dataType: 'json',
+  	            success: (result) => {
+  	            	$('#cno').val(result.cmember.cno);
+  	            	$('#cName').val(result.cmember.cName);
+  	            	$('#cKind').val(result.cmember.cKind);
+  	            	$('#cType').val(result.cmember.cType);
+  	            	$('#businessNo').val(result.cmember.businessNo);
+  	            },
+  	            error: () => {
+  	                window.alert('서버 실행 오류!');
+  	            }
+  	        });
+       },
+       error: () => {
+           window.alert('서버 실행 오류!');
+       }
+   });
+    
+updateBtn.click(() => {
+	var formData = new FormData($('#form')[0]);
+    $.ajax(host + '/json/company/update', {
+        data: formData,
+        dataType: 'json',
+        method: 'POST',
+        processData : false,
+        contentType : false,
+        success: (result) => {
+            location.href = "../company/mypage.html";
+        },
+        error: () => {
+            window.alert('서버 실행 오류!');
+        }
 	});
-	</script>
+});
+</script>
 </body>
 </html>

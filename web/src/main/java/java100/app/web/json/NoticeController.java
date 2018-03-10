@@ -93,6 +93,15 @@ public class NoticeController {
         return result;
     }
     
+    @RequestMapping("writerList")
+    public Object writerlist(@ModelAttribute(value="loginUser") Member loginUser) throws Exception {
+        HashMap<String,Object> result = new HashMap<>();
+        
+        result.put("list", noticeService.writerList(loginUser));
+        
+        return result;
+    }
+    
     @RequestMapping("form")
     public String form() throws Exception {
         return "notice/form";
@@ -104,7 +113,9 @@ public class NoticeController {
         HashMap<String, Object> result = new HashMap<>();
 
         Member loginUser = (Member) session.getAttribute("loginUser"); // 세션에서 유저정보 가져옴
-        result.put("userInfo", loginUser.getNo()); // 유저의 no셋팅 -- 유저의 no와 공고의 작성자의 no를 확인하기 위함
+    	if (loginUser != null) {
+    		result.put("userInfo", loginUser.getNo()); // 유저의 no셋팅 -- 유저의 no와 공고의 작성자의 no를 확인하기 위함
+    	}
         result.put("data", noticeService.get(no));
         return result;
     }

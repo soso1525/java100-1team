@@ -251,6 +251,11 @@ fieldset {
 	border: 3px solid #000000;
 	color: #000000;
 }
+/* 석희수정 */
+.button-style-color-2-check {
+	color: #ffffff;
+	background: #f7639a !important;
+}
 
 .button.search {
 	padding: 12px 24px;

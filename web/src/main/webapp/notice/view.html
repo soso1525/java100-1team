@@ -19,14 +19,14 @@ background-color: #f2f2f2;
     <div class='container'>
         <header></header>
         <div class="col-sm-12">
-                    <div style="margin: 120px 0 10px 0;" class="section-title">
-                        <input readonly id='title' style="background-color: transparent; border:0px; font-size: 30px; text-align: center; width: 1000px">
-                        <div class="divider dark">
-                            <i class="icon-drop"></i>
-                        </div>
-                        <input readonly id='name' style="background-color: transparent; border:0px; font-size: 25px; text-align: center">
-                    </div>
+            <div style="margin: 120px 0 10px 0;" class="section-title">
+                <input readonly id='title' style="background-color: transparent; border:0px; font-size: 30px; text-align: center; width: 1000px">
+                <div class="divider dark">
+                    <i class="icon-drop"></i>
                 </div>
+                <input readonly id='name' style="background-color: transparent; border:0px; font-size: 25px; text-align: center">
+            </div>
+        </div>
 
         <div class="col-sm-12">
         <div class="form-group">
@@ -59,13 +59,13 @@ background-color: #f2f2f2;
               style="background-color: transparent; border:0px; font-size: 18px; text-align: center">
         </div>
         <div class="col-sm-12">
-<div align="center" class="textarea-message form-group">
-	<button id="applyDoBtn"
-		class="button button-style button-style-dark button-style-color-2">지원하기</button>
-	<button id="scrapBtn"
-		class="button button-style button-style-dark button-style-color-2">스크랩</button>
-</div>
-</div>
+			<div align="center" class="textarea-message form-group">
+				<button id="applyDoBtn" 
+					class="button button-style button-style-dark button-style-color-2">지원하기</button>
+				<input type="button" id="scrapBtn"
+					class="button button-style button-style-dark button-style-color-2" value="스크랩">
+			</div>
+		</div>
         
         <div class='form-group row'>
             <label for='photo' class='col-sm-2 col-form-label'></label>
@@ -130,7 +130,6 @@ background-color: #f2f2f2;
     <script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
     <script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
     <script type="text/javascript" src="../js/context.js"></script>
-
     <script type="text/javascript">
     $('header').load('../header.html');
 var updateBtn = $('#updateBtn'),
@@ -176,6 +175,43 @@ if (index != -1) { // 기존 데이터를 조회할 경우,
                 var resultPno = result.userInfo;
                 console.log("resultCno : "+ resultCno + " resultPno : "+ resultPno + " >>>> ");
                 
+                if(result.userInfo) {
+                	$.ajax(host + '/json/like/' + noItem.val(), {
+                		dataType: 'json',
+                		success: (result) => {
+                			if (result.data) {
+                				scrapBtn.val("이미스크랩");
+                				scrapBtn.attr('class','button button-style button-style-dark button-style-color-2-check');
+                			} else {
+                				scrapBtn.val("스크랩");
+                				scrapBtn.attr('class','button button-style button-style-dark button-style-color-2');
+                			}
+                		},
+                		error: () => {
+                	        window.alert('서버 실행 오류!');
+                	    }
+                	});
+                	
+                	$.ajax(host + '/json/apply/find', {
+                		data: {
+                			aname: nameItem.val()
+                		},
+                		dataType: 'json',
+                		success: (result) => {
+                			if (result.data) {
+                				applyDoBtn.attr('class','button button-style button-style-dark button-style-color-2-check');
+                				applyDoBtn.prop('disabled',true);
+                			} else {
+                				applyDoBtn.prop('disabled',false);
+                				applyDoBtn.attr('class','button button-style button-style-dark button-style-color-2');
+                			}
+                		},
+                		error: () => {
+                	        window.alert('서버 실행 오류!');
+                	    }
+                	});
+                }
+                
                 if(resultCno == resultPno) {
                     applyDoBtn.css("display","none");
                     scrapBtn.css("display","none");
@@ -195,6 +231,7 @@ var modal = document.getElementById('myModal');
 var btn = document.getElementById('applyDoBtn');
 var span = document.getElementsByClassName("close")[0];
 
+
 btn.onclick = function() {
 	modal.style.display = "block";
 }
@@ -213,9 +250,8 @@ $('#applyBtn').click(() => {
 	var formData = new FormData($('#form')[0]);
     
     $.ajax(host + '/json/apply/add-simple', {
-        data:
-        	formData,
-        	dataType: 'json',
+        data: formData,
+       	dataType: 'json',
         method: 'POST',
         processData : false,
         contentType : false,
@@ -234,7 +270,6 @@ scrapBtn.click(() => {
 	$.ajax(host + '/json/like/' + noItem.val(), {
 		dataType: 'json',
 		success: (result) => {
-			
 			if (result.data) {
 				$.ajax(host + '/json/like/delete', {
 			        data: {
@@ -242,7 +277,6 @@ scrapBtn.click(() => {
 			        },
 			        dataType: 'json',
 			        success: () => {
-			        	alert('스크랩취소');
 			        	location.href = "";
 			        },
 			        error: () => {
@@ -257,7 +291,6 @@ scrapBtn.click(() => {
 					},
 					dataType: 'json',
 			        success: () => {
-			        	alert('스크랩완료');
 			            location.href = "";
 			        },
 			        error: () => {
