@@ -125,6 +125,7 @@ public class LetterController {
 	public Object delete(int no) throws Exception {
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("status", "success");
+		result.put("ano", letterService.getAno(no));
 		letterService.delete(no);
 		return result;
 	}

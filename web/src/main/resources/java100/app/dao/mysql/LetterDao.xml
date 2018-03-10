@@ -70,6 +70,10 @@
 		on l.lno=#{lno}
 	</select>
 
+	<select id="getAno" parameterType="int" resultType="int">
+		select ano from g_let where lno=#{value}
+	</select>
+	
 	<insert id="insert" parameterType="letter" useGeneratedKeys="true" keyColumn="lno" keyProperty="lno">
 		insert into g_let(lsdt, ltit, ledt, lscheck, lpcheck, lfile, ano, writedt)
 		values(#{lsdt}, #{ltit}, #{ledt}, 0, 0, #{lfile}, LAST_INSERT_ID(), now())
@@ -90,6 +94,7 @@
 		lsdt=now()
 		where lno=#{lno}
 	</update>
+	
 </mapper>
 
 

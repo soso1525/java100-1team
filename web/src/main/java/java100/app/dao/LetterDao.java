@@ -12,5 +12,6 @@ public interface LetterDao {
 	 public int insert2(Letter letter);
 	 public Letter findByNo(int no);
 	 public int update(Letter letter);
+	 public int getAno(int lno);
 	 public int delete(int no);
 }
