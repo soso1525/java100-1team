@@ -129,7 +129,10 @@
 				    },
 				    dataType: 'json',
 				    success: (result) => {
-				    	swal('삭제되었습니다').then(location.href="../apply/my-apply-status.html?ano=" + result.ano);
+				    	swal('삭제되었습니다', {timer: 2000
+				    	}).then(() => {
+				    		location.href= "../apply/my-apply-status.html?ano=" + result.ano;
+				    	});
 					},
 				    error: () => {
 				    	alert('서버 실행 오류!');
