@@ -1,11 +1,12 @@
 package java100.app.service.impl;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java100.app.dao.ApplyDao;
 import java100.app.dao.TestDao;
-import java100.app.domain.Apply;
 import java100.app.domain.Test;
 import java100.app.service.TestService;
 
@@ -17,6 +18,13 @@ public class TestServiceImpl implements TestService {
 	@Override
 	public Test list(int no) {
 		return testDao.list(no);
+	}
+	
+	@Override
+	public List<Test> allList(int no) {
+		HashMap<String,Object> params = new HashMap<>();
+        params.put("no", no);
+        return testDao.findMemberAll(params);
 	}
 
 	@Override
@@ -43,5 +51,4 @@ public class TestServiceImpl implements TestService {
 	public int delete(int no) {
 		return testDao.delete(no);
 	}
-
 }

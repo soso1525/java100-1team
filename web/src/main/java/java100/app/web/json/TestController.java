@@ -26,6 +26,17 @@ public class TestController {
 	@Autowired ServletContext servletContext;
 	@Autowired ApplyService applyService;
 	@Autowired TestService testService;
+	
+	
+	
+	@RequestMapping("allList")
+	public Object allList(@ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("list", testService.allList(loginUser.getNo()));
+		result.put("status", "success");
+		return result;
+	}
+
 
 	@RequestMapping("form")
 	public String form() throws Exception {

@@ -445,6 +445,12 @@ tr > td:nth-child(2) {
 	background: #4c9cef;
 }
 
+.my-memberlist > td:nth-child(2) {
+    font-weight: 500;
+    color: black;
+    background: transparent;
+}
+
 .header-top-area {
     position: fixed;
     left: 0;
