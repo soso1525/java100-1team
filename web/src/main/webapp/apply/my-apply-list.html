@@ -186,7 +186,6 @@ body {
 	$.ajax(host + '/json/apply/list', {
 	    dataType: 'json',
 	    success: (result) => {
-	    	console.log(result.apply[0].test.type);
 	    	tbody.html(template1Engine(result));
 	    },
 	    error: () => {

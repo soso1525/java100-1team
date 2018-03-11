@@ -9,7 +9,7 @@ public class Member {
     protected String tel;
     protected String createdDate;
     protected String address;
-    protected String type;
+    protected String type;	//1: 일반 2: 기업
     
     
     public Member() {}

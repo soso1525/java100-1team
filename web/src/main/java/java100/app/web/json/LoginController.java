@@ -38,11 +38,11 @@ public class LoginController {
 			Model model) {
 
 		Member member = memberService.get(email, password);
-
 		if (saveEmail) {
 			Cookie cookie = new Cookie("email", email);
 			cookie.setMaxAge(60 * 60 * 24 * 30);
 			response.addCookie(cookie);
+			
 		} else {
 			Cookie cookie = new Cookie("email", "");
 			cookie.setMaxAge(0);
@@ -57,6 +57,11 @@ public class LoginController {
 		} else {
 			model.addAttribute("loginUser", member);
 			result.put("status", "success");
+			if (member.getType().equals("2")) {
+				result.put("type", "company");
+			} else {
+				result.put("type", "Individual");
+			}
 		}
 		return result;
 	}
@@ -124,12 +129,15 @@ public class LoginController {
 	public Object loginUser(HttpSession session) {
 
 		Member member = (Member) session.getAttribute("loginUser");
-
 		HashMap<String, Object> result = new HashMap<>();
-
 		if (member != null) {
 			result.put("status", "success");
 			result.put("member", member);
+			if (member.getType().equals("2")) {
+				result.put("type", "company");
+			} else {
+				result.put("type", "Individual");
+			}
 		} else {
 			result.put("status", "fail");
 		}

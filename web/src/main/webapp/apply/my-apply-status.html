@@ -119,12 +119,12 @@
 {{/each}}
 </script>
 
-				<script id="template2" type="text/x-handlebars-template">
+<script id="template2" type="text/x-handlebars-template">
 <tr><td>일정 유형</td><td>{{test.type}}</td></tr>
 <tr><td>날짜</td><td>{{test.date}}</td></tr>
 <tr><td>시간</td><td>{{test.time}}</td></tr>
 <tr><td>준비물</td><td>{{test.prepare}}</td></tr>
-<tr><td>장소</td><td>{{test.location}}</td></tr>
+<tr><td>장소</td><td>{{location}}</td></tr>
 </script>
 				<script type="text/javascript">
 	$('header').load("../header.html");
@@ -168,6 +168,10 @@
 	        });
 	    });
 	}
+	Handlebars.registerHelper('location', function() {
+		addrSearch(this.test.location)
+		return this.test.location;
+	});
 	
 	Handlebars.registerHelper('count', function() {
 		return (num++);
@@ -247,6 +251,26 @@ $('#addressSearchBtn').click(() => {
 	    } 
 	});   
 });
+function addrSearch(addr) {
+	geocoder.addressSearch(addr, function(result, status) {
+	    if (status === daum.maps.services.Status.OK) {
+	       var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+	       // 결과값으로 받은 위치를 마커로 표시합니다
+	       var marker = new daum.maps.Marker({
+	           map: map,
+	           position: coords
+	       });
+	       // 인포윈도우로 장소에 대한 설명을 표시합니다
+	       var infowindow = new daum.maps.InfoWindow({
+	           content: '<div style="width:150px;text-align:center;padding:6px 0;">인적성/면접 장소</div>'
+	       });
+	       infowindow.open(map, marker);
+	
+	       // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	       map.setCenter(coords);
+	   } 
+	});    
+}
 </script>
 </body>
 </html>
