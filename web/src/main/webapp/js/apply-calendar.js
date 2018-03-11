@@ -1,3 +1,7 @@
+
+
+
+
 $('#addBtn').click(() => {
 			var type = $("input[type=radio][name=type]:checked").val();
 			console.log(type);

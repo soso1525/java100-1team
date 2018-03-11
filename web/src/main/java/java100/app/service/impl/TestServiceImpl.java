@@ -17,10 +17,17 @@ public class TestServiceImpl implements TestService {
 	TestDao testDao;
 
 	@Override
-	public List<Test> list(int no) {
+	public List<Test> list(int ano) {
 		HashMap<String,Object> params = new HashMap<>();
-        params.put("ano", no);
+        params.put("ano", ano);
         return testDao.findAll(params);
+	}
+	
+	@Override
+	public List<Test> allList(int no) {
+		HashMap<String,Object> params = new HashMap<>();
+        params.put("no", no);
+        return testDao.findMemberAll(params);
 	}
 
 	@Override

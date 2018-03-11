@@ -38,6 +38,23 @@
 		where a.ano = #{ano}
 	</select>
 	
+	<select id="findMemberAll" resultMap="testMap" parameterType="map">
+		select
+		a.aname,
+		a.adt,
+		t.tno,
+		t.ttype,
+		t.tdt,
+		t.ttime,
+		t.tloc,
+		t.tpre,
+		t.tcheck,
+		a.ano
+		from g_app a
+		left join g_test t on a.ano = t.ano
+		where a.ino = #{no}
+	</select>
+	
 	<select id="list" resultMap="testMap" parameterType="int">
 		select * from g_test where ano=#{ano}
 	</select>
