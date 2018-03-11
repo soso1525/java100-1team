@@ -57,7 +57,7 @@ body {
 	<script id="study" type="text/x-handlebars-template">
 {{#each list}}
 <tr onclick='userList({{sno}})'>
-              <td style="visibility:hidden; width: 0px; ">{{sno}}</td>
+              <td style="visibility:hidden; width: 0px;">{{sno}}</td>
               <td>{{sname}}</td>
               <td>{{scorp}}</td>
               <td>{{sloc}}</td> 
@@ -134,7 +134,7 @@ function load(pageNo, options) {
 }
 
 function userList(sno) {
-    location.href = "userList.html?sno="+sno;
+    location.href = "userList2.html?sno="+sno;
 }
 
 </script>
