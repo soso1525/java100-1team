@@ -1,43 +1,33 @@
 package java100.app.service.impl;
 
-import java.util.HashMap;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java100.app.dao.ApplyDao;
 import java100.app.dao.TestDao;
+import java100.app.domain.Apply;
 import java100.app.domain.Test;
 import java100.app.service.TestService;
 
 @Service
 public class TestServiceImpl implements TestService {
 
-	@Autowired
-	TestDao testDao;
+	@Autowired TestDao testDao;
 
 	@Override
-	public List<Test> list(int no) {
-		HashMap<String,Object> params = new HashMap<>();
-        params.put("ano", no);
-        return testDao.findAll(params);
+	public Test list(int no) {
+		return testDao.list(no);
 	}
 
-	@Override
-	public Test find(int ano) {
-		return testDao.list(ano);
-	}
-	
 	@Override
 	public int countAll() {
 		return testDao.countAll();
 	}
 
 	@Override
-	public int insert(Test test) {
-		return testDao.insert(test);
+	public int add(Test test) {
+		return testDao.add(test);
 	}
-	
 
 	@Override
 	public Test findByNo(int no) {
