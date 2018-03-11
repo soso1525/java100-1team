@@ -1,0 +1,42 @@
+<div id='	' class="modal" style='display:block'>
+	<div class="modal-content">
+		<span onclick="document.getElementById('modal').style.display='none'" class="close">&times;</span>
+		<h2
+			style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 30px; margin-top: 40px; margin-bottom: 60px">
+				<i style="margin-left: 10px" class="far fa-edit"></i>
+		</h2>
+		<form method='post' id='form' enctype='multipart/form-data'>
+			<div style="font-weight: 700">지원하는 기업 이름</div>
+			<input style="margin: 0 0 15px 0" class="form-control" 
+				placeholder="지원하는 회사 이름" id="aname" name="aname" type="text">
+
+			<div class="row">
+				<div class="col-sm-6">
+					<div style="font-weight: 700">접수 시작일</div>
+					<input style="margin: 0 0 10px 0" class="form-control" id="lsdt"
+						name="lsdt" type="date">
+				</div>
+
+				<div class="col-sm-6">
+					<div style="font-weight: 700">접수 마감일</div>
+					<input style="margin: 0 0 10px 0" class="form-control" id="ledt"
+						name="ledt" type="date">
+				</div>
+			</div>
+
+			<div style="font-weight: 700">이력서 파일</div>
+			<input style="margin: 0 0 15px 0" class="form-control" type="file"
+				name="files">
+
+			<div style="font-weight: 700">자소서 파일</div>
+			<input style="margin: 0 0 15px 0" class="form-control" type="file"
+				name="files">
+
+			<div style="text-align: center; margin: 50px 0">
+				<button id="applyBtn" type="button"
+					class="button button-style button-style-dark button-style-color-2">입사
+					지원하기</button>
+			</div>
+		</form>
+	</div>
+</div>

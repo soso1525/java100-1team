@@ -35,11 +35,13 @@
 		a.ano
 		from g_app a
 		inner join g_test t on a.ano = t.ano
-		where a.ano = #{ano}
+		where a.ano =
+		#{ano}
 	</select>
-	
+
 	<select id="list" resultMap="testMap" parameterType="int">
-		select * from g_test where ano=#{ano}
+		select *
+		from g_test where ano=#{ano}
 	</select>
 
 	<select id="findByNo" resultMap="testMap" parameterType="integer">
@@ -56,15 +58,13 @@
 		a.ano
 		from g_app a
 		inner join g_test t on a.ano = t.ano
-		where t.tno = #{value}
+		where t.tno =
+		#{value}
 	</select>
 
-	<insert id="insert" parameterType="test">
-		insert into g_test(ttype, tdt,
-		ttime, tloc, tpre, tcheck, ano)
-		values(#{type}, #{date},
-		#{time},
-		#{location}, #{prepare}, 0, #{ano})
+	<insert id="add" parameterType="test">
+		insert into g_test(ttype, tdt, ttime, tloc, tpre, tcheck, ano)
+		values(#{type}, #{date}, #{time}, #{location}, #{prepare}, 0, #{ano})
 	</insert>
 
 	<update id="update" parameterType="test">
