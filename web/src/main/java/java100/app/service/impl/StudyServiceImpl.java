@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java100.app.dao.StudyDao;
 import java100.app.domain.Study;
+import java100.app.domain.StudyMember;
 import java100.app.service.StudyService;
 
 @Service
@@ -17,7 +18,16 @@ public class StudyServiceImpl implements StudyService {
     
     @Override
     public int add(Study study) {
-        return studyDao.insert(study);
+        
+        studyDao.insert(study); // 스터디 작성
+        int findLastSno = studyDao.findLast(); // 작성한 스터디 찾기
+        // 작성한유저를 스터디에 추가
+        // @파라미터
+        StudyMember stm = new StudyMember();
+        stm.setSno(findLastSno);
+        stm.setIno(study.getWriter().getNo());
+        // @추가
+        return studyDao.memberInfo(stm);
     }
     
     @Override
@@ -59,8 +69,37 @@ public class StudyServiceImpl implements StudyService {
 		String cur = study.getScheck(); // ["3" of 5]
 		cur = (Integer.parseInt(cur) + 1) + "";
 		study.setScheck(cur);
+		
+		StudyMember stm = new StudyMember();
+		stm.setIno(userId);
+		stm.setSno(studyId);
 		studyDao.update(study);
+		studyDao.memberInfo(stm);
+	
 	}
+
+    @Override
+    public List<Study> memberList(int pageNo, int pageSize, Map<String, Object> options) {
+        HashMap<String,Object> params = new HashMap<>();
+        params.put("startIndex", (pageNo - 1) * pageSize);
+        params.put("size", pageSize);
+        
+        if (options != null) {
+            params.putAll(options);
+        }
+        return studyDao.myStudyInfo(params);
+    }
+
+    @Override
+    public List<Study> myStudyUserInfo(Map<String, Object> options) {
+        return studyDao.studyUser(options);
+    }
+
+    @Override
+    public String changId(int no) {
+        
+        return studyDao.chageId(no);
+    }
     
 
 }

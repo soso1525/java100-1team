@@ -19,6 +19,19 @@
             <result column="sloc"     property="address"/>
         </association>
     </resultMap>
+        <resultMap type="StudyMember" id="StudyMember">
+        <id  column="smno" property="smno"/>
+        <result column="sno" property="sno"/>
+        <result column="ino" property="ino"/>
+        
+        <result column="id" property="id"/>
+        <result column="email" property="email"/>
+        <result column="tel" property="tel"/>
+        <result column="name" property="name"/>
+        <result column="no" property="no"/>
+    </resultMap>
+    
+    
     <select id="findAll" resultMap="studyMap" parameterType="map">
         select sno, 
                sloc, 
@@ -28,8 +41,8 @@
                sregdt, 
                scorp, 
                simg, 
-               scheck
-        from g_study 
+               (select count(*) from g_mebst a where a.sno = b.sno) as scheck
+        from g_study b
         <if test="words != null">
             <where>
                 <foreach collection="words" item="word">
@@ -99,6 +112,63 @@
         delete from g_study
         where sno=#{value}
     </delete>
+    
+    <insert id="memberInfo" parameterType="StudyMember"
+        useGeneratedKeys="true" keyColumn="no" keyProperty="no">
+        insert into g_mebst(
+        sno, ino)
+        values(
+        #{sno},#{ino})
+    </insert>
+    <select id="findLast" resultType="int" >
+        select a.sno 
+          from (select b.sno                 as sno
+                     , @rownum := @rownum +1 as rownum 
+                  from g_study b
+                     , (select @rownum := 0) temp 
+                 order by sno desc) a 
+         where a.rownum = 1
+    </select>
+    <!-- 스터디 유저정보 -->
+    <select id="studyUser" resultType="StudyMember" parameterType="map">
+select c.pid as id
+         , c.pmail as email
+         , c.ptel as tel
+         , d.iname as name
+         , c.pno as no
+      from g_mebst a
+         , g_study  b
+         , g_per      c
+         , g_iper     d
+     where a.sno = b.sno
+       and a.ino  = c.pno
+       and c.pno = d.ino
+       and a.sno = #{sno}
+    </select>
+    
+    <!-- MyStudy -->
+    <select id="myStudyInfo" resultMap="studyMap" parameterType="map">
+        select b.sno, 
+               b.sloc, 
+               b.sname, 
+               b.sint, 
+               b.sppl,
+               b.sregdt, 
+               b.scorp, 
+               b.simg, 
+               (select count(*) from g_mebst a where a.sno = b.sno) as scheck 
+  from g_mebst a
+         , g_study  b  
+where a.ino = #{loginUserNo}
+    and a.sno = b.sno 
+ limit #{startIndex}, #{size}
+    </select>
+    <select id = "chageId" resultType="java.lang.String" parameterType="int">
+        select a.pid as id
+          from g_per  a
+         where a.pno = #{no}
+    
+    </select>
 </mapper>
 
 

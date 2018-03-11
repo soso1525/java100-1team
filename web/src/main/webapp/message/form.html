@@ -50,7 +50,11 @@
 	mcontItem = $('#mcont'),
 	nodiv = $('#nod')
 	;
-
+    var parentsNo = document.getElementById("params").value;
+    if(parentsNo != null || parentsNo !="") {
+        $("#mrecv").val(parentsNo);
+        
+    }
 function add(mrecv, mcont) {
 addBtn.click(() => {
     $.ajax(host + '/json/message/add', {
@@ -63,11 +67,11 @@ addBtn.click(() => {
         dataType: 'json',
         method: 'POST',
         success: (result) => {
-            location.href = "sendList.html";
+            location.href = "../message/sendList.html";
         },
         error: () => {
-            window.alert('서버 실행 오류!!');
-            location.href = "sendList.html";
+            //window.alert('서버 실행 오류!!');
+            location.href = "../message/sendList.html";
         }
     });
 });

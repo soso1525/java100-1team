@@ -110,9 +110,9 @@ function applyStudy ( userId ) {
 		data : param,
 		success :function ( res ) {
 			if ( res.success ) {
-				
+			    location.href = "memberList.html?sno="+$('#sno').val();// 수정사항
 			} else {
-				;
+			    location.href = "memberList.html?sno="+$('#sno').val();// 수정사항
 			}		
 		}
 	});

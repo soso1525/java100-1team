@@ -76,7 +76,7 @@
 <tr>
               <td>{{sno}}</td>
               <td><a href='form.html?sno={{sno}}'>{{sloc}}</a></td> 
-              <td>{{sname}}</td>
+              <td><button type="button" id="sname" class="btn btn-primary" onclick='userList({{sno}})'>{{sname}}</button></td>
               <td>{{sint}}</td>
               <td>{{sppl}}</td>
               <td>{{sregdt}}</td>
@@ -123,7 +123,7 @@ function load(pageNo, options) {
     if (options == undefined) options = {};
     options.pn = pageNo;
     
-    $.ajax('../json/study/list', {
+    $.ajax('../json/study/memberList', {
         data: options,
         dataType: 'json',
         success: (result) => {
@@ -148,6 +148,10 @@ function load(pageNo, options) {
             window.alert('서버 실행 오류!');
         }
     });
+}
+
+function userList(sno) {
+    location.href = "userList.html?sno="+sno;
 }
 
 </script>
