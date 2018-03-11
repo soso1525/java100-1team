@@ -8,6 +8,7 @@
 	href="../images/favicon/apple-touch-icon.png">
 <link rel="stylesheet" type="text/css" href="../css/plugin.css">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
+
 <style>
 body {
     background-color: #f2f2f2;
@@ -31,10 +32,10 @@ body {
 				</div>
 			</div>
 
-			<table id='list' class='table table-hover'>
-				<thead>
+			<table id='list' class='table'>
+			 <thead class="thead-dark">
 					<tr>
-						<th style="visibility:hidden; width: 0px; ">번호</th>
+						<th style="visibility:hidden; width: 0px;">번호</th>
 						<th>이름</th>
 						<th>대상기업</th>
 						<th>지역</th>
@@ -56,14 +57,15 @@ body {
 
 	<script id="study" type="text/x-handlebars-template">
 {{#each list}}
-<tr onclick='userList({{sno}})'>
+
+<tr class="my-memberlist" onclick='userList({{sno}})'>
               <td style="visibility:hidden; width: 0px; ">{{sno}}</td>
               <td>{{sname}}</td>
               <td>{{scorp}}</td>
               <td>{{sloc}}</td> 
               <td>{{sint}}</td>
-              <td>{{sppl}}</td>
-              <td>{{scheck}}</td>
+              <td>{{sppl}}명</td>
+              <td>{{scheck}}명</td>
               <td>{{sregdt}}</td>
              
 </tr>
@@ -134,7 +136,7 @@ function load(pageNo, options) {
 }
 
 function userList(sno) {
-    location.href = "userList.html?sno="+sno;
+    location.href = "userList2.html?sno="+sno;
 }
 
 </script>
