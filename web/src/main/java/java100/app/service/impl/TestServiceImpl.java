@@ -13,14 +13,11 @@ import java100.app.service.TestService;
 @Service
 public class TestServiceImpl implements TestService {
 
-	@Autowired
-	TestDao testDao;
+	@Autowired TestDao testDao;
 
 	@Override
-	public List<Test> list(int ano) {
-		HashMap<String,Object> params = new HashMap<>();
-        params.put("ano", ano);
-        return testDao.findAll(params);
+	public Test list(int no) {
+		return testDao.list(no);
 	}
 	
 	@Override
@@ -31,20 +28,14 @@ public class TestServiceImpl implements TestService {
 	}
 
 	@Override
-	public Test find(int ano) {
-		return testDao.list(ano);
-	}
-	
-	@Override
 	public int countAll() {
 		return testDao.countAll();
 	}
 
 	@Override
-	public int insert(Test test) {
-		return testDao.insert(test);
+	public int add(Test test) {
+		return testDao.add(test);
 	}
-	
 
 	@Override
 	public Test findByNo(int no) {
@@ -60,5 +51,4 @@ public class TestServiceImpl implements TestService {
 	public int delete(int no) {
 		return testDao.delete(no);
 	}
-
 }

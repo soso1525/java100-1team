@@ -5,7 +5,6 @@ import java.util.HashMap;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,22 +12,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import java100.app.domain.Apply;
 import java100.app.domain.Member;
 import java100.app.domain.Test;
+import java100.app.service.ApplyService;
 import java100.app.service.TestService;
 
 @RestController
 @RequestMapping("/test")
 @SessionAttributes("loginUser")
 public class TestController {
-	
+
 	@Autowired ServletContext servletContext;
+	@Autowired ApplyService applyService;
 	@Autowired TestService testService;
 	
 	
 	
-	@RequestMapping("list")
-	public Object list(@ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
+	@RequestMapping("allList")
+	public Object allList(@ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("list", testService.allList(loginUser.getNo()));
 		result.put("status", "success");
@@ -42,28 +44,35 @@ public class TestController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public Object add(Test test, @ModelAttribute(value = "loginUser") Member loginUser)
-			throws Exception {
-		test.setMember(loginUser);
-		testService.insert(test);
+	public Object add(int ano, Apply apply, Test test, @ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
+		test.setAno(ano);
 		HashMap<String, Object> result = new HashMap<>();
+		testService.add(test);
 		result.put("status", "success");
 		return result;
 	}
 
-//	@RequestMapping("{no}")
-//	public Object view(@PathVariable int no) throws Exception {
-//		HashMap<String, Object> result = new HashMap<>();
-//		result.put("test", testService.findByNo(no));
-//		return result;
-//	}
-	
-	@RequestMapping("{ano}")
-	public Object find(@PathVariable int ano) throws Exception {
-//		result.put("letter", letterService.get(no));
-//		result.put("question", questionService.list(no));
+	@RequestMapping(value = "addTest", method = RequestMethod.POST)
+	public Object addTest(Apply apply, Test test, @ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
 		HashMap<String, Object> result = new HashMap<>();
-		result.put("test", testService.find(ano));
+
+		apply.setMember(loginUser);
+		applyService.add(apply);
+		
+		test.setAno(apply.getAno());
+		testService.add(test);
+		
+		result.put("status", "success");
+		result.put("ano", apply.getAno());
+		return result;
+	}
+
+	@RequestMapping("{ano}")
+	public Object list(@PathVariable int ano) throws Exception {
+		// result.put("letter", letterService.get(no));
+		// result.put("question", questionService.list(no));
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("test", testService.list(ano));
 		return result;
 	}
 

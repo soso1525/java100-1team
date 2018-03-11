@@ -1,5 +1,38 @@
 
+//String Date타입으로 바꾸기
+function parse(str) {
+	var date = new Date(str.split('-'));
+	return date.getDate();
+}
 
+$.ajax(host + '/json/test/allList', {
+	dataType: 'json',
+    success: (result) => {
+    	for (var data of result.list) {
+    		
+    		var d = 'd' + parse(data.date);
+			var tag;
+			
+			if(data.type == '인적성') {
+				tag = '<div style="color:blue">' + data.apply.aname + ' : ' + data.type + '</div>'
+			} 
+			
+			if(data.type == '면접') {
+				tag = '<div style="color:red">' + data.apply.aname + ' : ' + data.type + '</div>'
+			}
+			
+			if(data.type == undefined) {
+				swal('Missed!', '전형 유형을 선택하지 않으셨습니다!', 'error');
+				return;
+			}
+			
+			document.getElementById(d).innerHTML += tag;
+    	}
+    },
+    error: () => {
+        window.alert('서버 실행 오류!');
+    }
+});
 
 
 $('#addBtn').click(() => {

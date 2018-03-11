@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CATCH : 인적성/면접 리스트</title>
+<link rel="shortcut icon" href="images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="144x144" type="image/x-icon"
+	href="../images/favicon/apple-touch-icon.png">
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<style>
+.delcol {
+	background-color: #f7639a;
+	color: white;
+}
+</style>
+</head>
+<body>
+	<header></header>
+	<section style="background-color: #f2f2f2" id="services"
+		class="services-section section-space-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div style="margin-top: 100px;" class="section-title">
+						<h2>인적성/면접 추가</h2>
+						<div class="divider dark">
+							<i class="icon-drop"></i>
+						</div>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+					</div>
+				</div>
+			</div>
+
+			<form style='margin-left: auto; margin-right: auto' method='post'
+				id="form">
+				<input type="hidden" id="ano" name="ano">
+				<div class="form-group row">
+					<label class='col-sm-2 col-form-label'>기업이름</label>
+					<div class='col-sm-10'>
+						<input class='form-control' placeholder='지원한 회사 이름' id='aname'
+							name='aname' type='text' required>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class='col-sm-2 col-form-label'>전형 유형</label>
+					<div class="col-sm-10">
+						<input class="form-check-input" type="radio" name="type"
+							value="인적성"> <label class="form-check-label" for="test">인적성</label>
+						<input style='margin-left: 10px' class="form-check-input"
+							type="radio" name="type" value="면접"> <label
+							class="form-check-label" for="interview">면접</label>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class='col-sm-2 col-form-label'>전형 일자</label>
+					<div class="col-sm-4">
+						<input class='form-control' type='date' name='date' required>
+					</div>
+					<label class='col-sm-2 col-form-label'>전형 시간 </label>
+					<div class="col-sm-4">
+						<input class='form-control' type='time' name='time' required>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class='col-sm-2 col-form-label'>준비물</label>
+					<div class="col-sm-10">
+						<input class='form-control' type='text' value='신분증' name='prepare'
+							required>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class='col-sm-2 col-form-label'>위치</label>
+					<div class="col-sm-10">
+						<input class='form-control' type='text' name='location'
+							placeholder='시험 및 면접장 위치' required>
+					</div>
+				</div>
+			</form>
+
+			<div style="text-align: right" id="addbtn">
+				<button class="btn btn-primary">추가</button>
+			</div>
+		</div>
+	</section>
+
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+	<script src='../js/login.js'></script>
+	<script src='../js/context.js'></script>
+	
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	
+<script>
+    // 우편번호 찾기 찾기 화면을 넣을 element
+    var element_wrap = document.getElementById('wrap');
+
+    function foldDaumPostcode() {
+        // iframe을 넣은 element를 안보이게 한다.
+        element_wrap.style.display = 'none';
+    }
+
+    function sample3_execDaumPostcode() {
+        // 현재 scroll 위치를 저장해놓는다.
+        var currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullAddr = data.address; // 최종 주소 변수
+                var extraAddr = ''; // 조합형 주소 변수
+
+                // 기본 주소가 도로명 타입일때 조합한다.
+                if(data.addressType === 'R'){
+                    //법정동명이 있을 경우 추가한다.
+                    if(data.bname !== ''){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있을 경우 추가한다.
+                    if(data.buildingName !== ''){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample3_postcode').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('sample3_address').value = fullAddr;
+
+                // iframe을 넣은 element를 안보이게 한다.
+                // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
+                element_wrap.style.display = 'none';
+
+                // 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
+                document.body.scrollTop = currentScroll;
+            },
+            // 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
+            onresize : function(size) {
+                element_wrap.style.height = size.height+'px';
+            },
+            width : '100%',
+            height : '100%'
+        }).embed(element_wrap);
+
+        // iframe을 넣은 element를 보이게 한다.
+        element_wrap.style.display = 'block';
+    }
+</script>
+	<script type="text/javascript">
+		$('header').load("../header.html");
+		
+		$('#addbtn').click(() => {
+			$.ajax(host + '/json/apply/find', {
+				data: {
+					aname: $('#aname').val()
+				},
+				dataType: 'json',
+				success: (result) => {
+					$('#ano').val(0);
+					if (result.data) {
+						$('#ano').val(result.data.ano);
+						var ano = result.data.ano;
+						var formData = new FormData($('#form')[0]);
+					    $.ajax(host + '/json/test/add', {
+					        data: formData,
+					        dataType: 'json',
+					        method: 'POST',
+					        processData : false,
+					        contentType : false,
+					        success: () => {
+					        	swal("Added!", "새로운 일정이 등록되었습니다", "success").then(()=> {
+					        		location.href = "../apply/my-apply-status.html?ano="+ano;	
+					        	});
+					        },
+					        error: () => {
+					            window.alert('서버 실행 오류!');
+					        }
+					    });
+						
+					} else {
+						var formData = new FormData($('#form')[0]);
+					    $.ajax(host + '/json/test/addTest', {
+					        data: formData,
+					        dataType: 'json',
+					        method: 'POST',
+					        processData : false,
+					        contentType : false,
+					        success: (result) => {
+					        	swal("Added!", "새로운 일정이 등록되었습니다", "success").then(()=> {
+					        		location.href = "../apply/my-apply-status.html?ano=" + result.ano;	
+					        	});
+					        },
+					        error: () => {
+					            window.alert('서버 실행 오류!');
+					        }
+					    });
+					}
+				},
+				error: () => {
+		            window.alert('서버 실행 오류!');
+		        }
+				
+			});
+		});	
+	</script>
+
+
+</body>
+</html>
