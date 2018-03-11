@@ -29,6 +29,10 @@
 				</div>
 			</div>
 
+			<div style="margin-bottom: 10px; text-align: right">
+				<button id="updatebtn" class="btn btn-primary">변경</button>
+				<button id="deletebtn" class="btn btn-primary">삭제</button>
+			</div>
 			<div id='paper2'
 				style='padding: 15px; margin-bottom: 20px; border-radius: 10px; background-color: white; box-shadow: 4px 6px 14px 4px #00000054'>
 				<div class="form-group row" style='margin-bottom: 0'>
@@ -45,6 +49,7 @@
 		</div>
 	</section>
 
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
 	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
@@ -76,6 +81,9 @@
 	var index = location.href.indexOf('?');
 	var qs = location.href.substr(index + 1);
 	var arr = qs.split('=');
+	
+	var lno = arr[1];
+	
 	var fileName = null;
 	
 	$(() => {
@@ -84,7 +92,7 @@
 			success: (result) => {
 				letter.html(letter.html() + template1Engine(result));
 				$('#title').html(result.compName + ' 자기소개서');
-				if(result.file != null) 
+				if(result.file != "") 
 					fileName = result.file;
 					$('#fileTag').html(fileName);
 					
@@ -107,9 +115,33 @@
 		});
 	});
 	
-	
-	
-	
+	$('#deletebtn').click(() => {
+		swal('정말 삭제하시겠습니까?', {
+			  buttons: {
+			    cancel: {visible: true, value: false},
+			    confirm: {visible: true, value: true}
+			  },
+		}).then((value) => {
+			if(value) {
+				$.ajax(host + '/json/letter/delete', {
+					data: {
+				    	no: lno
+				    },
+				    dataType: 'json',
+				    success: (result) => {
+				    	swal('삭제되었습니다').then(() => {
+				    		location.href= "../apply/my-apply-status.html?ano=" + result.ano;
+				    	});
+					},
+				    error: () => {
+				    	alert('서버 실행 오류!');
+				    }
+				});
+			} else {
+				swal('취소되었습니다');
+			}
+		});
+	});
 	
 	
 	function SaveToDisk(fileURL, fileName) {
