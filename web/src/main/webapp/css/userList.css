@@ -1,0 +1,92 @@
+@import url(https://fonts.googleapis.com/css?family=Cabin:400,700);
+.Businesscard {
+  /* background: #000; */
+  /* opacity: 0.8; */
+  width: 280px;
+  font-family: 'Cabin';
+  height: 400px;
+}
+.material {
+  width: 300px;
+  /* padding: 10% 0 0 20%; */
+  /* margin: auto; */
+  text-align: center;
+}
+.statusbar {
+  background: #00796B;
+  width: 300px;
+  height: 20px;
+}
+.statusbar i {
+  float: right;
+  padding: 5px;
+  color: #FFF;
+}
+.large_block {
+  width: 250px;
+  height: 170px;
+  background: #009688;
+  position: relative;
+  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+.large_block .profile {
+  position: absolute;
+  left: 50%;
+  right: 0;
+  top: 50%;
+  bottom: 0;
+  width: 150px;
+  height: 150px;
+  border-radius: 100px;
+  background: #FFF;
+  -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
+          box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.large_block .profile img {
+  margin-top: 10%;
+  max-width: 70%;
+}
+.primaryaction_btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background: #ffc107;
+  -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
+          box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
+  position: absolute;
+  right: 25px;
+  text-align: center;
+  bottom: -25px;
+}
+.primaryaction_btn i {
+  color: #fff;
+  padding: 4px;
+  font-size: 40px;
+}
+.address {
+  background: #FFF;
+  padding-bottom: 15px;
+  width: 250px;
+  text-align: left;
+}
+.address label {
+  padding: 15px 0 0 15px;
+  letter-spacing: 1px;
+  display: block;
+}
+.address label .head {
+  display: inline-block;
+  width: 70px;
+  font-weight: 700;
+}
+.address .office_add span:nth-child(4) {
+  display: block;
+  padding-left: 83px;
+}
+.address .office_add span:nth-child(5) {
+  display: block;
+  padding-left: 83px;
+}

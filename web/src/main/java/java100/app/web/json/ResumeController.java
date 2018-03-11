@@ -27,46 +27,48 @@ public class ResumeController {
 	@Autowired ServletContext servletContext;
     @Autowired ResumeService resumeService;
     
-    
     @RequestMapping("list")
-    public Object list(
-            @RequestParam(value="pn", defaultValue="1") int pageNo,
-            @RequestParam(value="ps", defaultValue="9") int pageSize,
-            @RequestParam(value="words", required=false) String[] words,
-            @RequestParam(value="oc", required=false) String orderColumn,
-            @RequestParam(value="al", required=false) String align
-           ) throws Exception {
-        
-         if (pageNo < 1) {
-             pageNo = 1;
-         }
-        
-         if (pageSize < 9 || pageSize > 15) {
-             pageSize = 9; 
-             }
-        
-          HashMap<String,Object> options = new HashMap<>();
-         if (words != null && words[0].length() > 0) {
-             options.put("words", words);
-         }
-         options.put("orderColumn", orderColumn);
-         options.put("align", align);
-        
-        int totalCount = resumeService.getTotalCount();
-        int lastPageNo = totalCount / pageSize;
-        if ((totalCount % pageSize) > 0) {
-            lastPageNo++;
-        }
-        if(pageNo >= lastPageNo) {
-            pageNo = lastPageNo;
-        }
-        HashMap<String,Object> result = new HashMap<>();
-        result.put("totalCount",totalCount);
-        result.put("pageNo", pageNo);
-        result.put("lastPageNo", lastPageNo);
-        result.put("list", resumeService.list(pageNo, pageSize, options));
-        return result;
+    public Object list(@RequestParam(value = "pn", defaultValue = "1") int pageNo,
+          @RequestParam(value = "ps", defaultValue = "12") int pageSize,
+          @RequestParam(value = "words", required = false) String[] words,
+          @RequestParam(value = "oc", required = false) String orderColumn,
+          @RequestParam(value = "al", required = false) String align,
+          @ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
+
+       if (pageNo < 1) {
+          pageNo = 1;
+       }
+
+       if (pageSize < 12 || pageSize > 15) {
+          pageSize = 12;
+       }
+
+       HashMap<String, Object> options = new HashMap<>();
+       if (words != null && words[0].length() > 0) {
+          options.put("words", words);
+       }
+       options.put("orderColumn", orderColumn);
+       options.put("align", align);
+       options.put("mno", loginUser.getNo());
+
+       int totalCount = resumeService.getTotalCount();
+       int lastPageNo = totalCount / pageSize;
+       if ((totalCount % pageSize) > 0) {
+          lastPageNo++;
+       }
+
+       HashMap<String, Object> result = new HashMap<>();
+       result.put("pageNo", pageNo);
+       result.put("lastPageNo", lastPageNo);
+      
+       if (loginUser.getType().equals("1")) {
+          result.put("list", resumeService.listMy(pageNo, pageSize, options));
+       } else {
+          result.put("list", resumeService.list(pageNo, pageSize, options));
+       }
+       return result;
     }
+   
     
     @RequestMapping("form")
     public String form() throws Exception {
@@ -103,11 +105,12 @@ public class ResumeController {
         return result;
     }
     
-    @RequestMapping("{no}")
-    public Object view(@PathVariable int no) throws Exception {
+    @RequestMapping("{rno}")
+    public Object view(@PathVariable int rno, @ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
         
         HashMap<String, Object> result = new HashMap<>();
-        result.put("data", resumeService.get(no));
+        result.put("userInfo", loginUser); 
+        result.put("data", resumeService.get(rno));
         
         return result;
     }

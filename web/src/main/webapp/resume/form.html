@@ -6,15 +6,13 @@
 <title>이력서</title>
 <link rel='stylesheet' href='../css/plugin.css'>
 <link rel='stylesheet' href='../css/style.css'>
-<link rel='stylesheet' href='../css/common.css'>
-<link rel="stylesheet"
-	href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<!-- <link rel="stylesheet"
+	href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css"> -->
+<!-- <link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<!-- <link rel="stylesheet" href="../css/main.css"> -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+<!-- <link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css"> -->
 <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 
 <script type="text/javascript">
@@ -23,11 +21,11 @@
         if(obj[i] != a){obj[i].checked = false;}
     }
 } </script>
-<style>
+<!-- <style>
 div {
 	margin-bottom: 10px;
 }
-</style>
+</style> -->
 </head>
 <body>
 
@@ -40,18 +38,18 @@ div {
 			<div id="nod"></div>
     
 			<div class="form-row" >
-				<div class='col-md-12 mb-3'>
+				<div class='col-md-12 mb-3' style= 'margin-bottom: 16px;'>
 					<label for='title'>제목</label> <input class='form-control'
 						id='title' type='text' name='title'>
 					<div style="font-size: 11px; color: #f7639a;">이력서 제목을 입력해주세요</div>
 				</div>
 			</div>
 
-			<div class="form-row">
-				<div class='col-md-6 mb-3'>
+			<div class="form-row" >
+				<div class='col-md-6 mb-3' style= 'margin-bottom: 16px;'>
 					<label for='education'>최종 학력</label> <br>
 					<div
-						style="font-size: 13px; word-spacing: 0px; letter-spacing: -.01px; color: #6E6E6E;">
+						style="font-size: 13px; word-spacing: 0px; letter-spacing: -.01px; color: #6E6E6E; ">
 						<input class='magic-checkbox' id='education1' type='checkbox'
 							name='education' value="고등학교졸업" onclick="oneCheckbox(this)">
 						<label class='text'>고등학교 졸업</label> &nbsp <input
@@ -73,14 +71,14 @@ div {
 			</div>
 
 			<div class="form-row">
-				<div class='col-md-6 mb-3'>
+				<div class='col-md-6 mb-3' style= 'margin-bottom: 16px;'>
 					<label for='career'>경력</label> <input class='form-control'
 						id='career' type='text' name='career'>
 				</div>
 			</div>
 
 			<div class="form-row">
-				<div class='col-md-6 mb-3'>
+				<div class='col-md-6 mb-3' style= 'margin-bottom: 16px;'>
 					<label for='kind'>희망 직무</label> <input class='form-control'
 						id='kind' type='text' name='kind'>
 					<div style="font-size: 11px; color: #f7639a;">희망 직무을 입력해주세요</div>
@@ -90,7 +88,7 @@ div {
 			<div align="center" id='image'></div>
 
 			<div class="form-row">
-				<div class='col-md-6 mb-3'>
+				<div class='col-md-6 mb-3' style= 'margin-bottom: 16px;'>
 					<label for='image'>나의 사진</label> <input class='form-control'
 						id='image' type='file' name='files'>
 					<div style="font-size: 11px; color: #f7639a;">나의 사진을 저장해주세요</div>
@@ -98,21 +96,21 @@ div {
 			</div>
 
 			<div class="form-row">
-				<div class='col-md-6 mb-3'>
+				<div class='col-md-6 mb-3' style= 'margin-bottom: 16px;'>
 					<label for='qualification'>자격증</label> <input class='form-control'
 						id='qualification' type='text' name='qualification'>
 				</div>
 			</div>
 
 			<div class="form-row">
-				<div class='col-md-6 mb-3'>
+				<div class='col-md-6 mb-3' style= 'margin-bottom: 16px;'>
 					<label for='language'>어학</label> <input class='form-control'
 						id='language' type='text' name='language'>
 				</div>
 			</div>
 
 			<div class="form-row">
-				<div class='col-md-6 mb-3'>
+				<div class='col-md-6 mb-3' style= 'margin-bottom: 16px;'>
 					<label for='award'>수상</label> <input class='form-control'
 						id='award' type='text' name='award'>
 				</div>
@@ -121,21 +119,21 @@ div {
 
 
 			<div class="form-row">
-				<div class='col-md-6 mb-3'>
+				<div class='col-md-6 mb-3' style= 'margin-bottom: 16px;'>
 					<label for='major'>전공</label> <input class='form-control'
 						id='major' type='text' name='major'>
 				</div>
 			</div>
 
 			<div class="form-row">
-				<div class='col-md-6 mb-3'>
+				<div class='col-md-6 mb-3' style= 'margin-bottom: 16px;'>
 					<label for='schoolName'>학교명</label> <input class='form-control'
 						id='schoolName' type='text' name='schoolName'>
 				</div>
 			</div>
 
 			<div class="form-row">
-				<div class='col-md-6 mb-3'>
+				<div class='col-md-6 mb-3' style= 'margin-bottom: 16px;'>
 					<label for='grades'>학점</label> <input class='form-control'
 						id='grades' type='number' name='grades'>
 				</div>
@@ -144,7 +142,7 @@ div {
 			<div align="center" id="vi"></div>
 
 			<div class="form-row">
-				<div class='col-md-6 mb-3'>
+				<div class='col-md-6 mb-3' style= 'margin-bottom: 16px;'>
 					<label for='avi'>1분 동영상</label> <input class='form-control'
 						id='avi' type='file' name='files'>
 					<div style="font-size: 11px; color: #f7639a;">동영상을 첨부할 수
@@ -153,7 +151,7 @@ div {
 			</div>
 
 			<div class="form-row">
-				<div class='col-md-6 mb-3'>
+				<div class='col-md-6 mb-3' style= 'margin-bottom: 16px;'>
 					<label for='file'>첨부파일</label> <input class='form-control'
 						id='file' type='file' name='files'> <!-- <label for='nowFile'>현재파일</label> -->
 						<!-- <div id='nowFile' style="font-size: 11px; color: #f7639a;"> -->
@@ -163,14 +161,14 @@ div {
 			</div>
 
 			<div class="form-row">
-				<div class='col-md-6 mb-3'>
+				<div class='col-md-6 mb-3' style= 'margin-bottom: 16px;'>
 					<label for='note'>나의 한마디</label> <input class='form-control'
 						id='note' type='text' name='note'>
 				</div>
 			</div>
 
 			<div class="form-row">
-				<div class='col-md-6 mb-3'>
+				<div class='col-md-6 mb-3' style= 'margin-bottom: 16px;'>
 					<label for='check'>이력서 공개여부</label> <br> <input
 						class='magic-radio"' id='check1' type='radio' name='check'
 						value="1" checked='checked'> <label for='check'>
@@ -207,10 +205,7 @@ div {
 	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
-	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
-	<script type="text/javascript" src="../js/context.js"></script>
+
 	<script type="text/javascript">
 	
             
@@ -256,7 +251,7 @@ if (index != -1) { // 기존 데이터를 조회할 경우,
     
 	$('.my-new').css('display', 'none');
     $(() => {
-        $.ajax(host + '/json/resume/' + arr[1], {
+        $.ajax('../json/resume/' + arr[1], {
             dataType: 'json',
             success: (result) => {
 	           	console.log(result);
@@ -329,7 +324,7 @@ if (index != -1) { // 기존 데이터를 조회할 경우,
 addBtn.click(() => {
 	var formData = new FormData($('#form')[0]);
     
-    $.ajax(host + '/json/resume/add', {
+    $.ajax('../json/resume/add', {
         data:
         	formData,
         	dataType: 'json',
@@ -348,7 +343,7 @@ addBtn.click(() => {
  updateBtn.click(() => {
     var formData = new FormData($('#form')[0]);
     
-    $.ajax(host + '/json/resume/update', {
+    $.ajax('../json/resume/update', {
         data: formData,
         dataType: 'json',
         method: 'POST',
@@ -365,7 +360,7 @@ addBtn.click(() => {
 });
 deleteBtn.click(() => {
     noItem = $('#no');
-    $.ajax(host + '/json/resume/delete', {
+    $.ajax('../json/resume/delete', {
         data: {
             no: noItem.val()
         },

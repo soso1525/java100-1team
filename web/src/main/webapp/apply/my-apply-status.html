@@ -15,9 +15,9 @@
 }
 </style>
 </head>
-<body>
+<body style='background-color: #f2f2f2'>
 	<header></header>
-	<section style="background-color: white" id="services"
+	<section style="background-color: #f2f2f2" id="services"
 		class="services-section section-space-padding">
 		<div class="container">
 			<div class="row">
@@ -27,7 +27,10 @@
 						<div class="divider dark">
 							<i class="icon-drop"></i>
 						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+						<p>
+							기업별 자기소개서 작성 현황입니다<br>자기소개서를 보고싶으면 <strong>제목</strong>을
+							누르세요.
+						</p>
 					</div>
 
 				</div>
@@ -57,12 +60,14 @@
 						<div class="divider dark">
 							<i class="icon-drop"></i>
 						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+						<p>
+							인적성 및 면접 일정입니다<br>일정이 없는 경우 표시되지 않습니다
+						</p>
 					</div>
 				</div>
 			</div>
 
-			<div class="row" style="overflow: hidden; padding: 15px">
+			<div id='detail' class="row" style="overflow: hidden; padding: 15px">
 				<div style="float: left; width: 48%">
 					<table style="text-align: center; width: 100%;" id="list2"
 						class='table table-hover'>
@@ -95,19 +100,21 @@
 						type="button" value="주소 검색">
 				</div>
 
+				<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 				<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
 				<script src='../node_modules/jquery/dist/jquery.min.js'></script>
 				<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 				<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
 				<script src='../js/login.js'></script>
+				<script src='../js/context.js'></script>
 				<script id="template1" type="text/x-handlebars-template">
 {{#each letterList}}
 <tr>
   <td>{{count}}</td>
   <td><a href="../letter/view.html?no={{lno}}">{{ltit}}</a></td>
-  <td>{{writedt}}</td>
-  <td>{{#fileCheck lfile}}{{/fileCheck}}</td>
-  <td class='delcol'><a href="#">삭제</a></td>
+  <td style='background-color:white'>{{writedt}}</td>
+  <td style='background-color:white'>{{#fileCheck lfile}}{{/fileCheck}}</td>
+  <td style='cursor: pointer' id='deletelet' onclick='deleteLetter({{lno}})' class='delcol'>삭제</td>
 </tr>
 {{/each}}
 </script>
@@ -135,7 +142,7 @@
 	    var qs = location.href.substr(index + 1);
 	    var arr = qs.split('=');
 	    $(() => {
-	        $.ajax('../json/letter/' + arr[1], {
+	        $.ajax(host + '/json/letter/' + arr[1], {
 	        	 dataType: 'json',
 	     	    success: (result) => {
 	     	        tbody.html(template1Engine(result));
@@ -144,10 +151,16 @@
 	     	        window.alert('서버 실행 오류!');
 	     	    }
 	        });
-	        $.ajax('../json/test/' + arr[1], {
+	        
+	        $.ajax(host + '/json/test/' + arr[1], {
 	        	 dataType: 'json',
 	     	    success: (result) => {
-	     	        tbody2.html(template2Engine(result));
+	     	    	if(result.test != null) {
+	     	       		tbody2.html(template2Engine(result));
+	     	       		$('#detail').css('displsay', 'block');
+	     	    	} else {
+	     	    		$('#detail').css('display', 'none');
+	     	    	}
 	     	    },
 	     	    error: () => {
 	     	        window.alert('서버 실행 오류!');
@@ -160,13 +173,40 @@
 		return (num++);
 	});
 	
-	Handlebars.registerHelper('fileCheck', function(lfile) {
-		  if(lfile == null) {
-		    return 'N';
+	Handlebars.registerHelper('fileCheck', function(options) {
+		  if(this.lfile == "") {
+		    return 'NO';
 		  }
-		  return 'Y';
+		  return 'YES';
 		});
-
+	
+	function deleteLetter(lno) {
+		swal('정말 삭제하시겠습니까?', {
+			  buttons: {
+			    cancel: {visible: true, value: false},
+			    confirm: {visible: true, value: true}
+			  },
+		}).then((value) => {
+			if(value) {
+				$.ajax(host + '/json/letter/delete', {
+					data: {
+				    	no: lno
+				    },
+				    dataType: 'json',
+				    success: (result) => {
+				    	swal('삭제되었습니다').then(() => {
+				    		location.href= "../apply/my-apply-status.html?ano=" + result.ano;
+				    	});
+					},
+				    error: () => {
+				    	alert('서버 실행 오류!');
+				    }
+				});
+			} else {
+				swal('취소되었습니다');
+			}
+		});
+	}
 	</script>
 				<script type="text/javascript"
 					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0594a0c4e6386f7548ca7057f30a5da9&libraries=services"></script>

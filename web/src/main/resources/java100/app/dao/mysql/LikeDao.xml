@@ -15,12 +15,87 @@
     <resultMap type="like" id="likeMap">
         <id column="lnno" property="nno"/>
         <id column="lino" property="ino"/>
+        <association property="notice" javaType="notice" >
+	        <id column="nno" property="no"/>
+	        <result column="nimg" property="image"/>
+	        <result column="nsdt" property="startDate"/>
+	        <result column="nedt" property="endDate"/>
+	        <result column="ncnt" property="viewCount"/>
+	        <result column="ntype" property="nType"/>
+	        <result column="nduty" property="duty"/>
+	        <result column="ntitle" property="title"/>
+        </association>
+	    <association property="companyMember" javaType="companyMember" >
+	    	<id column="cno" property="cno"/>
+	    	<result column="cname" property="cName"/>
+	    	<result column="clogo" property="logo"/>
+	    </association>
+	    <association property="writer" javaType="member">
+	    	<id column="pno" property="no"/>
+	    	<result column="pdaddr" property="address"/>
+	    </association>
     </resultMap>
+    
+    
+    <select id="findAll" parameterType="map" resultMap="likeMap">
+    	select
+			n.nno,
+			n.nimg,
+			n.nsdt,
+			n.nedt,
+			n.ncnt,
+			n.ntitle,
+			n.ntype,
+			n.nduty,
+			c.cname,
+			c.ckind,
+			c.clogo,
+			p.pdaddr
+		from g_like l
+		left join g_noti n on n.nno=l.lnno
+		left join g_corp c on n.cno=c.cno
+		left join g_per p on p.pno=c.cno
+		<where>
+			l.lino = #{writer.no}
+		</where>
+		
+    </select>
+    
+    <select id="findByNo" resultMap="likeMap" parameterType="map">
+        select
+			n.nno,
+			n.nimg,
+			n.nsdt,
+			n.nedt,
+			n.ncnt,
+			n.ntitle,
+			n.ntype,
+			n.nduty,
+			c.cname,
+			c.ckind,
+			c.clogo,
+			p.pdaddr
+		from g_like l
+		left join g_noti n on n.nno=l.lnno
+		left join g_corp c on n.cno=c.cno
+		left join g_per p on p.pno=c.cno
+		<where>
+			and l.lino = #{writer.no}
+			and l.lnno = #{nno}
+		</where>
+    </select>
 
 	<insert id="insert" parameterType="like">
         insert into g_like(lnno, lino)
         values(#{nno}, #{ino})
     </insert>
+    
+    <delete id="delete" parameterType="int">
+        delete from g_like
+        where lnno=#{value}
+    </delete>
+    
+    
 </mapper>  
 
 

@@ -100,11 +100,18 @@ public class ApplyController {
 	}
 
 	@RequestMapping("{no}")
-	public Object view(@PathVariable int no, Model model) throws Exception {
+	public Object view(@PathVariable int no) throws Exception {
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("data", applyService.get(no));
 		result.put("letter", letterService.list(no));
 		result.put("test", testService.list(no));
+		return result;
+	}
+	
+	@RequestMapping("find")
+	public Object find(String aname) throws Exception {
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("data", applyService.getApply(aname));
 		return result;
 	}
 

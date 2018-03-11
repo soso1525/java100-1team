@@ -52,15 +52,34 @@ public class LetterController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public Object add(Letter letter, MultipartFile file, @ModelAttribute(value = "loginUser") Member loginUser)
-			throws Exception {
-		HashMap<String, Object> result = new HashMap<>();
-		String uploadDir = servletContext.getRealPath("/download");
-		String filename = writeUploadFile(file, uploadDir);
-		letter.setLfile(filename);
+	public Object add(int ano, Letter letter, int[] lengths, String[] contents, String[] articles, MultipartFile file,
+			@ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
+		letter.setAno(ano);
 		letter.setMember(loginUser);
-		// letterService.add(letter);
-		System.out.println(letter);
+
+		System.out.println("file: " + file);
+
+		if (!file.isEmpty()) {
+			String uploadDir = servletContext.getRealPath("/download");
+			String filename = writeUploadFile(file, uploadDir);
+			letter.setLfile(filename);
+		} else {
+			letter.setLfile("");
+		}
+
+		HashMap<String, Object> result = new HashMap<>();
+		letterService.add(letter);
+
+		for (int i = 0; i < articles.length; i++) {
+			Question q = new Question();
+			q.setArticle(articles[i]);
+			q.setContent(contents[i]);
+			q.setLength(lengths[i]);
+			q.setLno(letter.getLno());
+			System.out.println("Question: " + q);
+			questionService.add(q);
+		}
+
 		result.put("status", "success");
 		return result;
 	}
@@ -68,12 +87,19 @@ public class LetterController {
 	@RequestMapping(value = "addLetter", method = RequestMethod.POST)
 	public Object addLetter(Apply apply, Letter letter, int[] lengths, String[] contents, String[] articles,
 			MultipartFile file, @ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
-		String uploadDir = servletContext.getRealPath("/download");
-		String filename = writeUploadFile(file, uploadDir);
 		apply.setMember(loginUser);
 		letter.setApply(apply);
 		letter.setMember(loginUser);
-		letter.setLfile(filename);
+
+		System.out.println("file: " + file);
+
+		if (!file.isEmpty()) {
+			String uploadDir = servletContext.getRealPath("/download");
+			String filename = writeUploadFile(file, uploadDir);
+			letter.setLfile(filename);
+		} else {
+			letter.setLfile("");
+		}
 
 		HashMap<String, Object> result = new HashMap<>();
 		letterService.addLetter(apply, letter);
@@ -113,6 +139,7 @@ public class LetterController {
 	public Object delete(int no) throws Exception {
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("status", "success");
+		result.put("ano", letterService.getAno(no));
 		letterService.delete(no);
 		return result;
 	}

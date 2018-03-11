@@ -22,13 +22,18 @@
 		select
 		qno,
 		qart,
-		qcont
+		qcont,
+		qleng
 		from g_que
 		where lno = #{lno}
 	</select>
 
 	<select id="getCompanyName" parameterType="int" resultType="string">
-		select aname from g_app where ano=(select lno from g_let where lno=#{value})
+		select aname from g_app where ano=(select ano from g_let where lno=#{value})
+	</select>
+	
+	<select id="getFileName" parameterType="int" resultType="string">
+		select lfile from g_let where lno=#{value}
 	</select>
 
 	<insert id="insert" parameterType="question">
@@ -46,7 +51,8 @@
 		qno,
 		qart,
 		qcont,
-		lno
+		lno,
+		qleng
 		from g_que
 		where qno=#{value}
 	</select>
@@ -60,7 +66,7 @@
 
 	<delete id="delete" parameterType="int">
 		delete from g_que
-		where qno=#{value}
+		where lno=#{value}
 	</delete>
 </mapper>  
 

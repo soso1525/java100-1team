@@ -56,9 +56,6 @@ public class NoticeController {
         if (pageSize < 9 || pageSize > 15) {
             pageSize = 9;
         }
-        System.out.println(words);
-        System.out.println(address);
-        System.out.println(cKind);
         HashMap<String,Object> options = new HashMap<>();
         if (words != null && words[0].length() > 0) {
             options.put("words", words);
@@ -96,6 +93,15 @@ public class NoticeController {
         return result;
     }
     
+    @RequestMapping("writerList")
+    public Object writerlist(@ModelAttribute(value="loginUser") Member loginUser) throws Exception {
+        HashMap<String,Object> result = new HashMap<>();
+        
+        result.put("list", noticeService.writerList(loginUser));
+        
+        return result;
+    }
+    
     @RequestMapping("form")
     public String form() throws Exception {
         return "notice/form";
@@ -107,7 +113,9 @@ public class NoticeController {
         HashMap<String, Object> result = new HashMap<>();
 
         Member loginUser = (Member) session.getAttribute("loginUser"); // 세션에서 유저정보 가져옴
-        result.put("userInfo", loginUser.getNo()); // 유저의 no셋팅 -- 유저의 no와 공고의 작성자의 no를 확인하기 위함
+    	if (loginUser != null) {
+    		result.put("userInfo", loginUser.getNo()); // 유저의 no셋팅 -- 유저의 no와 공고의 작성자의 no를 확인하기 위함
+    	}
         result.put("data", noticeService.get(no));
         return result;
     }
@@ -141,17 +149,6 @@ public class NoticeController {
         return result;
     }
     
-    @RequestMapping("scrap")
-    public Object scrap(int nno, @ModelAttribute(value="loginUser") Member loginUser) throws Exception {
-    	Like like = new Like();
-    	like.setNno(nno);
-    	like.setIno(loginUser.getNo());
-        likeService.add(like);
-        HashMap<String,Object> result = new HashMap<>();
-        result.put("status", "success");
-        return result;
-    }
-
     @RequestMapping("delete")
     public Object delete(int no) throws Exception {
 

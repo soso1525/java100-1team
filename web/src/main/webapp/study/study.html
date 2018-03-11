@@ -5,162 +5,142 @@
 <title>CATCH : 스터디리스트</title>
 <link rel="stylesheet" type="text/css" href="../css/plugin.css">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
-<link rel="stylesheet" type="text/css" href="../css/notice.css">
-<style>
-.delcol {
-	background-color: #f2f2f2;
-	color: white;
-}
+<link rel="stylesheet" type="text/css" href="../css/study.css">
 
+<style>
 body {
     background-color: #f2f2f2;
 }
 </style>
 </head>
 <body>
-	<header></header>
-	<section style="background-color: #f2f2f2" id="services"
-		class="services-section section-space-padding">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<div style="margin-top: 80px;" class="section-title">
-						<h2>STUDY GROUP</h2>
-						<div class="divider dark">
-							<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-						</div>
-						<p>Study Groups with the Same Direction</p>
-					</div>
+   <header></header>
+   <section style="background-color: #f2f2f2" id="services"
+      class="services-section section-space-padding">
+      <div class="container">
+         <div class="row">
+            <div class="col-sm-12">
+               <div style="margin-top: 80px;" class="section-title">
+                  <h2>STUDY GROUP</h2>
+                  <div class="divider dark">
+                     <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                  </div>
+                  <p>Study Groups with the Same Direction</p>
+               </div>
 
-				</div>
-			</div>
-			 <div>
-    <a href="form.html" class='btn btn-primary btn-sm'>스터디등록</a>
-    </div>
-    <br>
-    <br>
+            </div>
+          <div class="col-sm-12">
+             <a href="form.html" class='btn btn-primary btn-sm' style="margin-left:520px;">스터디등록</a>
+             <br>
+             <br>
+          </div>
+         <div class="col-sm-12 search" style="margin-left:230px;">
+            <div class="col-sm-12">
+               <div class="col-sm-3" style= "font-size:14px">
+                  <strong>Search</strong>
+               </div>
+               <div class="col-sm-3"  style= "font-size:14px">
+                  <strong>Region</strong>
+               </div>
+            </div>
 
-			<div class="col-sm-12 search" style="height: 70px; margin-left:230px;">
-				<div class="col-sm-12">
-					<div class="col-sm-3" style= "font-size:14px">
-						<strong>Search</strong>
-					</div>
-					<div class="col-sm-3"  style= "font-size:14px">
-						<strong>Region</strong>
-					</div>
-				</div>
+            <div class="col-sm-12">
+               <form>
+                  <div class="col-sm-3" >
+                     <input name="words" id="words"
+                        class="form-control form-control-sm mr-sm-2" type="search"
+                        placeholder="Keyword" aria-label="Search">
+                  </div>
 
-				<div class="col-sm-12">
-					<form>
-						<div class="col-sm-3" >
-							<input name="words" id="words"
-								class="form-control form-control-sm mr-sm-2" type="search"
-								placeholder="Keyword" aria-label="Search">
-						</div>
+                  <div class="col-sm-3">
+                     <select id="address" name="address"
+                        class="form-control form-control-sm mr-sm-2">
+                        <option>전체</option>
+                        <option>강남구</option>
+                        <option>강동구</option>
+                        <option>강북구</option>
+                        <option>강서구</option>
+                        <option>관악구</option>
+                        <option>광진구</option>
+                        <option>구로구</option>
+                        <option>금천구</option>
+                        <option>노원구</option>
+                        <option>도봉구</option>
+                        <option>동대문구</option>
+                        <option>동작구</option>
+                        <option>마포구</option>
+                        <option>서대문구</option>
+                        <option>서초구</option>
+                        <option>성동구</option>
+                        <option>성북구</option>
+                        <option>송파구</option>
+                        <option>양천구</option>
+                        <option>영등포구</option>
+                     </select>
+                  </div>
 
-						<div class="col-sm-3">
-							<select id="address" name="address"
-								class="form-control form-control-sm mr-sm-2">
-								<option>전체</option>
-								<option>강남구</option>
-								<option>강동구</option>
-								<option>강북구</option>
-								<option>강서구</option>
-								<option>관악구</option>
-								<option>광진구</option>
-								<option>구로구</option>
-								<option>금천구</option>
-								<option>노원구</option>
-								<option>도봉구</option>
-								<option>동대문구</option>
-								<option>동작구</option>
-								<option>마포구</option>
-								<option>서대문구</option>
-								<option>서초구</option>
-								<option>성동구</option>
-								<option>성북구</option>
-								<option>송파구</option>
-								<option>양천구</option>
-								<option>영등포구</option>
-							</select>
-						</div>
+                  <div class="col-sm-2">
+                     <button style="margin-left: 10px"
+                        class="button search button-style button-style-dark button-style-color-2"
+                        type="button" id="searchBtn" style="padding: 6px 20px">Catch</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+         <div id="list">
+          
+         </div>
+      </div>
+   </section>
 
-						<div class="col-sm-2">
-							<button style="margin-left: 10px"
-								class="button search button-style button-style-dark button-style-color-2"
-								type="button" id="searchBtn" style="padding: 6px 20px">Catch</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</section>
+   <div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" style="margin-top: 200px" role="document">
+         <div class="modal-content"></div>
+      </div>
+   </div>
 
-	<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog">
-		<div class="modal-dialog" style="margin-top: 200px" role="document">
-			<div class="modal-content"></div>
-		</div>
-	</div>
-
-	<section id="portfolio" class="portfolio section-space-padding">
-		<div class="container">
-			<div class="center"></div>
-		</div>
-		<div class="container">
-			<div class="col-lg-12">
-				<ul class="portfolio-filter text-center">
-				</ul>
-
-				<div class="row">
-					<div id='list' class="portfolio-items"></div>
-					<div class="grid">
-						<figure class="effect-steve">
-						</figure>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
 
 
 <script id="study" type="text/x-handlebars-template">
 {{#each list}}
- <div class="portfolio-item apps col-xs-12 col-sm-4 col-md-3">
- <div class="recent-work-wrap">
- <div class="grid">
- <figure class="effect-julia" href='view.html' onclick="show('{{sno}}')"  data-toggle='modal' data-target='#modal-testNew' role='button' data-backdrop='static'>
- <img src="../../download/{{simg}}" alt="">
- <figcaption>
- <h2><span>{{sname}}</span></h2>
- <div>
- <p>지역: {{sloc}}</p>
- <p>관심기업: {{scorp}}</p>
- <p>인원: {{sppl}}</p>
- </div>
- </figcaption>
- </figure>
- </div>
- </div>
- </div>
- </div>
+ <div class="blog-card col-sm-2" style="width:30%; margin-right: 39px;  padding-left: 0px;" href='view.html' onclick="show('{{sno}}')"  data-toggle='modal' data-target='#modal-testNew' role='button' data-backdrop='static'>
+  <div style= "width: 500px; height:500px;">
+  <img src="../../download/{{simg}}">
+  </div>
+  <div class="title-content">
+  <h3>{{sname}}</h3>
+  <hr />
+  <div class="intro">{{sloc}}</div>
+  </div>
+  <div class="card-info">
+  <p>기업이름: {{scorp}}</p><br>
+  <p>관심내용: {{sint}}</p><br>
+  <p>인원: {{sppl}}명</p>
+  </div>
+  <div class="utility-info">
+  <ul class="utility-list">
+  <li class="">신청인원수: {{scheck}}</li>
+  <li class="date">{{sregdt}}</li>
+  </ul>
+  </div>
+  <div class="gradient-overlay"></div>
+  <div class="color-overlay"></div>
+</div>
 {{/each}}
 </script>
 
 	<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
 	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
 	<script src="../js/jquery.js"></script>
-	<script src="../js/bootstrap.min.js"></script> 
-	<script src="../js/jquery.prettyPhoto.js"></script>
-	<script src="../js/jquery.isotope.min.js"></script>
-	<script src="../js/wow.min.js"></script> 
-	<script src="../js/jquery.easing.min.js"></script>
-	<script src="../js/main.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	
+	
 
 <script type="text/javascript">
 $('header').load('../header.html');
 var studySrc = $('#study').html(),
 studyEngine = Handlebars.compile(studySrc);
-member = null;
+
 $('#searchBtn').on('click', function(e){
 	load(1, {
         "words": $('#words').val(),
@@ -175,9 +155,10 @@ function show(value) {
 
     $('#modal-testNew').on('shown.bs.modal', (event) => {
     	view(value);
-        $('body .modal-backdrop').hide();
+       $('body .modal-backdrop').hide();
     });
 }
+
 
 function load(pageNo, options) {
     
@@ -188,6 +169,8 @@ function load(pageNo, options) {
         data: options,
         dataType: 'json',
         success: (result) => {
+            console.log(result);
+
             $('#list').html(studyEngine(result));
             
         },

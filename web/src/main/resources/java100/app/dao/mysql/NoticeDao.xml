@@ -48,10 +48,15 @@
 		from g_noti n
 		left join g_corp c on n.cno=c.cno
 		left join g_per p on p.pno=c.cno
-		<if test="words != null">
-	        <where>
+		
+        <where>
+        	and nedt > (now() - interval 1 day)
+       		<if test="orderColumn == 'nsdt'">
+       			and nsdt > (now() - interval 1 month)
+       		</if>
+        	<if test="words != null">
 	            <foreach collection="words" item="word">
-	               or (c.cname like '%${word}%' or n.nduty like '%${word}%')
+	               and (c.cname like '%${word}%' or n.nduty like '%${word}%')
 	            </foreach>
 	            <if test="cKind != null">
 	               and c.ckind like #{cKind}
@@ -60,13 +65,8 @@
 	               and p.pdaddr like #{address}
                 </if>
                 and (n.ntype like #{nType} or n.ntype like 2)
-	        </where>
-        </if>
-        <if test="orderColumn == 'nsdt'">
-        	<where>
-        		and nsdt > (now() - interval 1 month)
-        	</where>
-        </if>
+               </if>
+        </where>
         order by 
         <choose>
             <when test="orderColumn == 'nedt' and align == 'desc'">
@@ -94,6 +94,25 @@
 		<if test="lastPageNo != null">
 			limit #{startIndex}, #{size}
 		</if>
+	</select>
+	
+	<select id="writerFindAll" resultMap="noticeMap" parameterType="map">
+		select
+			n.nno,
+			n.nimg,
+			n.nsdt,
+			n.nedt,
+			n.ncnt,
+			n.ntype,
+			n.nduty,
+			c.cname,
+			c.ckind,
+			c.clogo,
+			p.pdaddr
+		from g_noti n
+		left join g_corp c on n.cno=c.cno
+		left join g_per p on p.pno=c.cno
+		where n.cno = #{writer.no}
 	</select>
 	
 	<select id="findByNo" resultMap="noticeMap" parameterType="int">

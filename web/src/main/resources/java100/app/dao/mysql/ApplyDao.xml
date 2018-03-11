@@ -62,6 +62,16 @@
         where ano=#{value}
     </select>
     
+    <select id="findByName" resultMap="applyMap" parameterType="string">
+        select
+            ano,
+            aname,
+            adt,
+            ino
+        from g_app
+        where aname=#{value}
+    </select>
+    
  <update id="update" parameterType="apply">
         update g_app set 
 			aname=#{aname},

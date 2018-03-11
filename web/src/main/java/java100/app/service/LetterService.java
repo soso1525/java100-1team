@@ -12,6 +12,7 @@ public interface LetterService {
 	int add(Letter cover);
 	int addLetter(Apply apply, Letter letter);
 	Letter get(int no);
+	int getAno(int lno);
 	int update(Letter cover);
 	int delete(int no);
 }

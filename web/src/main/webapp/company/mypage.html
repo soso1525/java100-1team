@@ -28,7 +28,7 @@ body {
 				<div class="row">
 					<div class="col-sm-12">
 						<div style="margin-top: 100px;" class="section-title">
-							<h2>나의 지원 현항</h2>
+							<h2>마이페이지</h2>
 							<div class="divider dark">
 								<i class="icon-drop"></i>
 							</div>
@@ -40,9 +40,9 @@ body {
 				<div class="row margin-top-30">
 					<div class="col-md-3 col-sm-3">
 						<div style="width: 200px; height: 200px; margin-bottom: 70px"
-							class="services-detail" id="like">
+							class="services-detail" id="notice">
 							<i style="color: #f306a0; margin-top:60px" class="far fa-star"></i>
-							<h5>스크랩 공고</h5>
+							<h5>작성한 공고</h5>
 							<hr>
 						</div>
 					</div>
@@ -55,21 +55,12 @@ body {
 							<hr>
 						</div>
 					</div>
-
+					
 					<div class="col-md-3 col-sm-3">
 						<div style="width: 200px; height: 200px; margin-bottom: 70px"
-							class="services-detail" id="letter">
-							<i style="color: #d60bfb; margin-top:60px" class="far fa-file-alt"></i>
-							<h5>자기소개서</h5>
-							<hr>
-						</div>
-					</div>
-
-					<div class="col-md-3 col-sm-3">
-						<div style="width: 200px; height: 200px; margin-bottom: 70px"
-							class="services-detail" id="test">
-							<i style="color: #d8be10; margin-top:60px" class="far fa-calendar-alt"></i>
-							<h5>인적성/면접</h5>
+							class="services-detail" id="c-view">
+							<i style="color: #196ABC; margin-top:60px" class="far fa-address-card"></i>
+							<h5>회원정보수정</h5>
 							<hr>
 						</div>
 					</div>
@@ -77,22 +68,6 @@ body {
 			</div>
 
 			<div style="padding: 15px"></div>
-
-			<table style="text-align: center" id='list' class='table table-hover'>
-				<thead>
-					<tr>
-						<th style="text-align: center">번호</th>
-						<th id='thcname' style="text-align: center">기업명
-							<div id='nametag'
-								style="display: none; position: absolute; float: center"
-								class="w3-text w3-tag">기업별 현황을 보시려면 기업명을 누르세요</div>
-						</th>
-						<th style="text-align: center">지원날짜</th>
-						<th style="text-align: center" class="w3-tooltip">진행상태</th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
 
 		</div>
 
@@ -151,54 +126,23 @@ body {
 <script type="text/javascript" src="../js/plugin.js"></script>
 <script type="text/javascript" src="../js/scripts.js"></script>
 <script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
-<script src="../js/apply-simple.js"></script>
 <script src="../js/context.js"></script>
 <script id="template1" type="text/x-handlebars-template">
-	{{#each apply}}
-	<tr>
-  		<td>{{count}}</td>
-  		<td><a href="my-apply-status.html?ano={{ano}}">{{aname}}</a></td>
-  		<td>{{adt}}</td>
-  		<td>{{#typeCheck test}}{{/typeCheck}}</td>
-	</tr>
-	{{/each}}
 </script>
-
 <script type="text/javascript">
 	$('header').load("../header.html");
-	$('#thcname').mouseover(() => {
-		$('#nametag').css('display', 'block');
+	
+	$('#notice').click(() => {
+		location.href="notice.html";
 	});
 	
-	$('#thcname').mouseout(() => {
-		$('#nametag').css('display', 'none');
+	$('#resume').click(() => {
+		location.href="../resume/view2.html";
 	});
 	
-	var num = 1;
-	var tbody = $('#list > tbody'),
-    template1Src = $('#template1').html(),
-    template1Engine = Handlebars.compile(template1Src);
-	
-	$.ajax(host + '/json/apply/list', {
-	    dataType: 'json',
-	    success: (result) => {
-	    	console.log(result.apply[0].test.type);
-	    	tbody.html(template1Engine(result));
-	    },
-	    error: () => {
-	        window.alert('서버 실행 오류!');
-	    }
+	$('#c-view').click(() => {
+		location.href="../member/c-view.html";
 	});
 	
-	Handlebars.registerHelper('count', function() {
-		return (num++);
-	});
-	
-	Handlebars.registerHelper('typeCheck', function(test) {
-		  if(test.type == null) {
-		    return '서류';
-		  }
-		  return test.type;
-		});
 </script>
 </html>
