@@ -63,7 +63,9 @@ qaddBtn.click(() => {
 	console.log('qAddBtn clicked');
 	var q = $('#lq').clone();
 	q.attr('id', 'lq' + questionNum);
-//	q.css('display', 'block');
+	q.find('#article').val("");
+	q.find('#length').val("");
+	q.find('#content').val("");
 	q.appendTo('#questionBox');
 });
 

@@ -7,8 +7,7 @@
 <link rel="stylesheet" href="../css/plugin.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/apply-modal.css">
-<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
-	rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style type="text/css">
 body {
@@ -24,62 +23,21 @@ body {
 	<header></header>
 	<section id="services" class="services-section section-space-padding">
 		<div class="container">
-			<div style="border-radius: 10px; background-color: #fce469">
-				<div class="row">
-					<div class="col-sm-12">
-						<div style="margin-top: 100px;" class="section-title">
-							<h2>나의 지원 현항</h2>
-							<div class="divider dark">
-								<i class="icon-drop"></i>
-							</div>
-							<p></p>
-						</div>
-					</div>
-				</div>
 
-				<div class="row margin-top-30">
-					<div class="col-md-3 col-sm-3">
-						<div style="width: 200px; height: 200px; margin-bottom: 70px"
-							class="services-detail" id="like">
-							<i style="color: #f306a0; margin-top: 60px" class="far fa-star"></i>
-							<h5>스크랩 공고</h5>
-							<hr>
-						</div>
-					</div>
-
-					<div class="col-md-3 col-sm-3">
-						<div style="width: 200px; height: 200px; margin-bottom: 70px"
-							class="services-detail" id="resume">
-							<i style="color: #196ABC; margin-top: 60px"
-								class="far fa-address-card"></i>
-							<h5>이력서</h5>
-							<hr>
-						</div>
-					</div>
-
-					<div class="col-md-3 col-sm-3">
-						<div style="width: 200px; height: 200px; margin-bottom: 70px"
-							class="services-detail" id="letter">
-							<i style="color: #d60bfb; margin-top: 60px"
-								class="far fa-file-alt"></i>
-							<h5>자기소개서</h5>
-							<hr>
-						</div>
-					</div>
-
-					<div class="col-md-3 col-sm-3">
-						<div style="width: 200px; height: 200px; margin-bottom: 70px"
-							class="services-detail" id="test">
-							<i style="color: #d8be10; margin-top: 60px"
-								class="far fa-calendar-alt"></i>
-							<h5>인적성/면접</h5>
-							<hr>
+			<div class="row">
+				<div class="col-sm-12">
+					<div style="margin-top: 100px;" class="section-title">
+						<h2>나의 지원 현항</h2>
+						<div class="divider dark">
+							<i class="icon-drop"></i>
 						</div>
 					</div>
 				</div>
 			</div>
 
 			<div style="padding: 15px"></div>
+
+			<div id='m'></div>
 
 			<table style="text-align: center" id='list' class='table table-hover'>
 				<thead>
@@ -163,7 +121,7 @@ body {
   		<td><a href="my-apply-status.html?ano={{ano}}">{{aname}}</a></td>
   		<td>{{adt}}</td>
   		<td style='cursor: pointer' onMouseOver="this.style.background='#f7639a'; this.style.color='white'"
-   onMouseOut="this.style.background='white'; this.style.color='black'" onclick=alert('상태변경하자!')>{{#typeCheck test}}{{/typeCheck}}</td>
+   onMouseOut="this.style.background='white'; this.style.color='black'" onclick=updateStatus({{ano}})>{{#typeCheck test}}{{/typeCheck}}</td>
 	</tr>
 	{{/each}}
 </script>
@@ -204,5 +162,9 @@ body {
 		  }
 		  return test.type;
 		});
+	
+	function updateStatus(ano) {
+		$('#m').load("modal.html");
+	}
 </script>
 </html>

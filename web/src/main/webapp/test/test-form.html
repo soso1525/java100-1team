@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CATCH : 인적성/면접 리스트</title>
+<link rel="shortcut icon" href="images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="144x144" type="image/x-icon"
+	href="../images/favicon/apple-touch-icon.png">
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<style>
+.delcol {
+	background-color: #f7639a;
+	color: white;
+}
+</style>
+</head>
+<body>
+	<header></header>
+	<section style="background-color: #f2f2f2" id="services"
+		class="services-section section-space-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div style="margin-top: 100px;" class="section-title">
+						<h2>인적성/면접 추가</h2>
+						<div class="divider dark">
+							<i class="icon-drop"></i>
+						</div>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+					</div>
+				</div>
+			</div>
+
+			<form style='margin-left: auto; margin-right: auto' method='post'
+				id="form">
+				<input type="hidden" id="ano" name="ano">
+				<div class="form-group row">
+					<label class='col-sm-2 col-form-label'>기업이름</label>
+					<div class='col-sm-10'>
+						<input class='form-control' placeholder='지원한 회사 이름' id='aname'
+							name='aname' type='text' required>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class='col-sm-2 col-form-label'>전형 유형</label>
+					<div class="col-sm-10">
+						<input class="form-check-input" type="radio" name="type"
+							value="인적성"> <label class="form-check-label" for="test">인적성</label>
+						<input style='margin-left: 10px' class="form-check-input"
+							type="radio" name="type" value="면접"> <label
+							class="form-check-label" for="interview">면접</label>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class='col-sm-2 col-form-label'>전형 일자</label>
+					<div class="col-sm-4">
+						<input class='form-control' type='date' name='date' required>
+					</div>
+					<label class='col-sm-2 col-form-label'>전형 시간 </label>
+					<div class="col-sm-4">
+						<input class='form-control' type='time' name='time' required>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class='col-sm-2 col-form-label'>준비물</label>
+					<div class="col-sm-10">
+						<input class='form-control' type='text' value='신분증' name='prepare'
+							required>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class='col-sm-2 col-form-label'>위치</label>
+					<div class="col-sm-10">
+						<input class='form-control' type='text' name='location'
+							placeholder='시험 및 면접장 위치' required>
+					</div>
+				</div>
+			</form>
+
+			<div style="text-align: right" id="addbtn">
+				<button class="btn btn-primary">추가</button>
+			</div>
+		</div>
+	</section>
+
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+	<script src='../js/login.js'></script>
+	<script src='../js/context.js'></script>
+	<script type="text/javascript">
+		$('header').load("../header.html");
+		
+		$('#addbtn').click(() => {
+			$.ajax(host + '/json/apply/find', {
+				data: {
+					aname: $('#aname').val()
+				},
+				dataType: 'json',
+				success: (result) => {
+					$('#ano').val(0);
+					if (result.data) {
+						$('#ano').val(result.data.ano);
+						var ano = result.data.ano;
+						var formData = new FormData($('#form')[0]);
+					    $.ajax(host + '/json/test/add', {
+					        data: formData,
+					        dataType: 'json',
+					        method: 'POST',
+					        processData : false,
+					        contentType : false,
+					        success: () => {
+					        	swal("Added!", "새로운 일정이 등록되었습니다", "success").then(()=> {
+					        		location.href = "../apply/my-apply-status.html?ano="+ano;	
+					        	});
+					        },
+					        error: () => {
+					            window.alert('서버 실행 오류!');
+					        }
+					    });
+						
+					} else {
+						var formData = new FormData($('#form')[0]);
+					    $.ajax(host + '/json/test/addTest', {
+					        data: formData,
+					        dataType: 'json',
+					        method: 'POST',
+					        processData : false,
+					        contentType : false,
+					        success: (result) => {
+					        	swal("Added!", "새로운 일정이 등록되었습니다", "success").then(()=> {
+					        		location.href = "../apply/my-apply-status.html?ano=" + result.ano;	
+					        	});
+					        },
+					        error: () => {
+					            window.alert('서버 실행 오류!');
+					        }
+					    });
+					}
+				},
+				error: () => {
+		            window.alert('서버 실행 오류!');
+		        }
+				
+			});
+		});	
+	</script>
+
+
+</body>
+</html>
