@@ -9,25 +9,23 @@
 <link rel="stylesheet" type="text/css" href="../css/plugin.css">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <style>
-.delcol {
-	background-color: #f7639a;
-	color: white;
+body {
+    background-color: #f2f2f2;
 }
 </style>
 </head>
 <body>
 	<header></header>
-	<section style="background-color: white" id="services"
+	<section style="background-color: #f2f2f2" id="services"
 		class="services-section section-space-padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
 					<div style="margin-top: 80px;" class="section-title">
-						<input readonly id='sname' style="background-color: transparent; border:0px; font-size: 18px; text-align: center">
+						<h2>My Study</h2>
 						<div class="divider dark">
 							<i class="icon-drop"></i>
 						</div>
-						<p>Study Groups with the Same Direction</p>
 					</div>
 
 				</div>
@@ -36,14 +34,14 @@
 			<table id='list' class='table table-hover'>
 				<thead>
 					<tr>
-						<th>번호</th>
-						<th>지역</th>
+						<th style="visibility:hidden; width: 0px; ">번호</th>
 						<th>이름</th>
+						<th>대상기업</th>
+						<th>지역</th>
 						<th>관심분야</th>
 						<th>인원수</th>
-						<th>등록일</th>
-						<th>대상기업</th>
 						<th>모집상태</th>
+						<th>등록일</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -51,21 +49,6 @@
 
 				</tbody>
 			</table>
-			<nav class="navbar navbar-light justify-content-between">
-				<a href='form.html' class='btn-primary btn-sm'>추가</a>
-			</nav>
-			<nav aria-label="Page navigation">
-				<ul class="pagination justify-content-center">
-					<li class="page-item disabled"><a id='prevBtn'
-						class="page-link" tabindex="-1">이전</a></li>
-
-					<li class="page-item"><a id='currbtn' class="page-link"
-						href="#">1</a></li>
-
-					<li class="page-item disabled"><a id='nextBtn'
-						class="page-link" tabindex="-1">다음</a></li>
-				</ul>
-			</nav>
 
 			<footer></footer>
 		</div>
@@ -73,15 +56,15 @@
 
 	<script id="study" type="text/x-handlebars-template">
 {{#each list}}
-<tr>
-              <td>{{sno}}</td>
-              <td><a href='form.html?sno={{sno}}'>{{sloc}}</a></td> 
+<tr onclick='userList({{sno}})'>
+              <td style="visibility:hidden; width: 0px; ">{{sno}}</td>
               <td>{{sname}}</td>
+              <td>{{scorp}}</td>
+              <td>{{sloc}}</td> 
               <td>{{sint}}</td>
               <td>{{sppl}}</td>
-              <td>{{sregdt}}</td>
-              <td>{{scorp}}</td>
               <td>{{scheck}}</td>
+              <td>{{sregdt}}</td>
              
 </tr>
 <tr>
@@ -123,7 +106,7 @@ function load(pageNo, options) {
     if (options == undefined) options = {};
     options.pn = pageNo;
     
-    $.ajax('../json/study/list', {
+    $.ajax('../json/study/memberList', {
         data: options,
         dataType: 'json',
         success: (result) => {
@@ -148,6 +131,10 @@ function load(pageNo, options) {
             window.alert('서버 실행 오류!');
         }
     });
+}
+
+function userList(sno) {
+    location.href = "userList.html?sno="+sno;
 }
 
 </script>

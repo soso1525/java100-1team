@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>catch</title>
+<link rel="shortcut icon" href="images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="144x144" type="image/x-icon"
+    href="../images/favicon/apple-touch-icon.png">
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
+</head>
+<body>
+    <div class='container'>
+        <header></header>
+        <h1 style="margin-top: 30px; margin-bottom: 30px">회원 목록</h1>
+
+        <table id="list" class='table table-hover'>
+            <thead>
+                <tr>
+                    <th style="hidden">no</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>message</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    <div class="modal fade" id="modal-testNew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:10000">
+        <div class="modal-dialog" style="margin-top: 200px; width:400px; height:500px;">
+            <div class="modal-content" style="background-color: transparent; border:0px;"></div>
+        </div>
+        <input type="hidden" id= "params" value=""/>
+    </div>
+    </div>
+
+    <script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+    <script src='../node_modules/jquery/dist/jquery.min.js'></script>
+    <script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+    <script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+    <script type="text/javascript" src="../js/context.js"></script>
+    <script src='../js/login.js'></script>
+    <script id="template1" type="text/x-handlebars-template">
+{{#each list}}
+<tr>
+  <td style = "hidden">{{no}}</td>
+  <td>{{id}}</td>
+  <td>{{name}}</td>
+  <td>{{email}}</td>
+  <td>{{tel}}</td>
+  <td>  
+    <a data-toggle='modal' href='../message/form.html' onclick="show2('mrecv', 'mcont','{{id}}')" data-target='#modal-testNew' role='button' data-backdrop='static'>
+        <i class='icon-screen-smartphone color-1'></i>쪽지보내기
+    </a>
+    
+  </td>
+</tr>
+{{/each}}
+
+</script>
+    <script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/plugin.js"></script>
+    <script type="text/javascript" src="../js/scripts.js"></script>
+    <script type="text/javascript" src="../js/context.js"></script>
+    <script type="text/javascript">
+    $('header').load("../header.html");
+    var tbody = $('#list > tbody'),
+    template1Src = $('#template1').html(),
+    template1Engine = Handlebars.compile(template1Src);
+    
+    var locationUrl = window.location.search.substring(1);
+    var locationParam = locationUrl.split('=')[1];
+
+    $('#modal-testNew').on('hidden.bs.modal', () => {
+    })
+    
+    $.ajax(host + '/json/study/myStudyUserInfo', {
+        data: "sno="+locationParam,
+        dataType: 'json',
+        success: (result) => {
+            tbody.html(template1Engine(result));
+        },
+        error: () => {
+            window.alert('서버 실행 오류!');
+        }
+    });
+
+    Handlebars.registerHelper('typeCheck', function(type) {
+      if(type == 1) {
+        return '개인';
+      }
+      return '기업';
+    });
+    
+    Handlebars.registerHelper('viewpage', function(type) {
+          if(type == 1) {
+             return 'i-view';
+          }
+          return 'c-view';
+        });
+    
+    function sendM(no) {
+        $.ajax(host + '/json/study/changeId', {
+            data: "no="+no,
+            dataType: 'json',
+            success: (result) => {
+                location.href = "../message/form.html?id="+result;
+            },
+            error: () => {
+                window.alert('서버 실행 오류!');
+            }
+        });
+        
+        
+    }
+    function show2(mrecv, mcont,id) {
+        // modal창이 띄워졌을때 실행하는 이벤트
+        $("#params").val(id);
+        $('#modal-testNew').on('shown.bs.modal', (event) => {
+            add('mrecv', 'mcont');
+        });
+    }
+    </script>
+
+
+</body>
+</html>

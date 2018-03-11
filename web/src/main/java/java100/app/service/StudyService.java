@@ -13,6 +13,11 @@ public interface StudyService {
     int update(Study study);
     int delete(int sno);
 	void applyStudy(Integer studyId, Integer userId);
+	
+	List<Study> memberList(int pageNo, int pageSize, Map<String,Object> options);
+	List<Study> myStudyUserInfo(Map<String,Object> options);
+	
+	String changId(int no);
     
 }
 

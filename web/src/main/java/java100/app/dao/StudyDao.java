@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import java100.app.domain.Study;
+import java100.app.domain.StudyMember;
 
 public interface StudyDao {
 
@@ -13,6 +14,13 @@ public interface StudyDao {
     int countAll();
     int update(Study study);
     int delete(int sno);
+    int memberInfo(StudyMember stm);
+    int findLast();
+    List<Study> myStudyInfo(Map<String, Object> params);
+    List<Study> studyUser(Map<String, Object> params);
+    
+    String chageId(int no);
+    
 }
 
 
