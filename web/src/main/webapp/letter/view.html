@@ -92,7 +92,7 @@
 			success: (result) => {
 				letter.html(letter.html() + template1Engine(result));
 				$('#title').html(result.compName + ' 자기소개서');
-				if(result.file != null) 
+				if(result.file != "") 
 					fileName = result.file;
 					$('#fileTag').html(fileName);
 					
@@ -129,8 +129,7 @@
 				    },
 				    dataType: 'json',
 				    success: (result) => {
-				    	swal('삭제되었습니다', {timer: 2000
-				    	}).then(() => {
+				    	swal('삭제되었습니다').then(() => {
 				    		location.href= "../apply/my-apply-status.html?ano=" + result.ano;
 				    	});
 					},

@@ -52,13 +52,20 @@ public class LetterController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public Object add(int ano, Letter letter, int[] lengths, String[] contents, String[] articles,
-			MultipartFile file, @ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
-		String uploadDir = servletContext.getRealPath("/download");
-		String filename = writeUploadFile(file, uploadDir);
+	public Object add(int ano, Letter letter, int[] lengths, String[] contents, String[] articles, MultipartFile file,
+			@ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
 		letter.setAno(ano);
 		letter.setMember(loginUser);
-		letter.setLfile(filename);
+
+		System.out.println("file: " + file);
+
+		if (!file.isEmpty()) {
+			String uploadDir = servletContext.getRealPath("/download");
+			String filename = writeUploadFile(file, uploadDir);
+			letter.setLfile(filename);
+		} else {
+			letter.setLfile("");
+		}
 
 		HashMap<String, Object> result = new HashMap<>();
 		letterService.add(letter);
@@ -80,12 +87,19 @@ public class LetterController {
 	@RequestMapping(value = "addLetter", method = RequestMethod.POST)
 	public Object addLetter(Apply apply, Letter letter, int[] lengths, String[] contents, String[] articles,
 			MultipartFile file, @ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
-		String uploadDir = servletContext.getRealPath("/download");
-		String filename = writeUploadFile(file, uploadDir);
 		apply.setMember(loginUser);
 		letter.setApply(apply);
 		letter.setMember(loginUser);
-		letter.setLfile(filename);
+
+		System.out.println("file: " + file);
+
+		if (!file.isEmpty()) {
+			String uploadDir = servletContext.getRealPath("/download");
+			String filename = writeUploadFile(file, uploadDir);
+			letter.setLfile(filename);
+		} else {
+			letter.setLfile("");
+		}
 
 		HashMap<String, Object> result = new HashMap<>();
 		letterService.addLetter(apply, letter);
