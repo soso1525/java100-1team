@@ -93,8 +93,8 @@ function view(value) {
 		                    }
 		                },
 	            error: () => {
-	                /* window.alert('서버 실행 오류!'); */
-	            	location.href = "sendList.html";
+	                window.alert('서버 실행 오류!');
+/* 	                location.href = "memberList.html?sno="+$('#sno').val(); */
 	            }
 	        });
 	    });
@@ -109,7 +109,7 @@ function applyStudy ( userId ) {
 		url : '../json/study/apply',
 		data : param,
 		success :function ( res ) {
-			if ( res.success ) {
+			if (res.success) {
 			    location.href = "memberList.html?sno="+$('#sno').val();// 수정사항
 			} else {
 			    location.href = "memberList.html?sno="+$('#sno').val();// 수정사항
