@@ -22,13 +22,14 @@ public class MemberController {
 	MemberService memberService;
 
 	@RequestMapping("list")
-	public String list(@RequestParam(value = "pn", defaultValue = "1") int pageNo,
+	public Object list(@RequestParam(value = "pn", defaultValue = "1") int pageNo,
 			@RequestParam(value = "ps", defaultValue = "5") int pageSize,
 			@RequestParam(value = "words", required = false) String[] words,
 			@RequestParam(value = "oc", required = false) String orderColumn,
 			@RequestParam(value = "al", required = false) String align, Model model) throws Exception {
-		
-		return "member/list";
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("list", memberService.list());
+		return result;
 	}
 
 	@RequestMapping("{no}")
@@ -55,10 +56,11 @@ public class MemberController {
 	}
 
 	@RequestMapping("update")
-	public String update(Member member) throws Exception {
-
-		memberService.update(member);
-		return "redirect:list";
+	public Object update(Member member, IndividualMember imember) throws Exception {
+		memberService.updateImember(member, imember);
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("status", "success");
+		return result;
 	}
 
 	@RequestMapping("delete")
