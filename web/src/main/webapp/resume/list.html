@@ -113,7 +113,10 @@ function load(pageNo, options) {
         	$('#list').show();
             $('#tmp').css('display', 'none');
             tbody.html(""); 
-            var a=0;
+            //var a=0;
+            
+            var test = 1;
+            
             for (var data of result.list) {
                 
                 var file;
@@ -130,14 +133,9 @@ function load(pageNo, options) {
                     avi = "Y";
                 } 
                 
-                console.log('totalcnt:' + result.totalCount);
-                if (result.totalCount !=  0){
-                var bno = (result.totalCount - (a++)) - ((result.pageNo - 1) * 9)
-                }
-               console.log("n" + bno)
                 $('<tr>')
                     .html(  
-                        "<td>" + bno + "</td>" + 
+                        "<td>" + (test++) + "</td>" + 
                         "<td><a href='view.html?no=" + data.no + "'>" + data.title +"</a></td>" +
                         "<td>" + data.kind + "</td>" +
                         "<td>" + data.career + "</td>" + 
