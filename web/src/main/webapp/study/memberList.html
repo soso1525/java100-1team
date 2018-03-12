@@ -23,25 +23,25 @@ body {
 			<div class="row">
 				<div class="col-sm-12">
 					<div style="margin-top: 80px;" class="section-title">
-						<h2>My Study</h2>
-						<div class="divider dark">
-							<i class="icon-drop"></i>
-						</div>
-					</div>
+                        <h2>STUDY GROUP</h2>
+                        <div class="divider dark">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                        </div>
+                        <p>Study Groups with the Same Direction</p>
+                    </div>
 
 				</div>
 			</div>
 
 			<table id='list' class='table'>
 			 <thead class="thead-dark">
-					<tr>
+					<tr class="my-membertitle">
 						<th style="visibility:hidden; width: 0px;">번호</th>
 						<th>이름</th>
 						<th>대상기업</th>
 						<th>지역</th>
 						<th>관심분야</th>
 						<th>인원수</th>
-						<th>모집상태</th>
 						<th>등록일</th>
 					</tr>
 				</thead>
@@ -64,12 +64,11 @@ body {
               <td>{{scorp}}</td>
               <td>{{sloc}}</td> 
               <td>{{sint}}</td>
-              <td>{{sppl}}명</td>
-              <td>{{scheck}}명</td>
+              <td>{{scheck}} / {{sppl}} 명</td>
               <td>{{sregdt}}</td>
              
 </tr>
-<tr>
+
 {{/each}}
 </script>
 

@@ -197,8 +197,8 @@ body {
 		return (num++);
 	});
 	
-	Handlebars.registerHelper('typeCheck', function(options) {
-		  if(this.type == null) {
+	Handlebars.registerHelper('typeCheck', function(test) {
+		  if(test.type == null) {
 		    return '서류';
 		  }
 		  return test.type;
