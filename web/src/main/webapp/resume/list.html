@@ -134,7 +134,7 @@ function load(pageNo, options) {
                 if (result.totalCount !=  0){
                 var bno = (result.totalCount - (a++)) - ((result.pageNo - 1) * 9)
                 }
-               
+               console.log("n" + bno)
                 $('<tr>')
                     .html(  
                         "<td>" + bno + "</td>" + 

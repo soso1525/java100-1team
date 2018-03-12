@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>이력서</title>
+<link rel='stylesheet' href='../css/view3.css'>
+<link rel='stylesheet' href='../css/plugin.css'>
+<link rel='stylesheet' href='../css/style.css'>
+
+</head>
+<body style='background-color: #f2f2f2;'>
+	<header></header>
+	
+    <div class="business-card">
+        <div class="card">
+            <div class="side front" >
+                <div id='photo'><img id='image'></div>
+                <div id='info1'>
+                    <p id='name'></p></br>
+                    <p id='education'></p></br>
+                    <p id='schoolName'></p></br>
+                    <p id='grades'></p></br>
+                    <p id='major'></p></br>
+                </div>
+                <div id='info2'>
+                    <span id='kind'></span>
+                    <span id='career'></span>
+                    <span id='qualification'></span>
+                    <span id='language'></span>
+                    <span id='award'></span>
+                    <span id='note'></span>
+                </div>
+                
+            </div>
+            <div class="side back">
+                <div id='title' ></div>
+                <div id='video' style='margin-top:8px;'><video id='avi' autoplay controls="controls"></video></div>
+                <div id='file'></div>
+            </div>
+        </div>
+    </div>
+	
+
+	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+
+	<script type="text/javascript">
+	
+	$('header').load('../header.html', () => {
+        load();
+    });
+
+	function load() {        
+		$.ajax('../json/resume/list', {
+            dataType: 'json',
+            success: (result) => {
+            	for (var data of result.list) {
+            	    console.log(data);
+                    console.log(data.image);
+                    $('#image').attr('src','../../download/'+data.image);
+                    $('#name').html("이름 : "+data.individualMember.name);
+                    $('#education').html("최종학력 : " +data.education);
+                    $('#kind').html("지원직무 : " +data.kind);
+                    $('#career').html("경력사항 : "+data.career);
+                    $('#schoolName').html("학교명 : "+data.schoolName);
+                    $('#major').html("전공 : "+data.major);
+                    $('#grades').html("최종학점 : "+data.grades);
+                    $('#qualification').html("자격증 : "+data.qualification);
+                    $('#language').html("어학 : "+data.language);
+                    $('#award').html("수상 : "+data.award);
+                    $('#note').html("나의한마디 : " +data.note);
+                    
+                    $('#avi').attr('src','../../download/'+data.avi);
+                    }
+                
+},
+error: () => {
+window.alert('서버 실행 오류!');
+}
+});
+}
+
+        </script>
+</body>
+</html>

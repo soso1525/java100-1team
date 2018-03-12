@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>이력서</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel='stylesheet' href='../css/view2.css'>
 <link rel='stylesheet' href='../css/plugin.css'>
 <link rel='stylesheet' href='../css/style.css'>
@@ -25,9 +26,19 @@
 				</div>
 			</div>
 
-			<div id="notice-list"class="masonry">
-                   
-			</div>
+			<div id="notice-list"class="masonry"></div>
+
+			<!-- <div id="id01" class="w3-modal">
+				<div class="w3-modal-content">
+					<div class="w3-container">
+						<span
+							onclick="document.getElementById('id01').style.display='none'"
+							class="w3-button w3-display-topright">&times;</span>
+						<div id='view3'></div>
+					</div>
+				</div>
+			</div> -->
+			
 		</div>
 	</section>
 
@@ -40,14 +51,24 @@
 	$('header').load('../header.html', () => {
 	      load();
 	  });
-
+	
+	$('#view3').load("view3.html");
+	
+    $('#item').click(() => {
+        console.log('clicked');
+        if($('#item').html() != '')
+        $('#id01').css('display', 'block');
+        $('#video').attr('src', videoSrc);
+    });
+	
 	function load() {
 	    $.ajax('../json/resume/list', {
 	        dataType: 'json',
 	        success: (result) => {
 		        	for (var data of result.list) {
+		        	    console.log(data.no);
 		        				        	    console.log(data.image);
-		        	    $("<div class='item' onclick=location.href='view.html?no=" + data.no + "' style='cursor:pointer'></div>").html(
+		        	    $("<div class='item' onclick=location.href='view3.html?no=" + data.no + "' style='cursor:pointer'></div>").html(
 		        	    	    "<div class='title' style='font-size:16px; height:40px; margin-top:10px; text-align:center;'>" + data.title + "</div>" +
                         "<div class= 'image'><img src='../../download/"+data.image+"'></div>" +
                         "<div class='career' style='font-size:16px; margin:10px 0 0 5px;'> 경력사항 : " + data.career + "</div>" +
@@ -63,6 +84,9 @@
 	        }
 	    });
 	}
+	
+
+
 	</script>
 
 </body>
