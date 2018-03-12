@@ -35,7 +35,7 @@ public class StudyController {
     @RequestMapping("list")
     public Object list(
             @RequestParam(value="pn", defaultValue="1") int pageNo,
-            @RequestParam(value="ps", defaultValue="8") int pageSize,
+            @RequestParam(value="ps", defaultValue="100") int pageSize,
             @RequestParam(value="words", required=false) String [] words,
             @RequestParam(value="address", required=false) String address,
             @RequestParam(value="oc", required=false) String orderColumn,
@@ -44,7 +44,7 @@ public class StudyController {
             pageNo = 1;
         }
         
-        if (pageSize < 3 || pageSize > 15) {
+        if (pageSize < 3 || pageSize > 100) {
             pageSize = 3;
         }
         

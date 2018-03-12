@@ -445,10 +445,24 @@ tr > td:nth-child(2) {
 	background: #4c9cef;
 }
 
+.my-membertitle > th {
+    font-weight: 500;
+    color: black;
+    text-align: center;
+}
+
+.my-memberlist > td {
+    font-weight: 500;
+    color: black;
+    background: white;
+    text-align: center;
+}
+
 .my-memberlist > td:nth-child(2) {
     font-weight: 500;
     color: black;
-    background: transparent;
+    background: white;
+    text-align: center;
 }
 
 .header-top-area {
