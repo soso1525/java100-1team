@@ -31,6 +31,9 @@
 		<result column="rnote" property="note"/>
 		<result column="rcheck" property="check"/>
 		<result column="ino" property="ino"/>
+		<association property="individualMember" javaType="individualMember">
+		  <result column="iname" property="name"/>
+		</association>
     </resultMap>
     <sql id="select1">
     select 
@@ -56,6 +59,7 @@
 
     <select id="findAll" resultMap="resumeMap">
 		<include refid="select1"/>
+            ,i.iname
 			from g_res r
 			left join g_iper i on r.ino = i.ino 
 			order by r.rno desc
@@ -77,8 +81,10 @@
     
     <select id="findByNo" resultMap="resumeMap" parameterType="int">
         <include refid="select1"/>
-        from g_res r
-        where rno=#{value}
+         ,i.iname
+            from g_res r
+            left join g_iper i on r.ino = i.ino 
+        where r.rno=#{value}
     </select>
     
     <update id="update" parameterType="resume">
