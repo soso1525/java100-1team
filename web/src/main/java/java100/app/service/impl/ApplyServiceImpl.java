@@ -53,4 +53,10 @@ public class ApplyServiceImpl implements ApplyService {
 	public int delete(int no) {
 		return applyDao.delete(no);
 	}
+	
+	@Override
+	public Apply getState(int no) {
+		return applyDao.getState(no);
+	}
 }
+

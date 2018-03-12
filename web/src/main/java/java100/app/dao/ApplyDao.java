@@ -13,4 +13,5 @@ public interface ApplyDao {
 	 public Apply findByName(String aname);
 	 public int update(Apply apply);
 	 public int delete(int no);
+	 public Apply getState(int no);
 }

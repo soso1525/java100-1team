@@ -40,6 +40,19 @@ public class ApplyController {
 	@Autowired
 	TestService testService;
 
+	@RequestMapping("state")
+	public Object getState(int ano, @ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
+		HashMap<String, Object> result = new HashMap<>();
+		Apply apply = applyService.getState(ano);
+		result.put("aname", apply.getAname());
+		if (apply.getTest() == null) {
+			result.put("state", "서류");
+		} else {
+			result.put("state", apply.getTest().getType());
+		}
+		return result;
+	}
+
 	@RequestMapping("list")
 	public Object list(Model model, @ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
 		HashMap<String, Object> result = new HashMap<>();
@@ -91,7 +104,7 @@ public class ApplyController {
 
 		if (resume != null)
 			resumeService.add(resume);
-		if (letter.getLfile() != null)	
+		if (letter.getLfile() != null)
 			letterService.add(letter);
 
 		HashMap<String, Object> result = new HashMap<>();
@@ -107,7 +120,7 @@ public class ApplyController {
 		result.put("test", testService.list(no));
 		return result;
 	}
-	
+
 	@RequestMapping("find")
 	public Object find(String aname) throws Exception {
 		HashMap<String, Object> result = new HashMap<>();
