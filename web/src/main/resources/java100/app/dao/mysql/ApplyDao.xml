@@ -52,6 +52,11 @@
         values(#{aname}, now(), #{member.no})
     </insert>
     
+    <select id="getState" resultMap="applyMap" parameterType="int">
+    	select a.aname, a.ino, l.lno, t.tno, t.ttype from g_app a left join g_let l on l.ano = a.ano left join g_test t on t.ano = a.ano
+    	where a.ano = #{value}
+    </select>
+    
     <select id="findByNo" resultMap="applyMap" parameterType="int">
         select
             ano,
