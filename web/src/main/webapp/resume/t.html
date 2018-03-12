@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>이력서</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='../css/view2.css'>
+<link rel='stylesheet' href='../css/view3.css'>
+<link rel='stylesheet' href='../css/plugin.css'>
+<link rel='stylesheet' href='../css/style.css'>
+
+</head>
+<body style='background-color: #f2f2f2;'>
+    <header></header>
+    <section class="section-space-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div style="margin: 80px 0" class="section-title">
+                        <h2>이력서</h2>
+                        <div class="divider dark">
+                            <i class="icon-graduation"></i>
+                        </div>
+                        <p style='margin-top: 10px'>지원자의 이력서를 볼 수 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="notice-list" class="masonry"></div>
+
+        </div>
+    </section>
+
+    <div id="id01" class="w3-modal">
+        <div class="w3-modal-content" style="background: transparent">
+            <span onclick="document.getElementById('id01').style.display='none'"
+                class="w3-button w3-display-topright">&times;</span>
+            <div class="business-card">
+                <div class="card">
+                    <div class="side front">
+                        <div id='photo'>
+                            <img id='image'>
+                        </div>
+                        <div id-info style='margin:232px 0 0 20px;'>
+                            <div id='info1'>
+                                <p id='name'></p></br>
+                                <p id='kind'></p></br>
+                                <p id='education'></p></br>
+                                <p id='schoolName'></p></br>
+                                <p id='major'></p></br>
+                                <p id='grades'></p>
+                            </div>
+                            <div id='info2' style='margin-left:46px;'>
+                                <p id='career' style='margin-top:56px;'></p></br>
+                                <p id='qualification'></p></br>
+                                <p id='language'></p></br>
+                                <p id='award'></p></br>
+                                <p id='note'></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="side back">
+                        <div id='title' style='font-size:26px; text-align:center; font-weight: bold; margin-bottom:14px;'></div>
+                        <div id='video' style='margin-top: 8px;'>
+                            <video id='avi' autoplay controls="controls"></video>
+                        </div>
+                        <div id='file' style='cursor:pointer; font-size:20px;  text-align:center;  margin-top:18px;'></div>
+                        <p>포트폴리오, 증명서 외 첨부파일을 다운받을 수 있습니다</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src='../node_modules/jquery/dist/jquery.min.js'></script>
+    <script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+    <script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+
+    <script type="text/javascript">
+     
+    $('header').load('../header.html', () => {
+          load();
+      });
+    
+    $('#view3').load("view3.html");
+    
+    /* $('#item').click(() => {
+        console.log('clicked');
+        if($('#item').html() != '')
+        $('#id01').css('display', 'block');
+        $('#video').attr('src', videoSrc);
+    }); */
+    
+    function load() {
+        $.ajax('../json/resume/list', {
+            dataType: 'json',
+            success: (result) => {
+                    for (var data of result.list) {
+                        $("<div class='item' onclick=mo(" + data.no + ") style='cursor:pointer'></div>").html(
+                                "<div class='title' style='font-size:16px; height:40px; margin-top:10px; text-align:center;'>" + data.title + "</div>" +
+                        "<div class= 'image'><img src='../../download/"+data.image+"'></div>" +
+                        "<div class='career' style='font-size:16px; margin:10px 0 0 5px;'> 경력사항 : " + data.career + "</div>" +
+                        "<div class='kind' style='font-size:16px; margin:10px 0 0 5px;'> 지원직무 : " + data.kind + "</div>" +
+                        "<div class='note' style='font-size:16px; margin:10px 0 0 5px;'> 나의한마디 : " + data.note + "</div>" 
+                       
+                        
+                                ).appendTo($('#notice-list'))
+                    }
+            },
+            error: () => {
+                window.alert('서버 실행 오류!');
+            }
+        });
+    }
+       
+    function mo(no) {
+        $('#id01').css('display', 'block');
+        $(() => { 
+            $.ajax('../json/resume/' + no, {
+                dataType: 'json',
+                success: (result) => {
+                    console.log(result);
+                    $('#image').attr('src','../../download/'+result.data.image);
+                    $('#name').html("이름 : "+ result.data.individualMember.name);
+                    $('#education').html("최종학력 : " +result.data.education);
+                    $('#kind').html("지원직무 : " +result.data.kind);
+                    $('#career').html("경력사항 : "+result.data.career);
+                    $('#schoolName').html("학교명 : "+result.data.schoolName);
+                    $('#major').html("전공 : "+result.data.major);
+                    $('#grades').html("최종학점 : "+result.data.grades);
+                    $('#qualification').html("자격증 : "+result.data.qualification);
+                    $('#language').html("어학 : "+result.data.language);
+                    $('#award').html("수상 : "+result.data.award);
+                    $('#note').html("나의한마디 : " +result.data.note);
+                    $('#title').html(result.data.title);
+                    $('#avi').attr('src','../../download/'+result.data.avi);
+                    $('#file').html("첨부파일 다운받기 : " + result.data.file);
+                    var fname = result.data.file;
+                    $('#file').click(() => {
+                        SaveToDisk('/download/' + fname,fname); 
+                    });
+                    
+                },
+                error: () => {
+                    window.alert('서버 실행 오류!');
+                }
+                       
+            });
+        });
+    }
+    
+     function SaveToDisk(fileURL, fileName) {
+            // for non-IE
+            if (!window.ActiveXObject) {
+                var save = document.createElement('a');
+                save.href = fileURL;
+                
+                save.download = fileName || 'unknown';
+                save.style = 'display:none;opacity:0;color:transparent;';
+                (document.body || document.documentElement).appendChild(save);
+
+                if (typeof save.click === 'function') {
+                    save.click();
+                } else {
+                    save.target = '_blank';
+                    var event = document.createEvent('Event');
+                    event.initEvent('click', true, true);
+                    save.dispatchEvent(event);
+                }
+
+                (window.URL || window.webkitURL).revokeObjectURL(save.href);
+            }
+
+            // for IE
+            else if (!!window.ActiveXObject && document.execCommand) {
+                var _window = window.open(fileURL, '_blank');
+                _window.document.close();
+                _window.document.execCommand('SaveAs', true, fileName || fileURL)
+                _window.close();
+            }
+        }
+    
+    </script>
+
+</body>
+</html>

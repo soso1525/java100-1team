@@ -20,6 +20,7 @@ public class Resume {
 	String note;
 	String check;
 	int ino;
+	IndividualMember individualMember;
 	
 	
 	public int getViewCount() {
@@ -137,9 +138,12 @@ public class Resume {
     public void setTitle(String title) {
         this.title = title;
     }
-	
-	
-	
+    public IndividualMember getIndividualMember() {
+        return individualMember;
+    }
+    public void setIndividualMember(IndividualMember individualMember) {
+        this.individualMember = individualMember;
+    }
 	
 	
 }

@@ -1,0 +1,127 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  outline: none;
+}
+
+html {
+  font-family: 'Courier New', monospace;
+  font-smooth: auto; 
+  /* font-weight: 100;
+  line-height: 1.5; */
+  color: #5a6773;
+}
+
+.business-card {
+  position: relative;
+  display: flex;
+  width: 790px;
+  height: 560px;
+  perspective: 1000px;
+  transition: transform 500ms linear;
+  z-index: 0;
+}
+.business-card .card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: 0.6s;
+  box-shadow: 1px 1px 0 gainsboro, 2px 2px 0 rgba(112, 128, 144, 0.5), 3px 3px 0 gainsboro, 0 19px 38px rgba(0, 0, 0, 0.2), 0 15px 12px rgba(0, 0, 0, 0.1);
+}
+
+.business-card .card .side {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  backface-visibility: hidden;
+}
+
+
+.business-card .card .side:before, .business-card .card .side:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.business-card .card .side:before {
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: -1;
+}
+.business-card .card .side:after {
+  background-image: url("http://state38.co/Images/paper-circles.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+.business-card .card .side.front {
+  position:relative;
+  overflow:hidden;
+  /* align-items: flex-start; 
+  justify-content: flex-end; 
+  flex-direction: column;  
+  align-items: center;
+  justify-content: center;*/
+  transform: rotateY(0deg);
+  font-weight: bold;
+  z-index: 2;
+}
+
+.business-card .card .side.front #info1 {
+	float:left;
+}
+
+.business-card .card .side.front #info2 {
+    float:left;
+}
+
+.business-card .card .side.front p {
+	margin-top:14px;
+	font-size:20px;
+}
+
+
+.business-card .card .side.front #photo {
+    width:180px;
+	max-height:240px;
+	position: absolute;
+	top:40px;
+	right:40px;
+	background-color: red;
+	float: right;
+	overflow: hidden;
+}
+
+.business-card .card .side.back {
+  /* align-items: flex-start;
+  justify-content: flex-end; */
+  flex-direction: column;
+  background-color: olive;
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+.business-card .card .side.back .company {
+  position: absolute;
+  right: -5px;
+  top: 65%;
+  transform: rotate(90deg);}
+
+.business-card .card:hover {
+  transform: rotateY(180deg);
+}
+
