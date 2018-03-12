@@ -36,11 +36,11 @@
 	<script type="text/javascript" src="../js/context.js"></script>
 	<script src='../js/login.js'></script>
 	<script id="template1" type="text/x-handlebars-template">
-{{#each memberList}}
+{{#each list}}
 <tr>
-  <td>{{no}}</td>
-  <td><a href="{{#viewpage type}}{{/viewpage}}.html?no={{lno}}">{{ltit}}</a></td>
-  <td>{{writedt}}</td>
+  <td><a style="color:black;" href="i-view.html?no={{no}}">{{no}}</a></td>
+  <td>{{id}}</td>
+  <td>{{email}}</td>
   <td>{{#typeCheck type}}{{/typeCheck}}</td>
 </tr>
 {{/each}}

@@ -28,24 +28,25 @@
 					</div>
 				</div>
 			</div>
-
-			<div style="margin-bottom: 10px; text-align: right">
-				<button id="updatebtn" class="btn btn-primary">변경</button>
-				<button id="deletebtn" class="btn btn-primary">삭제</button>
-			</div>
-			<div id='paper2'
-				style='padding: 15px; margin-bottom: 20px; border-radius: 10px; background-color: white; box-shadow: 4px 6px 14px 4px #00000054'>
-				<div class="form-group row" style='margin-bottom: 0'>
-					<label style="text-align: right" class="col-sm-2 col-form-label">파일
-						유무</label>
-					<div id="fileTag" style='font-weight: 700; font-size: 1.2em'
-						class="col-sm-8"></div>
+			<form>
+				<div style="margin-bottom: 10px; text-align: right">
+					<button id="updatebtn" class="btn btn-primary">변경</button>
+					<button id="deletebtn" class="btn btn-primary">삭제</button>
 				</div>
-			</div>
-
-			<div id='paper'
-				style='padding: 30px; border-radius: 10px; background-color: white; box-shadow: 4px 6px 14px 4px #00000054'>
-			</div>
+				<div id='paper2'
+					style='padding: 15px; margin-bottom: 20px; border-radius: 10px; background-color: white; box-shadow: 4px 6px 14px 4px #00000054'>
+					<div class="form-group row" style='margin-bottom: 0'>
+						<label style="text-align: right" class="col-sm-2 col-form-label">파일
+							유무</label>
+						<div id="fileTag" style='font-weight: 700; font-size: 1.2em'
+							class="col-sm-8"></div>
+					</div>
+				</div>
+	
+				<div id='paper'
+					style='padding: 30px; border-radius: 10px; background-color: white; box-shadow: 4px 6px 14px 4px #00000054'>
+				</div>
+			</form>
 		</div>
 	</section>
 
@@ -59,12 +60,12 @@
 {{#each question}}
 <div class="form-group row">
 	<label style="text-align: right" class="col-sm-2 col-form-label">자소서 문항</label>
-	<div style='font-weight:700; font-size: 1.2em' class="col-sm-8">{{article}}</div>
+	<input type="text" style='font-weight:700; font-size: 1.2em' class="col-sm-8" value="{{article}}">
 </div>
 <div class="form-group row question">
-	<label style="text-align: right" class="col-sm-2 col-form-label">{{content.length}} / {{length}}자</label>
+	<label style="text-align: right" class="col-sm-2 col-form-label">{{content.length}} / <input type="text" value="{{length}}자"></label>
 	<div class="col-sm-8">
-		<div style='padding: 20px; border: 1.2px dotted #f7639a; overflow: hidden; height:auto; line-height: 170%' class="form-control">{{content}}</div>
+		<textarea style='padding: 20px; border: 1.2px dotted #f7639a; overflow: hidden; height:auto; line-height: 170%' class="form-control">{{content}}</textarea>
 	</div>
 </div>
 {{/each}}
