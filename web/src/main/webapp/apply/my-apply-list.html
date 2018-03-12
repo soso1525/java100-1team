@@ -219,14 +219,17 @@ body {
 		    	compName = result.aname;
 		    	$('#mh2').html(result.aname + " 지원 현황 업데이트");
 				if(result.state == '인적성') {
+					clearInterval(blink);
 					blink = setInterval(function() {
 						$('#t').fadeOut('fast').fadeIn('fast');},10); 
 				} 
 				if(result.state == '면접') {
+					clearInterval(blink);
 					blink = setInterval(function() {
 						$('#i').fadeOut('fast').fadeIn('fast');},10);
 				} 
 				if(result.state == '서류'){
+					clearInterval(blink);
 					blink = setInterval(function() {
 						$('#p').fadeOut('fast').fadeIn('fast');},10);
 				}
