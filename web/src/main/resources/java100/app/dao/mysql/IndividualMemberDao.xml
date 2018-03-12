@@ -15,6 +15,13 @@
 		insert into g_iper(ino, iname, ibirth, itype)
 		values(LAST_INSERT_ID(),#{name},#{birth},#{loginType})
 	</insert>
+	
+	<update id="update" parameterType="individualMember">
+		update g_iper set 
+			iname=#{name},
+			ibirth=#{birth}
+        where ino=#{ino}
+	</update>
 </mapper>
 
 

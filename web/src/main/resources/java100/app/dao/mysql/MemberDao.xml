@@ -12,52 +12,65 @@
 		<result column="ppwd" property="password" />
 		<result column="pregdt" property="createdDate" />
 		<result column="ptel" property="tel" />
-		<result column="pdaddr" property="address" />
+		<result column="pdaddr" property="address"/>
+		<association property="individualMember" javaType="individualMember">
+			<id column="ino" property="ino" />
+			<result column="iname" property="name" />
+			<result column="ibirth" property="birth" />
+			<result column="itype" property="loginType" />
+		</association>
 	</resultMap>
 
 	<sql id="select1">
 		select
-		pno,
-		pmail,
-		pid,
-		ptype,
-		DATE_FORMAT(pregdt,"%Y-%c-%e"),
-		ptel,
-		pdaddr
+		p.pno,
+		p.pmail,
+		p.pid,
+		p.ptype,
+		<!-- DATE_FORMAT(p.pregdt,"%Y-%c-%e"), -->
+		p.pregdt,
+		p.ptel,
+		p.pdaddr
 	</sql>
 
 	<select id="findAll" resultMap="memberMap">
 		<include refid="select1" />
-		from g_per
+		from g_per p
 	</select>
 
 	<select id="findByNo" resultMap="memberMap" parameterType="int">
 		<include refid="select1" />
-		from g_per
-		where pno=#{value}
+		,
+		i.ino,
+		i.iname,
+		i.ibirth,
+		i.itype
+		from g_per p
+		left join g_iper i on p.pno = i.ino
+		where p.pno=#{value}
 	</select>
 
 	<select id="findByIdAndPassword" resultMap="memberMap"
 		parameterType="map">
 		<include refid="select1" />
-		from g_per
-		where pid=#{id} and ppwd=password(#{password})
+		from g_per p
+		where p.pid=#{id} and p.ppwd=password(#{password})
 	</select>
 
 	<select id="findById" resultMap="memberMap" parameterType="map">
 		<include refid="select1" />
-		from g_per
-		where pid=#{id}
+		from g_per p
+		where p.pid=#{id}
 	</select>
 
 	<select id="findByEmail" resultMap="memberMap" parameterType="map">
 		<include refid="select1" />
-		from g_per
-		where pmail=#{email}
+		from g_per p
+		where p.pmail=#{email}
 	</select>
 
 	<select id="countAll" resultType="int">
-		select count(*) from g_per
+		select count(*) from g_per p
 	</select>
 
 	<insert id="insert" parameterType="member"
@@ -66,5 +79,13 @@
 		g_per(pmail,pid,ppwd,pregdt,ptel,pdaddr,ptype)
 		values(#{email},#{id},password(#{password}),now(),#{tel},#{address},#{type})
 	</insert>
+	
+	<update id="update" parameterType="member">
+		update g_per set 
+			pmail=#{email},
+			ptel=#{tel},
+			pdaddr=#{address}
+        where pno=#{no}
+	</update>
 
 </mapper>

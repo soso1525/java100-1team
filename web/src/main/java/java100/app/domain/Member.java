@@ -10,6 +10,7 @@ public class Member {
     protected String createdDate;
     protected String address;
     protected String type;	//1: 일반 2: 기업
+    IndividualMember individualMember;
     
     
     public Member() {}
@@ -19,12 +20,15 @@ public class Member {
         this.email = email;
         this.id = id;
     }
-
     
-	@Override
-	public String toString() {
-		return "Member [no=" + no + ", email=" + email + ", password=" + password + ", id=" + id + ", tel=" + tel
-				+ ", createdDate=" + createdDate + ", address=" + address + ", type=" + type + "]";
+    
+
+	public IndividualMember getIndividualMember() {
+		return individualMember;
+	}
+
+	public void setIndividualMember(IndividualMember individualMember) {
+		this.individualMember = individualMember;
 	}
 
 	public String getType() {
