@@ -13,4 +13,5 @@ public interface ApplyService {
 	Apply getApply(String aname);
 	int update(Apply apply);
 	int delete(int no);
+	Apply getState(int no);
 }
