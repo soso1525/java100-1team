@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CATCH : 서류전형관리</title>
+<link rel="shortcut icon" href="images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="144x144" type="image/x-icon"
+	href="../images/favicon/apple-touch-icon.png">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" type="text/css" href="../css/toggle.css">
+<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+<script type="text/javascript" src="../js/context.js"></script>
+<script src='../js/login.js'></script>
+</head>
+<body style='background-color: #f2f2f2'>
+	<header></header>
+	<section class="section-space-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div style="margin: 100px 0 50px 0" class="section-title">
+						<h2 id='pageinfo'></h2>
+						<div style='margin-top: 30px' class="can-toggle demo-rebrand-1">
+							<input onchange=change() id="d" type="checkbox"> <label for="d">
+								<div style='margin-left: auto; margin-right: auto'
+									class="can-toggle__switch" data-checked="자소서"
+									data-unchecked="이력서"></div>
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id='here'></div>
+	</section>
+	<script type="text/javascript">
+		$('header').load("../header.html");
+		$('#pageinfo').html('나의 이력서 목록');
+		$('#here').load("resume-list.html");
+
+		function change() {
+			if ($("#d").is(":checked")) {
+				console.log('checked');
+				$('#pageinfo').html('나의 자소서 목록');
+				$('#here').load("letter-list.html");
+			} else {
+				console.log('unchecked');
+				$('#pageinfo').html('나의 이력서 목록');
+				$('#here').load("resume-list.html");
+			}
+		}
+	</script>
+</body>
+</html>
+

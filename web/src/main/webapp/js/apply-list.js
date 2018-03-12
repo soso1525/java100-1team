@@ -41,7 +41,7 @@
 	});
 	
 	$('#paper').click(() => {
-		location.href="../resume/list.html";
+		location.href="list.html";
 	});
 	
 	$('#test').click(() => {

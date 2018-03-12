@@ -1,78 +1,44 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>이력서목록</title>
-<link rel='stylesheet' href='../css/common.css'>
-<link rel='stylesheet' href='../css/plugin.css'>
-<link rel='stylesheet' href='../css/style.css'>
-<link rel='stylesheet' href='../css/toggle.css'>
-</head>
-<body>
-	<div class='container'>
-		<header></header>
-		<section class="section-space-padding">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12">
-						<div style="margin: 100px 0 50px 0" class="section-title">
-							<h2>나의 이력서	</h2>
-							<div style='margin-top:30px' class="can-toggle demo-rebrand-1">
-								<input id="d" type="checkbox"> <label for="d">
-									<div style='margin-left: auto; margin-right:auto' class="can-toggle__switch" data-checked="자소서"
-										data-unchecked="이력서"></div>
-								</label>
-							</div>
-						</div>
-					</div>
-				</div>
 
-				<div id="tmp" style="display: none"></div>
-				<table id='list' class='table table-hover'>
-					<thead>
-						<tr>
-							<th width=5%>번호</th>
-							<th width="55%">제목</th>
-							<th width="11%">직무</th>
-							<th width="11%">경력</th>
-							<th width="8%">동영상</th>
-							<th>이력서파일</th>
-						</tr>
-					</thead>
-					<tbody>
-					</tbody>
-				</table>
-				<div class='col-md-12 mb-3'>
-					<div align="center" style="margin-top: 15px;">
+<div id="tmp" style="display: none"></div>
+<table id='list' class='table table-hover'>
+	<thead>
+		<tr>
+			<th width=5%>번호</th>
+			<th width="55%">제목</th>
+			<th width="11%">직무</th>
+			<th width="11%">경력</th>
+			<th width="8%">동영상</th>
+			<th>이력서파일</th>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+<div class='col-md-12 mb-3'>
+	<div align="center" style="margin-top: 15px;">
 
-						<nav aria-label="Page navigation">
-							<ul class="pagination justify-content-center">
-								<li class="page-item"><a id="prevBtn" class="page-link"
-									tabindex="-1">이전</a></li>
+		<nav aria-label="Page navigation">
+			<ul class="pagination justify-content-center">
+				<li class="page-item"><a id="prevBtn" class="page-link"
+					tabindex="-1">이전</a></li>
 
-								<li class="page-item"><a id="currBtn" class="page-link"
-									href="#">1</a></li>
+				<li class="page-item"><a id="currBtn" class="page-link"
+					href="#">1</a></li>
 
-								<li class="page-item"><a id="nextBtn" class="page-link"
-									tabindex="0">다음</a></li>
-							</ul>
-						</nav>
-					</div>
-				</div>
+				<li class="page-item"><a id="nextBtn" class="page-link"
+					tabindex="0">다음</a></li>
+			</ul>
+		</nav>
+	</div>
+</div>
 
-				<div class='col-md-12 mb-3'>
-					<button style="position: absolute; right: 0px; margin-top: -63px;'"
-						type="button" class='btn btn-primary btn-sm' id="btn-add"
-						onclick="location.href='form.html'">추가</button>
-				</div>
-			</div>
-		</section>
+<div class='col-md-12 mb-3'>
+	<button style="position: absolute; right: 0px; margin-top: -63px;'"
+		type="button" class='btn btn-primary btn-sm' id="btn-add"
+		onclick="location.href='form.html'">추가</button>
+</div>
 
-		<script src='../node_modules/jquery/dist/jquery.min.js'></script>
-		<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
-		<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
-
-		<script type="text/javascript">
+<script type="text/javascript">
 
   var  prevBtn = $('#prevBtn'),
 	   currBtn = $('#currBtn'),
@@ -109,7 +75,7 @@ function load(pageNo, options) {
         	if(result.list.length == 0){
         		$('#list').hide();
         		$('#tmp').css('display', 'block');
-        		$('#tmp').html("등록된 자기소개서가 없습니다.");
+        		$('#tmp').html("등록된 이력서가 없습니다.");
         		return;
         	}
         	
@@ -184,5 +150,3 @@ function load(pageNo, options) {
     });
 }
 </script>
-</body>
-</html>
