@@ -91,7 +91,8 @@
 
 	<update id="update" parameterType="letter">
 		update g_let set
-		lsdt=now()
+		lsdt=now(),
+		lfile=#{lfile}
 		where lno=#{lno}
 	</update>
 	

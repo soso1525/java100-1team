@@ -60,8 +60,9 @@
 	<update id="update" parameterType="question">
 		update g_que set
 		qart=#{article},
-		qcont=#{content}
-		where qno=#{no}
+		qcont=#{content},
+		qleng=#{length}
+		where qno=#{qno}
 	</update>
 
 	<delete id="delete" parameterType="int">

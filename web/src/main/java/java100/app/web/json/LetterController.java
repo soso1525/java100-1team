@@ -126,12 +126,34 @@ public class LetterController {
 		result.put("letterList", letterService.list(ano));
 		return result;
 	}
-
+	
 	@RequestMapping("update")
-	public Object update(Letter letter) throws Exception {
+	public Object update(int lno, Letter letter, int[] lengths, String[] contents, String[] articles, int[] qnos, MultipartFile file,
+			@ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
+		letter.setLno(lno);
+		letter.setMember(loginUser);
+
+		if (!file.isEmpty()) {
+			String uploadDir = servletContext.getRealPath("/download");
+			String filename = writeUploadFile(file, uploadDir);
+			letter.setLfile(filename);
+		} else {
+			letter.setLfile("");
+		}
+
 		HashMap<String, Object> result = new HashMap<>();
-		result.put("status", "success");
 		letterService.update(letter);
+
+		for (int i = 0; i < articles.length; i++) {
+			Question q = new Question();
+			q.setArticle(articles[i]);
+			q.setContent(contents[i]);
+			q.setLength(lengths[i]);
+			q.setQno(qnos[i]);
+			questionService.update(q);
+		}
+
+		result.put("status", "success");
 		return result;
 	}
 

@@ -29,24 +29,6 @@
 			<div style='margin-bottom: 30px' class="col-sm-12 search">
 			</div>
 			<div class="col-sm-12 notice-list" id="list" style="padding:0 100px 0 100px; margin-top:30px">
-				<div class="col-sm-3" style="margin: 40px; padding:0px;background-color:white;box-shadow:2px 2px 5px #999;">
-				  <div>
-				  <div style='text-align:left; width:100%'>
-					<div class='col-sm-3' style='padding:5px 10px; background-color:#f0ad4e;color:white;font-size:14px;font-weight:bold;text-align:center;'></div>
-				  </div>
-				  <div class='notice-head' style='width:100%;'> 
-				  	<img class='notice-img-top' src='../download/lg.jpg' alt='Card image cap'> 
-				  </div> 
-				  <div class='notice-body' style='text-align:center;height:150px'> 
-				  	<p class='notice-title'>1</p><br><br> 
-				  	<p class='notice-text'>1</p><br> 
-				  	<p class='notice-text' style='color:red;'>1</p><br> 
-				  	<div class='notice-footer' style='text-align:center'> 
-				  		<a class='btn btn-primary btn-sm' href='view.html?no={{no}}'>채용공고 보러가기</a>
-				  	</div> 
-				  </div>
-				  </div>
-				</div>
 			</div>
 
 			<button type="button" class='btn btn-primary btn-sm' id="btn-add"
@@ -156,7 +138,7 @@ function load(pageNo, options) {
     	data: options,
         dataType: 'json',
         success: (result) => {
-            //listItem.html(noticeEngine(result));
+            listItem.html(noticeEngine(result));
         	if (!result.list.length) {
         		listItem.html(
     			"<div style='margin:60px;text-align:center;'>" + 
