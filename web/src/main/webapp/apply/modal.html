@@ -6,7 +6,7 @@
 		<h2 id="mh2" align="center"
 			style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 30px; margin-top: 40px; margin-bottom: 60px">
 			지원 현황 업데이트</h2>
-		<div style='text-align: center'>
+		<div id="testchange" style='text-align: center'>
 			<div style='display: inline-block;'>
 				<div style='width: 200px; height: 200px; float: left'>
 					<img id='p' src="../images/paper.png">
@@ -22,9 +22,106 @@
 					<img id='i' src="../images/interview.png">
 				</div>
 			</div>
+			<div id="addTestModal" class="w3-modal">
+				<div style='border-radius: 10px; border: 2px dotted slategray;'
+					class="w3-modal-content">
+					<div style="padding: 25px" class="w3-container">
+						<span
+							onclick="document.getElementById('addTestModal').style.display='none'"
+							class="w3-button w3-display-topright">&times;</span>
+						<h2 style="margin: 50px 0">인적성/면접 일정 추가</h2>
+						<form method='post' id="form">
+							<input type="hidden" id="ano" name="ano">
+							<div class="form-group row">
+								<div class="col-sm-6">
+									<div class="form-group row">
+										<label class='col-sm-2 col-form-label'>기업 이름</label>
+										<div class='col-sm-6'>
+											<input class='form-control' placeholder='지원한 회사 이름'
+												id='aname' name='aname' type='text' required>
+										</div>
+									</div>
+
+									<div class="form-group row">
+										<label class='col-sm-2 col-form-label'>전형 유형</label>
+										<div class="col-sm-6">
+											<input class="form-check-input" type="radio" name="type"
+												value="인적성"> <label class="form-check-label"
+												for="test">인적성</label> <input style='margin-left: 10px'
+												class="form-check-input" type="radio" name="type" value="면접">
+											<label class="form-check-label" for="interview">면접</label>
+										</div>
+									</div>
+
+									<div class="form-group row">
+										<label class='col-sm-2 col-form-label'>전형 일자</label>
+										<div class="col-sm-6">
+											<input class='form-control' type='date' name='date' required>
+										</div>
+									</div>
+
+									<div class="form-group row">
+										<label class='col-sm-2 col-form-label'>전형 시간 </label>
+										<div class="col-sm-6">
+											<input class='form-control' type='time' name='time' required>
+										</div>
+									</div>
+
+
+									<div class="form-group row">
+										<label class='col-sm-2 col-form-label'>준비물</label>
+										<div class="col-sm-6">
+											<input class='form-control' type='text' value='신분증'
+												name='prepare' required>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-sm-6">
+									<div class="form-group row">
+										<label class='col-sm-2 col-form-label'>위치</label>
+										<div class="col-sm-3">
+											<input type="text" class="form-control" id="sample3_postcode"
+												placeholder="우편번호">
+										</div>
+										<div class="col-sm-2">
+											<input type="button" class="form-control"
+												onclick="sample3_execDaumPostcode()" value="주소 검색">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class='col-sm-2 col-form-label'></label>
+										<div class="col-sm-6">
+											<div id="wrap"
+												style="display: none; border: 1px solid; width: 500px; height: 300px; margin: 5px 0; position: relative">
+												<img
+													src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png"
+													id="btnFoldWrap"
+													style="width: 20px; height: 20px; cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1"
+													onclick="foldDaumPostcode()" alt="접기 버튼">
+											</div>
+											<input style="display: none" type="text" name='location'
+												id="sample3_address" class="d_form large form-control"
+												placeholder="주소">
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+
+						<div style="margin-bottom: 50px" class="calendar__button">
+							<button style="margin-right: 5px" type='button' id='addBtn'
+								class='btn'>추가</button>
+							<button type='reset' id='cancelBtn' class='btn'>취소</button>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div style="margin-top: 30px; padding: 30px">
-				<label id="pbtn" class="button button-style button-style-dark button-style-color-1" for="modal-2">합격</label>
-				<button id="fbtn" onclick=deleteApply() class="button button-style button-style-dark button-style-color-2">불합격</button>
+				<button id="pbtn" onclick=addTest()
+					class="button button-style button-style-dark button-style-color-1">합격</button>
+				<button id="fbtn" onclick=deleteApply()
+					class="button button-style button-style-dark button-style-color-2">불합격</button>
 			</div>
 		</div>
 	</div>

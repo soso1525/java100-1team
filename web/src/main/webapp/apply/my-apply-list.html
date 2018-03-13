@@ -151,6 +151,8 @@ body {
 			</form>
 		</div>
 	</div>
+
+
 </body>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
@@ -210,6 +212,7 @@ body {
 	var blink = null;
 	var compName = null;
 	var delAno = 0;
+	
 	function updateStatus(ano) {
 		delAno = ano;
 		$('#m').load("modal.html");
@@ -253,6 +256,10 @@ body {
 		    	swal("오류발생", "apply 삭제 중 오류가 발생했습니다.", "error");
 		    }
 		}); 
+	 }
+	 
+	 function addTest() {
+		 $('#addTestModal').css('display', 'block');
 	 }
 </script>
 </html>
