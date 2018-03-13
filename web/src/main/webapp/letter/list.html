@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" type="text/css" href="../css/plugin.css">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" type="text/css" href="../css/toggle.css">
 </head>
 <body style='background-color: #f2f2f2'>
 	<header></header>
@@ -18,10 +19,13 @@
 				<div class="col-sm-12">
 					<div style="margin: 100px 0 50px 0" class="section-title">
 						<h2>자기소개서 목록</h2>
-						<div class="divider dark">
-							<i class="icon-graduation"></i>
+						<div style='margin-top: 30px' class="can-toggle demo-rebrand-1">
+							<input checked id="d" type="checkbox"> <label for="d">
+								<div style='margin-left: auto; margin-right: auto'
+									class="can-toggle__switch" data-checked="자소서"
+									data-unchecked="이력서"></div>
+							</label>
 						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
 					</div>
 				</div>
 			</div>

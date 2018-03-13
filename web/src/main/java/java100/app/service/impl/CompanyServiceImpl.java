@@ -46,8 +46,6 @@ public class CompanyServiceImpl implements CompanyService {
 			while ((line = rd.readLine()) != null) {
 				resXml.append( line );
 			}
-			// System.out.println(resXml.toString());
-			
 			
 			int p0 = resXml.indexOf("<totalCount>");
 			if ( p0 < 0 ) {

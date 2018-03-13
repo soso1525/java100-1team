@@ -40,14 +40,14 @@
 		location.href="like.html";
 	});
 	
-	$('#resume').click(() => {
-		location.href="../resume/list.html";
-	});
-	
-	$('#letter').click(() => {
-		location.href="../letter/list.html";
+	$('#paper').click(() => {
+		location.href="list.html";
 	});
 	
 	$('#test').click(() => {
 		location.href="../test/calendar.html";
+	});
+	
+	$('#study').click(() => {
+		location.href="../study/list.html";
 	});
