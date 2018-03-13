@@ -2,14 +2,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css"
-	rel="stylesheet">
+<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 <link rel='stylesheet' href='../css/apply-calendar.css'>
 <link rel='stylesheet' href='../css/plugin.css'>
 <link rel='stylesheet' href='../css/style.css'>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0594a0c4e6386f7548ca7057f30a5da9&libraries=services"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <title>CATCH : 인적성/면접 일정</title>
 <style>
 body {
@@ -88,31 +86,30 @@ body {
 		</div>
 	</div>
 
-
-	<!-- insert modal -->
+	<!-- insert modal --> 
 	<input class="modal-state" id="modal-2" type="checkbox" />
 	<div class="modal">
 		<label class="modal__bg" for="modal-2"></label>
 		<div class="modal__inner">
-			<form id="form" method="post" enctype="multipart/form-data">
-				<h2 style="margin: 50px 0">인적성/면접 일정 추가</h2>
+			<h2 style="margin: 50px 0">인적성/면접 일정 추가</h2>
+			<form style='margin-left: auto; margin-right: auto' method='post'
+				id="form">
+				<input type="hidden" id="ano" name="ano">
 				<div class="form-group row">
-					<label style="text-align: center" class='col-sm-2 col-form-label'>기업
-						이름</label>
-					<div class='col-sm-6'>
-						<div class='row'>
-							<input class='form-control' placeholder='지원한 회사 이름'
-								id='companyName' name="aname" type='text'>
-						</div>
+					<label class='col-sm-2 col-form-label'>기업 이름</label>
+					<div class="col-sm-4">
+						<select  style='width=40px;'class="form-control" id="anameNew" name="anameNew" required>
+						</select>
+					</div>
+					<div class="col-sm-4">
+					<input class='form-control'type="text" id="aname" name="aname"/>
 					</div>
 				</div>
-
 				<div class="form-group row">
-					<label style="text-align: center" class='col-sm-2 col-form-label'>전형
-						유형</label>
-					<div class="form-check form-check-inline">
+					<label class='col-sm-2 col-form-label'>전형 유형</label>
+					<div class="col-sm-6">
 						<input class="form-check-input" type="radio" name="type"
-							value="인적성"> <label class="form-check-label" for="test">인적성</label>
+							value="인적성" checked> <label class="form-check-label" for="test">인적성</label>
 						<input style='margin-left: 10px' class="form-check-input"
 							type="radio" name="type" value="면접"> <label
 							class="form-check-label" for="interview">면접</label>
@@ -120,147 +117,57 @@ body {
 				</div>
 
 				<div class="form-group row">
-					<label style="text-align: center" class='col-sm-2 col-form-label'>전형
-						일자</label>
-					<div class='col-sm-2'>
-						<div class='row'>
-							<select class="form-control" name="year">
-								<option value="2018">2018</option>
-							</select>
-						</div>
-					</div>
-					<div style="margin-left: 5px" class='col-sm-1'>
-						<div class="row">년</div>
-					</div>
-
-					<div class='col-sm-2'>
-						<div class='row'>
-							<select id='month' class="form-control">
-								<option value=3>3</option>
-							</select>
-						</div>
-					</div>
-					<div style="margin-left: 5px" class='col-sm-1'>
-						<div class="row">월</div>
-					</div>
-
-					<div class='col-sm-2'>
-						<div class='row'>
-							<select id='day' class="form-control">
-								<option value=1>1</option>
-								<option value=2>2</option>
-								<option value=3>3</option>
-								<option value=4>4</option>
-								<option value=5>5</option>
-								<option value=6>6</option>
-								<option value=7>7</option>
-								<option value=8>8</option>
-								<option value=9>9</option>
-								<option value=10>10</option>
-								<option value=11>11</option>
-								<option value=12>12</option>
-								<option value=13>13</option>
-								<option value=14>14</option>
-								<option value=15>15</option>
-								<option value=16>16</option>
-								<option value=17>17</option>
-								<option value=18>18</option>
-								<option value=19>19</option>
-								<option value=20>20</option>
-								<option value=21>21</option>
-								<option value=22>22</option>
-								<option value=23>23</option>
-								<option value=24>24</option>
-								<option value=25>25</option>
-								<option value=26>26</option>
-								<option value=27>27</option>
-								<option value=28>28</option>
-								<option value=29>29</option>
-								<option value=30>30</option>
-								<option value=31>31</option>
-							</select>
-						</div>
-					</div>
-					<div style="margin-left: 5px" class='col-sm-1'>
-						<div class="row">일</div>
+					<label class='col-sm-2 col-form-label'>전형 일자</label>
+					<div class="col-sm-4">
+						<input class='form-control' type='date' name='date' id="date" required>
 					</div>
 				</div>
 
 				<div class="form-group row">
-					<label style="text-align: center" class='col-sm-2 col-form-label'>전형
-						시간</label>
-					<div class='col-sm-2'>
-						<div class='row'>
-							<select id='APM' class="form-control">
-								<option value='AM'>오전</option>
-								<option value='PM'>오후</option>
-							</select>
-						</div>
+					<label class='col-sm-2 col-form-label'>전형 시간 </label>
+					<div class="col-sm-4">
+						<input class='form-control' type='time' name='time' required>
 					</div>
+				</div>
 
-					<div style="margin-left: 5px" class='col-sm-2'>
-						<div class='row'>
-							<select id='hour' class="form-control">
-								<option value=1>1</option>
-								<option value=2>2</option>
-								<option value=3>3</option>
-								<option value=4>4</option>
-								<option value=5>5</option>
-								<option value=6>6</option>
-								<option value=7>7</option>
-								<option value=8>8</option>
-								<option value=9>9</option>
-								<option value=10>10</option>
-								<option value=11>11</option>
-								<option value=12>12</option>
-							</select>
-						</div>
-					</div>
-					<div style="margin-left: 5px" class='col-sm-1'>
-						<div class="row">시</div>
-					</div>
 
-					<div class='col-sm-2'>
-						<div class='row'>
-							<select id='minute' class="form-control">
-								<option value=00>00</option>
-								<option value=10>10</option>
-								<option value=20>20</option>
-								<option value=30>30</option>
-								<option value=40>40</option>
-								<option value=50>50</option>
-							</select>
-						</div>
-					</div>
-					<div style="margin-left: 5px" class='col-sm-1'>
-						<div class="row">분</div>
+				<div class="form-group row">
+					<label class='col-sm-2 col-form-label'>준비물</label>
+					<div class="col-sm-4">
+						<input class='form-control' type='text' value='신분증' name='prepare'
+							required>
 					</div>
 				</div>
 
 				<div class="form-group row">
-					<label style="text-align: center" class='col-sm-2 col-form-label'>준비물</label>
-					<div class='col-sm-6'>
-						<div class='row'>
-							<input style="margin: 0 0 15px 0" class='form-control'
-								value="신분증" id='prepare' name="prepare" type='text'>
-						</div>
+					<label class='col-sm-2 col-form-label'>위치</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" id="sample3_postcode"
+							placeholder="우편번호" readonly>
+					</div>
+					<div class="col-sm-3">
+						<input type="button" class="form-control"
+							onclick="sample3_execDaumPostcode()" value="주소 검색">
 					</div>
 				</div>
-
 				<div class="form-group row">
-					<label style="text-align: center" class='col-sm-2 col-form-label'>전형
-						장소</label>
-					<div class='col-sm-6'>
-						<div class='row'>
-							<input style="margin: 0 0 15px 0" class='form-control'
-								placeholder="시험 및 면접 장소" id='location' name="location" type='text'>
+					<label class='col-sm-2 col-form-label'></label>
+					<div class="col-sm-8">
+						<div id="wrap"
+							style="display: none; border: 1px solid; width: 500px; height: 300px; margin: 5px 0; position: relative">
+							<img
+								src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png"
+								id="btnFoldWrap"
+								style="width: 20px; height: 20px; cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1"
+								onclick="foldDaumPostcode()" alt="접기 버튼">
 						</div>
-					</div>
-					<div style="margin-left: 5px" class='col-sm-1'>
-						<button style='margin-left: 5px' id='locationBtn' class='btn'>검색</button>
+						<input type="text" name='location'
+							id="sample3_address" class="d_form large form-control"
+							placeholder="주소">
 					</div>
 				</div>
 			</form>
+
 			<div style="margin-bottom: 50px" class="calendar__button">
 				<button style="margin-right: 5px" type='button' id='addBtn'
 					class='btn'>추가</button>
@@ -270,8 +177,14 @@ body {
 	</div>
 	</main>
 
-	<script type="text/javascript" src='../js/jquery.min.js'></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+	<script src='../js/login.js'></script>
+	<script src="search-location.js"></script>
 	<script src='../js/context.js'></script>
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script src='../js/apply-calendar.js'></script>
 	<script type="text/javascript">
 		$('header').load("../header.html")

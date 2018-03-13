@@ -4,6 +4,7 @@ public class Apply {
 
 	int ano;
 	String aname;
+	String anameNew;
 	String adt;
 	int ino;
 	IndividualMember writer;
@@ -16,6 +17,18 @@ public class Apply {
 		return "Apply [ano=" + ano + ", aname=" + aname + ", adt=" + adt + ", ino=" + ino + ", writer=" + writer
 				+ ", member=" + member + ", test=" + test + ", letter=" + letter + "]";
 	}
+	
+	public String getAnameNew() {
+		return anameNew;
+	}
+
+
+
+	public void setAnameNew(String anameNew) {
+		this.anameNew = anameNew;
+	}
+
+
 
 	public Test getTest() {
 		return test;

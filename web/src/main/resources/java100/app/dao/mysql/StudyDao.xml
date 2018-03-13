@@ -40,7 +40,8 @@
                sppl,
                sregdt, 
                scorp, 
-               simg, 
+               simg,
+                
                (select count(*) from g_mebst a where a.sno = b.sno) as scheck
         from g_study b
         <if test="words != null">
@@ -156,9 +157,9 @@ select c.pid as id
                b.sregdt, 
                b.scorp, 
                b.simg, 
-               (select count(*) from g_mebst a where a.sno = b.sno) as scheck 
+               (select count(*) from g_mebst a where a.sno = b.sno) as scheck
   from g_mebst a
-         , g_study  b  
+         , g_study  b
 where a.ino = #{loginUserNo}
     and a.sno = b.sno 
  limit #{startIndex}, #{size}

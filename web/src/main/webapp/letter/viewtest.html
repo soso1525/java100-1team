@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CATCH : 자소서 상세보기</title>
+<link rel="shortcut icon" href="images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="144x144" type="image/x-icon"
+	href="../images/favicon/apple-touch-icon.png">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</body>
+</head>
+<body style='background-color: #f2f2f2'>
+	<header></header>
+	<section class="section-space-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div style="margin: 100px 0 50px 0" class="section-title">
+						<h2 id='title'></h2>
+						<div class="divider dark">
+							<i class="icon-graduation"></i>
+						</div>
+						<p>
+							자기소개서 상세보기 페이지입니다.<br>첨부파일이 있는 경우 다운받으시려면 파일 이름을 누르세요
+						</p>
+					</div>
+				</div>
+			</div>
+			<form id="form">
+				<input type="hidden" name="lno" id="lno">
+				<div style="margin-bottom: 10px; text-align: right">
+					<button id="updateBtn" type="button" class="btn btn-primary">변경</button>
+					<button id="qaddBtn" type="button" class="btn btn-primary">추가</button>
+					<button id="deleteBtn" class="btn btn-primary">삭제</button>
+				</div>
+				<div id='paper2'
+					style='padding: 15px; margin-bottom: 20px; border-radius: 10px; background-color: white; box-shadow: 4px 6px 14px 4px #00000054'>
+					<div class="form-group row" style='margin-bottom: 0'>
+						<div style="margin-bottom: 50px" class="form-group row">
+							<label style="text-align: center" class='col-sm-2 col-form-label'>자기소개서
+								파일</label>
+							<div class='col-sm-6'>
+								<div class='row'>
+									<input class='form-control' id='letterFile' name="file"
+										type='file'>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+	
+				<div id='paper'
+					style='padding: 30px; border-radius: 10px; background-color: white; box-shadow: 4px 6px 14px 4px #00000054'>
+				</div>
+			</form>
+		</div>
+	</section>
+
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+	<script type="text/javascript" src="../js/context.js"></script>
+	<script id="template1" type="text/x-handlebars-template">
+{{#each question}}
+<div id="lq">
+ <input type="hidden" name="qnos" value="{{qno}}">
+ <div class="form-group row">
+ 	<label style="text-align: right" class="col-sm-2 col-form-label">자소서 문항</label>
+ 	<input name="articles" type="text" style='font-weight:700; font-size: 1.2em' class="col-sm-8" value="{{article}}">
+ </div>
+ <div class="form-group row question">
+ 	<label style="text-align: right" class="col-sm-2 col-form-label">{{content.length}} / <input name="lengths" style="width:40px;"type="text" value="{{length}}">자</label>
+ 	<div class="col-sm-8">
+ 		<textarea row="10" name="contents" style='padding: 20px; border: 1.2px dotted #f7639a; overflow: hidden; height:auto; line-height: 170%' class="form-control">{{content}}</textarea>
+ 	</div>
+ </div>
+</div>
+{{/each}}
+</script>
+<script type="text/javascript">
+$('header').load("../header.html");
+
+var letter = $('#paper'),
+	template1Src = $('#template1').html(),
+	template1Engine = Handlebars.compile(template1Src);
+
+
+var index = location.href.indexOf('?');
+var qs = location.href.substr(index + 1);
+var arr = qs.split('=');
+
+var lno = arr[1];
+
+var fileName = null;
+
+$(() => {
+	$.ajax(host + '/json/question/' + arr[1], {
+		dataType: 'json',
+		success: (result) => {
+			$('#lno').val(lno);
+			letter.html(letter.html() + template1Engine(result));
+			$('#title').html(result.compName + ' 자기소개서');
+			if(result.file != "") 
+				fileName = result.file;
+				$('#fileTag').html(fileName);
+				
+					$('#fileTag').hover(() => {
+						$('#fileTag').css('cursor', 'pointer');
+						$('#fileTag').css('color', '#f7639a');
+					});
+					
+					$('#fileTag').mouseout(() => {
+						$('#fileTag').css('color', 'black');
+					});
+
+					$('#fileTag').click(() => {
+						SaveToDisk('/download/' + fileName, fileName);	
+					});
+		},
+		error: () => {
+			window.alert('서버 실행 오류!');
+		}
+	});
+});
+
+
+$('#updateBtn').click(() => {
+	var formData = new FormData($('#form')[0]);
+	$.ajax(host + '/json/letter/update', {
+	    data: formData,
+	    dataType: 'json',
+	    method: 'POST',
+	    processData : false,
+	    contentType : false,
+	    success: () => {
+	    	swal("Apply Success!", "자기소개서가 정상적으로 변경되었습니다.", "success");
+	        location.href = "../apply/my-apply-list.html";
+	    },
+	    error: () => {
+	        window.alert('서버 실행 오류!');
+	    }
+	});
+});
+
+
+$('#deleteBtn').click(() => {
+	swal('정말 삭제하시겠습니까?', {
+		  buttons: {
+		    cancel: {visible: true, value: false},
+		    confirm: {visible: true, value: true}
+		  },
+	}).then((value) => {
+		if(value) {
+			$.ajax(host + '/json/letter/delete', {
+				data: {
+			    	no: lno
+			    },
+			    dataType: 'json',
+			    success: (result) => {
+			    	swal('삭제되었습니다').then(() => {
+			    		location.href= "../apply/my-apply-status.html?ano=" + result.ano;
+			    	});
+				},
+			    error: () => {
+			    	alert('서버 실행 오류!');
+			    }
+			});
+		} else {
+			swal('취소되었습니다');
+		}
+	});
+});
+
+
+$('#qaddBtn').click(() => {
+	console.log('qAddBtn clicked');
+	var q = $('#lq').clone();
+	q.attr('id', 'lq' + questionNum);
+	q.find('#article').val("");
+	q.find('#length').val("");
+	q.find('#content').val("");
+	q.appendTo('#questionBox');
+});
+
+
+
+function SaveToDisk(fileURL, fileName) {
+    // for non-IE
+    if (!window.ActiveXObject) {
+        var save = document.createElement('a');
+        save.href = fileURL;
+        
+        save.download = fileName || 'unknown';
+        save.style = 'display:none;opacity:0;color:transparent;';
+        (document.body || document.documentElement).appendChild(save);
+
+        if (typeof save.click === 'function') {
+            save.click();
+        } else {
+            save.target = '_blank';
+            var event = document.createEvent('Event');
+            event.initEvent('click', true, true);
+            save.dispatchEvent(event);
+        }
+
+        (window.URL || window.webkitURL).revokeObjectURL(save.href);
+    }
+
+    // for IE
+    else if (!!window.ActiveXObject && document.execCommand) {
+        var _window = window.open(fileURL, '_blank');
+        _window.document.close();
+        _window.document.execCommand('SaveAs', true, fileName || fileURL)
+        _window.close();
+    }
+}
+</script>
+</body>
+</html>
+

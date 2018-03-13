@@ -50,7 +50,7 @@
 						<div class="form-check">
 							<input type="checkbox" class="form-check-input" id="saveEmail"
 								name="saveEmail"> <label class="form-check-label"
-								for="saveEmail">이메일 저장</label>
+								for="saveEmail">아이디 저장</label>
 						</div>
 					</div>
 				</div>
@@ -113,6 +113,24 @@
 				$('#ptag').html('회원 유형을 선택해주세요');
 				$('#register').fadeIn("fast");				
 			});
+		});
+		
+		$.getJSON(host + '/json/auth/savedID', function(result) {
+			var savedID = result.savedID
+			if (savedID != null) {
+				$('#email').val(savedID);
+				$('#saveEmail').prop("checked", true);
+			} else {
+				$('#email').val(savedID);
+				$('#saveEmail').prop("checked", false);
+			}
+		});
+		
+		$('#password').keypress(function(event){
+		     if (event.which == 13 ) {
+		         $('#loginBtn').click();
+		         return false;
+		     }
 		});
 	</script>
 
