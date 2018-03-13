@@ -32,6 +32,7 @@
 							</label>
 						</div>
 					</div>
+					<div style='text-align:right; margin:30px 0'><button id="addbtn" class="btn btn-primary">추가</button></div>
 				</div>
 			</div>
 			<div id='here'></div>
@@ -40,16 +41,25 @@
 		$('header').load("../header.html");
 		$('#pageinfo').html('나의 이력서 목록');
 		$('#here').load("resume-list.html");
+		$('#addbtn').click(() => {
+			location.href="../resume/form.html";
+		})
 
 		function change() {
 			if ($("#d").is(":checked")) {
 				console.log('checked');
 				$('#pageinfo').html('나의 자소서 목록');
 				$('#here').load("letter-list.html");
+				$('#addbtn').click(() => {
+					location.href="../letter/form.html";
+				})
 			} else {
 				console.log('unchecked');
 				$('#pageinfo').html('나의 이력서 목록');
 				$('#here').load("resume-list.html");
+				$('#addbtn').click(() => {
+					location.href="../resume/form.html";
+				})	
 			}
 		}
 	</script>
