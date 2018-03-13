@@ -92,7 +92,6 @@
 		tloc=#{location},
 		tpre=#{prepare},
 		tcheck=#{check},
-		ano=#{ano}
 		where tno=#{no}
 	</update>
 

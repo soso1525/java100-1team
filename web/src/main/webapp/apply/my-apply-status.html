@@ -66,6 +66,8 @@
 					</div>
 				</div>
 			</div>
+			
+			<div id="testmodal"></div>
 
 			<div id='detail' class="row" style="overflow: hidden; padding: 15px">
 				<div style="float: left; width: 48%">
@@ -88,6 +90,7 @@
 
 					<div style="margin: 10px 0" align="left">
 						<button id="updatetestbtn" class='btn btn-primary btn-sm'>변경</button>
+						<button id="addtestbtn" onclick="loadModal()" class='btn btn-primary btn-sm'>변경</button>
 					</div>
 				</div>
 				<div id="map" style="width: 50%; float: right">
@@ -136,6 +139,11 @@
 	var tbody2 = $('#list2 > tbody'),
     template2Src = $('#template2').html(),
     template2Engine = Handlebars.compile(template2Src);
+	
+	function loadModal() {
+		$('#testmodal').load("../test/addTestModal.html");
+	}
+	
 	
 	var index = location.href.indexOf('?');
 	if (index != -1) { 
