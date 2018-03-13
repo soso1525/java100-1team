@@ -75,7 +75,11 @@
  <div class="form-group row question">
  	<label style="text-align: right" class="col-sm-2 col-form-label">{{content.length}} / <input name="lengths" style="width:40px;"type="text" value="{{length}}">자</label>
  	<div class="col-sm-8">
+<<<<<<< HEAD
  		<textarea rows="10" name="contents" style='padding: 20px; border: 1.2px dotted #f7639a; overflow-y: scroll; height:auto; line-height: 170%' class="form-control">{{content}}</textarea>
+=======
+ 		<textarea row="10" name="contents" style='padding: 20px; border: 1.2px dotted #f7639a; overflow: hidden; height:auto; line-height: 170%' class="form-control">{{content}}</textarea>
+>>>>>>> branch 'master' of https://github.com/soso1525/java100-1team.git
  	</div>
  </div>
 </div>
@@ -185,6 +189,8 @@ $('#qaddBtn').click(() => {
 	q.find('#content').val("");
 	q.appendTo('#questionBox');
 });
+
+
 
 function SaveToDisk(fileURL, fileName) {
     // for non-IE

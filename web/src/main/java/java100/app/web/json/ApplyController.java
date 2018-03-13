@@ -54,7 +54,7 @@ public class ApplyController {
 	}
 
 	@RequestMapping("list")
-	public Object list(Model model, @ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
+	public Object list(@ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("apply", applyService.list(loginUser));
 		return result;
