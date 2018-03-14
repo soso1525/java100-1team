@@ -49,5 +49,5 @@
 	});
 	
 	$('#study').click(() => {
-		location.href="../study/list.html";
+		location.href="../study/memberList.html?sno=1";
 	});
