@@ -12,72 +12,84 @@
 
 </head>
 <body style='background-color: #f2f2f2;'>
-    <header></header>
-    <section class="section-space-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div style="margin: 80px 0" class="section-title">
-                        <h2>이력서</h2>
-                        <div class="divider dark">
-                            <i class="icon-graduation"></i>
-                        </div>
-                        <p style='margin-top: 10px'>지원자의 이력서를 볼 수 있습니다.</p>
-                    </div>
-                </div>
-            </div>
+	<header></header>
+	<section class="section-space-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div style="margin: 80px 0" class="section-title">
+						<h2>이력서</h2>
+						<div class="divider dark">
+							<i class="icon-graduation"></i>
+						</div>
+						<p style='margin-top: 10px'>지원자의 이력서를 볼 수 있습니다.</p>
+					</div>
+				</div>
+			</div>
 
-            <div id="notice-list" class="masonry"></div>
+			<div id="notice-list" class="masonry"></div>
 
-        </div>
-    </section>
+		</div>
+	</section>
 
-    <div id="id01" class="w3-modal">
-        <div class="w3-modal-content" style="background: transparent">
-            <span onclick="document.getElementById('id01').style.display='none'"
-                class="w3-button w3-display-topright">&times;</span>
-            <div class="business-card">
-                <div class="card">
-                    <div class="side front">
-                        <div id='photo'>
-                            <img id='image'>
-                        </div>
-                        <div id-info style='margin:232px 0 0 20px;'>
-                            <div id='info1'>
-                                <p id='name'></p></br>
-                                <p id='kind'></p></br>
-                                <p id='education'></p></br>
-                                <p id='schoolName'></p></br>
-                                <p id='major'></p></br>
-                                <p id='grades'></p>
-                            </div>
-                            <div id='info2' style='margin-left:46px;'>
-                                <p id='career' style='margin-top:56px;'></p></br>
-                                <p id='qualification'></p></br>
-                                <p id='language'></p></br>
-                                <p id='award'></p></br>
-                                <p id='note'></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="side back">
-                        <div id='title' style='font-size:26px; text-align:center; font-weight: bold; margin-bottom:14px;'></div>
-                        <div id='video' style='margin-top: 8px;'>
-                            <video id='avi' autoplay controls="controls"></video>
-                        </div>
-                        <div id='file' style='cursor:pointer; font-size:20px;  text-align:center;  margin-top:18px;'></div>
-                        <p>포트폴리오, 증명서 외 첨부파일을 다운받을 수 있습니다</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div id="id01" class="w3-modal">
+		<div id="content" class="w3-modal-content"
+			style="background: transparent">
+			<span onclick="document.getElementById('id01').style.display='none'"
+				class="w3-button w3-display-topright">&times;</span>
+			<div id="cc" class="business-card">
+				<div class="card">
+					<div class="side front">
+						<div id='photo'>
+							<img id='image'>
+						</div>
+						<div id-info style='margin: 232px 0 0 20px;'>
+							<div id='info1'>
+								<p id='name'></p>
+								</br>
+								<p id='kind'></p>
+								</br>
+								<p id='education'></p>
+								</br>
+								<p id='schoolName'></p>
+								</br>
+								<p id='major'></p>
+								</br>
+								<p id='grades'></p>
+							</div>
+							<div id='info2' style='margin-left: 46px;'>
+								<p id='career' style='margin-top: 56px;'></p>
+								</br>
+								<p id='qualification'></p>
+								</br>
+								<p id='language'></p>
+								</br>
+								<p id='award'></p>
+								</br>
+								<p id='note'></p>
+							</div>
+						</div>
+					</div>
+					<div class="side back">
+						<div id='title'
+							style='font-size: 26px; text-align: center; font-weight: bold; margin-bottom: 14px;'></div>
+						<div id='video' style='margin-top: 8px;'>
+							<video id='avi' autoplay controls="controls"></video>
+						</div>
+						<div id='file'
+							style='cursor: pointer; font-size: 20px; text-align: center; margin-top: 18px;'></div>
+						<p>포트폴리오, 증명서 외 첨부파일을 다운받을 수 있습니다</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <script src='../node_modules/jquery/dist/jquery.min.js'></script>
-    <script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
-    <script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+	<script src='../node_modules/jquery/dist/jquery.min.js'></script>
+	<script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+	<script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
 
-    <script type="text/javascript">
+	<script type="text/javascript">
      
     $('header').load('../header.html', () => {
           load();
@@ -92,6 +104,7 @@
         $('#video').attr('src', videoSrc);
     }); */
     
+
     function load() {
         $.ajax('../json/resume/list', {
             dataType: 'json',
@@ -116,6 +129,7 @@
        
     function mo(no) {
         $('#id01').css('display', 'block');
+        
         $(() => { 
             $.ajax('../json/resume/' + no, {
                 dataType: 'json',
@@ -148,6 +162,17 @@
                        
             });
         });
+        
+        
+        
+        if($('#id01').css('display') == 'block') {
+        	$('#id01').click((e) => {
+        		console.log(e.target);
+        		if(!$('#id01').has(e.target).length){
+        			$('#id01').css('display', 'none');
+        		}
+       		});
+        } else return;
     }
     
      function SaveToDisk(fileURL, fileName) {
