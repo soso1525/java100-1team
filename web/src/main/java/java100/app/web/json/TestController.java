@@ -55,7 +55,6 @@ public class TestController {
 	@RequestMapping(value = "addTest", method = RequestMethod.POST)
 	public Object addTest(Apply apply, Test test, @ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
 		HashMap<String, Object> result = new HashMap<>();
-
 		apply.setMember(loginUser);
 		applyService.add(apply);
 		
@@ -71,8 +70,11 @@ public class TestController {
 	public Object list(@PathVariable int ano) throws Exception {
 		// result.put("letter", letterService.get(no));
 		// result.put("question", questionService.list(no));
+		
 		HashMap<String, Object> result = new HashMap<>();
+		result.put("status", "success");
 		result.put("test", testService.list(ano));
+		System.out.println("실행뎀");
 		return result;
 	}
 
@@ -81,6 +83,16 @@ public class TestController {
 		testService.update(test);
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("status", "success");
+		System.out.println(test.toString());
+		return result;
+	}
+	
+	@RequestMapping("onlyAdd")
+	public Object onlyAdd(Test test) throws Exception {
+		testService.add(test);
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("status", "success");
+		System.out.println(test.toString());
 		return result;
 	}
 

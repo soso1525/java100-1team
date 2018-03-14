@@ -57,7 +57,14 @@
 	</select>
 	
 	<select id="list" resultMap="testMap" parameterType="int">
-		select *
+		select 
+		  tno,
+		  ttype,
+		  tdt,
+		  ttime,
+		  tloc,
+		  tpre,
+		  tcheck
 		from g_test where ano=#{ano}
 	</select>
 
@@ -91,8 +98,8 @@
 		ttime=#{time},
 		tloc=#{location},
 		tpre=#{prepare},
-		tcheck=#{check},
-		where tno=#{no}
+		tcheck=0
+		where ano=#{ano}
 	</update>
 
 	<delete id="delete" parameterType="int">
