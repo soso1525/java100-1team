@@ -84,7 +84,7 @@
     <!-- 클라이언트에서 특정 경로의 기본 문서를 요구했을 때,
          그 문서를 찾는 순서이다. -->
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
+        <welcome-file>notice/notice.html</welcome-file>
         <welcome-file>index.htm</welcome-file>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
