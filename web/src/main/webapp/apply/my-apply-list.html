@@ -37,7 +37,134 @@ body {
 					</div>
 				</div>
 
-				<div id='m'></div>
+				<div id='m'>
+					<div id='modal' class="modal" style='display: none'>
+						<div class="modal-content">
+							<span
+								onclick="document.getElementById('m').style.display='none'; clearInterval(blink)"
+								class="close">&times;</span>
+							<h2 id="mh2" align="center"
+								style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 30px; margin-top: 40px; margin-bottom: 60px">
+								지원 현황 업데이트</h2>
+							<div id="testchange" style='text-align: center'>
+								<div style='display: inline-block;'>
+									<div style='width: 200px; height: 200px; float: left'>
+										<img id='p' src="../images/paper.png">
+									</div>
+									<i class="fa fa-angle-double-right"
+										style="float: left; font-size: 48px; padding: 30px"></i>
+									<div style='width: 200px; height: 200px; float: left'>
+										<img id='t' src="../images/t.png">
+									</div>
+									<i class="fa fa-angle-double-right"
+										style="float: left; font-size: 48px; padding: 30px"></i>
+									<div style='width: 200px; height: 200px; float: left'>
+										<img id='i' src="../images/interview.png">
+									</div>
+								</div>
+								<div id="addTestModal" class="w3-modal">
+									<div style='border-radius: 10px; border: 2px dotted slategray;'
+										class="w3-modal-content">
+										<div style="padding: 25px" class="w3-container">
+											<span
+												onclick="document.getElementById('addTestModal').style.display='none'"
+												class="w3-button w3-display-topright">&times;</span>
+											<h2 style="margin: 50px 0">인적성/면접 일정 추가</h2>
+											<form method='post' id="form">
+												<input type="hidden" id="ano" name="ano">
+												<div class="form-group row">
+													<div class="col-sm-6">
+														<div class="form-group row">
+															<label class='col-sm-2 col-form-label'>기업 이름</label>
+															<div class='col-sm-6'>
+																<input class='form-control' placeholder='지원한 회사 이름' readonly
+																	id='modal-aname' name='modal-aname' type='text' required>
+															</div>
+														</div>
+					
+														<div class="form-group row">
+															<label class='col-sm-2 col-form-label'>전형 유형</label>
+															<div class="col-sm-6">
+																<input class="form-check-input" type="radio" name="modal-type"
+																	value="인적성"> <label class="form-check-label"
+																	for="test">인적성</label> <input style='margin-left: 10px'
+																	class="form-check-input" type="radio" name="modal-type" value="면접">
+																<label class="form-check-label" for="interview">면접</label>
+															</div>
+														</div>
+					
+														<div class="form-group row">
+															<label class='col-sm-2 col-form-label'>전형 일자</label>
+															<div class="col-sm-6">
+																<input class='form-control' type='date' id='modal-date' required>
+															</div>
+														</div>
+					
+														<div class="form-group row">
+															<label class='col-sm-2 col-form-label'>전형 시간 </label>
+															<div class="col-sm-6">
+																<input class='form-control' type='time' id='modal-time' required>
+															</div>
+														</div>
+					
+					
+														<div class="form-group row">
+															<label class='col-sm-2 col-form-label'>준비물</label>
+															<div class="col-sm-6">
+																<input class='form-control' type='text' value='신분증'
+																	id='modal-prepare' required>
+															</div>
+														</div>
+													</div>
+					
+													<div class="form-group row">
+														<label class='col-sm-2 col-form-label'>위치</label>
+														<div class="col-sm-3">
+															<input type="text" class="form-control" id="sample3_postcode"
+																placeholder="우편번호">
+														</div>
+														<div class="col-sm-2">
+															<input type="button" class="form-control"
+																onclick="sample3_execDaumPostcode()" value="주소 검색">
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class='col-sm-2 col-form-label'></label>
+														<div class="col-sm-6">
+															<div id="wrap"
+																style="display: none; border: 1px solid; width: 500px; height: 300px; margin: 5px 0; position: relative">
+																<img
+																	src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png"
+																	id="btnFoldWrap"
+																	style="width: 20px; height: 20px; cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1"
+																	onclick="foldDaumPostcode()" alt="접기 버튼">
+															</div>
+															<input style="display:none" type="text" name='modal-location' id="sample3_address"
+																class="d_form large form-control" placeholder="주소">
+														</div>
+													</div>
+												</div>
+												<div style="margin-bottom: 50px" class="calendar__button">
+													<button style="margin-right: 5px" type='button' id='modal-addBtn'
+														class='btn'>추가</button>
+													<button type='reset' id='modal-cancelBtn' class='btn'>취소</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<div style="margin-top: 30px; padding: 30px">
+									<button id="pbtn" onclick=addTest()
+										class="button button-style button-style-dark button-style-color-1">합격</button>
+									<button id="fbtn" onclick=deleteApply()
+										class="button button-style button-style-dark button-style-color-2">불합격</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					
+				</div>
 
 				<div class="row margin-top-30">
 					<div class="col-md-3 col-sm-3">
@@ -151,14 +278,13 @@ body {
 			</form>
 		</div>
 	</div>
-
-
 </body>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/plugin.js"></script>
 <script type="text/javascript" src="../js/scripts.js"></script>
 <script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="../js/context.js"></script>
 <script src="../js/apply-list.js"></script>
 <script id="template1" type="text/x-handlebars-template">
@@ -215,17 +341,19 @@ body {
 	
 	function updateStatus(ano) {
 		delAno = ano;
-		$('#m').load("modal.html");
+//		$('#m').load("modal.html");
+		$('#modal').css('display','block');
 		$.post(host + '/json/apply/state', {
 		        ano:ano
 		    }, function(result) {
 		    	compName = result.aname;
+		    	$('#modal-aname').val(result.aname);
 		    	$('#mh2').html(result.aname + " 지원 현황 업데이트");
 				if(result.state == '인적성') {
 					clearInterval(blink);
 					blink = setInterval(function() {
-						$('#t').fadeOut('fast').fadeIn('fast');},10); 
-				} 
+						$('#t').fadeOut('fast').fadeIn('fast');},10);
+				}
 				if(result.state == '면접') {
 					clearInterval(blink);
 					blink = setInterval(function() {
@@ -238,28 +366,136 @@ body {
 				}
 		    }, 'json');
 	 };
-	 
 	 function deleteApply() {
-	  $.post(host + '/json/apply/delete', {
-			data: {
-				ano: delAno
-			},
-			
-			dataType: 'json',
-			success: (result) => {
-				swal("Apply 삭제", compName + " 지원 데이터가 삭제되었습니다.", "success").then(() => {
-					location.href("my-apply-list.html");
-				});
-			},
-			
-			error: () => {
-		    	swal("오류발생", "apply 삭제 중 오류가 발생했습니다.", "error");
-		    }
+		  $.ajax(host + '/json/apply/delete', {
+				data: {
+					ano: delAno
+				},
+				dataType: 'json',
+				success: (result) => {
+					swal("Apply 삭제", compName + " 지원 데이터가 삭제되었습니다.", "success").then(() => {
+						location.href = "";
+					});
+				},
+				error: () => {
+			    	swal("오류발생", "apply 삭제 중 오류가 발생했습니다.", "error");
+			    }
 		}); 
 	 }
-	 
 	 function addTest() {
 		 $('#addTestModal').css('display', 'block');
 	 }
+	
+</script>
+<script>
+    // 우편번호 찾기 찾기 화면을 넣을 element
+    var element_wrap = document.getElementById('wrap');
+
+    function foldDaumPostcode() {
+        // iframe을 넣은 element를 안보이게 한다.
+        element_wrap.style.display = 'none';
+    }
+
+    function sample3_execDaumPostcode() {
+        // 현재 scroll 위치를 저장해놓는다.
+        var currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullAddr = data.address; // 최종 주소 변수
+                var extraAddr = ''; // 조합형 주소 변수
+
+                // 기본 주소가 도로명 타입일때 조합한다.
+                if(data.addressType === 'R'){
+                    //법정동명이 있을 경우 추가한다.
+                    if(data.bname !== ''){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있을 경우 추가한다.
+                    if(data.buildingName !== ''){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                } 
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                $('#sample3_address').css('display', 'block');
+                document.getElementById('sample3_postcode').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('sample3_address').value = fullAddr;
+
+                // iframe을 넣은 element를 안보이게 한다.
+                // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
+                element_wrap.style.display = 'none';
+
+                // 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
+                document.body.scrollTop = currentScroll;
+            },
+            // 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
+            onresize : function(size) {
+                element_wrap.style.height = size.height+'px';
+            },
+            width : '100%',
+            height : '100%'
+        }).embed(element_wrap);
+
+        // iframe을 넣은 element를 보이게 한다.
+        element_wrap.style.display = 'block';
+    }
+</script>
+<script>
+
+
+$('#modal-addBtn').click(() => {
+	$.ajax(host + '/json/test/' + delAno, {
+		dataType: 'json',
+		success: (result) => {
+			console.log($('#modal-date').val());
+			if(result.test) {
+				$.ajax(host + '/json/test/update', {
+					data: {
+						type: $('input[name=modal-type]:checked').val(),
+						date: $('#modal-date').val(),
+						time: $('#modal-time').val(),
+						location: $('input[name=modal-location]').val(),
+						prepare: $('#modal-prepare').val(),
+						ano: delAno
+					},
+					dataType: 'json',
+				    success: (result) => {
+				    },
+				    error: () => {
+				        window.alert('서버 실행 오류!');
+				    }				
+				});
+			} else {
+				$.ajax(host + '/json/test/onlyAdd', {
+					data: {
+						type: $('input[name=modal-type]:checked').val(),
+						date: $('#modal-date').val(),
+						time: $('#modal-time').val(),
+						location: $('input[name=modal-location]').val(),
+						prepare: $('#modal-prepare').val(),
+						ano: delAno
+					},
+					dataType: 'json',
+				    success: (result) => {
+				    },
+				    error: () => {
+				        window.alert('서버 실행 오류!');
+				    }				
+				});
+			}
+
+		},
+		error: () => {
+		    window.alert('서버 실행 오류!');
+		}
+	});
+});
+
 </script>
 </html>
