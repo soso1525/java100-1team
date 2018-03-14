@@ -52,7 +52,7 @@
 	      load();
 	  });
 	
-	$('#view3').load("view3.html");
+	$('#t').load("t.html");
 	
     $('#item').click(() => {
         console.log('clicked');
@@ -68,7 +68,7 @@
 		        	for (var data of result.list) {
 		        	    console.log(data.no);
 		        				        	    console.log(data.image);
-		        	    $("<div class='item' onclick=location.href='view3.html?no=" + data.no + "' style='cursor:pointer'></div>").html(
+		        	    $("<div class='item' onclick=location.href='t.html?no=" + data.no + "' style='cursor:pointer'></div>").html(
 		        	    	    "<div class='title' style='font-size:16px; height:40px; margin-top:10px; text-align:center;'>" + data.title + "</div>" +
                         "<div class= 'image'><img src='../../download/"+data.image+"'></div>" +
                         "<div class='career' style='font-size:16px; margin:10px 0 0 5px;'> 경력사항 : " + data.career + "</div>" +

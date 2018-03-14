@@ -4,41 +4,41 @@
 	      </div>
 	      <div class="modal-body">
 	        <div class='row'>
-		<label for='sname' class='col-sm-2'>이름</label>
+		<label for='sname' class='col-sm-2'>제목</label>
 		<div class='col-sm-10'>
 			<input id='sno' type='hidden'>
-			<input style="border:0px;" id='sname' type='text' name='sname'>
+			<input style="border:0px; width: 400px" id='sname' type='text' name='sname'>
 		</div>
 	</div>
 	<div class='row'>
 		<label for='sloc' class='col-sm-2 '>지역</label>
 		<div class='col-sm-10'>
-			<input style="border:0px;" id='sloc' type='text' name='sloc'>
+			<input style="border:0px; width: 400px" id='sloc' type='text' name='sloc'>
 		</div>
 	</div>
 
 	<div class='row'>
 		<label for='sint' class='col-sm-2 '>관심분야</label>
 		<div class='col-sm-10'>
-			<input style="border:0px;" id='sint' type='text' name='sint'>
+			<input style="border:0px; width: 400px" id='sint' type='text' name='sint'>
 		</div>
 	</div>
 	<div class='row'>
 		<label for='sppl' class='col-sm-2 '>인원수</label>
 		<div class='col-sm-10'>
-			<input style="border:0px;" id='sppl' type='number' name='sppl'>
+			<input style="border:0px; width: 400px" id='sppl' type='number' name='sppl'>
 		</div>
 	</div>
 	<div class='row'>
 		<label for='scorp' class='col-sm-2 '>대상기업</label>
 		<div class='col-sm-10'>
-			<input style="border:0px;" id='scorp' type='text' name='scorp'>
+			<input style="border:0px; width: 400px" id='scorp' type='text' name='scorp'>
 		</div>
 	</div>
 	<div class='row'>
 		<label for='scheck' class='col-sm-2 '>모집상태</label>
 		<div class='col-sm-10'>
-			<input style="border:0px;" id='scheck' type='text' name='scheck'>
+			<input style="border:0px; width: 400px" id='scheck' type='text' name='scheck'>
 		</div>
 	</div>
 	<div class='row'>
@@ -89,7 +89,6 @@ function view(value) {
 		                    } else {
 		                    	scheckItem.val('꽉찼음');
 		                    	$('#btnApply').addClass('disabled');
-		                    	
 		                    }
 		                },
 	            error: () => {

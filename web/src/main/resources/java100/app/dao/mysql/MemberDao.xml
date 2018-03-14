@@ -84,7 +84,9 @@
 		update g_per set 
 			pmail=#{email},
 			ptel=#{tel},
-			pdaddr=#{address}
+			pdaddr=#{address},
+			pid=#{id}
+			
         where pno=#{no}
 	</update>
 

@@ -103,9 +103,10 @@ body {
 
 <script id="study" type="text/x-handlebars-template">
 {{#each list}}
- <div class="blog-card col-sm-2" style="width:30%; margin-right: 39px;  padding-left: 0px;" href='view.html' onclick="show('{{sno}}')"  data-toggle='modal' data-target='#modal-testNew' role='button' data-backdrop='static'>
+ <div class="blog-card col-sm-2" style=" margin-bottom : 37px; width:30%; margin-right: 39px;  padding-left: 0px;" href='view.html' onclick="show('{{sno}}')" 
+ data-toggle='modal' data-target='#modal-testNew' role='button' data-backdrop='static'>
   <div style= "width: 500px; height:500px;">
-  <img src="../../download/{{simg}}">
+  <img src="../../download/{{simg}}" style= "width: 500px; height:500px;">
   </div>
   <div class="title-content">
   <h3>{{sname}}</h3>
