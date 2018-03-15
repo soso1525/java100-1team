@@ -40,8 +40,11 @@ public class ApplyServiceImpl implements ApplyService {
 	}
 	
 	@Override
-	public Apply getApply(String aname) {
-		return applyDao.findByName(aname);
+	public Apply getApply(String aname, Member loginUser) {
+	    HashMap<String, Object> params = new HashMap<>();
+	    params.put("aname", aname);
+	    params.put("writer", loginUser);
+		return applyDao.findByName(params);
 	}
 
 	@Override

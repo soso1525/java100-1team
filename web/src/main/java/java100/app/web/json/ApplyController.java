@@ -122,9 +122,9 @@ public class ApplyController {
 	}
 
 	@RequestMapping("find")
-	public Object find(String aname) throws Exception {
+	public Object find(String aname, @ModelAttribute(value = "loginUser") Member loginUser) throws Exception {
 		HashMap<String, Object> result = new HashMap<>();
-		result.put("data", applyService.getApply(aname));
+		result.put("data", applyService.getApply(aname, loginUser));
 		return result;
 	}
 

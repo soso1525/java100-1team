@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>catch</title>
+<link rel="shortcut icon" href="images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="144x144" type="image/x-icon"
+    href="../images/favicon/apple-touch-icon.png">
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" type="text/css" href="../css/userList.css">
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
+</head>
+<body>
+    <div class='container'>
+<div class="header-top-area navigation-background">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="logo">
+                    <a href="../notice/notice.html">CATCH</a>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="navigation-menu">
+                    <div class="navbar">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle"
+                                data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span> <span
+                                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                                    class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="active"><a class="smoth-scroll"
+                                    href="../notice/notice.html">Home </a></li>
+                                <li><a class="smoth-scroll" href="../notice/notice.html">Notice</a>
+                                </li>
+                                <li><a class="smoth-scroll" href="../letter/form.html">CoverLetter</a>
+                                </li>
+                                <li><a class="smoth-scroll" href="../study/study.html">Study</a>
+                                </li>
+                                <li><a style="display: none" id="msgMenu"
+                                    class="smoth-scroll" href="../message/receiveList.html">Message</a>
+                                </li>
+                                <li><a id="loginbtn" class="smoth-scroll"
+                                    href="../auth/login.html">logout</a></li>
+                                <li><a style="display: none" id="logoutbtn"
+                                    class="smoth-scroll" href="../auth/login.html">logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src='../js/login.js'></script>
+
+
+        <!-- <h1 style="margin-top: 30px; margin-bottom: 30px">회원 목록</h1> -->
+    <div style="margin-top: 80px;" class="section-title">
+                  <h2>STUDY USER</h2>
+                  <div class="divider dark">
+                     <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                  </div>
+                  <p>Study Groups with the Same Direction</p>
+               </div>
+        <table id="list" class='table table-hover'>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<div class="Businesscard"
+style="margin:15px; float: left; margin: auto">
+  <div class=material>
+    <div class="large_block">
+       <div class="profile">
+         <img src="../images/석희.png">
+        </div>
+      <div class="primaryaction_btn">
+<i data-toggle='modal' href='../message/form.html' 
+onclick="show2('mrecv', 'mcont','{{id}}')" data-target='#modal-testNew' 
+ role='button' data-backdrop='static'>
+<img src="../images/icon1.png" style='margin-top: 5px; width:35px; height:35px;'>
+</i>
+      </div>
+    </div>
+    <div class="address">
+      <label>
+         <span class="head">
+           Id
+        </span>
+        <span class="sep">
+          :
+        </span>
+         <span> 
+           junyub0301
+         </span>
+      </label>
+      <label class="office_add">
+        <span class="head">
+          Name
+        </span>
+        <span class="sep">
+          :
+        </span>
+           <span>김준엽</span>
+      </label>
+      <label>
+       <span class="head">
+          E-mail
+        </span>
+        <span class="sep">
+          :
+        </span>
+        <span>junyub0301@gmail.com
+        </span>
+      </label>
+      <label>
+        <span class="head">
+          Phone
+        </span>
+        <span class="sep">
+          :
+        </span>
+        <span>010-2646-8298</span>
+      </label>
+    </div>
+  </div>
+</div>
+        
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<div class="Businesscard"
+style="margin:15px; float: left; margin: auto">
+  <div class=material>
+    <div class="large_block">
+       <div class="profile">
+         <img src="../images/지은.png">
+        </div>
+      <div class="primaryaction_btn">
+<i data-toggle='modal' href='../message/form.html' 
+onclick="show2('mrecv', 'mcont','{{id}}')" data-target='#modal-testNew' 
+ role='button' data-backdrop='static'>
+<img src="../images/icon1.png" style='margin-top: 5px; width:35px; height:35px;'>
+</i>
+      </div>
+    </div>
+    <div class="address">
+      <label>
+         <span class="head">
+           Id
+        </span>
+        <span class="sep">
+          :
+        </span>
+         <span> 
+           yun0901
+         </span>
+      </label>
+      <label class="office_add">
+        <span class="head">
+          Name
+        </span>
+        <span class="sep">
+          :
+        </span>
+           <span>김가연</span>
+      </label>
+      <label>
+       <span class="head">
+          E-mail
+        </span>
+        <span class="sep">
+          :
+        </span>
+        <span> yun0901@naver.com
+        </span>
+      </label>
+      <label>
+        <span class="head">
+          Phone
+        </span>
+        <span class="sep">
+          :
+        </span>
+        <span>010-9010-2111</span>
+      </label>
+    </div>
+  </div>
+</div>
+        
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<div class="Businesscard"
+style="margin:15px; float: left; margin: auto">
+  <div class=material>
+    <div class="large_block">
+       <div class="profile">
+         <img src="../images/소현이.png">
+        </div>
+      <div class="primaryaction_btn">
+<i data-toggle='modal' href='../message/form.html' 
+onclick="show2('mrecv', 'mcont','{{id}}')" data-target='#modal-testNew' 
+ role='button' data-backdrop='static'>
+<img src="../images/icon1.png" style='margin-top: 5px; width:35px; height:35px;'>
+</i>
+      </div>
+    </div>
+    <div class="address">
+      <label>
+         <span class="head">
+           Id
+        </span>
+        <span class="sep">
+          :
+        </span>
+         <span> 
+           sarachung
+         </span>
+      </label>
+      <label class="office_add">
+        <span class="head">
+          Name
+        </span>
+        <span class="sep">
+          :
+        </span>
+           <span>정소현</span>
+      </label>
+      <label>
+       <span class="head">
+          E-mail
+        </span>
+        <span class="sep">
+          :
+        </span>
+        <span>sandy1525@naver.com
+        </span>
+      </label>
+      <label>
+        <span class="head">
+          Phone
+        </span>
+        <span class="sep">
+          :
+        </span>
+        <span>010-9019-1111</span>
+      </label>
+    </div>
+  </div>
+</div>
+        
+        </table>
+    <div class="modal fade" id="modal-testNew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:10000">
+        <div class="modal-dialog" style="margin-top: 200px; width:400px; height:500px;">
+            <div class="modal-content" style="background-color: transparent; border:0px;"></div>
+        </div>
+        <input type="hidden" id= "params" value=""/>
+    </div>
+    </div>
+
+    <script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+    <script src='../node_modules/jquery/dist/jquery.min.js'></script>
+    <script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
+    <script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+    <script type="text/javascript" src="../js/context.js"></script>
+    <script src='../js/login.js'></script>
+    <script id="template1" type="text/x-handlebars-template">
+
+
+</script>
+    <script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/plugin.js"></script>
+    <script type="text/javascript" src="../js/scripts.js"></script>
+    <script type="text/javascript" src="../js/context.js"></script>
+    <script type="text/javascript">
+
+    </script>
+
+
+</body>
+</html>
