@@ -127,6 +127,7 @@ background-color: #f2f2f2;
 			</div>
 		</div>
     </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src='../node_modules/jquery/dist/jquery.min.js'></script>
     <script src='../node_modules/popper.js/dist/umd/popper.min.js'></script>
     <script src='../node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
@@ -234,7 +235,10 @@ var span = document.getElementsByClassName("close")[0];
 
 
 btn.onclick = function() {
-	modal.style.display = "block";
+	//modal.style.display = "block";
+	swal("로그인 필요", "회원정보가 필요합니다", "warning").then(() => {
+	    location.href="../auth/login.html";
+	})
 }
 
 span.onclick = function() {
@@ -260,7 +264,10 @@ $('#applyBtn').click(() => {
         	location.href="../apply/my-apply-list.html";
         },
         error: () => {
-            window.alert('서버 실행 오류!');
+            swal("로그인 필요", "회원정보가 필요합니다", "warning").then(() => {
+                location.href="../auth/login.html";
+            })
+            //window.alert('서버 실행 오류!');
         }
     });
 });
