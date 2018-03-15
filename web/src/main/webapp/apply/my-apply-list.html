@@ -120,14 +120,13 @@ body {
 													<div class="form-group row">
 														<label class='col-sm-2 col-form-label'>위치</label>
 														<div class="col-sm-3">
-															<input type="text" class="form-control" id="sample3_postcode"
+															<input style="display:none;"type="text" class="form-control" id="sample3_postcode"
 																placeholder="우편번호">
 														</div>
 														<div class="col-sm-2">
-															<input type="button" class="form-control"
+															<input type="button" class="form-control col-sm-6"
 																onclick="sample3_execDaumPostcode()" value="주소 검색">
 														</div>
-													</div>
 													<div class="form-group row">
 														<label class='col-sm-2 col-form-label'></label>
 														<div class="col-sm-6">
@@ -142,6 +141,7 @@ body {
 															<input style="display:none" type="text" name='modal-location' id="sample3_address"
 																class="d_form large form-control" placeholder="주소">
 														</div>
+													</div>
 													</div>
 												</div>
 												<div style="margin-bottom: 50px" class="calendar__button">
@@ -424,6 +424,7 @@ body {
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 $('#sample3_address').css('display', 'block');
+                $('#sample3_postcode').css('display', 'block');
                 document.getElementById('sample3_postcode').value = data.zonecode; //5자리 새우편번호 사용
                 document.getElementById('sample3_address').value = fullAddr;
 
@@ -447,7 +448,6 @@ body {
     }
 </script>
 <script>
-
 
 $('#modal-addBtn').click(() => {
 	$.ajax(host + '/json/test/' + delAno, {

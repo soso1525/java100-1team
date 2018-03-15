@@ -35,6 +35,7 @@ function sample3_execDaumPostcode() {
 			}
 
 			// 우편번호와 주소 정보를 해당 필드에 넣는다.
+			$('#sample3_postcode').css('display', 'block');
 			$('#sample3_address').css('display', 'block');
 			document.getElementById('sample3_postcode').value = data.zonecode; // 5자리
 			// 새우편번호
