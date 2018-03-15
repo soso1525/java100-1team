@@ -467,6 +467,9 @@ $('#modal-addBtn').click(() => {
 					},
 					dataType: 'json',
 				    success: (result) => {
+				    	swal("일정등록", $('input[name=modal-type]:checked').val() + " 일정이 등록되었습니다.", "success").then(() => {
+							location.href = "";
+						});
 				    },
 				    error: () => {
 				        window.alert('서버 실행 오류!');
@@ -484,6 +487,9 @@ $('#modal-addBtn').click(() => {
 					},
 					dataType: 'json',
 				    success: (result) => {
+				    	swal("일정등록", $('input[name=modal-type]:checked').val() + " 일정이 등록되었습니다.", "success").then(() => {
+							location.href = "";
+						});
 				    },
 				    error: () => {
 				        window.alert('서버 실행 오류!');
