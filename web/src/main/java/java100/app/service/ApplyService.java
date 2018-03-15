@@ -10,7 +10,7 @@ public interface ApplyService {
 	int getTotalCount();
 	int add(Apply apply);
 	Apply get(int no);
-	Apply getApply(String aname);
+	Apply getApply(String aname, Member loginUser);
 	int update(Apply apply);
 	int delete(int no);
 	Apply getState(int no);

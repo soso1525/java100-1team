@@ -67,14 +67,14 @@
         where ano=#{value}
     </select>
     
-    <select id="findByName" resultMap="applyMap" parameterType="string">
+    <select id="findByName" resultMap="applyMap" parameterType="map">
         select
             ano,
             aname,
             adt,
             ino
         from g_app
-        where aname=#{value}
+        where aname=#{aname} and ino=#{writer.no}
     </select>
     
  <update id="update" parameterType="apply">
