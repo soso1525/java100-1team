@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>catch</title>
+<link rel="shortcut icon" href="../images/favicon/favicon.ico">
+<link rel="stylesheet" type="text/css" href="../css/plugin.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+
+<style>
+body {
+    background-color: #f2f2f2;
+}
+</style>
+</head>
+<body>
+ <header></header>
+  <section id="portfolio" class="portfolio section-space-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div style="margin-top: 80px;" class="section-title">
+                   <h2>To Message</h2>
+                   <div class="divider dark">
+                      <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                   </div>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="navbar navbar-light justify-content-between">
+            <a href="sendList.html">
+                <i class='icon-screen-smartphone color-1'></i>
+                    보낸쪽지함
+            </a> 
+            <a data-toggle='modal' href='form.html' 
+                onclick="show2('mrecv', 'mcont')" 
+                data-target='#modal-testNew' role='button' data-backdrop='static'>
+                    <i class='icon-screen-smartphone color-1'></i>
+                        쪽지보내기
+            </a>
+            <div class="modal fade" id="modal-testNew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:10000">
+                <div class="modal-dialog" style="margin-top: 200px; width:400px; height:500px;">
+                    <div class="modal-content" style="background-color: transparent; border:0px;"></div>
+	            </div>
+            </div>
+        </nav>
+         <a data-toggle='modal' href='form.html' 
+                onclick="show2('mrecv', 'mcont')" 
+                data-target='#modal-testNew' role='button' data-backdrop='static'>
+        <div class="row" style="margin-left:13px;width:1125px; height:1000px;background-image: url('../download/3.png');">
+            <div id='list2' class="portfolio-inner margin-top-30"></div>
+        </div>
+        </a>
+        <div style="height:600px"></div>
+        
+        <nav aria-label="Page navigation"
+            style="text-align: center; width: 1200px;">
+            <ul class="pagination justify-content-center">
+            </ul>
+        </nav>
+        
+    </div>
+</section>
+<script id="template1" type="text/x-handlebars-template">
+{{#each list}}
+<div class="col-md-6 col-sm-6">
+<div class="experience">
+<div class="experience-item">
+<div class="experience-circle">
+<i class="fa fa-envelope-o" aria-hidden="true"></i> 
+<p>{{mdt}}</p>
+</div>
+<div class="experience-content experience-color-blue">
+<h4>From. {{pid1}}</h4>
+<h4>To. {{pid2}}</h4>
+<p>{{mcont}}</p>
+<a data-toggle='modal' href='view.html' onclick="show('{{mno}}')" data-target='#modal-testNew' role='button' data-backdrop='static'>
+<div class='services-detail' style='cursor:pointer'>
+<i class='icon-screen-smartphone color-1'></i>
+{{mcheck}}</a>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+{{/each}}
+</script>
+	<script src='../node_modules/handlebars/dist/handlebars.min.js'></script>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/plugin.js"></script>
+	<script type="text/javascript" src="../js/scripts.js"></script>
+	<script type="text/javascript" src="../js/context.js"></script>
+	<script type="text/javascript">
+	$('header').load("../header.html");
+var prevBtn = $('#prevBtn'),
+currBtn = $('#currBtn'),
+nextBtn = $('#nextBtn'),
+tbody = $('#list > tbody'),
+currPageNo = 1,
+member = null,
+template1Src = $('#template1').html(),
+template1Engine = Handlebars.compile(template1Src)
+;
+
+prevBtn.click(() => {
+    load(currPageNo - 1)
+});
+
+nextBtn.click(() => {
+    load(currPageNo + 1)
+});
+
+$('#modal-testNew').on('hidden.bs.modal', () => {
+})
+
+load(1);
+
+function show(value) {
+    // modal창이 띄워졌을때 실행하는 이벤트
+    $('#modal-testNew').on('shown.bs.modal', (event) => {
+        view(value);
+    });
+}
+
+function show2(mrecv, mcont) {
+    // modal창이 띄워졌을때 실행하는 이벤트
+    $('#modal-testNew').on('shown.bs.modal', (event) => {
+        add('mrecv', 'mcont');
+    });
+}
+
+
+ 
+
+function load(pageNo, options) {
+    if (options == undefined) options = {};
+    options.pn = pageNo;
+    $.ajax(host + '/json/message/receiveList', {
+        data: options,
+        dataType: 'json',
+        success: (result) => {
+            
+            $('#list2').html(template1Engine(result));
+            currPageNo = result.pageNo;
+            currBtn.html(currPageNo);
+            
+            if (result.pageNo == 1) {
+                $(prevBtn.parent()).addClass("disabled");
+            } else {
+                $(prevBtn.parent()).removeClass("disabled");
+            }
+
+            if (result.lastPageNo == result.pageNo) {
+                $(nextBtn.parent()).addClass("disabled");
+            } else {
+                $(nextBtn.parent()).removeClass("disabled");
+            }
+        },
+        error: () => {
+            /* alert('서버 실행 오류!'); */
+        }
+    });
+};
+
+</script>
+
+</body>
+</html>
